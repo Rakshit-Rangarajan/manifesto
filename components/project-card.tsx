@@ -6,16 +6,16 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import Image, { StaticImageData } from "next/image";
 
-interface Project {
+export interface Project {
   id: number;
   title: string;
   description: string;
   problem: string;
   solution: string;
-  tech: string[];
+  tech: { name: string; icon: string; color?: string }[]; 
   github?: string;
   live?: string;
-  image?: string | StaticImageData;
+  image?: any; 
 }
 
 interface ProjectCardProps {
@@ -30,10 +30,10 @@ const ProjectCard = ({ project, index }: ProjectCardProps) => {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-50px" }}
       transition={{ duration: 0.5, delay: index * 0.1 }}
-      className="bg-card border border-border rounded-xl overflow-hidden card-hover group"
+      className="bg-card border border-border rounded-xl overflow-hidden card-hover group h-full flex flex-col"
     >
       {project.image && (
-        <div className="relative h-48 bg-secondary overflow-hidden">
+        <div className="relative h-48 bg-secondary overflow-hidden shrink-0">
           <Image
             src={project.image}
             alt={`${project.title} preview`}
@@ -44,7 +44,7 @@ const ProjectCard = ({ project, index }: ProjectCardProps) => {
         </div>
       )}
 
-      <div className="p-6">
+      <div className="p-6 flex flex-col flex-grow">
         <h3 className="text-xl font-semibold text-foreground mb-2">
           {project.title}
         </h3>
@@ -52,7 +52,7 @@ const ProjectCard = ({ project, index }: ProjectCardProps) => {
           {project.description}
         </p>
 
-        <div className="space-y-3 mb-4">
+        <div className="space-y-3 mb-6 flex-grow">
           <div>
             <p className="text-xs font-medium text-primary uppercase tracking-wide mb-1">
               Challenge
@@ -67,22 +67,31 @@ const ProjectCard = ({ project, index }: ProjectCardProps) => {
           </div>
         </div>
 
-        <div className="flex flex-wrap gap-2 mb-4">
-          {project.tech.map((tech) => (
+        {/* Updated Tech Badges */}
+        <div className="flex flex-wrap gap-2 mb-6">
+          {project.tech.map((techItem) => (
             <Badge
-              key={tech}
+              key={techItem.name}
               variant="secondary"
-              className="text-xs font-medium"
+              className="text-xs font-medium flex items-center gap-1.5 py-1 px-2.5"
             >
-              {tech}
+              {techItem.icon && (
+                <img 
+                  src={techItem.icon} 
+                  alt={techItem.name} 
+                  className="w-3.5 h-3.5 object-contain" 
+                />
+              )}
+              <span style={{ color: techItem.color }}>{techItem.name}</span>
             </Badge>
           ))}
         </div>
 
+        {/* Action Buttons */}
         {(project.github || project.live) && (
-          <div className="flex gap-3">
+          <div className="flex gap-3 mt-auto pt-4 border-t border-border/50">
             {project.github && (
-              <Button variant="outline" size="sm" asChild>
+              <Button variant="outline" size="sm" asChild className="flex gap-2">
                 <a
                   href={project.github}
                   target="_blank"
@@ -94,7 +103,7 @@ const ProjectCard = ({ project, index }: ProjectCardProps) => {
               </Button>
             )}
             {project.live && (
-              <Button variant="outline" size="sm" asChild>
+              <Button variant="outline" size="sm" asChild className="flex gap-2">
                 <a
                   href={project.live}
                   target="_blank"

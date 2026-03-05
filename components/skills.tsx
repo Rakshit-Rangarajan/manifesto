@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { Badge } from "@/components/ui/badge";
 import { skills } from "@/data/portfolio";
+import Image from "next/image"; // Optional: Use standard <img> if next/image is strict on external domains
 
 const skillCategories = [
   { key: "frontend" as const, label: "Frontend", icon: "⚡" },
@@ -41,10 +42,10 @@ const Skills = () => {
               <span>{category.icon}</span>
               {category.label}
             </h3>
-            <div className="flex flex-wrap gap-2">
+            <div className="flex flex-wrap gap-3">
               {skills[category.key].map((skill, index) => (
                 <motion.div
-                  key={skill}
+                  key={skill.name}
                   initial={{ opacity: 0, scale: 0.8 }}
                   whileInView={{ opacity: 1, scale: 1 }}
                   viewport={{ once: true }}
@@ -52,9 +53,21 @@ const Skills = () => {
                 >
                   <Badge
                     variant="secondary"
-                    className="px-3 py-1.5 text-sm font-medium hover:bg-primary/20 hover:text-primary transition-colors cursor-default"
+                    className="px-3 py-1.5 text-sm font-medium transition-transform hover:scale-105 cursor-default flex items-center gap-2 border"
+                    style={{ 
+                      backgroundColor: `${skill.color}20`, // Appends 20 for ~12% opacity
+                      color: skill.color,
+                      borderColor: `${skill.color}40`
+                    }}
                   >
-                    {skill}
+                    <img 
+                      src={skill.icon} 
+                      alt={`${skill.name} logo`} 
+                      className="w-4 h-4 object-contain"
+                      // Fallback logic if image fails to load
+                      onError={(e) => { e.currentTarget.style.display = 'none'; }} 
+                    />
+                    {skill.name}
                   </Badge>
                 </motion.div>
               ))}
