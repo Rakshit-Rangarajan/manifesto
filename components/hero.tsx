@@ -126,7 +126,7 @@ const Hero = () => {
 
   const handleDownloadResume = () => {
     const link = document.createElement("a");
-    link.href = "/resume.pdf";
+    link.href = "/Rakshit_Rangarajan_Resume.pdf";
     link.download = "Rakshit_Rangarajan_Resume.pdf";
     link.click();
   };
@@ -208,3 +208,4 @@ const Hero = () => {
 };
 
 export default Hero;
+
