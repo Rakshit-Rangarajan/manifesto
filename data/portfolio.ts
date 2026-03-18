@@ -1,7 +1,7 @@
-import projectResoBot from "@/assets/project-resobot.png";
-// import projectSanjana from "@/assets/project-sanjana.jpg";
+import projectOrbBot from "@/assets/project-orbbot.png";
+import projectSanjana from "@/assets/project-underconstruction.png";
 import projectSayCymraeg from "@/assets/project-saycymraeg.png";
-// import projectRakshantara from "@/assets/project-rakshantara.jpg";
+import projectForgeFit from "@/assets/project-forgefit.png";
 // import projectAgroFresh from "@/assets/project-agrofresh.jpg";
 
 export const personalInfo = {
@@ -19,24 +19,23 @@ export const personalInfo = {
 export const projects = [
   {
     id: 1,
-    title: "ResoBot",
+    title: "OrbBot",
     description:
-      "A secure, customizable, and embeddable AI chatbot widget designed to act as an expert legal mediator and conflict resolution assistant.",
+      "A drop-in AI chat widget for any website, featuring Pinecone RAG and zero-config deployment without the need for a backend or API keys.",
     problem:
-      "Users needed a private-by-design AI memory system without compromising sensitive documents by sending them to third-party servers.",
+      "Website owners needed a simple way to add a document-aware AI chatbot without managing complex backends, databases, or API key billing.",
     solution:
-      "Developed a seamless React widget and FastAPI backend using local inference via Ollama and Retrieval-Augmented Generation (RAG) using Pinecone vector databases.",
+      "Built a fully customizable, embeddable widget that utilizes Puter.js for native AI capabilities and Pinecone for Retrieval-Augmented Generation, easily integrated via a simple script tag.",
     tech: [
+      { name: "React", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/react/react-original.svg", color: "#61DAFB" },
       { name: "Next.js", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nextjs/nextjs-original.svg", color: "#888888" },
-      { name: "FastAPI", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/fastapi/fastapi-original.svg", color: "#009688" },
-      { name: "Python", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/python/python-original.svg", color: "#3776AB" },
-      { name: "Ollama", icon: "/logos/ollama.png", color: "#999999" },
-      { name: "Pinecone", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/azuresqldatabase/azuresqldatabase-original.svg", color: "#000000" },
-      { name: "Tailwind CSS", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/tailwindcss/tailwindcss-original.svg", color: "#06B6D4" }
+      { name: "Puter.js", icon: "/logos/puter.png", color: "#9333EA" },
+      { name: "Pinecone", icon: "/logos/pinecone.png", color: "#888888" },
+      { name: "Tailwind", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/tailwindcss/tailwindcss-original.svg", color: "#06B6D4" }
     ],
-    github: "https://github.com/Rakshit-Rangarajan/resobot",
-    live: "https://resobot.rakshitr.co.in",
-    image: projectResoBot,
+    github: "https://github.com/Rakshit-Rangarajan/Orb-Bot",
+    live: "https://orb-bot.rakshitr.co.in",
+    image: projectOrbBot,
   },
   {
     id: 2,
@@ -61,6 +60,26 @@ export const projects = [
   },
   {
     id: 3,
+    title: "ForgeFit",
+    description:
+      "A privacy-focused, self-hostable AI training application designed to help users generate dynamic workout plans and track fitness progress.",
+    problem:
+      "Fitness enthusiasts wanted a personalized, AI-driven personal trainer without paying for expensive monthly subscriptions or sacrificing their personal health data.",
+    solution:
+      "Developed a containerized, self-hosted web app where users can deploy their own local AI fitness assistant to optimize routines and track physical metrics securely.",
+    tech: [
+      { name: "Next.js", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nextjs/nextjs-original.svg", color: "#888888" },
+      { name: "Docker", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/docker/docker-original.svg", color: "#2496ED" },
+      { name: "Node.js", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nodejs/nodejs-original.svg", color: "#339933" },
+      { name: "Ollama", icon: "/logos/ollama.png", color: "#999999" },
+      { name: "MongoDB", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mongodb/mongodb-original.svg", color: "#47A248" }
+    ],
+    github: "https://github.com/Rakshit-Rangarajan/ForgeFit",
+    live: "https://forgefit.rakshitr.co.in",
+    image: projectForgeFit,
+  },
+  {
+    id: 4,
     title: "Sanjana",
     description:
       "A cross-platform AI Assistant that works seamlessly across devices, leveraging local and cloud-based LLMs for intelligent task automation.",
@@ -76,10 +95,11 @@ export const projects = [
       { name: "PyCharm", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/pycharm/pycharm-original.svg", color: "#21D789" }
     ],
     github: "https://github.com/Rakshit-Rangarajan/Sanjana",
-    // image: projectSanjana,
+    live: "https://sanjana.rakshitr.co.in",
+    image: projectSanjana,
   },
   {
-    id: 4,
+    id: 5,
     title: "Rakshantara",
     description:
       "An AI-powered digital journaling app with blog publishing, personal journals, and dream journals — all enhanced with Gemini AI.",
@@ -99,7 +119,7 @@ export const projects = [
     // image: projectRakshantara,
   },
   {
-    id: 5,
+    id: 6,
     title: "Agro-Fresh Organics",
     description:
       "An e-commerce platform connecting farmers directly with wholesalers and consumers for farm-fresh produce.",
