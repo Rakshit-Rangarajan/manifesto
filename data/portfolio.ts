@@ -1,14 +1,15 @@
 import projectOrbBot from "@/assets/project-orbbot.png";
-import projectSanjana from "@/assets/project-underconstruction.png";
+import projectSanjana from "@/assets/project-sanjana.png";
 import projectSayCymraeg from "@/assets/project-saycymraeg.png";
 import projectForgeFit from "@/assets/project-forgefit.png";
-// import projectAgroFresh from "@/assets/project-agrofresh.jpg";
+import projectRakshantara from "@/assets/project-rakshantara.png";
+import projectAgriFreshOrganics from "@/assets/project-agrifreshorganics.png";
 
 export const personalInfo = {
   name: "Rakshit Rangarajan",
   role: "Software Engineer | Full-Stack Developer",
   tagline:
-    "Building innovative, secure web applications with a passion for AI and automation.",
+    "I'm a Full-Stack Developer who mastered the art of AI before it went mainstream. I don't just use AI, I weaponize it. Every repetitive task? Automated. Every boring workflow? Optimized.",
   email: "rakshitr2000@gmail.com",
   phone: "+44 78236 40897",
   location: "Cardiff, UK / Bengaluru, India",
@@ -94,15 +95,13 @@ export const projects = [
       { name: "Claude", icon: "/logos/openai.png", color: "#D97757" },
       { name: "PyCharm", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/pycharm/pycharm-original.svg", color: "#21D789" }
     ],
-    github: "https://github.com/Rakshit-Rangarajan/Sanjana",
-    live: "https://sanjana.rakshitr.co.in",
     image: projectSanjana,
   },
   {
     id: 5,
     title: "Rakshantara",
     description:
-      "An AI-powered digital journaling app with blog publishing, personal journals, and dream journals — all enhanced with Gemini AI.",
+      "An AI-powered digital journaling app with blog publishing, personal journals, and dream journals  all enhanced with Gemini AI.",
     problem:
       "People wanted a unified journaling platform that combined personal reflection, dream logging, and public blogging with AI-powered insights.",
     solution:
@@ -115,8 +114,7 @@ export const projects = [
       { name: "Firebase", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/firebase/firebase-original.svg", color: "#FFCA28" },
       { name: "Firestore", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/firebase/firebase-original.svg", color: "#FFCA28" }
     ],
-    github: "https://github.com/Rakshit-Rangarajan/Rakshantara",
-    // image: projectRakshantara,
+    image: projectRakshantara,
   },
   {
     id: 6,
@@ -135,8 +133,7 @@ export const projects = [
       { name: "PHP", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/php/php-original.svg", color: "#777BB4" },
       { name: "MySQL", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mysql/mysql-original.svg", color: "#4479A1" }
     ],
-    github: "https://github.com/Rakshit-Rangarajan/Agro-Fresh-Organics",
-    // image: projectAgroFresh,
+    image: projectAgriFreshOrganics,
   },
 ];
 
@@ -161,19 +158,25 @@ export const skills = {
     { name: "Java", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/java/java-original.svg", color: "#007396" },
   ],
   ai: [
-    { name: "Camunda", icon: "/logos/camunda.png", color: "#f16d45" },
-    { name: "Power Automate", icon: "/logos/power-automate.png", color: "#0066FF" },
-    { name: "Selenium", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/selenium/selenium-original.svg", color: "#af2929" },
-    { name: "n8n", icon: "/logos/n8n.png", color: "#E54060" },
-    { name: "Firebase Auto", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/firebase/firebase-original.svg", color: "#FFCA28" },
-    { name: "Cursor", icon: "/logos/cursor.png", color: "#888888" },
-    { name: "GitHub Copilot", icon: "/logos/copilot.png", color: "#888888" },
-    { name: "V0.dev", icon: "/logos/v0.png", color: "#888888" },
-    { name: "Ollama", icon: "/logos/ollama.png", color: "#999999" },
+    { name: "Cursor", icon: "/logos/cursor.png", color: "#00E5FF" },
+    { name: "GitHub Copilot", icon: "/logos/copilot.png", color: "#10A37F" },
+    { name: "v0", icon: "/logos/v0.png", color: "#000000" },
+    { name: "ChatGPT", icon: "/logos/openai.png", color: "#10A37F" },
+    { name: "Claude", icon: "https://logo.svgcdn.com/logos/claude-icon.png", color: "#D97757" },
     { name: "Gemini", icon: "/logos/gemini.png", color: "#8E24AA" },
-    { name: "Llama 3", icon: "/logos/llama.png", color: "#0668E1" },
+    { name: "Perplexity", icon: "https://logo.svgcdn.com/logos/perplexity.png", color: "#F57C00" },
+    { name: "Ollama", icon: "/logos/ollama.png", color: "#FF6600" },
+    { name: "Llama", icon: "/logos/llama.png", color: "#0668E1" },
     { name: "Qwen", icon: "/logos/qwen.png", color: "#615EEA" },
-    { name: "GPT / OpenAI", icon: "/logos/openai.png", color: "#10A37F" },
+    { name: "Mistral", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mistral/mistral-original.svg", color: "#FF7000" },
+  ],
+  automation: [
+    { name: "n8n", icon: "/logos/n8n.png", color: "#E54060" },
+    { name: "Power Automate", icon: "/logos/power-automate.png", color: "#0066FF" },
+    { name: "Camunda", icon: "/logos/camunda.png", color: "#F16D45" },
+    { name: "Selenium", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/selenium/selenium-original.svg", color: "#AF2929" },
+    { name: "Pinecone", icon: "/logos/pinecone.png", color: "#FFFFFF" },
+    { name: "Firebase", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/firebase/firebase-original.svg", color: "#FFCA28" },
   ],
   tools: [
     { name: "VS Code", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/vscode/vscode-original.svg", color: "#007ACC" },
@@ -181,11 +184,9 @@ export const skills = {
     { name: "Jira", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/jira/jira-original.svg", color: "#0052CC" },
     { name: "Azure", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/azure/azure-original.svg", color: "#007FFF" },
     { name: "Kubernetes", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/kubernetes/kubernetes-plain.svg", color: "#326CE5" },
-    { name: "Firebase", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/firebase/firebase-original.svg", color: "#FFCA28" },
-    { name: "Android Studio", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/androidstudio/androidstudio-original.svg", color: "#3DDC84" },
-    { name: "Bootstrap Studio", icon: "/logos/bootstrap-studio.png", color: "#7952B3" },
-    { name: "Wix", icon: "/logos/wix.png", color: "#999999" },
-    { name: "Google Antigravity", icon: "https://raw.githubusercontent.com/lucide-icons/lucide/main/icons/component.svg", color: "#6366F1" },
+    { name: "Docker", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/docker/docker-original.svg", color: "#2496ED" },
+    { name: "Figma", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/figma/figma-original.svg", color: "#F24E1E" },
+    { name: "Git", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/git/git-original.svg", color: "#F05032" },
   ],
 };
 
@@ -194,6 +195,7 @@ export const experience = [
     id: 1,
     role: "Software Engineer (Full-Stack Developer)",
     company: "BrandMuscle India Pvt Ltd (Acquired by Ansira in 2024)",
+    companyLogo: "/logos/BrandMuscle_logo.png",
     period: "Apr 2022 - Jun 2024",
     description: [
       "Managed and optimized database operations (MongoDB) and developed console applications for efficient data retrieval and reporting, reducing report generation time by 80%",
@@ -201,7 +203,30 @@ export const experience = [
       "Enhanced application security by resolving 50+ critical vulnerabilities flagged by SonarQube and Snyk, achieving 100% compliance score",
       "Designed, tested, and automated complex workflows using Camunda and JAMS for reliable execution of critical business processes",
       "Led application upgrades including Formio, Angular, and .NET frameworks, improving performance and maintainability",
-      "Spearheaded GitHub Copilot integration across the team, training 15 engineers and increasing coding efficiency by 10%",
+      "Spearheaded GitHub Copilot integration across the team, training 15+ engineers and increasing coding efficiency by 10%",
+      "Enhanced Fund Management Product by designing and developing various Pages and Functionality like Rewards, Bulk Claim Submission and wrote Unit Test cases for every API call and UI component added."
+    ],
+    subProjects: [
+      {
+        title: "ASP.NET Upgrade 4.8.1 to 6.2",
+        tech: ["ASP.NET", "C#"],
+        details: "Upgraded the .NET framework from 4.8.1 to 6.2, improving performance and maintainability.",
+      },
+      {
+        title: "Angular Upgrade 8 to 16",
+        tech: ["Angular"],
+        details: "Upgraded the Angular framework from 8 to 16, improving performance and maintainability.",
+      },
+      {
+        title: "Bulk Claims Page",
+        tech: ["Angular", "C#", "ASP.NET", "MongoDB", "Formio", "Unit Testing", "JAMS", "Postman"],
+        details: "Enhanced Fund Management Product by designing and developing various Pages for Bulk Claim Submission and wrote Unit Test cases for every API call and UI component added.",
+      },
+      {
+        title: "Rewards Page Enhancements",
+        tech: ["GitHub Copilot", "VS Code"],
+        details: "Led the internal enterprise rollout of Generative AI coding workflows. Conducted direct workshops mapping Copilot interactions for 15+ engineers, leading to a documented 10% sustained velocity increase.",
+      }
     ],
   },
 ];
@@ -212,12 +237,14 @@ export const education = [
     institution: "Cardiff University (Prifysgol Caerdydd)",
     location: "Cardiff, UK",
     period: "Sep 2024 - Sep 2025",
+    logo: "https://upload.wikimedia.org/wikipedia/en/thumb/e/e9/Cardiff_University_logo.svg/300px-Cardiff_University_logo.svg.png",
   },
   {
-    degree: "Bachelor of Engineering, Information Science and Engineering",
+    degree: "Bachelor of Engineering, Information Science",
     institution: "Rajeev Institute of Technology (VTU)",
     location: "Hassan, India",
     period: "Jun 2018 - Aug 2022",
+    logo: "https://upload.wikimedia.org/wikipedia/en/thumb/e/ef/Visvesvaraya_Technological_University_logo.png/220px-Visvesvaraya_Technological_University_logo.png",
   },
 ];
 
