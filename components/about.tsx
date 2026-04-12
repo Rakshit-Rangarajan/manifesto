@@ -313,7 +313,7 @@ const About = () => {
           </div>
           <br />
           <p className="about-text-reveal text-base text-zinc-600 dark:text-slate-500 font-light leading-relaxed text-center">
-            With an <strong>MSc in Artificial Intelligence</strong> from Cardiff University and a Bachelor's in Information Science, I bring both theoretical depth and practical experience. I've worked on enterprise-grade platforms at BrandMuscle, building mission-critical systems that handle millions of requests. I know what it takes to ship products that scale—and I know how to use AI to do it faster and better.
+            With an <strong>MSc in Artificial Intelligence</strong> from Cardiff University and a Bachelor's in Information Science, I bring both theoretical depth and practical experience. I've worked on enterprise-grade platforms at BrandMuscle, building mission-critical systems that handle millions of requests. I know what it takes to ship products that scale-and I know how to use AI to do it faster and better.
           </p>
         </motion.div>
       </div>
