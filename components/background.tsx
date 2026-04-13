@@ -45,7 +45,7 @@ export default function Background() {
       color: objectColor,
       wireframe: true,
       transparent: true,
-      opacity: isDark ? 0.15 : 0.2,
+      opacity: isDark ? 0.15 : 0.08,
     });
     const torusKnot = new THREE.Mesh(geometry, material);
     scene.add(torusKnot);
@@ -56,7 +56,7 @@ export default function Background() {
       color: objectColor,
       size: isDark ? 0.08 : 0.1,
       transparent: true,
-      opacity: isDark ? 0.4 : 0.5,
+      opacity: isDark ? 0.4 : 0.2,
     });
     const spherePoints = new THREE.Points(sphereGeometry, sphereMaterial);
     scene.add(spherePoints);
@@ -86,7 +86,7 @@ export default function Background() {
       size: isDark ? 0.05 : 0.08,
       color: particleColor,
       transparent: true,
-      opacity: isDark ? 0.3 : 0.4,
+      opacity: isDark ? 0.3 : 0.1,
     });
 
     const backgroundParticles = new THREE.Points(particlesGeometry, particlesMaterial);

@@ -47,16 +47,47 @@ function NameDisplay({ name, isNew }: { name: string; isNew: boolean }) {
     chars = name.split("");
   }
 
+  const wordsElements: React.ReactNode[] = [];
+  let currentWord: React.ReactNode[] = [];
+
+  chars.forEach((char, i) => {
+    if (char === " " || char === "\u00A0") {
+      if (currentWord.length > 0) {
+        wordsElements.push(
+          <span key={`word-${i}`} className="inline-block whitespace-nowrap">
+            {currentWord}
+          </span>
+        );
+        currentWord = [];
+      }
+      wordsElements.push(
+        <span key={i} className="char inline" style={{ paddingBottom: "0.2em", paddingTop: "0.2em" }}>
+          {" "}
+        </span>
+      );
+    } else {
+      currentWord.push(
+        <span key={i} className="char inline-block" style={{ paddingBottom: "0.2em", paddingTop: "0.2em" }}>
+          {char}
+        </span>
+      );
+    }
+  });
+
+  if (currentWord.length > 0) {
+    wordsElements.push(
+      <span key={`word-last`} className="inline-block whitespace-nowrap">
+        {currentWord}
+      </span>
+    );
+  }
+
   return (
     <h1
       ref={containerRef}
-      className="text-5xl md:text-8xl lg:text-9xl font-bold tracking-tighter text-zinc-900 dark:text-white leading-tight md:leading-snug"
+      className="text-5xl sm:text-7xl md:text-[6.5rem] lg:text-[7rem] xl:text-[7.5rem] 2xl:text-[9rem] font-bold tracking-tighter text-zinc-900 dark:text-white leading-[1.1] lg:leading-none drop-shadow-[0_2px_10px_rgba(255,255,255,0.8)] dark:drop-shadow-none"
     >
-      {chars.map((char, i) => (
-        <span key={i} className="char inline-block" style={{ display: char === " " ? "inline" : "inline-block", paddingBottom: "0.2em", paddingTop: "0.2em" }}>
-          {char === " " ? "\u00A0" : char}
-        </span>
-      ))}
+      {wordsElements}
     </h1>
   );
 }
@@ -123,7 +154,7 @@ export default function Hero() {
             </p>
           </div>
           <div className="overflow-hidden mb-6 py-8">
-            <h1 className="text-5xl md:text-8xl lg:text-9xl font-bold tracking-tighter text-zinc-900 dark:text-white leading-tight md:leading-snug">
+            <h1 className="text-5xl sm:text-7xl md:text-[6.5rem] lg:text-[7rem] xl:text-[7.5rem] 2xl:text-[9rem] font-bold tracking-tighter text-zinc-900 dark:text-white leading-[1.1] lg:leading-none drop-shadow-[0_2px_10px_rgba(255,255,255,0.8)] dark:drop-shadow-none">
               {NAME_VARIANTS[0]}
             </h1>
           </div>
