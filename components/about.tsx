@@ -1,20 +1,54 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { ArrowDownToLine, Sparkles, Zap, Wrench, Target, Code2, Rocket, GitBranch, Brain, Cpu, ShieldCheck } from "lucide-react";
+import { Sparkles, Zap, Wrench, Target, Code2, Rocket, GitBranch, Brain, Cpu, ShieldCheck } from "lucide-react";
 
 if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);
 }
 
+const AnimatedBubble = ({ items, className, delay = 0, intervalMs = 3000 }: { items: string[], className: string, delay?: number, intervalMs?: number }) => {
+  const [index, setIndex] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setIndex((prev) => (prev + 1) % items.length);
+    }, intervalMs);
+    return () => clearInterval(interval);
+  }, [items.length, intervalMs]);
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, scale: 0.8 }}
+      whileInView={{ opacity: 1, scale: 1 }}
+      viewport={{ once: true }}
+      transition={{ delay }}
+      className={`absolute bg-white/90 dark:bg-zinc-800/90 backdrop-blur-md px-5 py-2.5 rounded-full border border-black/10 dark:border-white/10 shadow-[0_12px_40px_rgba(0,0,0,0.15)] overflow-hidden flex justify-center items-center z-20 ${className}`}
+      style={{ minWidth: "160px", height: "46px" }}
+    >
+      <AnimatePresence mode="wait">
+        <motion.span
+          key={index}
+          initial={{ y: 25, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          exit={{ y: -25, opacity: 0 }}
+          transition={{ duration: 0.4, ease: "backOut" }}
+          className="text-sm text-primary font-bold tracking-wide whitespace-nowrap block absolute"
+        >
+          {items[index]}
+        </motion.span>
+      </AnimatePresence>
+    </motion.div>
+  );
+};
+
 const About = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
   const titleRef = useRef<HTMLHeadingElement>(null);
   const cardsRef = useRef<HTMLDivElement>(null);
-  const [hireMeClicked, setHireMeClicked] = useState(false);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -68,15 +102,6 @@ const About = () => {
 
     return () => ctx.revert();
   }, []);
-
-  const handleHireMe = () => {
-    setHireMeClicked(true);
-    const contactSection = document.getElementById('contact');
-    if (contactSection) {
-      contactSection.scrollIntoView({ behavior: 'smooth' });
-    }
-    setTimeout(() => setHireMeClicked(false), 2000);
-  };
 
   const featureCards = [
     {
@@ -173,16 +198,19 @@ const About = () => {
                     <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
                   </div>
                 </div>
-                {/* Floating badge */}
-                <motion.div
-                  initial={{ opacity: 0, y: 10 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: 0.5 }}
-                  className="absolute -bottom-3 -right-3 bg-zinc-900 dark:bg-zinc-800 px-4 py-2 rounded-full border border-zinc-700"
-                >
-                  <span className="text-xs text-primary font-medium">Full-Stack Dev</span>
-                </motion.div>
+                {/* Floating bubbles */}
+                <AnimatedBubble
+                  items={["Full-Stack Dev", "Web Developer", "Application Dev"]}
+                  className="-bottom-4 -right-4 md:-right-8"
+                  delay={0.5}
+                  intervalMs={3500}
+                />
+                <AnimatedBubble
+                  items={["Web Designer", "UI/UX Engineer", "AI Specialist"]}
+                  className="-top-4 -left-4 md:-left-8"
+                  delay={0.7}
+                  intervalMs={4000}
+                />
               </div>
             </motion.div>
 
@@ -271,29 +299,6 @@ const About = () => {
                   </div>
                 </div>
               </div>
-
-              <div className="flex flex-wrap gap-3 pt-4">
-                <button
-                  onClick={handleHireMe}
-                  className={`group relative inline-flex items-center gap-2 px-8 py-4 rounded-full font-semibold overflow-hidden transition-all ${hireMeClicked
-                    ? "bg-emerald-500 text-white"
-                    : "bg-zinc-900 dark:bg-white text-white dark:text-black hover:scale-105"
-                    }`}
-                >
-                  <span className="relative z-10 tracking-wide">
-                    {hireMeClicked ? "Thanks! ↓" : "Hire Me"}
-                  </span>
-                </button>
-                <a
-                  href="/resume"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="group relative inline-flex items-center gap-2 px-6 py-4 rounded-full border border-zinc-300 dark:border-zinc-700 font-semibold overflow-hidden transition-transform hover:scale-105"
-                >
-                  <span className="text-zinc-700 dark:text-slate-300">Resume</span>
-                  <ArrowDownToLine className="w-4 h-4 text-zinc-700 dark:text-slate-300" />
-                </a>
-              </div>
             </div>
           </motion.div>
         </motion.div>
@@ -313,7 +318,7 @@ const About = () => {
           </div>
           <br />
           <p className="about-text-reveal text-base text-zinc-600 dark:text-slate-500 font-light leading-relaxed text-center">
-            With an <strong>MSc in Artificial Intelligence</strong> from Cardiff University and a Bachelor's in Information Science, I bring both theoretical depth and practical experience. I've worked on enterprise-grade platforms at BrandMuscle, building mission-critical systems that handle millions of requests. I know what it takes to ship products that scale-and I know how to use AI to do it faster and better.
+            With an <strong>MSc in Artificial Intelligence</strong> from Cardiff University and a Bachelor's in Information Science, I bring both theoretical depth and practical experience. I've worked on enterprise-grade platforms at BrandMuscle, building mission-critical systems that handle millions of requests. I know what it takes to ship products that scale—and I know how to use AI to do it faster and better.
           </p>
         </motion.div>
       </div>

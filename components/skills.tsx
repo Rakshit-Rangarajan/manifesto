@@ -69,15 +69,10 @@ const Skills = () => {
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                {skills[category.key].map((skill, index) => (
-                  <motion.div
+                {skills[category.key].map((skill) => (
+                  <div
                     key={skill.name}
-                    initial={{ opacity: 0, scale: 0.95 }}
-                    whileInView={{ opacity: 1, scale: 1 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.3, delay: catIndex * 0.1 + index * 0.05 }}
-                    whileHover={{ scale: 1.02, y: -2 }}
-                    className="relative p-4 rounded-xl bg-zinc-50 dark:bg-white/5 border border-zinc-200 dark:border-white/10 hover:border-primary/30 transition-all duration-300 cursor-default"
+                    className="relative p-4 rounded-xl bg-zinc-50 dark:bg-white/5 border border-zinc-200 dark:border-white/10 hover:border-primary/30 transition-all duration-300 cursor-default hover:scale-[1.02] hover:-translate-y-0.5"
                   >
                     <div className="absolute inset-0 bg-gradient-to-br from-primary/15 to-emerald-400/15 opacity-0 hover:opacity-100 transition-opacity duration-300 rounded-xl" />
 
@@ -96,7 +91,7 @@ const Skills = () => {
                         </h4>
                       </div>
                     </div>
-                  </motion.div>
+                  </div>
                 ))}
               </div>
             </motion.div>

@@ -20,36 +20,68 @@ const jsonLd = {
   "@context": "https://schema.org",
   "@type": "Person",
   name: "Rakshit Rangarajan",
-  jobTitle: "Full-Stack Developer & AI Enthusiast",
+  alternateName: ["Rakshit R", "Rakshit"],
+  jobTitle: [
+    "Software Engineer",
+    "Full-Stack Developer",
+    "Creative Front-End Developer",
+    "AI Enthusiast",
+    "UI/UX Engineer"
+  ],
   url: "https://rakshitr.co.in",
   description: "Full-Stack Developer who masters AI to automate workflows, fix vibe-coded code, and deliver maximum efficiency. Built workflows before the AI boom.",
   sameAs: [
     "https://github.com/Rakshit-Rangarajan",
     "https://x.com/rakshit_r",
-    "https://linkedin.com/in/rakshit-rangarajan",
+    "https://www.linkedin.com/in/rakshit-rangarajan"
   ],
   knowsAbout: [
+    "Interactive UI",
+    "Motion Design",
+    "GSAP",
+    "Tailwind CSS",
     "React.js",
     "Next.js",
     "TypeScript",
-    "GSAP",
     "WebGL",
     "AI Integration",
     "Large Language Models",
+    "Generative AI",
     "Vibe Coding",
-    "Automation",
+    "System Architecture",
+    "Automation"
   ],
-  alumniOf: "University of Texas at Dallas",
+  alumniOf: [
+    {
+      "@type": "CollegeOrUniversity",
+      "name": "Cardiff University",
+      "location": "Cardiff, UK"
+    },
+    {
+      "@type": "CollegeOrUniversity",
+      "name": "Rajeev Institute of Technology",
+      "location": "Hassan, India"
+    }
+  ],
+  worksFor: [
+    {
+      "@type": "Organization",
+      "name": "BrandMuscle India Pvt Ltd (Acquired by Ansira)"
+    }
+  ],
   address: {
     "@type": "PostalAddress",
-    addressLocality: "Dallas",
-    addressRegion: "TX",
-    addressCountry: "US",
+    "addressLocality": "Bengaluru",
+    "addressRegion": "Karnataka",
+    "addressCountry": "India"
   },
 };
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://rakshitr.co.in"),
+  alternates: {
+    canonical: "https://rakshitr.co.in",
+  },
   title: "Rakshit Rangarajan | Full-Stack Developer & AI Enthusiast",
   description: "Full-Stack Developer who weaponizes AI to automate workflows, fix vibe-coded code, and deliver maximum efficiency. Built workflows before the AI boom.",
   keywords: [
@@ -68,7 +100,7 @@ export const metadata: Metadata = {
     "AI Tools Expert",
     "Prompt Engineering",
   ],
-  authors: [{ name: "Rakshit Rangarajan" }],
+  authors: [{ name: "Rakshit Rangarajan", url: "https://rakshitr.co.in" }],
   creator: "Rakshit Rangarajan",
   publisher: "Rakshit Rangarajan",
   openGraph: {
@@ -94,9 +126,15 @@ export const metadata: Metadata = {
     icon: "/favicon.png",
     apple: "/apple-touch-icon.png",
   },
+  formatDetection: {
+    email: false,
+    address: false,
+    telephone: false,
+  },
   robots: {
     index: true,
     follow: true,
+    nocache: false,
     googleBot: {
       index: true,
       follow: true,
