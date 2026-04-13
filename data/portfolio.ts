@@ -164,11 +164,11 @@ export const skills = {
     { name: "ChatGPT", icon: "/logos/openai.png", color: "#10A37F" },
     { name: "Claude", icon: "https://logo.svgcdn.com/logos/claude-icon.png", color: "#D97757" },
     { name: "Gemini", icon: "/logos/gemini.png", color: "#8E24AA" },
-    { name: "Perplexity", icon: "https://logo.svgcdn.com/logos/perplexity.png", color: "#F57C00" },
+    { name: "Perplexity", icon: "/logos/perplexity.png", color: "#F57C00" },
     { name: "Ollama", icon: "/logos/ollama.png", color: "#FF6600" },
     { name: "Llama", icon: "/logos/llama.png", color: "#0668E1" },
     { name: "Qwen", icon: "/logos/qwen.png", color: "#615EEA" },
-    { name: "Mistral", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mistral/mistral-original.svg", color: "#FF7000" },
+    { name: "Mistral", icon: "/logos/mistral.png", color: "#FF7000" },
   ],
   automation: [
     { name: "n8n", icon: "/logos/n8n.png", color: "#E54060" },

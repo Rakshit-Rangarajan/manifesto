@@ -459,6 +459,11 @@ export default function Projects() {
 
   return (
     <>
+      <div className="hidden" aria-hidden="true">
+        {projects.map((p) => p.image && (
+          <link key={`preload-${p.id}`} rel="preload" as="image" href={p.image.src} />
+        ))}
+      </div>
       <section 
         id="projects" 
         ref={sectionRef} 
@@ -467,10 +472,10 @@ export default function Projects() {
       >
         <div
           ref={containerRef}
-          className="flex h-[80vh] items-center px-[5vw] md:px-[10vw] gap-12 md:gap-20 w-max will-change-transform"
+          className="flex h-[80vh] items-center px-[5vw] md:px-[10vw] gap-8 md:gap-10 w-max will-change-transform"
         >
           <motion.div 
-            className="flex-shrink-0 w-[80vw] md:w-[40vw] ml-4 mr-8"
+            className="flex-shrink-0 w-[80vw] md:w-[30vw] ml-4 pr-4"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}

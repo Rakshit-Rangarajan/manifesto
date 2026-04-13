@@ -1,69 +1,10 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import { ThemeToggle } from "./theme-toggle";
 import { useModalContext } from "./ModalContext";
-
-const GLITCH_CHARS = "!<>-_\\\/[]{}—=+*^?#________";
-const LANGUAGES = ["Rakshit", "ラクシット", "रक्षित", "ரக்ஷித்", "ರಕ್ಷಿತ್"];
-
-function useLanguageGlitch() {
-  const [displayText, setDisplayText] = useState(LANGUAGES[0]);
-  const [isGlitching, setIsGlitching] = useState(false);
-  const langIndexRef = useRef(0);
-
-  useEffect(() => {
-    let mainInterval: NodeJS.Timeout;
-    let glitchInterval: NodeJS.Timeout;
-    let isActive = true;
-
-    const runGlitch = () => {
-      if (!isActive) return;
-      
-      setIsGlitching(true);
-      const targetIndex = (langIndexRef.current + 1) % LANGUAGES.length;
-      const targetText = LANGUAGES[targetIndex];
-      let iterations = 0;
-
-      glitchInterval = setInterval(() => {
-        if (!isActive) {
-          clearInterval(glitchInterval);
-          return;
-        }
-        
-        setDisplayText(
-          targetText.split("")
-            .map((char, index) => {
-              if (index < iterations) return targetText[index];
-              return GLITCH_CHARS[Math.floor(Math.random() * GLITCH_CHARS.length)];
-            })
-            .join("")
-        );
-
-        if (iterations >= targetText.length) {
-          clearInterval(glitchInterval);
-          langIndexRef.current = targetIndex;
-          setIsGlitching(false);
-        }
-
-        iterations += 1 / 3;
-      }, 100);
-    };
-
-    runGlitch();
-    mainInterval = setInterval(runGlitch, 5000);
-
-    return () => {
-      isActive = false;
-      clearInterval(mainInterval);
-      clearInterval(glitchInterval);
-    };
-  }, []);
-
-  return { displayText, isGlitching };
-}
 
 const navLinks = [
   { label: "About", href: "#about" },
@@ -71,6 +12,7 @@ const navLinks = [
   { label: "Skills", href: "#skills" },
   { label: "Experience", href: "#experience" },
   { label: "Education", href: "#education" },
+  { label: "Blog", href: "/blogs" },
   { label: "Achievements", href: "#achievements" },
   { label: "Certificates", href: "#certificates" },
   { label: "Contact", href: "#contact" },
@@ -80,7 +22,6 @@ const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const { isAnyModalOpen } = useModalContext();
-  const { displayText: glitchedName, isGlitching } = useLanguageGlitch();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -107,10 +48,11 @@ const Header = () => {
           href="#"
           className="text-xl font-bold tracking-widest text-zinc-900 dark:text-white flex items-center gap-4 group"
         >
-          <div className={`w-10 h-10 rounded-full bg-zinc-200 dark:bg-white/10 flex items-center justify-center text-sm transition-all duration-500 group-hover:scale-110 group-hover:bg-primary group-hover:text-black ${isGlitching ? 'animate-pulse' : ''}`}>
-            RR
-          </div>
-          <span className={`hidden sm:block font-mono w-[200px] ${isGlitching ? 'text-primary' : ''}`}>{glitchedName}</span>
+          <img 
+            src="/images/RR_Logo.png" 
+            alt="RR Logo" 
+            className="w-10 h-10 object-contain transition-all duration-500 group-hover:scale-110"
+          />
         </a>
 
         <ul className="hidden lg:flex items-center gap-8">
