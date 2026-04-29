@@ -1,211 +1,242 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { motion } from "framer-motion";
-import { ArrowDown, Download } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import gsap from "gsap";
+import { ArrowDown, ArrowDownToLine } from "lucide-react";
 import { personalInfo } from "@/data/portfolio";
 
-const GridBackground = () => {
-  const canvasRef = useRef<HTMLCanvasElement>(null);
+const NAME_VARIANTS = ["Rakshit Rangarajan", "ラクシット ランガラジャン", "रक्षित रंगराजन", "ரக்ஷித் ரங்கராஜன்", "ರಕ್ಷಿತ್ ರಂಗರಾಜನ್"];
+
+function NameDisplay({ name, isNew }: { name: string; isNew: boolean }) {
+  const containerRef = useRef<HTMLHeadingElement>(null);
 
   useEffect(() => {
-    const canvas = canvasRef.current;
-    if (!canvas) return;
-    const ctx = canvas.getContext("2d");
-    if (!ctx) return;
+    if (!containerRef.current) return;
 
-    let animationId: number;
-    let time = 0;
-
-    const resize = () => {
-      canvas.width = canvas.offsetWidth * window.devicePixelRatio;
-      canvas.height = canvas.offsetHeight * window.devicePixelRatio;
-      ctx.scale(window.devicePixelRatio, window.devicePixelRatio);
-    };
-    resize();
-    window.addEventListener("resize", resize);
-
-    const draw = () => {
-      const w = canvas.offsetWidth;
-      const h = canvas.offsetHeight;
-      ctx.clearRect(0, 0, w, h);
-
-      const spacing = 60;
-      const cols = Math.ceil(w / spacing) + 1;
-      const rows = Math.ceil(h / spacing) + 1;
-
-      for (let i = 0; i < cols; i++) {
-        for (let j = 0; j < rows; j++) {
-          const x = i * spacing;
-          const y = j * spacing;
-          const dist = Math.sqrt((x - w / 2) ** 2 + (y - h / 2) ** 2);
-          const maxDist = Math.sqrt((w / 2) ** 2 + (h / 2) ** 2);
-          const fade = 1 - dist / maxDist;
-          const pulse = 0.08 + 0.06 * Math.sin(time * 0.02 + dist * 0.008);
-          const alpha = fade * pulse;
-
-          ctx.beginPath();
-          ctx.arc(x, y, 1.2, 0, Math.PI * 2);
-          ctx.fillStyle = `hsla(191, 91%, 56%, ${alpha})`;
-          ctx.fill();
-        }
+    const chars = containerRef.current.querySelectorAll(".char");
+    gsap.fromTo(chars,
+      { y: isNew ? 80 : -80, opacity: 0, rotateX: isNew ? 90 : -90 },
+      {
+        y: 0,
+        opacity: 1,
+        rotateX: 0,
+        duration: 0.8,
+        stagger: 0.03,
+        ease: "back.out(1.7)"
       }
+    );
+  }, [name, isNew]);
 
-      for (let k = 0; k < 3; k++) {
-        const cx = w * 0.3 + k * w * 0.2;
-        const cy = h * 0.4 + Math.sin(time * 0.015 + k * 2) * 40;
-        const ex = cx + 80 + Math.cos(time * 0.01 + k) * 30;
-        const ey = cy + 60 + Math.sin(time * 0.012 + k) * 20;
-
-        ctx.beginPath();
-        ctx.moveTo(cx, cy);
-        ctx.lineTo(ex, ey);
-        ctx.strokeStyle = `hsla(191, 91%, 56%, 0.06)`;
-        ctx.lineWidth = 1;
-        ctx.stroke();
-
-        ctx.beginPath();
-        ctx.arc(ex, ey, 2, 0, Math.PI * 2);
-        ctx.fillStyle = `hsla(191, 91%, 56%, 0.12)`;
-        ctx.fill();
+  let chars: string[] = [];
+  if (typeof Intl !== 'undefined' && Intl.Segmenter) {
+    const segments = Array.from(new Intl.Segmenter(undefined, { granularity: 'grapheme' }).segment(name)).map(s => s.segment);
+    const merged = [];
+    for (let s of segments) {
+      if (
+        merged.length > 0 &&
+        /[\u094D\u09CD\u0A4D\u0ACD\u0B4D\u0BCD\u0C4D\u0CCD\u0D4D\u0DCA\u200D]$/.test(merged[merged.length - 1]) &&
+        !/^[\s.,!?]/.test(s)
+      ) {
+        merged[merged.length - 1] += s;
+      } else {
+        merged.push(s);
       }
+    }
+    chars = merged;
+  } else {
+    chars = name.split("");
+  }
 
-      time++;
-      animationId = requestAnimationFrame(draw);
-    };
-    draw();
+  const wordsElements: React.ReactNode[] = [];
+  let currentWord: React.ReactNode[] = [];
 
-    return () => {
-      cancelAnimationFrame(animationId);
-      window.removeEventListener("resize", resize);
-    };
+  chars.forEach((char, i) => {
+    if (char === " " || char === "\u00A0") {
+      if (currentWord.length > 0) {
+        wordsElements.push(
+          <span key={`word-${i}`} className="inline-block whitespace-nowrap">
+            {currentWord}
+          </span>
+        );
+        currentWord = [];
+      }
+      wordsElements.push(
+        <span key={i} className="char inline" style={{ paddingBottom: "0.2em", paddingTop: "0.2em" }}>
+          {" "}
+        </span>
+      );
+    } else {
+      currentWord.push(
+        <span key={i} className="char inline-block" style={{ paddingBottom: "0.2em", paddingTop: "0.2em" }}>
+          {char}
+        </span>
+      );
+    }
+  });
+
+  if (currentWord.length > 0) {
+    wordsElements.push(
+      <span key={`word-last`} className="inline-block whitespace-nowrap">
+        {currentWord}
+      </span>
+    );
+  }
+
+  return (
+    <h1
+      ref={containerRef}
+      className="text-5xl sm:text-7xl md:text-[6.5rem] lg:text-[7rem] xl:text-[7.5rem] 2xl:text-[9rem] font-bold tracking-tighter text-zinc-900 dark:text-white leading-[1.1] lg:leading-none drop-shadow-[0_2px_10px_rgba(255,255,255,0.8)] dark:drop-shadow-none"
+    >
+      {wordsElements}
+    </h1>
+  );
+}
+
+export default function Hero() {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [currentName, setCurrentName] = useState(NAME_VARIANTS[0]);
+  const [displayName, setDisplayName] = useState(NAME_VARIANTS[0]);
+  const [isNew, setIsNew] = useState(false);
+  const [mounted, setMounted] = useState(false);
+  const [hireMeClicked, setHireMeClicked] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
   }, []);
 
-  return (
-    <canvas
-      ref={canvasRef}
-      className="absolute inset-0 w-full h-full pointer-events-none"
-    />
-  );
-};
-
-const useTypingEffect = (text: string, speed = 40, delay = 800) => {
-  const [displayed, setDisplayed] = useState("");
-  const [done, setDone] = useState(false);
-
-  useEffect(() => {
-    let i = 0;
-    setDisplayed("");
-    setDone(false);
-
-    const timeout = setTimeout(() => {
-      const interval = setInterval(() => {
-        i++;
-        setDisplayed(text.slice(0, i));
-        if (i >= text.length) {
-          clearInterval(interval);
-          setDone(true);
-        }
-      }, speed);
-      return () => clearInterval(interval);
-    }, delay);
-
-    return () => clearTimeout(timeout);
-  }, [text, speed, delay]);
-
-  return { displayed, done };
-};
-
-const Hero = () => {
-  const { displayed: typedTagline, done } = useTypingEffect(
-    personalInfo.tagline,
-    35,
-    1200,
-  );
-
-  const handleDownloadResume = () => {
-    const link = document.createElement("a");
-    link.href = "/Rakshit_Rangarajan_Resume.pdf";
-    link.download = "Rakshit_Rangarajan_Resume.pdf";
-    link.click();
+  const handleHireMe = () => {
+    setHireMeClicked(true);
+    const contactSection = document.getElementById('contact');
+    if (contactSection) {
+      contactSection.scrollIntoView({ behavior: 'smooth' });
+    }
+    setTimeout(() => setHireMeClicked(false), 2000);
   };
 
+  useEffect(() => {
+    if (!mounted) return;
+
+    const interval = setInterval(() => {
+      setIsNew((prev) => !prev);
+      setDisplayName((prev) => {
+        const currIdx = NAME_VARIANTS.indexOf(prev);
+        const nextIdx = (currIdx + 1) % NAME_VARIANTS.length;
+        return NAME_VARIANTS[nextIdx];
+      });
+    }, 6000);
+
+    return () => clearInterval(interval);
+  }, [mounted]);
+
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      gsap.from(".reveal-text", {
+        y: 100,
+        opacity: 0,
+        duration: 1,
+        stagger: 0.2,
+      });
+    }, containerRef);
+
+    return () => ctx.revert();
+  }, [mounted]);
+
+  if (!mounted) {
+    return (
+      <section
+        id="hero"
+        className="relative h-screen w-full flex flex-col items-center justify-center overflow-hidden px-4 md:px-20"
+      >
+        <div className="flex flex-col items-center justify-center text-center w-full z-10">
+          <div className="overflow-hidden mb-2">
+            <p className="text-primary text-sm md:text-base tracking-[0.3em] uppercase font-medium">
+              {personalInfo.role}
+            </p>
+          </div>
+          <div className="overflow-hidden mb-6 py-8">
+            <h1 className="text-5xl sm:text-7xl md:text-[6.5rem] lg:text-[7rem] xl:text-[7.5rem] 2xl:text-[9rem] font-bold tracking-tighter text-zinc-900 dark:text-white leading-[1.1] lg:leading-none drop-shadow-[0_2px_10px_rgba(255,255,255,0.8)] dark:drop-shadow-none">
+              {NAME_VARIANTS[0]}
+            </h1>
+          </div>
+          <div className="overflow-hidden max-w-2xl mb-8">
+            <p className="text-zinc-600 dark:text-slate-400 text-lg md:text-2xl leading-relaxed font-light">
+              {personalInfo.tagline}
+            </p>
+          </div>
+          <div className="flex flex-wrap gap-3 justify-center z-20 relative">
+            <button
+              onClick={handleHireMe}
+              className={`group relative inline-flex items-center gap-2 px-8 py-4 rounded-full font-semibold overflow-hidden transition-all ${hireMeClicked
+                ? "bg-emerald-500 text-white"
+                : "bg-zinc-900 dark:bg-white text-white dark:text-black hover:scale-105"
+                }`}
+            >
+              <span className="relative z-10 tracking-wide">
+                {hireMeClicked ? "Thanks! ↓" : "Hire Me"}
+              </span>
+            </button>
+            <a
+              href="/resume"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group relative inline-flex items-center gap-2 px-6 py-4 rounded-full border border-zinc-300 dark:border-zinc-700 font-semibold overflow-hidden transition-transform hover:scale-105"
+            >
+              <span className="text-zinc-700 dark:text-slate-300 tracking-wide">Resume</span>
+              <ArrowDownToLine className="w-4 h-4 text-zinc-700 dark:text-slate-300" />
+            </a>
+          </div>
+        </div>
+      </section>
+    );
+  }
+
   return (
-    <section className="min-h-screen flex items-center justify-center relative overflow-hidden">
-      <GridBackground />
-
-      <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] sm:w-[600px] h-[300px] sm:h-[600px] rounded-full bg-primary/5 blur-[80px] sm:blur-[120px] pointer-events-none" />
-
-      <div className="section-container text-center relative z-10 px-4 sm:px-6">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-        >
-          <p className="text-primary font-medium mb-3 sm:mb-4 tracking-wide uppercase text-xs sm:text-sm">
+    <section
+      id="hero"
+      ref={containerRef}
+      className="relative h-screen w-full flex flex-col items-center justify-center overflow-hidden px-4 md:px-20"
+    >
+      <div className="flex flex-col items-center justify-center text-center w-full z-10">
+        <div className="overflow-hidden mb-2">
+          <p className="reveal-text text-primary text-sm md:text-base tracking-[0.3em] uppercase font-medium">
             {personalInfo.role}
           </p>
-        </motion.div>
-
-        <motion.h1
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.3 }}
-          className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-bold text-foreground mb-4 sm:mb-6 leading-tight"
-        >
-          Hi, I'm <span className="gradient-text">{personalInfo.name}</span>
-        </motion.h1>
-
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.4 }}
-          className="text-base sm:text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto mb-8 sm:mb-10 h-[3.5em] sm:h-[2em] flex items-center justify-center"
-        >
-          <span>
-            {typedTagline}
-            {!done && (
-              <span className="inline-block w-[2px] h-[1.1em] bg-primary ml-0.5 animate-pulse align-middle" />
-            )}
-          </span>
-        </motion.div>
-
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.5 }}
-          className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center"
-        >
-          <Button variant="hero" asChild>
-            <a href="#projects">View Projects</a>
-          </Button>
-          <Button variant="heroOutline" asChild>
-            <a href="#contact">Contact Me</a>
-          </Button>
-          <Button variant="heroOutline" onClick={handleDownloadResume}>
-            <Download size={18} />
-            Download Resume
-          </Button>
-        </motion.div>
-
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.6, delay: 1 }}
-          className="absolute bottom-6 sm:bottom-10 left-1/2 -translate-x-1/2"
-        >
-          <motion.div
-            animate={{ y: [0, 10, 0] }}
-            transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+        </div>
+        <div className="overflow-hidden mb-6 py-8 min-h-[1.5em]">
+          <NameDisplay name={displayName} isNew={isNew} />
+        </div>
+        <div className="overflow-hidden max-w-2xl mb-8">
+          <p className="reveal-text text-zinc-600 dark:text-slate-400 text-lg md:text-2xl leading-relaxed font-light">
+            {personalInfo.tagline}
+          </p>
+        </div>
+        <div className="reveal-text flex flex-wrap gap-3 justify-center z-20 relative">
+          <button
+            onClick={handleHireMe}
+            className={`group relative inline-flex items-center gap-2 px-8 py-4 rounded-full font-semibold overflow-hidden transition-all ${hireMeClicked
+              ? "bg-emerald-500 text-white"
+              : "bg-zinc-900 dark:bg-white text-white dark:text-black hover:scale-105"
+              }`}
           >
-            <ArrowDown className="text-muted-foreground" size={24} />
-          </motion.div>
-        </motion.div>
+            <span className="relative z-10 tracking-wide">
+              {hireMeClicked ? "Thanks! ↓" : "Hire Me"}
+            </span>
+          </button>
+          <a
+            href="/resume"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group relative inline-flex items-center gap-2 px-6 py-4 rounded-full border border-zinc-300 dark:border-zinc-700 font-semibold overflow-hidden transition-transform hover:scale-105"
+          >
+            <span className="text-zinc-700 dark:text-slate-300 tracking-wide">Resume</span>
+            <ArrowDownToLine className="w-4 h-4 text-zinc-700 dark:text-slate-300" />
+          </a>
+        </div>
+      </div>
+
+      <div className="absolute bottom-12 left-1/2 -translate-x-1/2 z-10">
+        <ArrowDown className="arrow-icon text-zinc-900/40 dark:text-white/50 w-8 h-8" strokeWidth={1} />
       </div>
     </section>
   );
-};
-
-export default Hero;
-
+}

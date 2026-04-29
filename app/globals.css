@@ -1,4 +1,17 @@
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap");
+
+@keyframes spin-slow {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-spin-slow {
+  animation: spin-slow 8s linear infinite;
+}
 
 @tailwind base;
 @tailwind components;
@@ -7,6 +20,7 @@
 @layer base {
   :root,
   .dark {
+    /* Dark theme - kept as is, user said it was perfect */
     --background: 222 47% 6%;
     --foreground: 210 40% 96%;
 
@@ -36,117 +50,299 @@
     --ring: 191 91% 56%;
 
     --radius: 0.75rem;
-
-    --sidebar-background: 222 47% 6%;
-    --sidebar-foreground: 210 40% 96%;
-    --sidebar-primary: 191 91% 56%;
-    --sidebar-primary-foreground: 222 47% 6%;
-    --sidebar-accent: 222 30% 14%;
-    --sidebar-accent-foreground: 210 40% 96%;
-    --sidebar-border: 222 30% 18%;
-    --sidebar-ring: 191 91% 56%;
   }
 
+  /* Light theme - reimagined with warm, sophisticated palette */
   .light {
-    --background: 0 0% 98%;
-    --foreground: 222 47% 11%;
+    /* Warm cream background - like quality paper */
+    --background: 40 30% 96%;
+    --foreground: 30 10% 15%;
+    --card: 40 25% 94%;
+    --card-foreground: 30 10% 15%;
+    --popover: 40 30% 96%;
+    --popover-foreground: 30 10% 15%;
 
-    --card: 0 0% 100%;
-    --card-foreground: 222 47% 11%;
+    /* Rich amber/terracotta primary - bold and warm */
+    --primary: 25 90% 55%;
+    --primary-foreground: 40 30% 98%;
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 222 47% 11%;
+    /* Muted sage for secondary */
+    --secondary: 150 15% 85%;
+    --secondary-foreground: 150 20% 25%;
 
-    --primary: 191 91% 36%;
-    --primary-foreground: 0 0% 100%;
+    --muted: 40 20% 88%;
+    --muted-foreground: 30 8% 32%;
 
-    --secondary: 220 14% 92%;
-    --secondary-foreground: 222 47% 11%;
+    --accent: 25 90% 55%;
+    --accent-foreground: 40 30% 98%;
 
-    --muted: 220 14% 92%;
-    --muted-foreground: 215 16% 47%;
-
-    --accent: 191 91% 36%;
-    --accent-foreground: 0 0% 100%;
-
-    --destructive: 0 84% 60%;
+    --destructive: 0 72% 51%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 220 13% 87%;
-    --input: 220 13% 87%;
-    --ring: 191 91% 36%;
+    /* Warm borders, not cold gray */
+    --border: 40 20% 82%;
+    --input: 40 20% 82%;
+    --ring: 25 90% 55%;
+
+    --radius: 0.5rem;
   }
 }
 
 @layer base {
   * {
-    @apply border-border;
+    border-color: hsl(var(--border));
   }
 
   html {
-    scroll-behavior: smooth;
+    scroll-behavior: initial;
+    scroll-restoration: manual;
   }
 
   body {
-    @apply bg-background text-foreground font-sans antialiased;
     font-family: "Inter", system-ui, sans-serif;
+    overflow-x: hidden;
+  }
+
+  /* Dark theme styles */
+  .dark body {
+    background-color: hsl(var(--background));
+    color: hsl(var(--foreground));
+  }
+
+  /* Light theme - warm paper feel */
+  .light body {
+    background: 
+      linear-gradient(180deg, hsl(40 35% 97%) 0%, hsl(38 30% 95%) 50%, hsl(35 28% 93%) 100%);
+    background-attachment: fixed;
+    color: hsl(30 15% 12%);
   }
 }
 
-@layer components {
-  .section-container {
-    @apply max-w-5xl mx-auto px-6 py-20 md:py-28;
-  }
+/* Light theme component styles */
+.light {
+  /* Warm shadows */
+  --shadow-color: 30 20% 20%;
+}
 
-  .section-title {
-    @apply text-3xl md:text-4xl font-bold text-foreground mb-4;
-  }
+.light .card {
+  background: linear-gradient(145deg, hsl(40 30% 96%), hsl(38 25% 92%));
+  border: 1px solid hsl(40 20% 80%);
+  box-shadow: 
+    0 4px 6px -1px hsl(30 20% 20% / 0.05),
+    0 2px 4px -2px hsl(30 20% 20% / 0.03);
+}
 
-  .section-subtitle {
-    @apply text-muted-foreground text-lg mb-12;
-  }
+.light .card:hover {
+  border-color: hsl(25 90% 55% / 0.3);
+  box-shadow: 
+    0 10px 15px -3px hsl(30 20% 20% / 0.08),
+    0 4px 6px -4px hsl(30 20% 20% / 0.05);
+}
 
-  .gradient-text {
-    @apply bg-clip-text text-transparent;
-    background-image: linear-gradient(
-      135deg,
-      hsl(var(--primary)),
-      hsl(191 91% 72%)
-    );
-  }
+.light .btn-primary {
+  background: linear-gradient(135deg, hsl(25 95% 50%) 0%, hsl(20 90% 45%) 100%);
+  color: hsl(40 30% 98%);
+  box-shadow: 0 4px 14px hsl(25 90% 45% / 0.35);
+  border: none;
+}
 
-  .card-hover {
-    @apply transition-all duration-300 hover:border-primary/50 hover:shadow-lg hover:shadow-primary/5 hover:-translate-y-0.5;
+.light .btn-primary:hover {
+  background: linear-gradient(135deg, hsl(25 95% 45%) 0%, hsl(20 90% 40%) 100%);
+  box-shadow: 0 6px 20px hsl(25 90% 45% / 0.4);
+  transform: translateY(-1px);
+}
+
+.light .btn-secondary {
+  background: linear-gradient(145deg, hsl(40 25% 92%), hsl(38 22% 88%));
+  color: hsl(30 15% 12%);
+  border: 1px solid hsl(40 20% 78%);
+}
+
+.light .btn-secondary:hover {
+  background: linear-gradient(145deg, hsl(40 25% 88%), hsl(38 22% 84%));
+  border-color: hsl(25 90% 55% / 0.4);
+}
+
+.light input,
+.light textarea {
+  background: hsl(40 30% 96%);
+  border: 1px solid hsl(40 20% 78%);
+  color: hsl(30 15% 12%);
+}
+
+.light input:focus,
+.light textarea:focus {
+  border-color: hsl(25 90% 55%);
+  box-shadow: 0 0 0 3px hsl(25 90% 55% / 0.15);
+  outline: none;
+}
+
+.light a {
+  color: hsl(25 85% 45%);
+  text-decoration-color: hsl(25 90% 55% / 0.4);
+}
+
+.light a:hover {
+  color: hsl(25 95% 50%);
+}
+
+/* Section backgrounds for light mode - alternating warm tones */
+.light section:nth-child(odd) {
+  background: transparent;
+}
+
+.light section:nth-child(even) {
+  background: linear-gradient(180deg, hsl(38 25% 92% / 0.5) 0%, transparent 100%);
+}
+
+/* Light mode progress bar */
+.light .progress-bar {
+  background: linear-gradient(90deg, hsl(25 95% 50%), hsl(15 85% 45%));
+  box-shadow: 0 0 20px hsl(25 90% 50% / 0.4);
+}
+
+/* Light mode modal overlay */
+.light .modal-overlay {
+  background: hsl(30 20% 10% / 0.6);
+  backdrop-filter: blur(8px);
+}
+
+/* Light mode borders and dividers */
+.light hr,
+.light .divider {
+  border-color: hsl(40 20% 82%);
+}
+
+.light .border-subtle {
+  border-color: hsl(40 20% 88%);
+}
+
+/* Light mode text utilities */
+.light .text-muted {
+  color: hsl(30 8% 45%);
+}
+
+.light .text-primary {
+  color: hsl(25 85% 45%);
+}
+
+/* Selection color for light mode */
+.light ::selection {
+  background: hsl(25 90% 55% / 0.2);
+  color: hsl(30 15% 12%);
+}
+
+/* Smooth scrollbar for light mode */
+.light ::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+.light ::-webkit-scrollbar-track {
+  background: hsl(40 20% 90%);
+}
+
+.light ::-webkit-scrollbar-thumb {
+  background: hsl(40 15% 70%);
+  border-radius: 4px;
+}
+
+.light ::-webkit-scrollbar-thumb:hover {
+  background: hsl(40 15% 60%);
+}
+
+/* Hide scrollbar globally but allow scrolling */
+* {
+  -ms-overflow-style: none !important;
+  scrollbar-width: none !important;
+}
+
+*::-webkit-scrollbar {
+  display: none !important;
+}
+
+/* Show scrollbar when needed */
+.show-scrollbar {
+  scrollbar-width: thin !important;
+  scrollbar-color: hsl(215 20% 65%) transparent !important;
+}
+
+.show-scrollbar::-webkit-scrollbar {
+  display: block !important;
+  width: 6px;
+  height: 6px;
+}
+
+.show-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.show-scrollbar::-webkit-scrollbar-thumb {
+  background-color: hsl(215 20% 65%);
+  border-radius: 3px;
+}
+
+.dark .show-scrollbar {
+  scrollbar-color: hsl(215 20% 40%) transparent !important;
+}
+
+.dark .show-scrollbar::-webkit-scrollbar-thumb {
+  background-color: hsl(215 20% 40%);
+}
+
+.dark .show-scrollbar::-webkit-scrollbar-thumb:hover {
+  background-color: hsl(215 20% 50%);
+}
+
+/* Custom scrollbar - shows on hover or when scrolling */
+.custom-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: hsl(215 20% 65%) transparent;
+}
+
+.custom-scrollbar::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background-color: hsl(215 20% 65%);
+  border-radius: 3px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background-color: hsl(215 20% 55%);
+}
+
+.dark .custom-scrollbar {
+  scrollbar-color: hsl(215 20% 40%) transparent;
+}
+
+.dark .custom-scrollbar::-webkit-scrollbar-thumb {
+  background-color: hsl(215 20% 40%);
+}
+
+.dark .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background-color: hsl(215 20% 50%);
+}
+
+@media (pointer: fine) {
+  body,
+  body *,
+  button,
+  a,
+  input,
+  textarea {
+    cursor: none !important;
   }
 }
 
-::view-transition-old(root),
-::view-transition-new(root) {
-  animation: none;
-  mix-blend-mode: normal;
-}
-
-/* Always show the new theme on top with the clip-path animation */
-::view-transition-new(root) {
-  z-index: 999;
-}
-
-::view-transition-old(root) {
-  z-index: 1;
-}
-
-@layer base {
-  * {
-    @apply border-border;
-  }
-  body {
-    @apply bg-background text-foreground;
-  }
-  html {
-    scroll-behavior: smooth;
-    scroll-padding-top: 2rem;
-  }
-  ::selection {
-    @apply bg-primary/20 text-foreground;
-  }
+/* Dark mode selection */
+.dark ::selection {
+  background: hsl(191 91% 56% / 0.3);
+  color: hsl(210 40% 96%);
 }
