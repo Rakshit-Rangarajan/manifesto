@@ -3,8 +3,8 @@ import type { Metadata, Viewport } from "next";
 import { Inter, Fira_Code } from "next/font/google";
 import { ThemeProvider } from "@/components/theme-provider";
 import LenisProvider from "@/components/lenis-provider";
-import { CustomCursor } from "@/components/custom-cursor";
 import { ModalProvider } from "@/components/ModalContext";
+import Script from "next/script";
 
 import "./globals.css";
 
@@ -85,7 +85,9 @@ export const metadata: Metadata = {
   title: "Rakshit Rangarajan | Full-Stack Developer & AI Enthusiast",
   description: "Full-Stack Developer who weaponizes AI to automate workflows, fix vibe-coded code, and deliver maximum efficiency. Built workflows before the AI boom.",
   keywords: [
+    "Rakshit",
     "Rakshit Rangarajan",
+    "1904",
     "Full-Stack Developer",
     "AI Enthusiast",
     "React Developer",
@@ -93,9 +95,6 @@ export const metadata: Metadata = {
     "Vibe Coding",
     "AI Automation",
     "TypeScript",
-    "GSAP Animations",
-    "WebGL Developer",
-    "Dallas Developer",
     "Freelance Developer",
     "AI Tools Expert",
     "Prompt Engineering",
@@ -163,6 +162,22 @@ export default function RootLayout({
       suppressHydrationWarning
     >
       <body className="font-sans antialiased scrollbar-hide">
+        <Script
+          strategy="afterInteractive"
+          src="https://www.googletagmanager.com/gtag/js?id=G-6F5Z2NDJQZ"
+        />
+        <Script
+          id="google-analytics"
+          strategy="afterInteractive"
+          dangerouslySetInnerHTML={{
+            __html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', 'G-6F5Z2NDJQZ');
+            `,
+          }}
+        />
         <script
           defer
           src="https://static.cloudflareinsights.com/beacon.min.js"
@@ -186,7 +201,6 @@ export default function RootLayout({
         >
           <ModalProvider>
             <LenisProvider>
-              <CustomCursor />
               {children}
             </LenisProvider>
           </ModalProvider>

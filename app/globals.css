@@ -330,16 +330,6 @@
   background-color: hsl(215 20% 50%);
 }
 
-@media (pointer: fine) {
-  body,
-  body *,
-  button,
-  a,
-  input,
-  textarea {
-    cursor: none !important;
-  }
-}
 
 /* Dark mode selection */
 .dark ::selection {

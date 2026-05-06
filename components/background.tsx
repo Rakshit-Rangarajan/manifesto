@@ -34,13 +34,13 @@ export default function Background() {
     );
     camera.position.z = 40;
 
-    const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+    const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true, powerPreference: "high-performance" });
     renderer.setSize(window.innerWidth, window.innerHeight);
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5));
     currentMount.appendChild(renderer.domElement);
 
     // Complex Torus Knot
-    const geometry = new THREE.TorusKnotGeometry(12, 3, 200, 32);
+    const geometry = new THREE.TorusKnotGeometry(12, 3, 80, 16);
     const material = new THREE.MeshStandardMaterial({
       color: objectColor,
       wireframe: true,
@@ -51,7 +51,7 @@ export default function Background() {
     scene.add(torusKnot);
 
     // Outer Particle Sphere
-    const sphereGeometry = new THREE.SphereGeometry(25, 64, 64);
+    const sphereGeometry = new THREE.SphereGeometry(25, 32, 32);
     const sphereMaterial = new THREE.PointsMaterial({
       color: objectColor,
       size: isDark ? 0.08 : 0.1,
@@ -70,7 +70,7 @@ export default function Background() {
 
     // Background Particles
     const particlesGeometry = new THREE.BufferGeometry();
-    const particlesCount = 1500;
+    const particlesCount = 800;
     const posArray = new Float32Array(particlesCount * 3);
 
     for (let i = 0; i < particlesCount * 3; i++) {

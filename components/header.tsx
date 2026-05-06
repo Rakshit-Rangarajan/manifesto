@@ -93,37 +93,36 @@ export default function Header() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-[100] bg-background flex items-center justify-center p-6"
+            className="fixed inset-0 z-[100] bg-background flex flex-col items-center justify-center p-6 overflow-y-auto"
           >
             <motion.div
               variants={containerVariants}
               initial="hidden"
               animate="show"
-              className="w-full max-w-4xl flex flex-col gap-2 md:gap-4 relative z-[110]"
+              className="w-full max-w-xl flex flex-col gap-2 relative z-[110] mx-auto"
             >
               {mobileNavLinks.map((link) => (
                 <motion.div
                   key={link.id}
                   variants={itemVariants}
-                  className="group flex items-center gap-4 md:gap-8 hover:translate-x-4 transition-transform duration-300"
+                  className="group flex items-center justify-center hover:translate-x-1 md:hover:translate-x-2 transition-transform duration-300"
                 >
                   <a
                     href={link.href}
                     onClick={() => {
                         setIsMenuOpen(false);
-                        // Force a small delay if needed or just handle the navigation
                     }}
-                    className="flex flex-col md:flex-row md:items-baseline gap-2 md:gap-6 w-full p-2"
+                    className="flex flex-col md:flex-row md:items-center gap-2 md:gap-4 p-2 text-center md:text-left"
                   >
-                    <div className="flex items-baseline gap-4 md:gap-8">
-                      <span className="font-mono text-xs md:text-sm text-muted-foreground/70">
+                    <div className="flex items-center gap-2 md:gap-4">
+                      <span className="font-mono text-[10px] md:text-xs text-muted-foreground/70">
                         {link.id}
                       </span>
-                      <span className="text-3xl md:text-6xl font-bold tracking-tighter text-foreground group-hover:text-primary transition-colors uppercase">
+                      <span className="text-xl md:text-2xl font-bold tracking-tight text-foreground group-hover:text-primary transition-colors uppercase whitespace-nowrap">
                         {link.label}
                       </span>
                     </div>
-                    <span className="font-mono text-xs md:text-sm text-muted-foreground opacity-0 group-hover:opacity-100 transition-opacity">
+                    <span className="font-mono text-[10px] md:text-xs text-muted-foreground opacity-60 md:opacity-0 md:group-hover:opacity-100 transition-opacity whitespace-nowrap">
                       {link.comment}
                     </span>
                   </a>
