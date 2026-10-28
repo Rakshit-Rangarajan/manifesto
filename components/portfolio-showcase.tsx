@@ -120,6 +120,7 @@ export default function PortfolioShowcase() {
           <div className="mt-6 flex flex-wrap gap-3">
             {selected.repo && <a className="rounded-full bg-violet-600 px-5 py-3 text-sm font-semibold text-white" href={selected.repo} target="_blank" rel="noopener noreferrer">Source code ↗</a>}
             {selected.demo && <a className="rounded-full border border-violet-500 px-5 py-3 text-sm font-semibold text-violet-700 dark:text-violet-300" href={selected.demo} target="_blank" rel="noopener noreferrer">View demo ↗</a>}
+            {flagshipSlugs[selected.title] && <Link href={`/projects/${flagshipSlugs[selected.title]}`} className="rounded-full border border-violet-500 px-5 py-3 text-sm font-semibold text-violet-700 dark:text-violet-300">Full case study</Link>}
             <button type="button" onClick={() => setSelected(null)} className="rounded-full border border-zinc-300 px-5 py-3 text-sm font-semibold dark:border-white/30">Back to projects</button>
           </div>
         </section>

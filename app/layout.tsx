@@ -21,13 +21,7 @@ const jsonLd = {
   "@type": "Person",
   name: "Rakshit Rangarajan",
   alternateName: ["Rakshit R", "Rakshit"],
-  jobTitle: [
-    "Software Engineer",
-    "Full-Stack Developer",
-    "Creative Front-End Developer",
-    "AI Enthusiast",
-    "UI/UX Engineer"
-  ],
+  jobTitle: ["Software Engineer", "AI Problem Solver"],
   url: "https://rakshitr.co.in",
   description: "AI-focused engineer designing practical solutions for automation, retrieval-augmented generation, agent orchestration and complex workflow problems.",
   sameAs: [
@@ -103,8 +97,8 @@ export const metadata: Metadata = {
   creator: "Rakshit Rangarajan",
   publisher: "Rakshit Rangarajan",
   openGraph: {
-    title: "Rakshit Rangarajan | Full-Stack Developer & AI Enthusiast",
-    description: "I weaponize AI to automate workflows, fix vibe-coded code, and deliver maximum efficiency. Studied and worked pre-AI, mastered it post-AI.",
+    title: "Rakshit Rangarajan | AI Problem Solver & Solutions Architecture",
+    description: "Building useful AI solutions through automation, RAG and agent orchestration.",
     type: "website",
     url: "https://rakshitr.co.in",
     siteName: "Rakshit Rangarajan",
@@ -113,13 +107,10 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Rakshit Rangarajan | Full-Stack Developer & AI Enthusiast",
-    description: "I weaponize AI to automate workflows, fix vibe-coded code, and deliver maximum efficiency.",
+    title: "Rakshit Rangarajan | AI Problem Solver & Solutions Architecture",
+    description: "Building useful AI solutions through automation, RAG and agent orchestration.",
     creator: "@rakshit_r",
     site: "@rakshit_r",
-  },
-  verification: {
-    google: "google-site-verification-code",
   },
   icons: {
     icon: "/favicon.png",
@@ -177,11 +168,6 @@ export default function RootLayout({
               gtag('config', 'G-6F5Z2NDJQZ');
             `,
           }}
-        />
-        <script
-          defer
-          src="https://static.cloudflareinsights.com/beacon.min.js"
-          data-cf-beacon='{"token": "YOUR_CLOUDFLARE_TOKEN"}'
         />
         <script
           type="application/ld+json"
