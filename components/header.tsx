@@ -73,6 +73,10 @@ export default function Header() {
           <div className="flex items-center gap-4 relative z-[160]">
             <ThemeToggle />
             <button
+              type="button"
+              aria-label={isMenuOpen ? "Close navigation menu" : "Open navigation menu"}
+              aria-expanded={isMenuOpen}
+              aria-controls="portfolio-mobile-navigation"
               onClick={() => setIsMenuOpen(!isMenuOpen)}
               key={isMenuOpen ? "close" : "open"} // Force re-render for clean icon swap
               className={`p-3 rounded-full transition-all border pointer-events-auto shadow-lg ${
@@ -93,6 +97,10 @@ export default function Header() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
+            id="portfolio-mobile-navigation"
+            role="dialog"
+            aria-modal="true"
+            aria-label="Site navigation"
             className="fixed inset-0 z-[100] bg-background flex flex-col items-center justify-center p-6 overflow-y-auto"
           >
             <motion.div
