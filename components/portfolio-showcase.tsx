@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useRef, useState } from "react";
+import Link from "next/link";
 import { ArrowUpRight, Github, Search, Sparkles, X } from "lucide-react";
 
 type Category = "AI & Automation" | "Full-stack" | "Research & Prototypes";
@@ -16,6 +17,11 @@ const works: Work[] = [
   { title: "The Office", category: "Research & Prototypes", description: "Explores three practical ways AI could reduce repetitive enterprise work through the RECLAIM, DOMINO, and SPARK concept demos.", stack: ["Prototypes", "Workflows", "UX"], status: "Concept demos", problem: "Repetitive enterprise workflows are difficult to rethink without concrete examples.", approach: "Prototype RECLAIM, DOMINO and SPARK as demonstrations of potential AI-assisted workflows." },
   { title: "Morpheus", category: "Research & Prototypes", description: "Exploration of natural-language forms, secure responses, and interactive analytics.", stack: ["AI forms", "Analytics", "Pantheon"], status: "Early development", problem: "Conventional forms can be rigid and demanding to create or fill in.", approach: "Explore natural-language form experiences and the associated response-handling challenges." },
 ];
+const flagshipSlugs: Record<string, string> = {
+  "AERO (Autonomous Engineering & Release Orchestrator)": "aero",
+  "Project Athena": "athena",
+  "PromptFlow Studio": "promptflow-studio",
+};
 const categories = ["All", "AI & Automation", "Full-stack", "Research & Prototypes"] as const;
 
 export default function PortfolioShowcase() {
@@ -77,7 +83,7 @@ export default function PortfolioShowcase() {
               <p className="text-xs font-semibold uppercase tracking-wider text-violet-700 dark:text-violet-300">{work.status}</p>
               <h4 className="mt-3 text-xl font-bold">{work.title}</h4>
               <p className="mt-3 flex-1 text-sm leading-relaxed text-zinc-600 dark:text-zinc-300">{work.problem}</p>
-              <button type="button" onClick={() => setSelected(work)} className="mt-6 self-start rounded-full border border-violet-500 px-4 py-2 text-sm font-semibold text-violet-700 hover:bg-violet-100 dark:text-violet-200 dark:hover:bg-violet-500/20">Explore the approach</button>
+              <Link href={`/projects/${flagshipSlugs[work.title]}`} className="mt-6 self-start rounded-full border border-violet-500 px-4 py-2 text-sm font-semibold text-violet-700 hover:bg-violet-100 dark:text-violet-200 dark:hover:bg-violet-500/20">Read case study</Link>
             </article>
           ))}
         </div>
