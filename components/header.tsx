@@ -3,9 +3,11 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence, Variants } from "framer-motion";
 import { Menu, X } from "lucide-react";
+import Link from "next/link";
 import { ThemeToggle } from "./theme-toggle";
 
 const mobileNavLinks = [
+  { id: "00", label: "Arcane V3", href: "/arcane-preview", comment: "// Interactive experience" },
   { id: "01", label: "About", href: "#about", comment: "// Who I am" },
   { id: "02", label: "Projects", href: "#projects", comment: "// My work" },
   { id: "03", label: "Skills", href: "#skills", comment: "// Tech stack" },
@@ -70,7 +72,8 @@ export default function Header() {
             />
           </a>
 
-          <div className="flex items-center gap-4 relative z-[160]">
+          <div className="flex items-center gap-3 md:gap-4 relative z-[160]">
+            <Link href="/arcane-preview" className="hidden sm:inline-flex items-center rounded-full border border-violet-400/50 bg-[#211733]/85 px-4 py-2 text-xs font-semibold tracking-wider text-violet-100 shadow-[0_0_28px_rgba(147,86,255,.18)] backdrop-blur-xl transition hover:border-violet-300 hover:bg-[#392255] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-violet-300">ARCANE V3 <span aria-hidden="true" className="ml-2">✦</span></Link>
             <ThemeToggle />
             <button
               type="button"
