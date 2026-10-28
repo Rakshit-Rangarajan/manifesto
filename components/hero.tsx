@@ -15,6 +15,7 @@ function NameDisplay({ name, isNew }: { name: string; isNew: boolean }) {
   const index = Math.max(0, NAME_VARIANTS.indexOf(name));
   useEffect(() => {
     if (!headingRef.current) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
     const motion = gsap.fromTo(headingRef.current,
       { opacity: 0, y: isNew ? 18 : -18, filter: "blur(5px)" },
       { opacity: 1, y: 0, filter: "blur(0px)", duration: 0.75, ease: "power3.out" });
