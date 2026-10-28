@@ -1,26 +1,27 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { ArrowUpRight, Github, Search, Sparkles } from "lucide-react";
+import { ArrowUpRight, Github, Search, Sparkles, X } from "lucide-react";
 
 type Category = "AI & Automation" | "Full-stack" | "Research & Prototypes";
-type Work = { title: string; category: Category; description: string; stack: string[]; status: string; repo?: string; demo?: string; featured?: boolean };
+type Work = { title: string; category: Category; description: string; stack: string[]; status: string; repo?: string; demo?: string; featured?: boolean; problem: string; approach: string };
 const works: Work[] = [
-  { title: "AERO (Autonomous Engineering & Release Orchestrator)", category: "AI & Automation", description: "Turns complex enterprise requirements and incidents into structured analysis, actionable engineering plans, and coordinated AI-assisted workflows.", stack: ["AI agents", "Python", "Enterprise workflows"], status: "Active development", repo: "https://github.com/Rakshit-Rangarajan/AERO-BM", featured: true },
-  { title: "PromptFlow Studio", category: "AI & Automation", description: "Visual workspace for designing and exploring AI application workflows.", stack: ["React", "FastAPI", "TypeScript"], status: "Demo available", demo: "https://promptflow.rakshitr.co.in", featured: true },
-  { title: "Project Athena", category: "AI & Automation", description: "Helps prevent missed commitments by organizing tasks, follow-ups, and reminders into a local-first assistant workflow.", stack: ["Python", "SQLite", "Podman"], status: "Working build", repo: "https://github.com/Rakshit-Rangarajan/Project-Athena", featured: true },
-  { title: "Mnemosyne", category: "AI & Automation", description: "Makes scattered notes and documents easier to retrieve, organize, and reuse through a private knowledge workspace.", stack: ["Python", "SQLite", "Background workers"], status: "Implemented milestones" },
-  { title: "CrypticSync", category: "Full-stack", description: "Workforce management system with attendance, leave management, reporting, and role-based access.", stack: ["Angular", "FastAPI", "SQLite"], status: "Project showcase" },
-  { title: "SayCymraeg", category: "Full-stack", description: "Interactive, gamified Welsh-language learning experience.", stack: ["Next.js", "AI learning", "Web"], status: "Demo listed", demo: "https://saycymraeg.rakshitr.co.in" },
-  { title: "ForgeFit", category: "Full-stack", description: "Privacy-oriented fitness application with training and progress tracking.", stack: ["Web app", "AI fitness", "Self-hosting"], status: "Demo listed", demo: "https://forgefit.rakshitr.co.in" },
-  { title: "The Office", category: "Research & Prototypes", description: "Explores three practical ways AI could reduce repetitive enterprise work through the RECLAIM, DOMINO, and SPARK concept demos.", stack: ["Prototypes", "Workflows", "UX"], status: "Concept demos" },
-  { title: "Morpheus", category: "Research & Prototypes", description: "Exploration of natural-language forms, secure responses, and interactive analytics.", stack: ["AI forms", "Analytics", "Pantheon"], status: "Early development" },
+  { title: "AERO (Autonomous Engineering & Release Orchestrator)", category: "AI & Automation", description: "Turns complex enterprise requirements and incidents into structured analysis, actionable engineering plans, and coordinated AI-assisted workflows.", stack: ["AI agents", "Python", "Enterprise workflows"], status: "Active development", repo: "https://github.com/Rakshit-Rangarajan/AERO-BM", featured: true, problem: "Complex enterprise requirements and incident investigations consume time before implementation can even begin.", approach: "Explore AI-assisted planning and coordinated analysis while retaining engineer review and control." },
+  { title: "PromptFlow Studio", category: "AI & Automation", description: "Visual workspace for designing and exploring AI application workflows.", stack: ["React", "FastAPI", "TypeScript"], status: "Demo available", demo: "https://promptflow.rakshitr.co.in", featured: true, problem: "AI workflows can be difficult to understand and refine when their steps are hidden in code.", approach: "Visualise application flows and experiment with how components connect." },
+  { title: "Project Athena", category: "AI & Automation", description: "Helps prevent missed commitments by organizing tasks, follow-ups, and reminders into a local-first assistant workflow.", stack: ["Python", "SQLite", "Podman"], status: "Working build", repo: "https://github.com/Rakshit-Rangarajan/Project-Athena", featured: true, problem: "Follow-ups and commitments can get lost across conversations and tools.", approach: "Explore a local-first assistant that brings tasks and reminders into a more consistent workflow." },
+  { title: "Mnemosyne", category: "AI & Automation", description: "Makes scattered notes and documents easier to retrieve, organize, and reuse through a private knowledge workspace.", stack: ["Python", "SQLite", "Background workers"], status: "Implemented milestones", problem: "Useful information becomes hard to retrieve when it is scattered across documents and notes.", approach: "Organise a private knowledge workspace focused on storing and retrieving information." },
+  { title: "CrypticSync", category: "Full-stack", description: "Workforce management system with attendance, leave management, reporting, and role-based access.", stack: ["Angular", "FastAPI", "SQLite"], status: "Project showcase", problem: "Attendance, leave and workforce records are cumbersome when managed across disconnected processes.", approach: "Consolidate common workforce administration into a role-aware application." },
+  { title: "SayCymraeg", category: "Full-stack", description: "Interactive, gamified Welsh-language learning experience.", stack: ["Next.js", "AI learning", "Web"], status: "Demo listed", demo: "https://saycymraeg.rakshitr.co.in", problem: "Learning a language requires accessible ways to practise regularly.", approach: "Provide interactive, game-like Welsh learning experiences." },
+  { title: "ForgeFit", category: "Full-stack", description: "Privacy-oriented fitness application with training and progress tracking.", stack: ["Web app", "AI fitness", "Self-hosting"], status: "Demo listed", demo: "https://forgefit.rakshitr.co.in", problem: "Fitness tracking and personalised guidance often require recurring subscriptions or centralised services.", approach: "Explore a self-hostable approach to routines and progress tracking." },
+  { title: "The Office", category: "Research & Prototypes", description: "Explores three practical ways AI could reduce repetitive enterprise work through the RECLAIM, DOMINO, and SPARK concept demos.", stack: ["Prototypes", "Workflows", "UX"], status: "Concept demos", problem: "Repetitive enterprise workflows are difficult to rethink without concrete examples.", approach: "Prototype RECLAIM, DOMINO and SPARK as demonstrations of potential AI-assisted workflows." },
+  { title: "Morpheus", category: "Research & Prototypes", description: "Exploration of natural-language forms, secure responses, and interactive analytics.", stack: ["AI forms", "Analytics", "Pantheon"], status: "Early development", problem: "Conventional forms can be rigid and demanding to create or fill in.", approach: "Explore natural-language form experiences and the associated response-handling challenges." },
 ];
 const categories = ["All", "AI & Automation", "Full-stack", "Research & Prototypes"] as const;
 
 export default function PortfolioShowcase() {
   const [category, setCategory] = useState<(typeof categories)[number]>("All");
   const [query, setQuery] = useState("");
+  const [selected, setSelected] = useState<Work | null>(null);
   const filtered = useMemo(() => works.filter(w =>
     (category === "All" || w.category === category) &&
     (w.title + " " + w.description + " " + w.stack.join(" ")).toLowerCase().includes(query.toLowerCase())
@@ -50,13 +51,32 @@ export default function PortfolioShowcase() {
       <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
         {filtered.map((work, index) => <article key={work.title} className="group flex min-h-[330px] flex-col rounded-3xl border border-zinc-200 bg-white/80 p-7 shadow-sm transition-transform hover:-translate-y-1 dark:border-white/10 dark:bg-[#11152a]/90">
           <div className="flex items-center justify-between gap-3"><span className="text-xs font-semibold uppercase tracking-wider text-violet-600 dark:text-violet-300">{work.category}</span><span className="text-xs text-zinc-500 dark:text-zinc-400">{String(index+1).padStart(2,"0")}</span></div>
-          <h3 className="mt-8 text-3xl font-bold">{work.title}</h3><p className="mt-3 flex-1 leading-relaxed text-zinc-600 dark:text-zinc-300">{work.description}</p>
+          <h3 className="mt-8 text-3xl font-bold break-words">{work.title}</h3><p className="mt-3 flex-1 leading-relaxed text-zinc-600 dark:text-zinc-300">{work.description}</p>
           <div className="mt-6 flex flex-wrap gap-2">{work.stack.map(s=><span key={s} className="rounded-full bg-zinc-100 px-3 py-1 text-xs text-zinc-700 dark:bg-white/10 dark:text-zinc-200">{s}</span>)}</div>
+          <button type="button" onClick={() => setSelected(work)} className="mt-5 self-start text-sm font-semibold text-violet-600 underline underline-offset-4 hover:text-violet-800 dark:text-violet-300">Explore project <span aria-hidden="true">↗</span></button>
           <div className="mt-6 flex items-center justify-between border-t border-zinc-200 pt-5 dark:border-white/10"><span className="text-xs font-medium text-zinc-500 dark:text-zinc-400">{work.status}</span>
             <div className="flex gap-3">{work.repo && <a href={work.repo} target="_blank" rel="noopener noreferrer" aria-label={`View ${work.title} source`}><Github size={19}/></a>}{work.demo && <a href={work.demo} target="_blank" rel="noopener noreferrer" aria-label={`View ${work.title} demo`} className="inline-flex items-center gap-1 text-sm font-semibold text-violet-600 dark:text-violet-300">Demo <ArrowUpRight size={16}/></a>}</div>
           </div>
         </article>)}
       </div>
+      {selected && <div className="fixed inset-0 z-[200] flex items-center justify-center bg-black/70 p-4" role="presentation" onMouseDown={e => { if (e.target === e.currentTarget) setSelected(null); }}>
+        <section role="dialog" aria-modal="true" aria-labelledby="project-detail-title" className="relative w-full max-w-2xl max-h-[85vh] overflow-y-auto rounded-3xl bg-white p-7 text-zinc-900 shadow-2xl dark:bg-[#15182c] dark:text-white md:p-10">
+          <button type="button" aria-label="Close project details" onClick={() => setSelected(null)} className="absolute right-5 top-5 rounded-full border border-zinc-300 p-2 dark:border-white/20"><X size={20}/></button>
+          <p className="mb-3 pr-10 text-xs font-bold uppercase tracking-widest text-violet-600 dark:text-violet-300">{selected.category} · {selected.status}</p>
+          <h3 id="project-detail-title" className="pr-8 text-3xl font-bold leading-tight break-words">{selected.title}</h3>
+          <p className="mt-4 text-zinc-600 dark:text-zinc-300">{selected.description}</p>
+          <h4 className="mt-7 text-lg font-bold">The problem</h4><p className="mt-2 text-zinc-600 dark:text-zinc-300">{selected.problem}</p>
+          <h4 className="mt-6 text-lg font-bold">Engineering approach</h4><p className="mt-2 text-zinc-600 dark:text-zinc-300">{selected.approach}</p>
+          <h4 className="mt-6 text-lg font-bold">Technology</h4>
+          <p className="mt-2 text-zinc-600 dark:text-zinc-300">{selected.stack.join(" · ")}</p>
+          <p className="mt-6 text-sm text-zinc-500 dark:text-zinc-400">Project stage: {selected.status}. Outcomes and performance figures are not claimed without supporting evidence.</p>
+          <div className="mt-6 flex flex-wrap gap-3">
+            {selected.repo && <a className="rounded-full bg-violet-600 px-5 py-3 text-sm font-semibold text-white" href={selected.repo} target="_blank" rel="noopener noreferrer">Source code ↗</a>}
+            {selected.demo && <a className="rounded-full border border-violet-500 px-5 py-3 text-sm font-semibold text-violet-700 dark:text-violet-300" href={selected.demo} target="_blank" rel="noopener noreferrer">View demo ↗</a>}
+            <button type="button" onClick={() => setSelected(null)} className="rounded-full border border-zinc-300 px-5 py-3 text-sm font-semibold dark:border-white/30">Back to projects</button>
+          </div>
+        </section>
+      </div>}
       {filtered.length===0 && <p className="rounded-2xl border border-dashed border-zinc-400 p-10 text-center">No matching projects. Try another search or category.</p>}
     </div>
   </section>;
