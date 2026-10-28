@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { ArrowUpRight, Github, Search, Sparkles, X } from "lucide-react";
 
 type Category = "AI & Automation" | "Full-stack" | "Research & Prototypes";
@@ -22,6 +22,28 @@ export default function PortfolioShowcase() {
   const [category, setCategory] = useState<(typeof categories)[number]>("All");
   const [query, setQuery] = useState("");
   const [selected, setSelected] = useState<Work | null>(null);
+  const closeButtonRef = useRef<HTMLButtonElement>(null);
+  const previousFocusRef = useRef<HTMLElement | null>(null);
+  useEffect(() => {
+    if (!selected) return;
+    previousFocusRef.current = document.activeElement as HTMLElement;
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    closeButtonRef.current?.focus();
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setSelected(null);
+      if (event.key === "Tab") {
+        const dialog = document.getElementById("project-detail-dialog");
+        const items = dialog?.querySelectorAll<HTMLElement>('a[href], button:not([disabled])');
+        if (!items?.length) return;
+        const first = items[0], last = items[items.length - 1];
+        if (event.shiftKey && document.activeElement === first) { event.preventDefault(); last.focus(); }
+        else if (!event.shiftKey && document.activeElement === last) { event.preventDefault(); first.focus(); }
+      }
+    };
+    document.addEventListener("keydown", onKeyDown);
+    return () => { document.body.style.overflow = previousOverflow; document.removeEventListener("keydown", onKeyDown); previousFocusRef.current?.focus(); };
+  }, [selected]);
   const filtered = useMemo(() => works.filter(w =>
     (category === "All" || w.category === category) &&
     (w.title + " " + w.description + " " + w.stack.join(" ")).toLowerCase().includes(query.toLowerCase())
@@ -60,8 +82,8 @@ export default function PortfolioShowcase() {
         </article>)}
       </div>
       {selected && <div className="fixed inset-0 z-[200] flex items-center justify-center bg-black/70 p-4" role="presentation" onMouseDown={e => { if (e.target === e.currentTarget) setSelected(null); }}>
-        <section role="dialog" aria-modal="true" aria-labelledby="project-detail-title" className="relative w-full max-w-2xl max-h-[85vh] overflow-y-auto rounded-3xl bg-white p-7 text-zinc-900 shadow-2xl dark:bg-[#15182c] dark:text-white md:p-10">
-          <button type="button" aria-label="Close project details" onClick={() => setSelected(null)} className="absolute right-5 top-5 rounded-full border border-zinc-300 p-2 dark:border-white/20"><X size={20}/></button>
+        <section id="project-detail-dialog" role="dialog" aria-modal="true" aria-labelledby="project-detail-title" className="relative w-full max-w-2xl max-h-[85vh] overflow-y-auto rounded-3xl bg-white p-7 text-zinc-900 shadow-2xl dark:bg-[#15182c] dark:text-white md:p-10">
+          <button ref={closeButtonRef} type="button" aria-label="Close project details" onClick={() => setSelected(null)} className="absolute right-5 top-5 rounded-full border border-zinc-300 p-2 dark:border-white/20"><X size={20}/></button>
           <p className="mb-3 pr-10 text-xs font-bold uppercase tracking-widest text-violet-600 dark:text-violet-300">{selected.category} · {selected.status}</p>
           <h3 id="project-detail-title" className="pr-8 text-3xl font-bold leading-tight break-words">{selected.title}</h3>
           <p className="mt-4 text-zinc-600 dark:text-zinc-300">{selected.description}</p>
