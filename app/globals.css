@@ -344,17 +344,18 @@
   height: clamp(7rem, 21vw, 14rem);
   display: grid;
   place-items: center;
-  overflow: hidden;
+  overflow: visible;
   contain: layout;
 }
 .brush-name {
   display: block;
   width: 100%;
   margin: 0;
-  padding: .15em .12em .25em;
+  padding: .35em .18em .4em;
   text-align: center;
   white-space: nowrap;
-  line-height: 1.25;
+  overflow: visible;
+  line-height: 1.5;
   font-weight: 700;
   font-size: clamp(1.4rem, 5.3vw, 6.4rem);
   letter-spacing: -.025em;
@@ -368,6 +369,7 @@
   color: transparent;
   filter: drop-shadow(1px 2px 0px rgba(124, 58, 237, .18));
   transform: rotate(-1.2deg);
+  max-width: 100%;
 }
 .dark .brush-name__ink {
   background-image: linear-gradient(105deg, #fafafa 2%, #d8b4fe 35%, #f8fafc 60%, #a78bfa 94%);
@@ -384,5 +386,13 @@
   .brush-name--ta, .brush-name--kn { font-size: 4.65vw; }
 }
 @media (prefers-reduced-motion: reduce) {
+  .brush-name__ink { transform: none; }
+}
+
+/* Devanagari headline marks need extra ascent and descent clearance. */
+.brush-name--hi { line-height: 1.65; padding-block: .45em .5em; }
+/* Prevent viewport-width overflow while preserving the fixed-size name stage. */
+@media (max-width: 640px) {
+  .brush-name { letter-spacing: -.035em; }
   .brush-name__ink { transform: none; }
 }
