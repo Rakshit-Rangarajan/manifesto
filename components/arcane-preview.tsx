@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import type { PointerEvent as ReactPointerEvent, CSSProperties } from "react";
 import Link from "next/link";
+import ArcaneArchitecture from "@/components/arcane-architecture";
 
 const PARTICLES = Array.from({ length: 36 }, (_, i) => ({
   angle: (i * 137.508 * Math.PI) / 180,
@@ -106,6 +107,7 @@ export default function ArcanePreview() {
           <Link className="arcane-pill" href={FEATURED_PROJECTS[activeSystem].href}>Explore existing case study →</Link>
         </div>
       </section>
+      <ArcaneArchitecture />
       <section className="arcane-statement" aria-label="Engineering philosophy"><p>“I am lazy, so I automate.”</p><span>Engineering time belongs to problems worth solving.</span></section>
       <footer className="arcane-footer"><span>Arcane Engineer · V3 design study</span><Link href="/">Return to current portfolio</Link></footer>
     </div>
