@@ -9,89 +9,20 @@ const PERSONAL_MOTTO = "I’m lazy about repetitive work. Relentless about solvi
 
 const NAME_VARIANTS = ["Rakshit Rangarajan", "ラクシット ランガラジャン", "रक्षित रंगराजन", "ரக்ஷித் ரங்கராஜன்", "ರಕ್ಷಿತ್ ರಂಗರಾಜನ್"];
 
+const NAME_LANGUAGES = ["en", "ja", "hi", "ta", "kn"] as const;
 function NameDisplay({ name, isNew }: { name: string; isNew: boolean }) {
-  const containerRef = useRef<HTMLHeadingElement>(null);
-
+  const headingRef = useRef<HTMLHeadingElement>(null);
+  const index = Math.max(0, NAME_VARIANTS.indexOf(name));
   useEffect(() => {
-    if (!containerRef.current) return;
-
-    const chars = containerRef.current.querySelectorAll(".char");
-    gsap.fromTo(chars,
-      { y: isNew ? 80 : -80, opacity: 0, rotateX: isNew ? 90 : -90 },
-      {
-        y: 0,
-        opacity: 1,
-        rotateX: 0,
-        duration: 0.8,
-        stagger: 0.03,
-        ease: "back.out(1.7)"
-      }
-    );
+    if (!headingRef.current) return;
+    const motion = gsap.fromTo(headingRef.current,
+      { opacity: 0, y: isNew ? 18 : -18, filter: "blur(5px)" },
+      { opacity: 1, y: 0, filter: "blur(0px)", duration: 0.75, ease: "power3.out" });
+    return () => { motion.kill(); };
   }, [name, isNew]);
-
-  let chars: string[] = [];
-  if (typeof Intl !== 'undefined' && Intl.Segmenter) {
-    const segments = Array.from(new Intl.Segmenter(undefined, { granularity: 'grapheme' }).segment(name)).map(s => s.segment);
-    const merged = [];
-    for (let s of segments) {
-      if (
-        merged.length > 0 &&
-        /[\u094D\u09CD\u0A4D\u0ACD\u0B4D\u0BCD\u0C4D\u0CCD\u0D4D\u0DCA\u200D]$/.test(merged[merged.length - 1]) &&
-        !/^[\s.,!?]/.test(s)
-      ) {
-        merged[merged.length - 1] += s;
-      } else {
-        merged.push(s);
-      }
-    }
-    chars = merged;
-  } else {
-    chars = name.split("");
-  }
-
-  const wordsElements: React.ReactNode[] = [];
-  let currentWord: React.ReactNode[] = [];
-
-  chars.forEach((char, i) => {
-    if (char === " " || char === "\u00A0") {
-      if (currentWord.length > 0) {
-        wordsElements.push(
-          <span key={`word-${i}`} className="inline-block whitespace-nowrap">
-            {currentWord}
-          </span>
-        );
-        currentWord = [];
-      }
-      wordsElements.push(
-        <span key={i} className="char inline" style={{ paddingBottom: "0.2em", paddingTop: "0.2em" }}>
-          {" "}
-        </span>
-      );
-    } else {
-      currentWord.push(
-        <span key={i} className="char inline-block" style={{ paddingBottom: "0.2em", paddingTop: "0.2em" }}>
-          {char}
-        </span>
-      );
-    }
-  });
-
-  if (currentWord.length > 0) {
-    wordsElements.push(
-      <span key={`word-last`} className="inline-block whitespace-nowrap">
-        {currentWord}
-      </span>
-    );
-  }
-
-  return (
-    <h1
-      ref={containerRef}
-      className="text-5xl sm:text-7xl md:text-[6.5rem] lg:text-[7rem] xl:text-[7.5rem] 2xl:text-[9rem] font-bold tracking-tighter text-zinc-900 dark:text-white leading-[1.1] lg:leading-none drop-shadow-[0_2px_10px_rgba(255,255,255,0.8)] dark:drop-shadow-none"
-    >
-      {wordsElements}
-    </h1>
-  );
+  return <h1 ref={headingRef} lang={NAME_LANGUAGES[index]} aria-label={name} className={`brush-name brush-name--${NAME_LANGUAGES[index]}`}>
+    <span className="brush-name__ink">{name}</span>
+  </h1>;
 }
 
 export default function Hero() {
@@ -155,11 +86,7 @@ export default function Hero() {
               {personalInfo.role}
             </p>
           </div>
-          <div className="overflow-hidden mb-6 py-8">
-            <h1 className="text-5xl sm:text-7xl md:text-[6.5rem] lg:text-[7rem] xl:text-[7.5rem] 2xl:text-[9rem] font-bold tracking-tighter text-zinc-900 dark:text-white leading-[1.1] lg:leading-none drop-shadow-[0_2px_10px_rgba(255,255,255,0.8)] dark:drop-shadow-none">
-              {NAME_VARIANTS[0]}
-            </h1>
-          </div>
+          <div className="brush-name-stage mb-6" aria-live="off"><h1 lang="en" className="brush-name brush-name--en"><span className="brush-name__ink">{NAME_VARIANTS[0]}</span></h1></div>
           <div className="overflow-hidden max-w-2xl mb-8">
             <p className="text-zinc-600 dark:text-slate-400 text-lg md:text-2xl leading-relaxed font-light">
               {personalInfo.tagline}
@@ -205,7 +132,7 @@ export default function Hero() {
             {personalInfo.role}
           </p>
         </div>
-        <div className="overflow-hidden mb-6 py-8 min-h-[1.5em]">
+        <div className="brush-name-stage mb-6" aria-live="polite" aria-atomic="true">
           <NameDisplay name={displayName} isNew={isNew} />
         </div>
         <div className="overflow-hidden max-w-2xl mb-8">

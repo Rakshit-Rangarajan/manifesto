@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css2?family=Kalam:wght@700&family=Kavivanar&family=Noto+Serif+Kannada:wght@700&family=Permanent+Marker&family=Yuji+Boku&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap");
 
 @keyframes spin-slow {
@@ -335,4 +336,53 @@
 .dark ::selection {
   background: hsl(191 91% 56% / 0.3);
   color: hsl(210 40% 96%);
+}
+
+/* Brush lettering — fixed stage prevents layout movement while changing scripts. */
+.brush-name-stage {
+  width: 100%;
+  height: clamp(7rem, 21vw, 14rem);
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  contain: layout;
+}
+.brush-name {
+  display: block;
+  width: 100%;
+  margin: 0;
+  padding: .15em .12em .25em;
+  text-align: center;
+  white-space: nowrap;
+  line-height: 1.25;
+  font-weight: 700;
+  font-size: clamp(1.4rem, 5.3vw, 6.4rem);
+  letter-spacing: -.025em;
+  text-rendering: optimizeLegibility;
+}
+.brush-name__ink {
+  display: inline-block;
+  background: linear-gradient(110deg, #111827 5%, #5b21b6 44%, #111827 75%, #7c3aed 95%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  filter: drop-shadow(1px 2px 0px rgba(124, 58, 237, .18));
+  transform: rotate(-1.2deg);
+}
+.dark .brush-name__ink {
+  background-image: linear-gradient(105deg, #fafafa 2%, #d8b4fe 35%, #f8fafc 60%, #a78bfa 94%);
+}
+.brush-name--en { font-family: "Permanent Marker", cursive; }
+.brush-name--ja { font-family: "Yuji Boku", "Noto Serif JP", serif; font-size: clamp(1.15rem, 4.4vw, 5.5rem); }
+.brush-name--hi { font-family: "Kalam", "Noto Sans Devanagari", sans-serif; font-size: clamp(1.4rem, 5.2vw, 6.2rem); }
+.brush-name--ta { font-family: "Kavivanar", "Noto Sans Tamil", sans-serif; font-size: clamp(1.25rem, 4.7vw, 5.8rem); }
+.brush-name--kn { font-family: "Noto Serif Kannada", "Noto Sans Kannada", serif; font-size: clamp(1.25rem, 4.7vw, 5.8rem); }
+@media (max-width: 400px) {
+  .brush-name--en { font-size: 5.3vw; }
+  .brush-name--ja { font-size: 4.4vw; }
+  .brush-name--hi { font-size: 5.1vw; }
+  .brush-name--ta, .brush-name--kn { font-size: 4.65vw; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .brush-name__ink { transform: none; }
 }
