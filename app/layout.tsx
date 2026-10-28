@@ -29,7 +29,7 @@ const jsonLd = {
     "UI/UX Engineer"
   ],
   url: "https://rakshitr.co.in",
-  description: "Full-Stack Developer who masters AI to automate workflows, fix vibe-coded code, and deliver maximum efficiency. Built workflows before the AI boom.",
+  description: "AI-focused engineer designing practical solutions for automation, retrieval-augmented generation, agent orchestration and complex workflow problems.",
   sameAs: [
     "https://github.com/Rakshit-Rangarajan",
     "https://x.com/rakshit_r",
@@ -82,8 +82,8 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "https://rakshitr.co.in",
   },
-  title: "Rakshit Rangarajan | Full-Stack Developer & AI Enthusiast",
-  description: "Full-Stack Developer who weaponizes AI to automate workflows, fix vibe-coded code, and deliver maximum efficiency. Built workflows before the AI boom.",
+  title: "Rakshit Rangarajan | AI Problem Solver & Solutions Architect",
+  description: "AI problem solver exploring practical automation, RAG, agent orchestration and intelligent applications, grounded in enterprise software engineering.",
   keywords: [
     "Rakshit",
     "Rakshit Rangarajan",
