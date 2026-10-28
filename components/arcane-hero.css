@@ -1,0 +1,12 @@
+@import url("https://fonts.googleapis.com/css2?family=Allura&display=swap");
+
+.arcane-hero { isolation: isolate; }
+.arcane-hero::before {
+  content: ""; position: absolute; z-index: -1; width: min(72vw, 720px); aspect-ratio: 1; border-radius: 50%;
+  background: radial-gradient(circle, rgba(96,165,250,.14), rgba(139,92,246,.12) 30%, transparent 68%);
+  filter: blur(12px); pointer-events: none;
+}
+.arcane-signature { font-family: "Allura", cursive; font-weight: 400; line-height: 1.2; }
+@media (prefers-reduced-motion: reduce) {
+  .arcane-hero *, .arcane-hero *::before, .arcane-hero *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; }
+}
