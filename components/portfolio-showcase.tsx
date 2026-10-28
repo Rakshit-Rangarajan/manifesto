@@ -6,7 +6,7 @@ import { ArrowUpRight, Github, Search, Sparkles } from "lucide-react";
 type Category = "AI & Automation" | "Full-stack" | "Research & Prototypes";
 type Work = { title: string; category: Category; description: string; stack: string[]; status: string; repo?: string; demo?: string; featured?: boolean };
 const works: Work[] = [
-  { title: "AERO-BM", category: "AI & Automation", description: "Multi-agent enterprise workspace for epic and ticket analysis, collaborative planning, and root-cause investigation.", stack: ["AI agents", "Python", "Enterprise workflows"], status: "Active development", featured: true },
+  { title: "AERO (Autonomous Engineering & Release Orchestrator)", category: "AI & Automation", description: "Multi-agent enterprise workspace for epic and ticket analysis, collaborative planning, and root-cause investigation.", stack: ["AI agents", "Python", "Enterprise workflows"], status: "Active development", featured: true },
   { title: "PromptFlow Studio", category: "AI & Automation", description: "Visual workspace for designing and exploring AI application workflows.", stack: ["React", "FastAPI", "TypeScript"], status: "Demo available", demo: "https://promptflow.rakshitr.co.in", featured: true },
   { title: "Project Athena", category: "AI & Automation", description: "Local-first personal commitment assistant designed to track tasks and follow-through.", stack: ["Python", "SQLite", "Podman"], status: "Working build", featured: true },
   { title: "Mnemosyne", category: "AI & Automation", description: "Private knowledge library for saving, organizing, and extracting information from sources.", stack: ["Python", "SQLite", "Background workers"], status: "Implemented milestones" },
