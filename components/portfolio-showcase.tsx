@@ -6,9 +6,9 @@ import { ArrowUpRight, Github, Search, Sparkles } from "lucide-react";
 type Category = "AI & Automation" | "Full-stack" | "Research & Prototypes";
 type Work = { title: string; category: Category; description: string; stack: string[]; status: string; repo?: string; demo?: string; featured?: boolean };
 const works: Work[] = [
-  { title: "AERO (Autonomous Engineering & Release Orchestrator)", category: "AI & Automation", description: "Turns complex enterprise requirements and incidents into structured analysis, actionable engineering plans, and coordinated AI-assisted workflows.", stack: ["AI agents", "Python", "Enterprise workflows"], status: "Active development", featured: true },
+  { title: "AERO (Autonomous Engineering & Release Orchestrator)", category: "AI & Automation", description: "Turns complex enterprise requirements and incidents into structured analysis, actionable engineering plans, and coordinated AI-assisted workflows.", stack: ["AI agents", "Python", "Enterprise workflows"], status: "Active development", repo: "https://github.com/Rakshit-Rangarajan/AERO-BM", featured: true },
   { title: "PromptFlow Studio", category: "AI & Automation", description: "Visual workspace for designing and exploring AI application workflows.", stack: ["React", "FastAPI", "TypeScript"], status: "Demo available", demo: "https://promptflow.rakshitr.co.in", featured: true },
-  { title: "Project Athena", category: "AI & Automation", description: "Helps prevent missed commitments by organizing tasks, follow-ups, and reminders into a local-first assistant workflow.", stack: ["Python", "SQLite", "Podman"], status: "Working build", featured: true },
+  { title: "Project Athena", category: "AI & Automation", description: "Helps prevent missed commitments by organizing tasks, follow-ups, and reminders into a local-first assistant workflow.", stack: ["Python", "SQLite", "Podman"], status: "Working build", repo: "https://github.com/Rakshit-Rangarajan/Project-Athena", featured: true },
   { title: "Mnemosyne", category: "AI & Automation", description: "Makes scattered notes and documents easier to retrieve, organize, and reuse through a private knowledge workspace.", stack: ["Python", "SQLite", "Background workers"], status: "Implemented milestones" },
   { title: "CrypticSync", category: "Full-stack", description: "Workforce management system with attendance, leave management, reporting, and role-based access.", stack: ["Angular", "FastAPI", "SQLite"], status: "Project showcase" },
   { title: "SayCymraeg", category: "Full-stack", description: "Interactive, gamified Welsh-language learning experience.", stack: ["Next.js", "AI learning", "Web"], status: "Demo listed", demo: "https://saycymraeg.rakshitr.co.in" },
@@ -29,9 +29,9 @@ export default function PortfolioShowcase() {
   return <section id="projects" className="relative w-full px-5 py-24 md:px-12 lg:px-20 text-zinc-900 dark:text-white" aria-labelledby="portfolio-title">
     <div className="mx-auto max-w-7xl">
       <div className="mb-12 flex flex-col justify-between gap-6 md:flex-row md:items-end">
-        <div><p className="mb-3 text-xs font-semibold uppercase tracking-[.3em] text-violet-500">Selected engineering work</p>
+        <div><p className="mb-3 text-xs font-semibold uppercase tracking-[.3em] text-violet-500">AI systems and practical engineering</p>
           <h2 id="portfolio-title" className="text-5xl font-bold tracking-tight md:text-7xl">Built to solve <span className="bg-gradient-to-r from-blue-500 to-violet-500 bg-clip-text text-transparent">real problems.</span></h2>
-          <p className="mt-5 max-w-2xl text-lg text-zinc-600 dark:text-zinc-300">AI systems, enterprise software, and thoughtful experiments. Each project is labeled by its current stage—not every prototype is a production application.</p>
+          <p className="mt-5 max-w-2xl text-lg text-zinc-600 dark:text-zinc-300">From enterprise automation to private knowledge retrieval and experimental agents, I build around a problem worth solving. Maturity labels distinguish working applications from prototypes; where available, explore the actual code or demo.</p>
         </div>
       </div>
       <aside className="mb-12 overflow-hidden rounded-3xl border border-violet-400/40 bg-gradient-to-br from-[#10142f] via-[#1b1741] to-[#301353] p-8 text-white md:p-12" aria-label="NeuralForge coming soon">
