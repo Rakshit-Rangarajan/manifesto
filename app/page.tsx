@@ -5,6 +5,8 @@ import Background from "@/components/background";
 import Hero from "@/components/hero";
 import Manifesto from "@/components/manifesto";
 import PortfolioShowcase from "@/components/portfolio-showcase";
+import AIExpertise from "@/components/ai-expertise";
+import ImpactAndProof from "@/components/impact-and-proof";
 import About from "@/components/about";
 import Education from "@/components/education";
 import { Certificates, Achievements } from "@/components/achievements";
@@ -26,8 +28,10 @@ export default function Home() {
       <main id="main-content" className="relative flex flex-col items-center">
         <Hero />
         <About />
-        <Manifesto />
         <PortfolioShowcase />
+        <AIExpertise />
+        <ImpactAndProof />
+        <Manifesto />
         <AITools />
         <Skills />
         <Experience />

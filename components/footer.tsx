@@ -27,7 +27,7 @@ export default function Footer() {
           <div className="flex flex-col justify-between">
             <div>
               <p className="text-xl md:text-2xl font-light text-zinc-600 dark:text-slate-400 max-w-md leading-relaxed mb-10">
-                Open for high-end web architecture, Full-Stack engineering, and AI automation opportunities.
+                Interested in solving high-impact problems with AI? I work on practical automation, knowledge retrieval, and intelligent workflows.
               </p>
 
               <a
@@ -72,16 +72,22 @@ export default function Footer() {
                 e.preventDefault();
                 const formData = new FormData(e.currentTarget);
 
-                formData.append("access_key", process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY || "");
+                const accessKey = process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY;
+                if (!accessKey) {
+                  alert("Contact form is unavailable. Please email me using the address shown.");
+                  return;
+                }
+                formData.append("access_key", accessKey);
 
                 try {
                   const res = await fetch("https://api.web3forms.com/submit", {
                     method: "POST",
                     body: formData
                   });
-                  if (res.ok) {
-                    alert("Message transmitted successfully! I will be in touch soon.");
-                    e.currentTarget.reset();
+                  const response = await res.json().catch(() => null);
+                  if (res.ok && response?.success === true) {
+                    alert("Message sent successfully.");
+                    (e.target as HTMLFormElement).reset();
                   } else {
                     alert("Submission failed. Please try again.");
                   }

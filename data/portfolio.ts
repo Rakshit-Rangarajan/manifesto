@@ -7,9 +7,9 @@ import projectAgriFreshOrganics from "@/assets/project-agrifreshorganics.png";
 
 export const personalInfo = {
   name: "Rakshit Rangarajan",
-  role: "Software Engineer | Full-Stack Developer",
+  role: "AI Problem Solver | Aspiring AI Solutions Architect",
   tagline:
-    "I'm a Full-Stack Developer who mastered the art of AI before it went mainstream. I don't just use AI, I weaponize it. Every repetitive task? Automated. Every boring workflow? Optimized.",
+    "I design practical AI solutions to problems worth solving—from RAG and multi-agent orchestration to automation that gives people their time back. My full-stack background helps me turn ideas into useful, maintainable applications.",
   email: "rakshitr2000@gmail.com",
   phone: "+44 78236 40897",
   location: "Cardiff, UK / Bengaluru, India",

@@ -5,7 +5,7 @@ import gsap from "gsap";
 import { ArrowDown, ArrowDownToLine } from "lucide-react";
 import { personalInfo } from "@/data/portfolio";
 
-const PERSONAL_MOTTO = "I am lazy, so I automate.";
+const PERSONAL_MOTTO = "I’m lazy about repetitive work. Relentless about solving problems.";
 
 const NAME_VARIANTS = ["Rakshit Rangarajan", "ラクシット ランガラジャン", "रक्षित रंगराजन", "ரக்ஷித் ரங்கராஜன்", "ರಕ್ಷಿತ್ ರಂಗರಾಜನ್"];
 
@@ -212,6 +212,7 @@ export default function Hero() {
           <p className="reveal-text text-zinc-600 dark:text-slate-400 text-lg md:text-2xl leading-relaxed font-light">
             {personalInfo.tagline}
           </p>
+          <p className="mt-5 text-xl md:text-2xl italic font-medium text-violet-600 dark:text-violet-300">{PERSONAL_MOTTO}</p>
         </div>
         <div className="reveal-text flex flex-wrap gap-3 justify-center z-20 relative">
           <button
