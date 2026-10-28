@@ -1,0 +1,64 @@
+"use client";
+
+import { useEffect, useRef, useState } from "react";
+import Link from "next/link";
+
+const PARTICLES = Array.from({ length: 36 }, (_, i) => ({
+  angle: (i * 137.508 * Math.PI) / 180,
+  radius: 18 + ((i * 19) % 32),
+  size: 1 + (i % 3),
+  delay: (i % 9) * -0.4,
+}));
+
+export default function ArcanePreview() {
+  const [intro, setIntro] = useState(true);
+  const [reduceMotion, setReduceMotion] = useState(true);
+  const [position, setPosition] = useState({ x: 0, y: 0 });
+  const frame = useRef<number | null>(null);
+
+  useEffect(() => {
+    const media = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const update = () => {
+      setReduceMotion(media.matches);
+      if (media.matches) setIntro(false);
+    };
+    update();
+    media.addEventListener("change", update);
+    return () => media.removeEventListener("change", update);
+  }, []);
+
+  useEffect(() => {
+    if (reduceMotion || !intro) return;
+    const timeout = window.setTimeout(() => setIntro(false), 1350);
+    return () => window.clearTimeout(timeout);
+  }, [intro, reduceMotion]);
+
+  useEffect(() => () => { if (frame.current !== null) cancelAnimationFrame(frame.current); }, []);
+
+  const move = (event: React.PointerEvent<HTMLElement>) => {
+    if (reduceMotion || event.pointerType === "touch") return;
+    const rect = event.currentTarget.getBoundingClientRect();
+    const x = (event.clientX - rect.left) / rect.width - 0.5;
+    const y = (event.clientY - rect.top) / rect.height - 0.5;
+    if (frame.current !== null) cancelAnimationFrame(frame.current);
+    frame.current = requestAnimationFrame(() => setPosition({ x, y }));
+  };
+
+  return (
+    <div className="arcane-root">
+      <style>{`
+        .arcane-root{--arcane-bg:#080b19;--arcane-text:#f4e9dd;--arcane-accent:#b78bff;min-height:100svh;background:radial-gradient(ellipse at 75% 35%,#241547 0%,transparent 45%),radial-gradient(ellipse at 30% 95%,#0b2948 0%,transparent 45%),var(--arcane-bg);color:var(--arcane-text);overflow:hidden;font-family:Inter,system-ui,sans-serif}
+        .arcane-root *{box-sizing:border-box}.arcane-nav{display:flex;align-items:center;justify-content:space-between;padding:1.3rem clamp(1.25rem,5vw,5rem);gap:1rem}.arcane-logo{font-family:Georgia,serif;font-size:1.8rem;color:#f6dfb9}.arcane-back{color:#e9ddff;text-decoration:none;border:1px solid #7d679a;border-radius:999px;padding:.6rem 1rem}.arcane-back:focus-visible,.arcane-skip:focus-visible{outline:3px solid #f6dfb9;outline-offset:4px}
+        .arcane-main{min-height:calc(100svh - 90px);display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);align-items:center;gap:2rem;padding:2rem clamp(1.25rem,6vw,7rem) 5rem}.arcane-eyebrow{text-transform:uppercase;letter-spacing:.24em;color:#c9b1ff;font-size:.72rem}.arcane-title{font-family:Georgia,serif;font-size:clamp(3rem,6.4vw,7rem);line-height:1.05;letter-spacing:-.045em;margin:1rem 0;color:#ffeddb}.arcane-tagline{font-family:Georgia,serif;font-style:italic;color:#d8b8ff;font-size:clamp(1.1rem,2vw,1.6rem)}.arcane-copy{color:#bfc6df;line-height:1.8;max-width:38rem}.arcane-pill{display:inline-block;margin-top:1.4rem;padding:.8rem 1.2rem;border:1px solid #a17dcc;border-radius:999px;color:#fff0d9;text-decoration:none}
+        .arcane-core-area{position:relative;display:grid;place-items:center;min-height:clamp(320px,52vw,680px);isolation:isolate}.arcane-core{position:relative;width:min(76vw,480px);aspect-ratio:1;display:grid;place-items:center;transform:perspective(900px) rotateY(var(--tilt-x,0deg)) rotateX(var(--tilt-y,0deg));transition:transform .2s ease-out;filter:drop-shadow(0 0 35px #6540cf55)}.arcane-ring{position:absolute;border:1px solid #c99aff88;border-radius:50%;inset:8%;box-shadow:inset 0 0 32px #7846e033,0 0 24px #7854da33}.arcane-ring.a{border-style:dashed;animation:arcane-spin 45s linear infinite}.arcane-ring.b{inset:19%;border-color:#9dbeff99;transform:rotateX(67deg);animation:arcane-spin 30s linear infinite reverse}.arcane-ring.c{inset:30%;border-color:#eac6a6aa;animation:arcane-spin 20s linear infinite}.arcane-sphere{width:30%;aspect-ratio:1;border-radius:50%;background:radial-gradient(circle at 35% 30%,#e7f9ff,#69aaff 19%,#7b43db 45%,#140b39 76%);box-shadow:0 0 50px #8763f8,0 0 130px #486edb99,inset -14px -18px 30px #0d092e}.arcane-particle{position:absolute;left:50%;top:50%;width:var(--size);height:var(--size);border-radius:50%;background:#d8c4ff;box-shadow:0 0 12px #a4c8ff;transform:rotate(var(--angle)) translateX(var(--radius));animation:arcane-glimmer 3s ease-in-out infinite;animation-delay:var(--delay)}.arcane-core-caption{position:absolute;bottom:0;color:#e6d5ff;font-size:.75rem;letter-spacing:.2em;text-transform:uppercase}
+        .arcane-intro{position:fixed;inset:0;z-index:50;background:#080b19;display:grid;place-items:center;gap:1rem;align-content:center;animation:arcane-dismiss .5s ease 1s forwards}.arcane-monogram{font-family:Georgia,serif;font-size:clamp(5rem,22vw,13rem);letter-spacing:-.12em;color:#f7dcaf;text-shadow:0 0 55px #9b6bff;animation:arcane-appear .9s ease both}.arcane-intro p{color:#d2baff;letter-spacing:.22em;font-size:.7rem;text-transform:uppercase}.arcane-skip{position:absolute;right:1.5rem;bottom:1.5rem;color:#fff;background:#33224f;border:1px solid #a68ad2;padding:.65rem 1rem;border-radius:999px;cursor:pointer}
+        @keyframes arcane-spin{to{transform:rotate(360deg)}}@keyframes arcane-glimmer{50%{opacity:.2}}@keyframes arcane-appear{from{opacity:0;transform:scale(.85);filter:blur(15px)}to{opacity:1;transform:scale(1);filter:blur(0)}}@keyframes arcane-dismiss{to{opacity:0;visibility:hidden}}
+        @media(max-width:760px){.arcane-main{grid-template-columns:1fr;text-align:center;padding-top:2rem}.arcane-copy{margin-inline:auto}.arcane-core-area{min-height:340px}.arcane-core{width:min(82vw,340px)}.arcane-title{font-size:clamp(3rem,12vw,5rem)}}
+        @media(prefers-reduced-motion:reduce){.arcane-root *, .arcane-root *::before,.arcane-root *::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+      `}</style>
+      {intro && !reduceMotion && <div className="arcane-intro" role="presentation"><div className="arcane-monogram">RR</div><p>Rakshit Rangarajan · AI Solutions Architect</p><button className="arcane-skip" onClick={() => setIntro(false)}>Skip intro</button></div>}
+      <nav className="arcane-nav" aria-label="Prototype navigation"><span className="arcane-logo">RR</span><Link className="arcane-back" href="/">Back to portfolio</Link></nav>
+      <main className="arcane-main"><section><p className="arcane-eyebrow">AI Solutions Architect · Arcane Engineer Prototype</p><h1 className="arcane-title">Engineering<br />the impossible.</h1><p className="arcane-tagline">where logic meets a little magic.</p><p className="arcane-copy">I design AI systems that solve real problems, automate the complex, and turn ambitious ideas into meaningful impact.</p><a className="arcane-pill" href="/#projects">Explore my work →</a></section><section className="arcane-core-area" aria-label="Decorative interactive neural core" onPointerMove={move} onPointerLeave={() => setPosition({ x: 0, y: 0 })}><div className="arcane-core" style={{ "--tilt-x": `${position.x * 12}deg`, "--tilt-y": `${-position.y * 12}deg` } as React.CSSProperties}><div className="arcane-ring a"/><div className="arcane-ring b"/><div className="arcane-ring c"/><div className="arcane-sphere"/>{PARTICLES.map((p,i)=><span key={i} className="arcane-particle" style={{"--size":`${p.size}px`,"--angle":`${p.angle}rad`,"--radius":`${p.radius * 3}px`,"--delay":`${p.delay}s`} as React.CSSProperties}/>)}</div><span className="arcane-core-caption">Neural Core · Interactive Study</span></section></main>
+    </div>
+  );
+}
