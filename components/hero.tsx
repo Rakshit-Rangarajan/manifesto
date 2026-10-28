@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { ArrowDown, ArrowDownToLine } from "lucide-react";
 import { personalInfo } from "@/data/portfolio";
+import "./arcane-hero.css";
 
 const PERSONAL_MOTTO = "I am lazy, so I automate.";
 
@@ -147,7 +148,7 @@ export default function Hero() {
     return (
       <section
         id="hero"
-        className="relative h-screen w-full flex flex-col items-center justify-center overflow-hidden px-4 md:px-20"
+        className="arcane-hero relative min-h-screen w-full flex flex-col items-center justify-center overflow-hidden px-4 py-24 md:px-20"
       >
         <div className="flex flex-col items-center justify-center text-center w-full z-10">
           <div className="overflow-hidden mb-2">
@@ -164,6 +165,8 @@ export default function Hero() {
             <p className="text-zinc-600 dark:text-slate-400 text-lg md:text-2xl leading-relaxed font-light">
               {personalInfo.tagline}
             </p>
+            <p className="arcane-signature mt-5 text-xl md:text-3xl text-violet-600 dark:text-violet-300">Where logic meets a little magic.</p>
+            <p className="mt-4 text-sm font-semibold uppercase tracking-[0.2em] text-zinc-600 dark:text-slate-300">{PERSONAL_MOTTO}</p>
             <p className="mt-5 text-xl md:text-2xl italic font-medium text-violet-600 dark:text-violet-300" aria-label={PERSONAL_MOTTO}>{PERSONAL_MOTTO}</p>
           </div>
           <div className="flex flex-wrap gap-3 justify-center z-20 relative">
@@ -197,7 +200,7 @@ export default function Hero() {
     <section
       id="hero"
       ref={containerRef}
-      className="relative h-screen w-full flex flex-col items-center justify-center overflow-hidden px-4 md:px-20"
+      className="arcane-hero relative min-h-screen w-full flex flex-col items-center justify-center overflow-hidden px-4 py-24 md:px-20"
     >
       <div className="flex flex-col items-center justify-center text-center w-full z-10">
         <div className="overflow-hidden mb-2">
