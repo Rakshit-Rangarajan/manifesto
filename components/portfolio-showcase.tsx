@@ -63,6 +63,25 @@ export default function PortfolioShowcase() {
         <p className="mt-4 max-w-2xl text-lg text-slate-200">A free AI-powered mentorship universe for learners, builders, and future engineers. We're forging the experience—stay tuned.</p>
         <p className="mt-6 text-sm text-violet-200">Preview announcement only · No public application or source access yet</p>
       </aside>
+      <div className="mb-12" aria-labelledby="flagship-title">
+        <div className="mb-5 flex items-end justify-between gap-4">
+          <div>
+            <p className="text-xs font-bold uppercase tracking-[.25em] text-violet-600 dark:text-violet-300">Start here</p>
+            <h3 id="flagship-title" className="mt-2 text-3xl font-bold md:text-4xl">Flagship AI engineering work</h3>
+            <p className="mt-2 max-w-2xl text-zinc-600 dark:text-zinc-300">Three different kinds of problems: enterprise orchestration, personal workflow automation and AI application design.</p>
+          </div>
+        </div>
+        <div className="grid gap-4 md:grid-cols-3">
+          {works.filter(work => ["AERO (Autonomous Engineering & Release Orchestrator)", "Project Athena", "PromptFlow Studio"].includes(work.title)).map(work => (
+            <article key={work.title} className="flex flex-col rounded-2xl border border-violet-300/40 bg-violet-50/70 p-6 dark:border-violet-500/30 dark:bg-violet-500/10">
+              <p className="text-xs font-semibold uppercase tracking-wider text-violet-700 dark:text-violet-300">{work.status}</p>
+              <h4 className="mt-3 text-xl font-bold">{work.title}</h4>
+              <p className="mt-3 flex-1 text-sm leading-relaxed text-zinc-600 dark:text-zinc-300">{work.problem}</p>
+              <button type="button" onClick={() => setSelected(work)} className="mt-6 self-start rounded-full border border-violet-500 px-4 py-2 text-sm font-semibold text-violet-700 hover:bg-violet-100 dark:text-violet-200 dark:hover:bg-violet-500/20">Explore the approach</button>
+            </article>
+          ))}
+        </div>
+      </div>
       <div className="mb-8 flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
         <div className="flex flex-wrap gap-2" aria-label="Filter projects">
           {categories.map(c => <button key={c} type="button" onClick={() => setCategory(c)} aria-pressed={category===c} className={`rounded-full border px-4 py-2 text-sm transition-colors ${category===c ? "border-violet-500 bg-violet-600 text-white" : "border-zinc-300 bg-white/60 text-zinc-700 hover:border-violet-400 dark:border-white/20 dark:bg-white/5 dark:text-zinc-200"}`}>{c}</button>)}
