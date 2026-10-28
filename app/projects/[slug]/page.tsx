@@ -2,6 +2,7 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { ArrowLeft, ArrowUpRight } from "lucide-react";
+import DownloadEngineeringBrief from "@/components/download-engineering-brief";
 
 const caseStudies = {
   aero: {
@@ -76,6 +77,7 @@ export default async function ProjectCaseStudy({ params }: Params) {
       <section className="mt-14"><h2 className="text-2xl font-bold">Technology and verification</h2><div className="mt-4 flex flex-wrap gap-2">{study.technology.map(t=><span key={t} className="rounded-full border border-zinc-300 px-4 py-2 text-sm dark:border-white/20">{t}</span>)}</div><p className="mt-5 max-w-3xl text-sm leading-relaxed text-zinc-600 dark:text-zinc-300">{study.caveat}</p></section>
       <p className="mt-10 text-sm text-zinc-500 dark:text-zinc-400">Evidence policy: performance figures are published only after verification. This project brief explains engineering decisions, not measured outcomes.</p>
       <div className="mt-12 flex flex-wrap gap-4">
+        <DownloadEngineeringBrief brief={study} slug={slug} />
         {"source" in study && <a href={study.source} rel="noopener noreferrer" target="_blank" className="inline-flex items-center gap-2 rounded-full bg-violet-600 px-6 py-3 font-semibold text-white">View repository <ArrowUpRight size={16}/></a>}
         {"demo" in study && <a href={study.demo} rel="noopener noreferrer" target="_blank" className="inline-flex items-center gap-2 rounded-full bg-violet-600 px-6 py-3 font-semibold text-white">Visit demo <ArrowUpRight size={16}/></a>}
         <Link href="/#contact" className="rounded-full border border-zinc-300 px-6 py-3 font-semibold dark:border-white/20">Discuss a similar problem</Link>
