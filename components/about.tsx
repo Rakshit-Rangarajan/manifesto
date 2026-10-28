@@ -149,7 +149,7 @@ const About = () => {
       bgGradient: "from-blue-500/20 to-cyan-500/20",
       border: "border-blue-500/30 dark:border-blue-500/20",
       iconColor: "text-blue-600 dark:text-blue-500",
-      title: "AI-First Approach",
+      title: "Automation With Purpose",
       desc: "Smart solutions, not just code"
     },
   ];
@@ -170,8 +170,8 @@ const About = () => {
             System Origin
           </p>
           <h2 ref={titleRef} className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tighter text-zinc-900 dark:text-white leading-[1.1]">
-            <span className="about-title-line block">Code with</span>
-            <span className="about-title-line text-transparent bg-clip-text bg-gradient-to-r from-primary to-emerald-400 italic mt-2 block">AI powers.</span>
+            <span className="about-title-line block">Problems first.</span>
+            <span className="about-title-line text-transparent bg-clip-text bg-gradient-to-r from-primary to-emerald-400 italic mt-2 block">AI where it matters.</span>
           </h2>
 
           {/* Image and intro side by side */}
@@ -217,10 +217,7 @@ const About = () => {
             {/* Intro text next to image */}
             <div className="flex-1">
               <p className="about-text-reveal text-lg md:text-xl text-zinc-700 dark:text-slate-400 font-light leading-relaxed text-justify">
-                I'm a <strong>Full-Stack Developer</strong> who mastered the art of AI before it went mainstream.
-                I don't just use AI, I weaponize it. Every repetitive task? Automated. Every boring workflow? Optimized.
-                I bridge the gap between traditional engineering and modern AI capabilities, building robust systems that leverage AI without depending on it blindly.
-                My background in traditional development ensures the code I ship is clean, scalable, and maintainable, while my AI expertise adds that extra layer of intelligence and automation.
+                I'm an <strong>AI-focused problem solver</strong> with a foundation in full-stack engineering. I look for costly, repetitive or complex problems, then design practical solutions using the right tools—automation, retrieval-augmented generation, multi-agent systems or traditional software when that works better. A small application that saves meaningful time can be as valuable as a large platform. What matters to me is sustained usefulness, maintainability and measurable impact.
               </p>
             </div>
           </div>
@@ -249,52 +246,52 @@ const About = () => {
               <div className="flex items-center gap-3">
                 <Target className="w-6 h-6 text-primary" />
                 <span className="text-lg font-semibold text-zinc-900 dark:text-white uppercase tracking-wider">
-                  Open to Work
+                  What I Solve
                 </span>
               </div>
 
               <p className="text-base text-zinc-600 dark:text-slate-400">
-                Based in Bengaluru, India. Looking for <strong>Full-Stack AI / ML Engineering</strong> roles where I can build products that matter.
+                I want to architect meaningful AI solutions: cut repetitive effort, make knowledge accessible, coordinate intelligent workflows and turn promising ideas into reliable products.
               </p>
 
               <div className="pt-2">
                 <h4 className="text-sm font-bold text-zinc-900 dark:text-white mb-4 uppercase tracking-wider">
-                  Why Hire Me
+                  How I Work
                 </h4>
                 <div className="grid grid-cols-1 gap-3">
                   <div className="flex items-start gap-3 p-4 bg-white dark:bg-white/5 rounded-xl border border-black/5 dark:border-white/5">
                     <Code2 className="w-5 h-5 text-primary shrink-0 mt-0.5" />
                     <div>
-                      <span className="text-sm font-medium text-zinc-900 dark:text-white">Full-Stack + AI</span>
-                      <p className="text-xs text-zinc-500 dark:text-slate-400">Can build entire products end-to-end</p>
+                      <span className="text-sm font-medium text-zinc-900 dark:text-white">Problem First, AI When Useful</span>
+                      <p className="text-xs text-zinc-500 dark:text-slate-400">Select tools for the problem, not the hype</p>
                     </div>
                   </div>
                   <div className="flex items-start gap-3 p-4 bg-white dark:bg-white/5 rounded-xl border border-black/5 dark:border-white/5">
                     <Rocket className="w-5 h-5 text-primary shrink-0 mt-0.5" />
                     <div>
-                      <span className="text-sm font-medium text-zinc-900 dark:text-white">Shipped Products</span>
-                      <p className="text-xs text-zinc-500 dark:text-slate-400">Real-world production experience</p>
+                      <span className="text-sm font-medium text-zinc-900 dark:text-white">Engineering Foundation</span>
+                      <p className="text-xs text-zinc-500 dark:text-slate-400">Full-stack experience to deliver and maintain</p>
                     </div>
                   </div>
                   <div className="flex items-start gap-3 p-4 bg-white dark:bg-white/5 rounded-xl border border-black/5 dark:border-white/5">
                     <Brain className="w-5 h-5 text-primary shrink-0 mt-0.5" />
                     <div>
                       <span className="text-sm font-medium text-zinc-900 dark:text-white">AI-First Approach</span>
-                      <p className="text-xs text-zinc-500 dark:text-slate-400">Minimizes tedious tasks, maximizes efficiency</p>
+                      <p className="text-xs text-zinc-500 dark:text-slate-400">Target repetitive tasks and measurable time savings</p>
                     </div>
                   </div>
                   <div className="flex items-start gap-3 p-4 bg-white dark:bg-white/5 rounded-xl border border-black/5 dark:border-white/5">
                     <GitBranch className="w-5 h-5 text-primary shrink-0 mt-0.5" />
                     <div>
-                      <span className="text-sm font-medium text-zinc-900 dark:text-white">Problem Solver</span>
-                      <p className="text-xs text-zinc-500 dark:text-slate-400">Fixes what AI breaks</p>
+                      <span className="text-sm font-medium text-zinc-900 dark:text-white">RAG & Agent Orchestration</span>
+                      <p className="text-xs text-zinc-500 dark:text-slate-400">Design retrieval and multi-agent workflows</p>
                     </div>
                   </div>
                   <div className="flex items-start gap-3 p-4 bg-white dark:bg-white/5 rounded-xl border border-black/5 dark:border-white/5">
                     <ShieldCheck className="w-5 h-5 text-primary shrink-0 mt-0.5" />
                     <div>
                       <span className="text-sm font-medium text-zinc-900 dark:text-white">Quality Assurance</span>
-                      <p className="text-xs text-zinc-500 dark:text-slate-400">I test my Applications and Perform Automated Testing by writing Test Cases before I ship it.</p>
+                      <p className="text-xs text-zinc-500 dark:text-slate-400">Validate behaviour before release; document limitations and trade-offs.</p>
                     </div>
                   </div>
                 </div>
@@ -318,7 +315,7 @@ const About = () => {
           </div>
           <br />
           <p className="about-text-reveal text-base text-zinc-600 dark:text-slate-500 font-light leading-relaxed text-center">
-            With an <strong>MSc in Artificial Intelligence</strong> from Cardiff University and a Bachelor's in Information Science, I bring both theoretical depth and practical experience. I've worked on enterprise-grade platforms at BrandMuscle, building mission-critical systems that handle millions of requests. I know what it takes to ship products that scale—and I know how to use AI to do it faster and better.
+            With an <strong>MSc in Artificial Intelligence</strong> from Cardiff University and a Bachelor's in Information Science, I bring both theoretical depth and practical experience. My enterprise development experience gives me a grounding in reliability, security and maintainability. I use that foundation to develop AI-enabled solutions that solve real problems rather than simply demonstrate new technology.
           </p>
         </motion.div>
       </div>
