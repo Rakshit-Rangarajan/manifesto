@@ -1,6 +1,7 @@
 import Header from "@/components/header";
 import Link from "next/link";
 import Experience from "@/components/experience";
+import ArcaneConstellation from "@/components/arcane-constellation";
 import Skills from "@/components/skills";
 import Background from "@/components/background";
 import Hero from "@/components/hero";
@@ -31,6 +32,7 @@ export default function Home() {
         <Manifesto />
         <AITools />
         <Skills />
+        <ArcaneConstellation />
         <Experience />
         <Education />
         <Achievements />
