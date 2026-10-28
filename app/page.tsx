@@ -26,8 +26,8 @@ export default function Home() {
       <main id="main-content" className="relative flex flex-col items-center">
         <Hero />
         <About />
-        <Manifesto />
         <PortfolioShowcase />
+        <Manifesto />
         <AITools />
         <Skills />
         <Experience />
