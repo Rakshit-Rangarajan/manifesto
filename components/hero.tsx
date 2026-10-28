@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { ArrowDown, ArrowDownToLine } from "lucide-react";
 import { personalInfo } from "@/data/portfolio";
+import Link from "next/link";
 
 const PERSONAL_MOTTO = "I’m lazy about repetitive work. Relentless about solving problems.";
 
@@ -95,6 +96,7 @@ export default function Hero() {
             <p className="mt-5 text-xl md:text-2xl italic font-medium text-violet-600 dark:text-violet-300" aria-label={PERSONAL_MOTTO}>{PERSONAL_MOTTO}</p>
           </div>
           <div className="flex flex-wrap gap-3 justify-center z-20 relative">
+            <Link href="/arcane-preview" className="inline-flex items-center rounded-full border border-violet-400/60 bg-violet-600/15 px-7 py-4 font-semibold text-violet-800 shadow-[0_0_35px_rgba(139,92,246,.12)] transition hover:-translate-y-1 hover:border-violet-400 dark:text-violet-100">Explore Arcane V3 ✦</Link>
             <button
               onClick={handleHireMe}
               className={`group relative inline-flex items-center gap-2 px-8 py-4 rounded-full font-semibold overflow-hidden transition-all ${hireMeClicked
@@ -143,6 +145,7 @@ export default function Hero() {
           <p className="mt-5 text-xl md:text-2xl italic font-medium text-violet-600 dark:text-violet-300">{PERSONAL_MOTTO}</p>
         </div>
         <div className="reveal-text flex flex-wrap gap-3 justify-center z-20 relative">
+          <Link href="/arcane-preview" className="inline-flex items-center rounded-full border border-violet-400/60 bg-violet-600/15 px-7 py-4 font-semibold text-violet-800 shadow-[0_0_35px_rgba(139,92,246,.12)] transition hover:-translate-y-1 hover:border-violet-400 dark:text-violet-100">Explore Arcane V3 ✦</Link>
           <button
             onClick={handleHireMe}
             className={`group relative inline-flex items-center gap-2 px-8 py-4 rounded-full font-semibold overflow-hidden transition-all ${hireMeClicked
