@@ -4,7 +4,7 @@ import Skills from "@/components/skills";
 import Background from "@/components/background";
 import Hero from "@/components/hero";
 import Manifesto from "@/components/manifesto";
-import Projects from "@/components/projects";
+import PortfolioShowcase from "@/components/portfolio-showcase";
 import About from "@/components/about";
 import Education from "@/components/education";
 import { Certificates, Achievements } from "@/components/achievements";
@@ -27,7 +27,7 @@ export default function Home() {
         <Hero />
         <About />
         <Manifesto />
-        <Projects />
+        <PortfolioShowcase />
         <AITools />
         <Skills />
         <Experience />
