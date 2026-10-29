@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Kalam:wght@700&family=Kavivanar&family=Noto+Serif+Kannada:wght@700&family=Permanent+Marker&family=Yuji+Boku&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Kalam:wght@700&family=Kavivanar&family=Noto+Serif+Kannada:wght@700&family=Permanent+Marker&family=Yuji+Boku&display=block");
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap");
 
 @keyframes spin-slow {
@@ -341,7 +341,7 @@
 /* Brush lettering — fixed stage prevents layout movement while changing scripts. */
 .brush-name-stage {
   width: 100%;
-  height: clamp(7rem, 21vw, 14rem);
+  height: clamp(8rem, 23vw, 15rem);
   display: grid;
   place-items: center;
   overflow: visible;
@@ -357,7 +357,7 @@
   overflow: visible;
   line-height: 1.5;
   font-weight: 700;
-  font-size: clamp(1.4rem, 5.3vw, 6.4rem);
+  font-size: clamp(2.6rem, 7.5vw, 7.5rem);
   letter-spacing: -.025em;
   text-rendering: optimizeLegibility;
 }
@@ -375,15 +375,15 @@
   background-image: linear-gradient(105deg, #fafafa 2%, #d8b4fe 35%, #f8fafc 60%, #a78bfa 94%);
 }
 .brush-name--en { font-family: "Permanent Marker", cursive; }
-.brush-name--ja { font-family: "Yuji Boku", "Noto Serif JP", serif; font-size: clamp(1.15rem, 4.4vw, 5.5rem); }
-.brush-name--hi { font-family: "Kalam", "Noto Sans Devanagari", sans-serif; font-size: clamp(1.4rem, 5.2vw, 6.2rem); }
-.brush-name--ta { font-family: "Kavivanar", "Noto Sans Tamil", sans-serif; font-size: clamp(1.25rem, 4.7vw, 5.8rem); }
-.brush-name--kn { font-family: "Noto Serif Kannada", "Noto Sans Kannada", serif; font-size: clamp(1.25rem, 4.7vw, 5.8rem); }
+.brush-name--ja { font-family: "Yuji Boku", "Noto Serif JP", serif; font-size: clamp(2rem, 6.1vw, 6.4rem); }
+.brush-name--hi { font-family: "Kalam", "Noto Sans Devanagari", sans-serif; font-size: clamp(2.4rem, 7vw, 7.2rem); }
+.brush-name--ta { font-family: "Kavivanar", "Noto Sans Tamil", sans-serif; font-size: clamp(2.1rem, 6.3vw, 6.5rem); }
+.brush-name--kn { font-family: "Noto Serif Kannada", "Noto Sans Kannada", serif; font-size: clamp(2.1rem, 6.3vw, 6.5rem); }
 @media (max-width: 400px) {
-  .brush-name--en { font-size: 5.3vw; }
-  .brush-name--ja { font-size: 4.4vw; }
-  .brush-name--hi { font-size: 5.1vw; }
-  .brush-name--ta, .brush-name--kn { font-size: 4.65vw; }
+  .brush-name--en { font-size: 9vw; }
+  .brush-name--ja { font-size: 7.1vw; }
+  .brush-name--hi { font-size: 8.1vw; }
+  .brush-name--ta, .brush-name--kn { font-size: 7.1vw; }
 }
 @media (prefers-reduced-motion: reduce) {
   .brush-name__ink { transform: none; }
