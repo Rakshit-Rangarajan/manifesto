@@ -88,7 +88,14 @@ export default function Hero() {
             </p>
           </div>
           <div className="brush-name-stage mb-6" aria-live="off"><h1 lang="en" className="brush-name brush-name--en"><span className="brush-name__ink">{NAME_VARIANTS[0]}</span></h1></div>
-          <div className="overflow-hidden max-w-2xl mb-8">
+          <div className="relative w-full max-w-3xl mb-7 rounded-2xl overflow-hidden border border-cyan-300/25 shadow-[0_0_65px_rgba(99,102,241,.2)]">
+            <img src="/cyberpunk_ai_architect_workspace.png" alt="Cyberpunk illustration of Rakshit building AI systems at a futuristic workstation" className="block w-full h-auto" loading="eager" />
+            <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#080a1b]/30 to-transparent" />
+          </div>
+          <div className="relative w-full max-w-3xl mb-7 rounded-2xl overflow-hidden border border-cyan-300/25 shadow-[0_0_65px_rgba(99,102,241,.2)]">
+          <img src="/cyberpunk_ai_architect_workspace.png" alt="Cyberpunk illustration of Rakshit building AI systems at a futuristic workstation" className="block w-full h-auto" loading="eager" />
+        </div>
+        <div className="overflow-hidden max-w-2xl mb-8">
             <p className="text-zinc-600 dark:text-slate-300 text-lg md:text-2xl leading-relaxed font-light">
               {personalInfo.tagline}
             </p>
