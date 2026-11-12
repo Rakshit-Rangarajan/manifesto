@@ -6,10 +6,10 @@ import "./evo-character-stage.css";
 const chapters = [
   {id:"home",label:"PROLOGUE",role:"THE DREAMER",tone:"night"},
   {id:"about",label:"01 / ORIGIN",role:"THE BUILDER",tone:"workshop"},
-  {id:"projects",label:"02 / CREATIONS",role:"THE CREATOR",tone:"creation"},
-  {id:"skills",label:"03 / ARSENAL",role:"THE ENGINEER",tone:"engineering"},
-  {id:"experience",label:"04 / JOURNEY",role:"THE STRATEGIST",tone:"strategy"},
-  {id:"lab",label:"05 / PANTHEON",role:"THE ARCHITECT",tone:"neural"},
+  {id:"lab",label:"02 / CURRENTLY BUILDING",role:"THE ARCHITECT",tone:"neural"},
+  {id:"projects",label:"03 / CREATIONS",role:"THE CREATOR",tone:"creation"},
+  {id:"skills",label:"04 / ARSENAL",role:"THE ENGINEER",tone:"engineering"},
+  {id:"experience",label:"05 / JOURNEY",role:"THE STRATEGIST",tone:"strategy"},
   {id:"education",label:"06 / DISCOVERY",role:"THE SCHOLAR",tone:"study"},
   {id:"contact",label:"07 / HORIZON",role:"THE HUMAN",tone:"horizon"},
 ] as const;
@@ -27,22 +27,33 @@ export default function CinematicChapters(){
    return()=>media.removeEventListener("change",sync);
  },[]);
  useEffect(()=>{
-   const sections=chapters.map(c=>document.getElementById(c.id));
+   const sections=chapters.map(chapter=>document.getElementById(chapter.id));
    let raf=0,last=-1;
    const update=()=>{
      raf=0;
-     const center=window.innerHeight*.5;
+     // Use section boundaries rather than next-section height, so short and
+     // long chapters receive the same predictable, reversible handoff.
+     const viewport=window.innerHeight;
+     const boundary=viewport*.5;
+     const positions=sections.map(el=>el?.getBoundingClientRect().top??Infinity);
      let selected=0;
-     for(let i=0;i<sections.length;i++){
-       const el=sections[i];if(el&&el.getBoundingClientRect().top<=center)selected=i;
+     for(let i=1;i<positions.length;i++){
+       if(positions[i]<=boundary)selected=i;
      }
      if(selected!==last){last=selected;setActive(selected);}
-     const next=sections[selected+1];
-     const distance=next?Math.max(1,next.getBoundingClientRect().height):1;
-     const nextTop=next?.getBoundingClientRect().top??window.innerHeight;
-     const blend=next?Math.max(0,Math.min(1,(window.innerHeight-nextTop)/(window.innerHeight*.85))):0;
-     stage.current?.style.setProperty("--cinema-blend",String(blend));
-     stage.current?.style.setProperty("--cinema-scroll",String(Math.min(1,Math.max(0,1-nextTop/distance))));
+     const nextTop=positions[selected+1];
+          // Keep the current chapter visible until the following chapter enters
+     // the viewport, then blend the two atmospheric and character layers.
+     const upcoming=Number.isFinite(nextTop)&&nextTop>boundary;
+     const current=upcoming?selected:Math.min(selected,chapters.length-1);
+     const incoming=upcoming?Math.min(selected+1,chapters.length-1):current;
+     const mix=upcoming?Math.max(0,Math.min(1,(viewport-nextTop)/Math.max(1,viewport-boundary))):0;
+     stage.current?.style.setProperty("--cinema-blend",String(mix));
+     const currentRect=sections[current]?.getBoundingClientRect();
+     const travel=currentRect?Math.max(0,Math.min(1,-currentRect.top/Math.max(1,currentRect.height-viewport))):0;
+     stage.current?.style.setProperty("--cinema-scroll",String(travel));
+     stage.current?.style.setProperty("--cinema-active",String(current));
+     stage.current?.style.setProperty("--cinema-incoming",String(incoming));
    };
    const schedule=()=>{if(!raf)raf=requestAnimationFrame(update);};
    update();
