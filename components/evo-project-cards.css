@@ -29,4 +29,7 @@
 .evo-light .evo-project-art:after{background:linear-gradient(0deg,#2a122a99,transparent 85%)}
 .evo-light .evo-project{background:#fff6f522!important}
 .evo-light .evo-project-body{background:transparent!important}
-\n/* Each card owns its project artwork. Do not overlay the shared chapter portrait. */\n.evo .evo-project-art::before{content:none!important;background-image:none!important}\n.evo .evo-project-art{background-size:cover!important;background-position:center!important;background-repeat:no-repeat!important}\n
+
+/* Each card owns its project artwork. Do not overlay the shared chapter portrait. */
+.evo .evo-project-art::before{content:none!important;background-image:none!important}
+.evo .evo-project-art{background-size:cover!important;background-position:center!important;background-repeat:no-repeat!important}
