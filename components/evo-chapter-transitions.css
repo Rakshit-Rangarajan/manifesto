@@ -10,3 +10,18 @@
 .evo-sound-toggle{display:inline-flex;align-items:center;justify-content:center}
 @media(prefers-reduced-motion:reduce){.evo-hero-art,.evo-hero-content,.evo-about .evo-section-scene{transform:none!important;opacity:1!important;filter:none!important;will-change:auto}.evo-hero::after{opacity:.3}}
 @media(max-width:700px){.evo-hero-art{transform:none!important}.evo-hero-content{transform:none!important;opacity:1!important}}
+
+
+/* Chapter landing: each gesture settles on a complete chapter, while the
+   existing scroll-linked cinematic layers continue to interpolate naturally.
+   Oversized sections remain scrollable so no content is trapped. */
+html { scroll-snap-type: y mandatory; scroll-padding-top: 0; }
+.evo-hero, .evo-section { scroll-snap-align: start; scroll-snap-stop: normal; }
+.evo-section { min-height: 100svh; }
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; scroll-snap-type: y proximity; }
+}
+@media (max-width: 700px) {
+  /* Mobile browser chrome changes viewport height while scrolling. */
+  .evo-section { min-height: 100dvh; }
+}
