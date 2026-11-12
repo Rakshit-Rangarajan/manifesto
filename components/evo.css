@@ -340,3 +340,22 @@
 .evo .evo-lab-section::before,.evo .evo-projects-section::before,.evo .evo-skills::before,.evo .evo-experience::before,.evo .evo-education-section::before,.evo .evo-contact-section::before{opacity:.92}
 .evo .evo-lab-section::after,.evo .evo-projects-section::after,.evo .evo-skills::after,.evo .evo-experience::after,.evo .evo-education-section::after,.evo .evo-contact-section::after{opacity:.63}
 @media(max-width:720px){.evo .evo-constellation-space{min-height:250px}.evo .evo-constellation-node small{font-size:8px}.evo .evo-constellation-node>span{width:37px;height:37px}}
+
+/* Vibrant technology marks: recognizable logos floating over translucent glass. */
+.evo .evo-constellation-node>span{background:color-mix(in srgb,var(--bg) 15%,transparent);border-color:color-mix(in srgb,var(--red) 65%,transparent);box-shadow:0 0 18px color-mix(in srgb,var(--red) 24%,transparent),inset 0 0 12px #ffffff12}
+.evo .evo-constellation-node img{width:70%;height:70%;object-fit:contain;filter:drop-shadow(0 2px 5px #0005)}
+.evo .evo-constellation-rings{animation:evo-constellation-breathe 5s ease-in-out infinite alternate}
+@keyframes evo-constellation-breathe{from{filter:drop-shadow(0 0 3px var(--red));opacity:.68}to{filter:drop-shadow(0 0 14px var(--pink));opacity:1}}
+/* Light theme legibility: section-scoped, leaves approved hero intact. */
+.evo.evo-light .evo-section{--fg:#321b30;--muted:#63475b;--red:#a91b50;--line:#a94b7477;color:var(--fg)}
+.evo.evo-light .evo-section h2,.evo.evo-light .evo-section h3,.evo.evo-light .evo-section h4,.evo.evo-light .evo-section strong,.evo.evo-light .evo-section b{color:#321b30}
+.evo.evo-light .evo-section p,.evo.evo-light .evo-section li,.evo.evo-light .evo-section label,.evo.evo-light .evo-section small,.evo.evo-light .evo-section input,.evo.evo-light .evo-section textarea{color:#493249}
+.evo.evo-light .evo-section .evo-kicker,.evo.evo-light .evo-section em,.evo.evo-light .evo-section .evo-journey-label{color:#9d1c4c}
+.evo.evo-light .evo-section a,.evo.evo-light .evo-section button{color:#4a2340}
+.evo.evo-light .evo-section input::placeholder,.evo.evo-light .evo-section textarea::placeholder{color:#826477}
+.evo.evo-light .evo-section .evo-project-art b,.evo.evo-light .evo-section .evo-pantheon-crest strong,.evo.evo-light .evo-section .evo-pantheon-character strong{color:#fff8fb}
+.evo.evo-light .evo-section .evo-project-art span,.evo.evo-light .evo-section .evo-pantheon-crest small,.evo.evo-light .evo-section .evo-pantheon-character small{color:#ffe4ed}
+.evo.evo-light .evo-section .evo-primary,.evo.evo-light .evo-section button[type="submit"]{color:white}
+.evo.evo-light .evo-tech-constellation,.evo.evo-light .evo-skill-panel,.evo.evo-light .evo-project,.evo.evo-light .evo-journey-card,.evo.evo-light .evo-about-stats>div{background:rgba(255,245,249,.38)!important;backdrop-filter:blur(16px)}
+.evo.evo-light .evo-constellation-node>span{background:rgba(255,244,249,.72);box-shadow:0 0 18px #ae3c7b33}
+@media(prefers-reduced-motion:reduce){.evo .evo-constellation-rings{animation:none}}
