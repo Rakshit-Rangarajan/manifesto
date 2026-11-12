@@ -462,3 +462,21 @@
 .evo.evo-light .evo-audio-label{color:#352039}
 @media(max-width:620px){.evo .evo-audio-controller{gap:5px;padding-right:7px}.evo .evo-audio-wave{gap:1.5px}.evo .evo-audio-label{display:none}.evo .evo-audio-volume{display:none}}
 @media(prefers-reduced-motion:reduce){.evo .evo-audio-wave.is-playing i{animation:none}}
+
+/* Neon Petals: discreet floating sound control, independent from theme toggle. */
+.evo .evo-audio-controller{position:fixed;right:clamp(14px,2vw,28px);bottom:clamp(22px,3vw,35px);z-index:95;display:flex;align-items:center;gap:9px;max-width:220px;min-height:43px;padding:6px 12px 6px 6px;border:1px solid color-mix(in srgb,var(--red) 40%,var(--line));border-radius:999px;background:color-mix(in srgb,var(--bg) 60%,transparent);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);box-shadow:0 8px 28px #0003;color:var(--fg);transition:transform .25s,box-shadow .25s}
+.evo .evo-audio-controller:hover{transform:translateY(-2px);box-shadow:0 10px 35px color-mix(in srgb,var(--red) 15%,transparent)}
+.evo .evo-audio-controller .evo-sound-toggle{width:32px;height:32px;flex:none;display:grid;place-items:center;border:1px solid color-mix(in srgb,var(--red) 45%,transparent);border-radius:50%;background:color-mix(in srgb,var(--red) 15%,transparent);color:var(--red);cursor:pointer}
+.evo .evo-audio-controller .evo-sound-toggle:focus-visible{outline:2px solid var(--red);outline-offset:3px}
+.evo .evo-audio-wave{height:20px;display:flex;align-items:center;gap:2px}
+.evo .evo-audio-wave i{display:block;width:2px;height:3px;border-radius:5px;background:var(--red);opacity:.65;transform-origin:center}
+.evo .evo-audio-wave.is-playing i{animation:evo-sound-wave .8s ease-in-out infinite alternate}
+.evo .evo-audio-wave.is-playing i:nth-child(3n){animation-duration:1.25s}
+.evo .evo-audio-wave.is-playing i:nth-child(4n){animation-duration:.95s}
+@keyframes evo-sound-wave{0%{height:3px;opacity:.4}100%{height:18px;opacity:1}}
+.evo .evo-audio-label{font:800 9px/1.2 monospace;letter-spacing:.08em;white-space:nowrap;color:var(--fg)}
+.evo .evo-audio-volume{color:var(--red);flex:none}
+.evo.evo-light .evo-audio-controller{background:rgba(255,249,252,.72);border-color:rgba(140,45,91,.4);color:#392037}
+.evo.evo-light .evo-audio-label{color:#392037}
+@media(max-width:700px){.evo .evo-audio-controller{bottom:calc(70px + env(safe-area-inset-bottom,0px));right:12px;min-height:39px;padding:4px 9px 4px 4px;gap:6px}.evo .evo-audio-label{font-size:8px}.evo .evo-audio-wave i:nth-child(n+10){display:none}}
+@media(prefers-reduced-motion:reduce){.evo .evo-audio-wave.is-playing i{animation:none;height:8px}}
