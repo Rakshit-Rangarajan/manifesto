@@ -40,3 +40,8 @@
 .evo-detail-banner{background-size:cover;background-position:center;background-repeat:no-repeat;min-height:210px}
 .evo-detail-banner:before{background:linear-gradient(90deg,rgba(9,8,23,.24),rgba(9,8,23,.04))}
 @media(max-width:850px){.evo-detail-page{background-attachment:scroll}.evo-detail-nav>span{display:none}.evo-detail-nav .evo-detail-back{display:inline-flex;margin-left:auto}}
+
+/* Keep the complete Office and Welsh dragon art visible at every viewport size. */
+.evo-detail-banner.evo-detail-banner-full{background-size:100% 100%,contain!important;background-position:center,center!important;background-repeat:no-repeat!important;background-color:#17101f!important;min-height:clamp(220px,32vw,440px);height:auto;aspect-ratio:2.6/1}
+.evo-detail-banner.evo-detail-banner-full::before{background:linear-gradient(90deg,rgba(9,8,23,.2),transparent 65%)!important}
+@media(max-width:700px){.evo-detail-banner.evo-detail-banner-full{aspect-ratio:1.7/1;min-height:200px;padding:18px}}
