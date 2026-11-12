@@ -25,3 +25,32 @@ html { scroll-snap-type: y mandatory; scroll-padding-top: 0; }
   /* Mobile browser chrome changes viewport height while scrolling. */
   .evo-section { min-height: 100dvh; }
 }
+
+/* EVO chapter art fix: hero fills exactly one viewport, while every following
+   section owns a unique artwork instead of inheriting the original hero. */
+.evo .evo-hero{height:100svh;min-height:100svh;max-height:100svh;box-sizing:border-box;overflow:hidden;scroll-margin-top:0}
+.evo .evo-section{scroll-margin-top:0;--chapter-art:none;isolation:isolate;background-image:linear-gradient(90deg,rgba(6,7,17,.62),rgba(6,7,17,.93) 74%),var(--chapter-art);background-size:cover;background-position:30% center;background-repeat:no-repeat}
+.evo.evo-light .evo-section{background-image:linear-gradient(90deg,rgba(255,248,252,.65),rgba(255,248,252,.95) 74%),var(--chapter-art)}
+.evo #about{--chapter-art:url('/evo/chapters/about.webp')}
+.evo #lab{--chapter-art:url('/evo/chapters/lab.webp')}
+.evo #projects{--chapter-art:url('/evo/chapters/projects.webp')}
+.evo #skills{--chapter-art:url('/evo/chapters/skills.webp')}
+.evo #experience{--chapter-art:url('/evo/chapters/experience.webp')}
+.evo #education{--chapter-art:url('/evo/chapters/education.webp')}
+.evo #contact{--chapter-art:url('/evo/chapters/contact.webp')}
+/* Remove old shared-image pseudo layers; the new chapter images are visible
+   directly in each section and also in the scroll-blended cinematic stage. */
+.evo .evo-section-scene{background-image:url('/evo/chapters/about.webp')!important}
+.evo.evo-light .evo-section-scene{background-image:url('/evo/chapters/about.webp')!important}
+.evo .evo-cinema-scene::before{content:none!important}
+.evo .evo-projects-section{background-image:linear-gradient(90deg,rgba(6,7,17,.62),rgba(6,7,17,.93) 74%),url('/evo/chapters/projects.webp')}
+.evo.evo-light .evo-projects-section{background-image:linear-gradient(90deg,rgba(255,248,252,.65),rgba(255,248,252,.95) 74%),url('/evo/chapters/projects.webp')}
+@media(max-width:900px){
+ .evo .evo-hero{height:100svh;min-height:100svh;max-height:100svh}
+ .evo .evo-section{background-position:25% center}
+}
+@media(max-width:600px){
+ .evo .evo-hero{height:100dvh;min-height:100dvh;max-height:100dvh}
+ .evo .evo-section{background-image:linear-gradient(180deg,rgba(6,7,17,.42),rgba(6,7,17,.95) 60%),var(--chapter-art);background-position:35% top}
+ .evo.evo-light .evo-section{background-image:linear-gradient(180deg,rgba(255,248,252,.4),rgba(255,248,252,.96) 60%),var(--chapter-art)}
+}
