@@ -345,3 +345,17 @@ main > section { scroll-margin-top:5rem; }
   .name-glitch .brush-name__ink::before,
   .name-glitch .brush-name__ink::after { display: none; }
 }
+
+/* Cyber-arcane visual system: neon blue / ultraviolet / magenta. */
+.dark { --background: 235 40% 5%; --foreground: 225 55% 96%; --card: 237 35% 11%; --primary: 193 100% 63%; --accent: 275 95% 72%; --border: 252 45% 28%; --ring: 193 100% 63%; }
+.light { --background: 228 50% 97%; --foreground: 236 38% 12%; --card: 0 0% 100%; --primary: 225 85% 48%; --accent: 274 75% 52%; --border: 231 30% 81%; --ring: 225 85% 48%; }
+.dark body { background: radial-gradient(ellipse at 72% 6%, #261044 0%, #0e1233 32%, #080a1b 67%, #050611 100%); color: #eff5ff; }
+.light body { background: radial-gradient(ellipse at 80% 0%, #e4dafa, #f5f7ff 55%, #eef2ff); color: #171b38; }
+.dark .text-primary { color: #68dcff; } .light .text-primary { color: #315de0; }
+.dark .brush-name__ink { color: #f5f6ff; text-shadow: 0 0 30px rgba(99,102,241,.35); }
+.light .brush-name__ink { color: #192251; }
+.name-glitch .brush-name__ink::before { text-shadow: -3px 0 #36e6ff; }
+.name-glitch .brush-name__ink::after { text-shadow: 3px 0 #d55cff; }
+#hero::before { content: ""; position: absolute; inset: 0; pointer-events: none; opacity: .24; background: repeating-linear-gradient(0deg,transparent 0,transparent 4px,rgba(117,153,255,.09) 5px); mask-image: linear-gradient(to bottom, black,transparent 90%); }
+#hero .brush-name-stage { position: relative; z-index: 2; }
+@media (prefers-reduced-motion: reduce) { #hero::before { opacity: .1; } }
