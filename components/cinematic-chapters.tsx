@@ -76,6 +76,7 @@ export default function CinematicChapters(){
  },[]);
  return <div ref={stage} className={"evo-cinema "+(reduce?"evo-cinema-static":"")} aria-hidden="true">
    {chapters.map((chapter,i)=><div key={chapter.id} className={"evo-cinema-scene evo-cinema-"+chapter.tone+}>
+      {i>0&&<div className="evo-cinema-character" style={{backgroundImage:`url(/evo/chapters/${chapter.id}.webp)`}}/>}
       <div className="evo-cinema-atmosphere"/>
       <div className="evo-cinema-rings"/>
       <div className="evo-cinema-light"/>
