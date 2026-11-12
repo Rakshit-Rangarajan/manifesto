@@ -206,3 +206,9 @@
 .evo-light .evo-education-quote p{color:#c41f59}.evo-light .evo-contact-links>a{color:#3a2039}
 @media(max-width:950px){.evo-experience-layout,.evo-lab-layout,.evo-education-layout,.evo-contact-layout{grid-template-columns:1fr}.evo-agent-orbit{height:480px}.evo-education-feature{min-height:330px}}
 @media(max-width:600px){.evo-journey{padding-left:25px}.evo-journey-line{left:5px}.evo-journey-card:before{left:-28px}.evo-journey-card{padding:18px}.evo-impact-panel,.evo-lab-details,.evo-contact-statement,.evo-contact-links{padding:20px}.evo-agent-orbit{height:350px}.evo-agent-ring{width:225px;height:225px}.evo-ring-two{width:310px;height:310px}.evo-agent-hub{width:120px;height:120px}.evo-agent-node{transform:rotate(calc(var(--i)*90deg - 90deg)) translate(146px) rotate(calc(90deg - var(--i)*90deg));width:105px;margin-left:-52px;font-size:10px}.evo-agent-node strong{font-size:10px}.evo-agent-node small{font-size:9px}.evo-agent-grid{gap:7px}.evo-agent-grid>div{padding:10px}.evo-education-feature h3{font-size:31px}.evo-education-tile{padding:18px}.evo-contact-statement h3{font-size:35px}.evo-contact-links>a{padding:13px 10px}.evo-contact-links strong{font-size:11px}}
+
+/* Header removed: keep only small unobtrusive theme/audio controls. */
+.evo-floating-controls{position:fixed;top:16px;right:clamp(16px,3vw,42px);z-index:80;display:flex;align-items:center;gap:10px}
+.evo-floating-controls button{display:grid;place-items:center;width:42px;height:42px;border-radius:50%;border:1px solid var(--line);background:color-mix(in srgb,var(--bg) 72%,transparent);color:var(--fg);backdrop-filter:blur(14px)}
+.evo-floating-controls button svg{width:18px;height:18px}
+@media(max-width:700px){.evo-floating-controls{top:12px;right:14px}}
