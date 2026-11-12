@@ -212,3 +212,21 @@
 .evo-floating-controls button{display:grid;place-items:center;width:42px;height:42px;border-radius:50%;border:1px solid var(--line);background:color-mix(in srgb,var(--bg) 72%,transparent);color:var(--fg);backdrop-filter:blur(14px)}
 .evo-floating-controls button svg{width:18px;height:18px}
 @media(max-width:700px){.evo-floating-controls{top:12px;right:14px}}
+
+/* Reference-inspired hero composition: persistent left rail, monogram and brush-signature title. */
+.evo-side-nav{position:fixed;top:0;bottom:0;left:0;width:92px;z-index:75;display:flex;align-items:center;flex-direction:column;padding:26px 12px 24px;background:linear-gradient(90deg,rgba(5,7,17,.77),rgba(5,7,17,.15));border-right:1px solid rgba(255,73,112,.25);backdrop-filter:blur(9px)}
+.evo-side-logo{display:grid;place-items:center;width:65px;height:65px;flex-shrink:0;color:#fff;font-size:27px;font-weight:900;letter-spacing:-.16em;padding-right:6px;border:1px solid #f75a78;clip-path:polygon(20% 0,80% 0,100% 20%,100% 80%,80% 100%,20% 100%,0 80%,0 20%);text-shadow:0 0 12px #fff9;box-shadow:inset 0 0 18px #f72c5544}
+.evo-side-nav nav{display:flex;flex-direction:column;gap:15px;margin:auto 0}
+.evo-side-nav nav a{display:grid;place-items:center;width:50px;height:50px;color:#f4dfe7;transition:color .2s,background .2s,filter .2s;clip-path:polygon(22% 0,78% 0,100% 22%,100% 78%,78% 100%,22% 100%,0 78%,0 22%)}
+.evo-side-nav nav a:first-child,.evo-side-nav nav a:hover,.evo-side-nav nav a:focus-visible{color:#fff;background:#e822482c;outline:1px solid #ff4d71;filter:drop-shadow(0 0 9px #ff325c)}
+.evo-side-nav nav svg{width:21px;height:21px;stroke-width:1.7}
+.evo-hero{padding-left:max(118px,9vw)!important}
+.evo-hero-content{width:min(850px,58%);margin-left:auto}
+.evo-hero-overline{letter-spacing:.32em;text-transform:uppercase}
+.evo-signature{position:relative!important;font-family:'Kaushan Script','Brush Script MT',cursive!important;font-size:clamp(62px,6.7vw,120px)!important;font-weight:400!important;line-height:1.04!important;letter-spacing:-.065em!important;text-align:center!important;color:#f9f9ff!important;text-shadow:0 0 6px #dbe8ff7a,0 0 26px #9ca9d066}
+.evo-signature em{font-family:inherit!important;font-weight:inherit!important;font-style:normal!important;color:#ff7897!important;background:linear-gradient(115deg,#fff 3%,#fff 24%,#ffb1c7 55%,#fa275c 91%)!important;background-clip:text!important;-webkit-background-clip:text!important;-webkit-text-fill-color:transparent!important;display:inline!important}
+.evo-signature:after{content:"";display:block;width:63%;height:4px;margin:-3px 0 12px auto;background:linear-gradient(90deg,transparent,#fa315c 35%,#ff163d 90%,transparent);transform:rotate(-7deg);box-shadow:0 0 12px #ff174c}
+.evo-light .evo-side-nav{background:linear-gradient(90deg,#fff5f4d9,#fff6f326);border-color:#cb47715a}.evo-light .evo-side-logo{color:#61253d;text-shadow:none}.evo-light .evo-side-nav nav a{color:#6e4057}.evo-light .evo-signature{color:#542944!important;text-shadow:0 0 10px #fff}
+.evo-hero .evo-cta a{border-radius:2px!important;clip-path:polygon(8% 0,92% 0,100% 20%,100% 80%,92% 100%,8% 100%,0 80%,0 20%)}
+@media(max-width:900px){.evo-side-nav{width:64px;padding:14px 6px}.evo-side-logo{width:48px;height:48px;font-size:21px}.evo-side-nav nav{gap:8px}.evo-side-nav nav a{width:43px;height:43px}.evo-hero{padding-left:75px!important}.evo-hero-content{width:100%}.evo-signature{font-size:clamp(46px,8vw,78px)!important}}
+@media(max-width:600px){.evo-side-nav{top:auto;right:0;bottom:0;width:100%;height:58px;flex-direction:row;padding:5px 12px;justify-content:center;border-right:0;border-top:1px solid #f5476d66;background:#0b0b1cdd}.evo-side-logo{display:none}.evo-side-nav nav{margin:0;flex-direction:row;justify-content:space-around;width:100%;gap:0}.evo-side-nav nav a{width:40px;height:43px}.evo-side-nav nav svg{width:18px;height:18px}.evo-hero{padding-left:14px!important;padding-right:14px!important}.evo-signature{font-size:clamp(42px,10vw,65px)!important}.evo-light .evo-side-nav{background:#fff2f5ee}}
