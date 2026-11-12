@@ -10,3 +10,43 @@
 .evo-dark .evo-hero-art{background-image:linear-gradient(90deg,transparent 70%,var(--bg)),url('/1f7468f2e21616728cbd8d727116c24dd4c6c87cfd3646b8f4fbd24a8972a8ef.png');background-size:cover;background-position:42% center}
 .evo-light .evo-hero-art{background-image:linear-gradient(90deg,transparent 70%,var(--bg)),url('/bac2891e4b0fb1f8aeb196b5e0937ef3177ac783f195ff0bbb87779ddb846050.png');background-size:cover;background-position:42% center}
 @media(max-width:900px){.evo-dark .evo-hero-art,.evo-light .evo-hero-art{background-position:center 28%;background-size:cover}}
+
+/* EVO / 01 — approved anime hero reconstruction */
+.evo{--neon:#ff2c55;--electric:#6fc9ff}
+.evo-header{height:66px;padding:8px clamp(18px,3vw,46px);background:rgba(3,5,13,.94);box-shadow:0 5px 22px #0008}
+.evo-light .evo-header{background:rgba(255,245,252,.92)}
+.evo-mark{font-family:'Kaushan Script',cursive;font-size:27px;letter-spacing:-.13em;border-radius:10px;transform:rotate(-4deg)}
+.evo-nav{gap:clamp(12px,1.6vw,26px);font-weight:700}
+.evo-nav a{padding:8px 0;border-bottom:2px solid transparent;transition:color .2s,border-color .2s}
+.evo-nav a:hover,.evo-nav a:first-child{color:var(--red);border-color:var(--red)}
+.evo-hero{isolation:isolate;min-height:calc(100svh - 66px);padding:60px clamp(24px,5vw,90px);justify-content:flex-end;background:#050710}
+.evo-light .evo-hero{background:#f9e5f0}
+.evo-hero:before{background:radial-gradient(ellipse at 70% 50%,#0c1839 0,#080814 55%,#03040b 100%)}
+.evo-light .evo-hero:before{background:linear-gradient(120deg,#f9d7eb,#d5ebff 70%,#fff5f9)}
+.evo-dark .evo-hero-art,.evo-light .evo-hero-art{inset:0 22% 0 0;mask-image:linear-gradient(to right,#000 0%,#000 48%,transparent 95%);background-size:cover;background-position:32% center;filter:saturate(1.16) contrast(1.06)}
+.evo-hero-scrim{position:absolute;inset:0;z-index:0;background:linear-gradient(90deg,transparent 0%,transparent 38%,rgba(4,5,17,.50) 62%,rgba(3,5,13,.88) 100%);pointer-events:none}
+.evo-light .evo-hero-scrim{background:linear-gradient(90deg,transparent 0%,transparent 37%,rgba(255,244,250,.45) 60%,rgba(255,246,251,.90) 100%)}
+.evo-hero-rail{position:absolute;left:16px;top:50%;transform:translateY(-50%);z-index:3;display:flex;flex-direction:column;gap:14px;padding:12px 9px;background:rgba(4,5,15,.76);border:1px solid var(--line);border-radius:24px;backdrop-filter:blur(12px)}
+.evo-hero-rail a{color:#eae8f4;display:grid;place-items:center;width:28px;height:28px;border-radius:50%;transition:background .2s,transform .2s}
+.evo-hero-rail a:hover{background:#f7254d;transform:scale(1.12)}
+.evo-hero-content{width:min(690px,57%);text-align:center;padding:28px 16px;z-index:2}
+.evo-hero-overline{font-size:12px;font-weight:800;letter-spacing:.25em;text-transform:uppercase;margin:0 0 24px;color:var(--fg)}
+.evo-hero-overline span{display:block;margin-top:7px;font-size:10px;letter-spacing:.16em;color:var(--muted)}
+.evo-eyebrow{font-size:12px;letter-spacing:.12em;color:var(--pink)}
+.evo h1{font-size:clamp(50px,5.7vw,103px);line-height:1.08;letter-spacing:-.035em;transform:rotate(-3deg);margin:20px -12px 26px;white-space:normal;text-shadow:0 4px 2px #070811,0 0 30px #fb276655}
+.evo-light h1{text-shadow:0 3px 2px #ffffffb0,0 0 20px #ff8cb055}
+.evo h1 em{color:var(--red);text-shadow:0 0 22px #f6286266}
+.evo-role{font-weight:800;letter-spacing:.34em;font-size:clamp(12px,1.3vw,20px);border:0;padding:10px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.evo-hero-manifesto{font-family:'Kaushan Script',cursive;color:var(--pink);font-size:clamp(18px,2vw,28px);margin:16px 0 5px}
+.evo-subtitle{font-size:13px;line-height:1.9}
+.evo-pills span{background:rgba(8,10,24,.78);border-color:#ff325d88;color:#ffe6ee;text-transform:uppercase;font-weight:800;font-size:10px;letter-spacing:.13em;box-shadow:inset 0 0 12px #ff1b4b22}
+.evo-light .evo-pills span{background:#fff6fa;color:#a10e3d}
+.evo-cta{gap:14px}.evo-primary,.evo-secondary{min-width:155px;text-transform:uppercase;font-size:12px;letter-spacing:.06em}
+.evo-primary{box-shadow:0 0 0 2px #0008,0 0 28px #f02b5d99}
+.evo-secondary{background:rgba(3,6,16,.75)}
+.evo-light .evo-secondary{background:rgba(255,255,255,.72)}
+.evo-section{background-image:radial-gradient(circle at 90% 0%,#fa31511b,transparent 38%),linear-gradient(90deg,rgba(7,8,17,.96),rgba(10,8,24,.97)),url('/1f7468f2e21616728cbd8d727116c24dd4c6c87cfd3646b8f4fbd24a8972a8ef.png');background-size:cover;background-attachment:scroll;background-position:center}
+.evo-light .evo-section{background-image:radial-gradient(circle at 90% 0%,#fa31511b,transparent 38%),linear-gradient(90deg,rgba(255,248,252,.94),rgba(255,240,248,.92)),url('/bac2891e4b0fb1f8aeb196b5e0937ef3177ac783f195ff0bbb87779ddb846050.png')}
+.evo h2{letter-spacing:-.025em}.evo-project,.evo-education,.evo-timeline article,.evo-lab{box-shadow:0 10px 35px #0005,0 0 16px #fa29501b}
+@media(max-width:900px){.evo-hero{min-height:860px;align-items:flex-end;justify-content:center;padding:390px 18px 85px}.evo-dark .evo-hero-art,.evo-light .evo-hero-art{inset:0 0 28% 0;background-position:center 22%;mask-image:linear-gradient(#000 0%,#000 46%,transparent 100%)}.evo-hero-scrim{background:linear-gradient(0deg,#050710 4%,#05071066 40%,transparent 82%)}.evo-light .evo-hero-scrim{background:linear-gradient(0deg,#fff5fa 4%,#fff5fa66 40%,transparent 82%)}.evo-hero-content{width:min(100%,680px);padding:10px 8px}.evo-hero-rail{display:none}.evo h1{font-size:clamp(46px,9vw,80px)}}
+@media(max-width:600px){.evo-hero{min-height:820px;padding:340px 14px 95px}.evo-dark .evo-hero-art,.evo-light .evo-hero-art{inset:0 0 32% 0;background-position:34% top}.evo h1{font-size:clamp(42px,10vw,62px);margin:12px -6px 20px}.evo-hero-overline{font-size:10px;margin-bottom:10px}.evo-hero-overline span{font-size:9px}.evo-eyebrow{font-size:10px}.evo-role{letter-spacing:.2em}.evo-subtitle{font-size:11px}.evo-cta{margin-top:18px}.evo-primary,.evo-secondary{min-width:135px;padding:13px 15px}}
