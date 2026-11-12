@@ -270,6 +270,5 @@
 .brush-name--en { font-family:Georgia,"Times New Roman",serif; }
 .brush-name--ja,.brush-name--hi,.brush-name--ta,.brush-name--kn { font-size:clamp(1.35rem,4.4vw,5rem); }
 #hero { min-height: min(850px, 100svh); }
-#hero .text-violet-600,#hero .dark\\:text-violet-300 { color:inherit; }
 main > section { scroll-margin-top:5rem; }
 @media (prefers-reduced-motion:reduce) { *,*::before,*::after { animation-duration:.01ms!important; transition-duration:.01ms!important; scroll-behavior:auto!important; } }
