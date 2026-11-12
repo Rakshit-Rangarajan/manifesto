@@ -76,24 +76,30 @@ export default function Hero() {
   }, [mounted]);
 
   return (
-    <section id="hero" ref={containerRef} className="relative w-full min-h-[85svh] px-5 sm:px-8 lg:px-14 xl:px-20 pt-28 pb-16 lg:py-28 overflow-hidden">
-      <div className="relative z-10 mx-auto max-w-[1480px] grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.05fr)] items-center gap-10 lg:gap-12 xl:gap-20">
-        <div className="min-w-0 flex flex-col items-center lg:items-start text-center lg:text-left">
-          <p className="text-primary text-xs sm:text-sm tracking-[.22em] uppercase font-semibold mb-5">{personalInfo.role}</p>
-          <div className="brush-name-stage mb-6" aria-live="polite" aria-atomic="true">
-            {mounted ? <NameDisplay key={displayName} name={displayName} isNew={isNew} /> : <h1 lang="en" className="brush-name brush-name--en"><span className="brush-name__ink">{NAME_VARIANTS[0]}</span></h1>}
+    <section id="hero" ref={containerRef} className="cyber-hero relative isolate overflow-hidden min-h-[min(900px,100svh)]">
+      <div className="cyber-hero__ambient" aria-hidden="true" />
+      <div className="cyber-hero__frame" aria-hidden="true" />
+      <div className="cyber-hero__layout">
+        <div className="cyber-hero__visual" aria-label="Futuristic AI architect illustration">
+          <div className="cyber-hero__portal" aria-hidden="true" />
+          <div className="cyber-hero__figure">
+            <img src="/cyberpunk_ai_architect_workspace.png" alt="AI architect working with futuristic holographic systems" />
           </div>
-          <p className="max-w-xl text-zinc-700 dark:text-slate-200 text-lg md:text-xl xl:text-2xl leading-relaxed">{personalInfo.tagline}</p>
-          <p className="max-w-xl mt-5 text-base md:text-lg italic font-medium text-slate-600 dark:text-indigo-200">{PERSONAL_MOTTO}</p>
-          <div className="mt-8 flex flex-wrap gap-3 justify-center lg:justify-start">
-            <button onClick={handleHireMe} className="inline-flex items-center rounded-full bg-cyan-300 px-7 py-3.5 text-[#080b20] font-semibold transition-transform hover:scale-105">{hireMeClicked ? "Thanks! ↓" : "Hire Me"}</button>
-            <a href="/resume" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 rounded-full border border-zinc-400/50 dark:border-white/25 px-7 py-3.5 font-semibold hover:border-cyan-300 transition-colors">Resume <ArrowDownToLine className="h-4 w-4" /></a>
-          </div>
+          <div className="cyber-hero__visual-fade" aria-hidden="true" />
         </div>
-        <div className="relative min-w-0 w-full">
-          <div className="absolute -inset-3 rounded-[2rem] bg-gradient-to-tr from-cyan-500/15 via-violet-500/20 to-fuchsia-500/15 blur-2xl pointer-events-none" />
-          <div className="relative rounded-2xl overflow-hidden border border-cyan-300/30 bg-[#090c20] shadow-[0_20px_90px_rgba(35,23,98,.35)]">
-            <img src="/cyberpunk_ai_architect_workspace.png" alt="Cyberpunk illustration of Rakshit designing AI systems at a futuristic workstation" className="block w-full h-auto" loading="eager" />
+        <div className="cyber-hero__content">
+          <div className="cyber-hero__eyebrow"><span>RAKSHIT RANGARAJAN</span><span className="cyber-hero__eyebrow-line" /></div>
+          <p className="cyber-hero__subtitle">AI Engineer <span>·</span> Architect <span>·</span> Builder</p>
+          <p className="cyber-hero__hello">// こんにちは &nbsp; // नमस्ते &nbsp; // வணக்கம் &nbsp; // ನಮಸ್ಕಾರ</p>
+          <div className="cyber-hero__name" aria-live="polite" aria-atomic="true">
+            {mounted ? <NameDisplay key={displayName} name={displayName} isNew={isNew} /> : <h1 className="brush-name brush-name--en"><span className="brush-name__ink">{NAME_VARIANTS[0]}</span></h1>}
+          </div>
+          <p className="cyber-hero__role">AI SOLUTIONS ENGINEER</p>
+          <p className="cyber-hero__expertise">Multi-Agent Systems <span>|</span> RAG &amp; Knowledge Systems <span>|</span> Autonomous Automation</p>
+          <div className="cyber-hero__chips"><span>Build</span><span>Automate</span><span>Orchestrate</span><span>Scale</span></div>
+          <div className="cyber-hero__actions">
+            <a href="#portfolio" onClick={(e) => { const target = document.getElementById("portfolio") || document.getElementById("projects"); if (target) { e.preventDefault(); target.scrollIntoView({behavior:"smooth"}); } }} className="cyber-hero__primary">Explore My Work <span aria-hidden="true">→</span></a>
+            <button onClick={handleHireMe} className="cyber-hero__secondary">Get in Touch</button>
           </div>
         </div>
       </div>
