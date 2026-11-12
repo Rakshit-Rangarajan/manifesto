@@ -511,3 +511,13 @@
 .evo .evo-project:hover .evo-project-cover{transform:scale(1.035)}
 .evo .evo-project-art>span{position:absolute;top:12px;left:12px;z-index:2;padding:5px 9px;border-radius:7px;background:rgba(7,5,17,.55);color:#fff;font:700 11px monospace}
 @media(max-width:700px){.evo .evo-project-art{min-height:200px}}
+
+/* Emblem integration: remove the pasted-on square effect and oversized finale logo. */
+.evo .evo-side-logo{overflow:hidden!important;border-radius:14px!important;clip-path:none!important;padding:3px!important;background:transparent!important}
+.evo .evo-side-logo img{display:block;width:100%!important;height:100%!important;object-fit:contain!important}
+.evo .evo-contact-finale{display:flex;flex-direction:column;align-items:center;gap:10px;text-align:center}
+.evo .evo-contact-finale .evo-final-logo{display:block;width:68px!important;height:68px!important;max-width:68px!important;object-fit:contain!important;margin:0 auto 6px!important;border:0!important;box-shadow:none!important}
+.evo .evo-footer img{width:28px!important;height:28px!important;object-fit:contain!important}
+.evo.evo-light .evo-side-logo img,.evo.evo-light .evo-final-logo,.evo.evo-light .evo-footer img{mix-blend-mode:multiply}
+.evo.evo-dark .evo-side-logo img,.evo.evo-dark .evo-final-logo,.evo.evo-dark .evo-footer img{mix-blend-mode:screen}
+@media(max-width:700px){.evo .evo-contact-finale .evo-final-logo{width:56px!important;height:56px!important}}
