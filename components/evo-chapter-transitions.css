@@ -54,3 +54,13 @@ html { scroll-snap-type: y mandatory; scroll-padding-top: 0; }
  .evo .evo-section{background-image:linear-gradient(180deg,rgba(6,7,17,.42),rgba(6,7,17,.95) 60%),var(--chapter-art);background-position:35% top}
  .evo.evo-light .evo-section{background-image:linear-gradient(180deg,rgba(255,248,252,.4),rgba(255,248,252,.96) 60%),var(--chapter-art)}
 }
+
+/* Mobile scroll comfort: avoid mandatory viewport snapping on touch gestures.
+   Keep the cinematic chapter handoff, but allow uninterrupted reading. */
+@media (hover:none) and (pointer:coarse){
+ html{scroll-snap-type:none!important;scroll-behavior:auto!important;overscroll-behavior-y:auto}
+ body{scroll-snap-type:none!important;touch-action:pan-y pinch-zoom}
+ .evo{scroll-behavior:auto!important}
+ .evo .evo-hero,.evo .evo-section{scroll-snap-align:none!important;scroll-snap-stop:normal!important}
+ .evo .evo-hero-art,.evo .evo-about .evo-section-scene{will-change:auto}
+}
