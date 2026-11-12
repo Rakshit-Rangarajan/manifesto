@@ -258,3 +258,22 @@
 .evo-case-dialog{position:relative;width:min(650px,100%);max-height:85dvh;overflow-y:auto;padding:clamp(24px,5vw,46px);background:linear-gradient(145deg,#1c142a,#090e1e);border:1px solid #ff628888;box-shadow:0 20px 80px #000b;color:#f7eaf1}
 .evo-case-dialog h2{font-size:clamp(32px,5vw,52px);margin:12px 0 22px}.evo-case-dialog h3{font-size:15px;color:#ff8caa;margin:22px 0 6px}.evo-case-dialog p:not(.evo-kicker){font-size:14px;line-height:1.8;color:#d5c7d2}.evo-case-dialog>a{display:inline-flex;align-items:center;gap:8px;margin-top:22px;color:#ff91af;font-weight:700}.evo-case-close{position:absolute;right:16px;top:12px;border:0;background:transparent;color:inherit;font-size:32px;cursor:pointer}
 .evo-light .evo-case-dialog{background:#fff5f9;color:#4d2b40}.evo-light .evo-case-dialog p:not(.evo-kicker){color:#71576a}
+
+/* Sakura sunrise contrast pass — preserve the approved morning artwork. */
+.evo.evo-light{--bg:#f9e9e9;--fg:#352034;--muted:#624b60;--panel:rgba(255,246,246,.9);--line:rgba(139,54,91,.42);--red:#ac164e;--pink:#b42e68;--electric:#526d99}
+.evo-light .evo-hero{background:#f8e8e6}
+.evo-light .evo-hero:before{background:radial-gradient(ellipse at 75% 40%,#f6d5d7 0%,#fae8e6 54%,#e5c5d6 100%)}
+.evo-light .evo-hero-scrim{background:linear-gradient(90deg,transparent 0%,rgba(255,245,241,.03) 35%,rgba(250,231,231,.64) 60%,rgba(249,233,233,.95) 100%)}
+.evo-light .evo-signature{color:#3c1d39!important;text-shadow:0 2px 1px #fff8,0 4px 12px #70406040!important}
+.evo-light .evo-signature em{color:#9e184e!important;background:linear-gradient(115deg,#702447 0%,#98234f 40%,#c32e65 75%,#7b153f 100%)!important;background-clip:text!important;-webkit-background-clip:text!important;-webkit-text-fill-color:transparent!important;filter:drop-shadow(0 2px 1px #fff7)}
+.evo-light .evo-signature:after{background:linear-gradient(90deg,transparent,#a31e53 25%,#c02e60 80%,transparent);box-shadow:0 0 7px #a31e5340}
+.evo-light .evo-hero-overline,.evo-light .evo-eyebrow,.evo-light .evo-role{color:#40243d}
+.evo-light .evo-hero-overline span,.evo-light .evo-subtitle{color:#60475a}
+.evo-light .evo-hero-manifesto{color:#a11e55}
+.evo-light .evo-pills span{background:#fff3f1e8;color:#71304d;border-color:#b35d82;box-shadow:0 3px 14px #6c2b4620}
+.evo-light .evo-primary{background:linear-gradient(120deg,#86204b,#c63369);border-color:#8d2450;color:#fff!important;box-shadow:0 4px 18px #8e245052}
+.evo-light .evo-secondary{background:#fff4f1e8;border-color:#93516c;color:#45243e;box-shadow:0 4px 14px #71304a21}
+.evo-light .evo-floating-controls button{background:#fff4f1e8;border-color:#9c5c77;color:#54283f}
+.evo-light .evo-side-nav{background:#fbeae9!important;border-color:#ac6480!important}
+.evo-light .evo-section{color:#352034}
+@media(max-width:700px){.evo-light .evo-hero-scrim{background:linear-gradient(180deg,transparent 12%,rgba(249,233,233,.25) 44%,rgba(249,233,233,.94) 72%)}}
