@@ -8,10 +8,10 @@
 @keyframes evo-petal-fall{0%{opacity:0;transform:translate3d(0,-20px,0) rotate(0)}8%{opacity:.85}90%{opacity:.65}100%{opacity:0;transform:translate3d(100px,105vh,0) rotate(520deg)}}
 @keyframes evo-halo-breathe{50%{opacity:.75;scale:1.035}}
 @media(max-width:700px){.evo-halo{left:50%;top:34%;width:45vw;opacity:.5}.evo-meteor{width:65px}}
-@media(prefers-reduced-motion:reduce){.evo-halo{animation:none}.evo-meteor,.evo-petal{display:none}}
+@media(prefers-reduced-motion:reduce){.evo-halo{animation:none}.evo-meteor{display:none}.evo-petal{animation:none;opacity:.65;top:20%;transform:rotate(20deg)}.evo-petal:nth-of-type(3n){top:62%;transform:rotate(-28deg)}}
 
 /* Blossoms remain present in both modes, with cooler moonlit coloration at night. */
-.is-night .evo-petal{filter:drop-shadow(0 0 4px rgba(235,171,217,.42)) hue-rotate(14deg) saturate(.72);opacity:0}
+.is-night .evo-petal{filter:drop-shadow(0 0 5px rgba(255,187,223,.7)) hue-rotate(8deg) saturate(1.15)}
 .is-day .evo-petal{filter:drop-shadow(0 1px 4px rgba(223,84,136,.35))}
 @keyframes evo-petal-fall{0%{opacity:0;transform:translate3d(-20px,-25px,0) rotate(-30deg)}7%{opacity:.9}50%{opacity:.78;transform:translate3d(48px,50vh,0) rotate(210deg)}92%{opacity:.67}100%{opacity:0;transform:translate3d(115px,110vh,0) rotate(470deg)}}
-@media(prefers-reduced-motion:reduce){.evo-petal{display:none}}
+@media(prefers-reduced-motion:reduce){.evo-petal{animation:none;opacity:.65}}
