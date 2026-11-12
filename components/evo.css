@@ -402,3 +402,14 @@
 .evo.evo-light .evo-section .evo-skill-competency,.evo.evo-light .evo-section .evo-journey-body,.evo.evo-light .evo-section .evo-education-feature,.evo.evo-light .evo-section .evo-impact-panel,.evo.evo-light .evo-section .evo-lab-details{color:#382239;background:rgba(255,246,251,.26)!important}
 .evo.evo-light .evo-section .evo-constellation-core strong,.evo.evo-light .evo-section .evo-constellation-core small{color:#392038}
 @media(max-width:600px){.evo .evo-form-two{grid-template-columns:1fr}.evo .evo-hero-overline>.evo-name-jumble{font-size:15px;letter-spacing:.08em}}
+
+/* Each project receives its own visual identity without opaque card backgrounds. */
+.evo .evo-project-art{background-size:cover!important;background-position:center!important;background-repeat:no-repeat!important;min-height:clamp(135px,15vw,230px);position:relative;overflow:hidden}
+.evo .evo-project-art:after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(180deg,transparent 42%,rgba(8,5,17,.4))}
+.evo .evo-project-art>*{position:relative;z-index:1;text-shadow:0 2px 14px #000b}
+.evo .evo-project-body{background:color-mix(in srgb,var(--bg) 15%,transparent)!important;backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px)}
+.evo.evo-light .evo-project-body{background:rgba(255,249,252,.28)!important;color:#302037}
+.evo.evo-light .evo-project-body h3,.evo.evo-light .evo-project-body p,.evo.evo-light .evo-project-body small{color:#302037}
+.evo .evo-case-dialog{position:relative}
+.evo .evo-case-close{position:absolute;top:18px;right:18px;left:auto;bottom:auto;z-index:5;display:inline-flex;align-items:center;justify-content:center;padding:11px 15px;border:1px solid var(--line);border-radius:11px;background:color-mix(in srgb,var(--bg) 20%,transparent);backdrop-filter:blur(14px);color:var(--fg);font-size:12px;font-weight:800}
+@media(max-width:600px){.evo .evo-case-dialog{padding-top:75px}.evo .evo-case-close{top:15px;right:15px}}
