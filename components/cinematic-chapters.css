@@ -1,9 +1,7 @@
 /* Fixed visual stage follows the chapter progression without covering content. */
 .evo{position:relative;isolation:isolate}
 .evo-cinema{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden;--cinema-blend:0;--cinema-scroll:0}
-.evo-cinema-scene{position:absolute;inset:0;opacity:0;transform:scale(1.07);transition:none;overflow:hidden}
-.evo-cinema-scene.is-active{opacity:calc(1 - var(--cinema-blend));transform:scale(calc(1.025 + var(--cinema-scroll)*.035))}
-.evo-cinema-scene.is-next{opacity:var(--cinema-blend);transform:scale(calc(1.09 - var(--cinema-blend)*.06))}
+.evo-cinema-scene{position:absolute;inset:0;opacity:0;visibility:hidden;transform:scale(calc(1.035 + var(--cinema-scroll)*.045));transition:none;overflow:hidden;will-change:opacity}
 .evo-cinema-atmosphere{position:absolute;inset:0;background:radial-gradient(ellipse at 15% 45%,var(--scene-glow),transparent 45%),linear-gradient(120deg,var(--scene-dark),transparent 75%);filter:saturate(.8)}
 .evo-cinema-rings{position:absolute;left:12%;top:46%;width:min(48vw,540px);aspect-ratio:1;border:1px solid var(--scene-line);border-radius:50%;box-shadow:0 0 90px var(--scene-glow),inset 0 0 75px var(--scene-glow);transform:translate(-50%,-50%) rotate(calc(var(--cinema-scroll)*24deg))}
 .evo-cinema-rings:before,.evo-cinema-rings:after{content:"";position:absolute;border:1px solid var(--scene-line);border-radius:50%;inset:13%}
@@ -24,3 +22,9 @@
 .evo-header{position:sticky}
 @media(max-width:700px){.evo-cinema-rings{left:40%;top:27%;width:65vw}.evo-cinema-vignette{opacity:.85}}
 @media(prefers-reduced-motion:reduce){.evo-cinema-scene{transform:none!important}.evo-cinema-scene.is-active{opacity:.24}.evo-cinema-scene.is-next{opacity:0}.evo-cinema-rings,.evo-cinema-light{transform:none!important}}
+
+/* Independent depth planes: character, distant atmosphere, and foreground light. */
+.evo-cinema-atmosphere{transform:translate3d(calc(var(--cinema-scroll)*-2%),calc(var(--cinema-scroll)*-2%),0) scale(1.08)}
+.evo-cinema-rings{transform:translate(-50%,-50%) rotate(calc(var(--cinema-scroll)*30deg)) scale(calc(1 + var(--cinema-scroll)*.09))}
+.evo-cinema-light{transform:translate3d(calc(var(--cinema-scroll)*12%),calc(var(--cinema-scroll)*-5%),0)}
+@media(prefers-reduced-motion:reduce){.evo-cinema-atmosphere{transform:none!important}}
