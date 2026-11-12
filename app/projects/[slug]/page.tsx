@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { ArrowLeft, ArrowUpRight } from "lucide-react";
 import DownloadEngineeringBrief from "@/components/download-engineering-brief";
+import "./project-detail.css";
 
 const caseStudies = {
   aero: {
@@ -66,27 +67,35 @@ export default async function ProjectCaseStudy({ params }: Params) {
   const { slug } = await params;
   const study = caseStudies[slug as Key];
   if (!study) notFound();
-  return <main className="min-h-screen bg-[#0c0916] px-5 py-16 text-[#fff0f5] md:px-12 md:px-12">
-    <div className="mx-auto max-w-5xl">
-      <Link href="/#projects" className="inline-flex items-center gap-2 rounded-full border border-rose-400/30 px-4 py-2 text-sm font-semibold "><ArrowLeft size={16}/> Back to portfolio</Link>
-      <p className="mt-14 text-xs font-bold uppercase tracking-[.25em] text-rose-400">Engineering case study · {study.stage}</p>
-      <h1 className="mt-3 text-5xl font-bold tracking-tight md:text-7xl">{study.title}</h1>
-      <p className="mt-3 text-xl text-[#dbc5d1]">{study.expansion}</p>
-      <p className="mt-8 max-w-3xl text-lg leading-relaxed">{study.summary}</p>
-      <section className="mt-16 grid gap-8 border-t border-zinc-300 pt-10 dark:border-white/20 md:grid-cols-2">
-        <div><h2 className="text-2xl font-bold">The problem</h2><p className="mt-4 leading-relaxed text-zinc-600 dark:text-zinc-300">{study.problem}</p></div>
-        <div><h2 className="text-2xl font-bold">Design approach</h2><ol className="mt-4 space-y-3">{study.strategy.map((step,i)=><li key={step} className="leading-relaxed text-zinc-600 dark:text-zinc-300"><span className="mr-2 font-bold text-rose-400">{String(i+1).padStart(2,"0")}.</span>{step}</li>)}</ol></div>
-      </section>
-      <section className="mt-14"><h2 className="text-2xl font-bold">Conceptual workflow</h2><p className="mt-2 text-sm text-zinc-600 dark:text-zinc-400">An explanatory architecture outline, not an independently verified implementation diagram.</p>
-        <ol className="mt-6 grid gap-3 md:grid-cols-5">{study.architecture.map((step,i)=><li key={step} className="rounded-2xl border border-rose-400/30 bg-rose-500/10 p-4 "><span className="text-xs font-bold text-violet-700 dark:text-violet-300">{String(i+1).padStart(2,"0")}</span><p className="mt-3 text-sm font-semibold">{step}</p></li>)}</ol>
-      </section>
-      <section className="mt-14"><h2 className="text-2xl font-bold">Technology and verification</h2><div className="mt-4 flex flex-wrap gap-2">{study.technology.map(t=><span key={t} className="rounded-full border border-zinc-300 px-4 py-2 text-sm dark:border-white/20">{t}</span>)}</div><p className="mt-5 max-w-3xl text-sm leading-relaxed text-zinc-600 dark:text-zinc-300">{study.caveat}</p></section>
-      <p className="mt-10 text-sm text-rose-200/70">Evidence policy: performance figures are published only after verification. This project brief explains engineering decisions, not measured outcomes.</p>
-      <div className="mt-12 flex flex-wrap gap-4">
-        <DownloadEngineeringBrief brief={study} slug={slug} />
-        {"source" in study && <a href={study.source} rel="noopener noreferrer" target="_blank" className="inline-flex items-center gap-2 rounded-full bg-rose-700 px-6 py-3 font-semibold text-white">View repository <ArrowUpRight size={16}/></a>}
-        {"demo" in study && <a href={study.demo} rel="noopener noreferrer" target="_blank" className="inline-flex items-center gap-2 rounded-full bg-violet-600 px-6 py-3 font-semibold text-white">Visit demo <ArrowUpRight size={16}/></a>}
-        <Link href="/#contact" className="rounded-full border border-zinc-300 px-6 py-3 font-semibold dark:border-white/20">Discuss a similar problem</Link>
+  return <main className="evo-detail-page">
+    <div className="evo-detail-shell">
+      <nav className="evo-detail-nav"><Link href="/#projects"><ArrowLeft size={17}/> All projects</Link><span>RAKSHIT RANGARAJAN / ENGINEERING PORTFOLIO</span></nav>
+      <div className="evo-detail-breadcrumb">Projects <span>/</span> {study.title}</div>
+      <header className="evo-detail-banner"><span className="evo-detail-banner-label">ENGINEERING CASE STUDY / {study.title}</span><strong>{study.title}</strong></header>
+      <div className="evo-detail-grid">
+        <div className="evo-detail-main">
+          <section className="evo-detail-intro">
+            <p className="evo-detail-kicker">DESIGNED · ARCHITECTED · ENGINEERED</p>
+            <h1>{study.title}</h1><h2>{study.expansion}</h2>
+            <p>{study.summary}</p>
+            <div className="evo-detail-actions">
+              {"demo" in study && <a href={study.demo} target="_blank" rel="noopener noreferrer">View live demo <ArrowUpRight size={16}/></a>}
+              {"source" in study && <a href={study.source} target="_blank" rel="noopener noreferrer">View repository <ArrowUpRight size={16}/></a>}
+              <DownloadEngineeringBrief brief={study} slug={slug}/>
+            </div>
+            <div className="evo-detail-tags">{study.technology.map(t=><span key={t}>{t}</span>)}</div>
+          </section>
+          <section className="evo-detail-panel"><p className="evo-detail-kicker">01 / THE CHALLENGE</p><h2>The problem worth solving</h2><p>{study.problem}</p></section>
+          <section className="evo-detail-panel"><p className="evo-detail-kicker">02 / ENGINEERING APPROACH</p><h2>How I designed the solution</h2><div className="evo-detail-strategy">{study.strategy.map((step,i)=><div key={step}><b>{String(i+1).padStart(2,"0")}</b><p>{step}</p></div>)}</div></section>
+          <section className="evo-detail-panel"><p className="evo-detail-kicker">03 / SYSTEM DESIGN</p><h2>From intent to execution</h2><p className="evo-detail-note">Conceptual workflow; not a claim of verified production implementation.</p><ol className="evo-detail-workflow">{study.architecture.map((step,i)=><li key={step}><span>{String(i+1).padStart(2,"0")}</span><strong>{step}</strong></li>)}</ol></section>
+          <section className="evo-detail-panel"><p className="evo-detail-kicker">04 / VALIDATION & STATUS</p><h2>What's verified—and what's next</h2><p>{study.caveat}</p><p className="evo-detail-note">Results and performance metrics are not presented as measured outcomes unless independently validated.</p></section>
+        </div>
+        <aside className="evo-detail-aside">
+          <section className="evo-detail-panel"><h3>Project information</h3><dl><div><dt>Status</dt><dd>{study.stage}</dd></div><div><dt>Project</dt><dd>{study.title}</dd></div><div><dt>Type</dt><dd>Engineering / AI</dd></div><div><dt>Documentation</dt><dd>Case study</dd></div></dl></section>
+          <section className="evo-detail-panel"><h3>Key highlights</h3><ul>{study.strategy.map(x=><li key={x}>{x}</li>)}</ul></section>
+          <section className="evo-detail-panel"><h3>Technology stack</h3><div className="evo-detail-tags">{study.technology.map(t=><span key={t}>{t}</span>)}</div></section>
+          <Link className="evo-detail-contact" href="/#contact">Discuss a similar challenge <ArrowUpRight size={16}/></Link>
+        </aside>
       </div>
     </div>
   </main>;
