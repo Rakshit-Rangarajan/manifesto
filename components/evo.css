@@ -359,3 +359,46 @@
 .evo.evo-light .evo-tech-constellation,.evo.evo-light .evo-skill-panel,.evo.evo-light .evo-project,.evo.evo-light .evo-journey-card,.evo.evo-light .evo-about-stats>div{background:rgba(255,245,249,.38)!important;backdrop-filter:blur(16px)}
 .evo.evo-light .evo-constellation-node>span{background:rgba(255,244,249,.72);box-shadow:0 0 18px #ae3c7b33}
 @media(prefers-reduced-motion:reduce){.evo .evo-constellation-rings{animation:none}}
+
+/* Nameplate: slightly larger, bolder, without altering hero geometry or artwork. */
+.evo .evo-hero-overline>.evo-name-jumble{display:inline-block;font-size:clamp(15px,1.25vw,19px);font-weight:900;letter-spacing:.16em;line-height:1.5;text-transform:none;color:var(--fg);text-shadow:0 1px 14px color-mix(in srgb,var(--bg) 45%,transparent)}
+/* Orbital centerpiece: multi-ring neural orchestrator instead of plain AI text. */
+.evo .evo-constellation-core{background:radial-gradient(circle at 30% 20%,#e75b9d33,transparent 65%),color-mix(in srgb,var(--bg) 12%,transparent);border:2px solid var(--red);box-shadow:0 0 18px var(--red),0 0 48px color-mix(in srgb,var(--red) 35%,transparent),inset 0 0 20px color-mix(in srgb,var(--pink) 20%,transparent);gap:2px}
+.evo .evo-core-glyph{position:relative;display:grid;place-items:center;color:var(--red)}
+.evo .evo-core-glyph svg:last-child{position:absolute;right:-12px;bottom:-5px;color:var(--pink)}
+.evo .evo-constellation-core strong{font-size:clamp(10px,1.4vw,18px);letter-spacing:.09em;font-weight:900}
+.evo .evo-constellation-core small{font-size:clamp(6px,.7vw,9px);letter-spacing:.12em;color:var(--muted)}
+/* Theme-aware dragon: existing uploaded emblem, no additional background artwork. */
+.evo .evo-side-logo img,.evo .evo-final-logo,.evo .evo-footer img{object-fit:contain;filter:drop-shadow(0 0 9px #f73b7b75)}
+.evo.evo-light .evo-side-logo img,.evo.evo-light .evo-final-logo,.evo.evo-light .evo-footer img{filter:brightness(.83) saturate(1.2) drop-shadow(0 2px 8px #a91b5066)}
+.evo .evo-final-logo{display:block;margin:0 auto 12px;width:clamp(85px,10vw,120px);height:auto}
+.evo .evo-footer{display:flex;align-items:center;gap:8px}.evo .evo-footer span{margin-left:4px}
+/* Contact form: real inputs over translucent surfaces, with accessible contrast. */
+.evo .evo-contact-links{background:transparent!important;border:0;box-shadow:none;padding:0}
+.evo .evo-message-form{display:grid;gap:15px;border:1px solid var(--line);border-radius:18px;padding:clamp(20px,3vw,30px);background:color-mix(in srgb,var(--bg) 12%,transparent);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px)}
+.evo .evo-form-heading{display:flex;justify-content:space-between;align-items:center;gap:15px}
+.evo .evo-form-heading h3{font-size:clamp(23px,2.5vw,32px);font-weight:800;color:var(--fg);margin:5px 0}
+.evo .evo-form-heading p{font-size:12px;color:var(--muted)}
+.evo .evo-form-heading>svg{color:var(--red)}
+.evo .evo-message-form label{display:grid;gap:8px;font-size:12px;font-weight:700;color:var(--fg)}
+.evo .evo-form-two{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.evo .evo-message-form input:not([type=hidden]),.evo .evo-message-form select,.evo .evo-message-form textarea{width:100%;min-width:0;border:1px solid var(--line);border-radius:10px;padding:13px;background:color-mix(in srgb,var(--bg) 16%,transparent);color:var(--fg);font:inherit;font-size:13px;outline:none;backdrop-filter:blur(8px)}
+.evo .evo-message-form input:focus-visible,.evo .evo-message-form select:focus-visible,.evo .evo-message-form textarea:focus-visible{outline:2px solid var(--red);outline-offset:2px}
+.evo .evo-message-form input::placeholder,.evo .evo-message-form textarea::placeholder{color:var(--muted)}
+.evo .evo-message-form select option{background:var(--bg);color:var(--fg)}
+.evo .evo-message-form textarea{resize:vertical;min-height:125px}
+.evo .evo-message-form .evo-form-trap{position:absolute!important;left:-9999px!important;width:1px!important;height:1px!important;opacity:0!important;pointer-events:none!important}
+.evo .evo-message-form button[type=submit]{display:flex;align-items:center;justify-content:center;gap:9px;background:var(--red);color:white;border:1px solid var(--red);border-radius:10px;padding:14px;font-weight:800}
+.evo .evo-message-form button:disabled{opacity:.65;cursor:wait}
+.evo .evo-form-footnote{display:flex;align-items:center;gap:8px;color:var(--muted);font-size:11px}
+.evo .evo-form-success{color:#54e2a0;font-size:12px}.evo .evo-form-error{color:#ff7799;font-size:12px}
+/* Second light-theme pass: correct hard-coded white and dark-only text across non-hero sections. */
+.evo.evo-light .evo-section .evo-contact-statement h3,.evo.evo-light .evo-section .evo-contact-statement>p,.evo.evo-light .evo-section .evo-contact-status,.evo.evo-light .evo-section .evo-contact-links>a,.evo.evo-light .evo-section .evo-contact-links>a strong,.evo.evo-light .evo-section .evo-contact-finale p,.evo.evo-light .evo-section .evo-contact-finale a{color:#382239}
+.evo.evo-light .evo-section .evo-contact-links>a{background:rgba(255,245,250,.3)!important;border-color:#a84b7480;backdrop-filter:blur(15px)}
+.evo.evo-light .evo-section .evo-message-form{background:rgba(255,247,251,.35)}
+.evo.evo-light .evo-section .evo-message-form input,.evo.evo-light .evo-section .evo-message-form select,.evo.evo-light .evo-section .evo-message-form textarea{color:#2e1930;background:rgba(255,255,255,.3);border-color:#9b537a88}
+.evo.evo-light .evo-section .evo-message-form button[type=submit]{color:white}
+.evo.evo-light .evo-section .evo-form-success{color:#145e3e}.evo.evo-light .evo-section .evo-form-error{color:#a41d40}
+.evo.evo-light .evo-section .evo-skill-competency,.evo.evo-light .evo-section .evo-journey-body,.evo.evo-light .evo-section .evo-education-feature,.evo.evo-light .evo-section .evo-impact-panel,.evo.evo-light .evo-section .evo-lab-details{color:#382239;background:rgba(255,246,251,.26)!important}
+.evo.evo-light .evo-section .evo-constellation-core strong,.evo.evo-light .evo-section .evo-constellation-core small{color:#392038}
+@media(max-width:600px){.evo .evo-form-two{grid-template-columns:1fr}.evo .evo-hero-overline>.evo-name-jumble{font-size:15px;letter-spacing:.08em}}
