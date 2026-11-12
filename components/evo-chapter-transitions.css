@@ -1,0 +1,12 @@
+/* Scroll-scrubbed opening chapter: image depth, portal dissolve, and reveal.
+   The hero and About chapter remain semantic, scrollable content. */
+.evo-hero{--chapter-progress:0;isolation:isolate}
+.evo-hero-art{transform:translate3d(0,calc(var(--chapter-progress)*-7%),0) scale(calc(1 + var(--chapter-progress)*.12));transform-origin:45% 40%;filter:brightness(calc(1 - var(--chapter-progress)*.26));will-change:transform}
+.evo-hero-content{transform:translate3d(0,calc(var(--chapter-progress)*-35px),0);opacity:calc(1 - var(--chapter-progress)*.48)}
+.evo-hero::after{content:"";position:absolute;inset:auto 0 0;height:42%;pointer-events:none;z-index:2;background:linear-gradient(0deg,var(--bg),transparent);opacity:calc(.2 + var(--chapter-progress)*.8)}
+.evo-about{--chapter-progress:0}
+.evo-about .evo-section-scene{transform:translate3d(calc((1 - var(--chapter-progress))*-28px),0,0) scale(calc(1.055 - var(--chapter-progress)*.055));opacity:calc(.6 + var(--chapter-progress)*.32);transition:filter .25s;will-change:transform}
+.evo-about .evo-section-inner{position:relative;z-index:2}
+.evo-sound-toggle{display:inline-flex;align-items:center;justify-content:center}
+@media(prefers-reduced-motion:reduce){.evo-hero-art,.evo-hero-content,.evo-about .evo-section-scene{transform:none!important;opacity:1!important;filter:none!important;will-change:auto}.evo-hero::after{opacity:.3}}
+@media(max-width:700px){.evo-hero-art{transform:none!important}.evo-hero-content{transform:none!important;opacity:1!important}}
