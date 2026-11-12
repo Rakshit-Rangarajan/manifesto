@@ -15,3 +15,11 @@
 .is-day .evo-petal{filter:drop-shadow(0 1px 4px rgba(223,84,136,.35))}
 @keyframes evo-petal-fall{0%{opacity:0;transform:translate3d(-20px,-25px,0) rotate(-30deg)}7%{opacity:.9}50%{opacity:.78;transform:translate3d(48px,50vh,0) rotate(210deg)}92%{opacity:.67}100%{opacity:0;transform:translate3d(115px,110vh,0) rotate(470deg)}}
 @media(prefers-reduced-motion:reduce){.evo-petal{animation:none;opacity:.65}}
+
+/* Separate fall trajectory from petal flutter so folds do not overwrite falling transforms. */
+.evo-petal-flight{position:absolute;top:-45px;display:block;height:25px;opacity:0;animation:evo-natural-fall 15s linear infinite;will-change:transform}
+.evo-petal-flight .evo-petal{display:block;width:100%;height:auto;opacity:1;transform-origin:50% 25%;animation:evo-petal-fold 3s ease-in-out infinite alternate;filter:drop-shadow(0 1px 3px rgba(204,77,122,.24));backface-visibility:visible}
+.is-night .evo-petal-flight .evo-petal{filter:drop-shadow(0 0 5px rgba(255,178,219,.62))}
+@keyframes evo-natural-fall{0%{opacity:0;transform:translate3d(-25px,-30px,0) rotate(-16deg)}7%{opacity:.95}27%{transform:translate3d(35px,28vh,0) rotate(36deg)}55%{transform:translate3d(-25px,57vh,0) rotate(115deg)}88%{opacity:.85}100%{opacity:0;transform:translate3d(65px,112vh,0) rotate(205deg)}}
+@keyframes evo-petal-fold{0%{transform:perspective(100px) rotateY(-58deg) rotateX(24deg) rotateZ(-18deg) scaleX(.83)}50%{transform:perspective(100px) rotateY(12deg) rotateX(-20deg) rotateZ(13deg) scaleX(1)}100%{transform:perspective(100px) rotateY(65deg) rotateX(32deg) rotateZ(-11deg) scaleX(.77)}}
+@media(prefers-reduced-motion:reduce){.evo-petal-flight{animation:none;opacity:.75;top:24%}.evo-petal-flight:nth-of-type(3n){top:68%}.evo-petal-flight .evo-petal{animation:none}}
