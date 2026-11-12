@@ -1,0 +1,32 @@
+.evo-detail-page{--ink:#f9e9f0;--muted:#d9bccc;--accent:#ff5c89;--border:#ff8aaf55;--glass:#100b1c33;min-height:100vh;color:var(--ink);background:#090817 url('/evo/chapters/projects.webp') center top/cover fixed;font-family:inherit;position:relative;isolation:isolate}
+.evo-detail-page:before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;background:linear-gradient(90deg,#09081788,#090817e5 85%),linear-gradient(180deg,#09081766,#090817b0)}
+.evo-detail-shell{max-width:1240px;margin:auto;padding:28px clamp(18px,4vw,55px) 100px}
+.evo-detail-nav{display:flex;align-items:center;justify-content:space-between;gap:15px;font-size:11px;letter-spacing:.15em}
+.evo-detail-nav a{display:flex;align-items:center;gap:8px;padding:10px 15px;border:1px solid var(--border);border-radius:30px;background:var(--glass);backdrop-filter:blur(16px)}
+.evo-detail-nav span{color:var(--muted)}
+.evo-detail-breadcrumb{margin:44px 0 18px;color:var(--muted);font-size:13px}.evo-detail-breadcrumb span{padding:0 12px;color:var(--accent)}
+.evo-detail-banner{height:clamp(170px,25vw,300px);border:1px solid var(--border);border-radius:17px;display:flex;flex-direction:column;justify-content:space-between;align-items:flex-start;padding:clamp(22px,4vw,48px);background:#0d09202b;backdrop-filter:blur(2px);overflow:hidden;position:relative}
+.evo-detail-banner:before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,#090817a8,transparent);pointer-events:none}
+.evo-detail-banner-label,.evo-detail-banner strong{position:relative;text-shadow:0 3px 20px #0009}
+.evo-detail-banner-label{font:700 11px monospace;letter-spacing:.24em;color:#ffd1df}
+.evo-detail-banner strong{font-size:clamp(54px,9vw,118px);font-weight:800;letter-spacing:-.05em;font-style:italic;color:#fff5f8}
+.evo-detail-grid{display:grid;grid-template-columns:minmax(0,1.7fr) minmax(275px,.9fr);gap:24px;margin-top:28px}
+.evo-detail-main,.evo-detail-aside{display:flex;flex-direction:column;gap:22px;min-width:0}
+.evo-detail-intro,.evo-detail-panel{border:1px solid var(--border);border-radius:17px;padding:clamp(22px,3vw,34px);background:var(--glass);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);box-shadow:0 12px 40px #0002}
+.evo-detail-intro h1{font-size:clamp(40px,5vw,68px);line-height:1.08;margin:10px 0 4px;font-weight:800}.evo-detail-intro h2{font-size:clamp(16px,2vw,22px);font-weight:500;color:var(--muted)}
+.evo-detail-intro>p:not(.evo-detail-kicker){font-size:16px;line-height:1.8;max-width:650px;margin-top:22px}
+.evo-detail-kicker{color:var(--accent);font-size:11px;font-weight:700;letter-spacing:.19em}
+.evo-detail-actions{display:flex;flex-wrap:wrap;gap:12px;margin:26px 0}.evo-detail-actions a,.evo-detail-actions button,.evo-detail-contact{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--border);border-radius:10px;padding:12px 16px;background:var(--glass);backdrop-filter:blur(10px);font-size:13px;font-weight:700;color:var(--ink)}
+.evo-detail-actions a:first-child{border-color:var(--accent)}
+.evo-detail-tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}.evo-detail-tags span{border:1px solid var(--border);border-radius:30px;padding:6px 12px;background:var(--glass);font-size:12px}
+.evo-detail-panel h2{font-size:clamp(23px,2.7vw,34px);font-weight:750;margin:12px 0 20px}.evo-detail-panel h3{font-size:21px;font-weight:750;margin-bottom:18px}
+.evo-detail-panel>p:not(.evo-detail-kicker){line-height:1.8;color:var(--muted)}
+.evo-detail-strategy{display:grid;gap:13px}.evo-detail-strategy>div{display:flex;gap:17px;padding:15px;border:1px solid var(--border);border-radius:10px;background:var(--glass)}.evo-detail-strategy b{color:var(--accent)}.evo-detail-strategy p{line-height:1.6}
+.evo-detail-workflow{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:9px;margin-top:20px}.evo-detail-workflow li{border:1px solid var(--border);border-radius:10px;padding:16px;background:var(--glass);min-height:105px}.evo-detail-workflow span{display:block;color:var(--accent);font:700 12px monospace;margin-bottom:10px}.evo-detail-workflow strong{font-size:13px}
+.evo-detail-note{font-size:12px!important;color:var(--muted);margin-top:12px}
+.evo-detail-aside dl>div{display:flex;justify-content:space-between;gap:15px;border-bottom:1px solid var(--border);padding:13px 0;font-size:13px}.evo-detail-aside dt{color:var(--muted)}.evo-detail-aside dd{text-align:right;font-weight:700}
+.evo-detail-aside ul{display:grid;gap:16px}.evo-detail-aside li{padding-left:19px;position:relative;font-size:13px;line-height:1.6}.evo-detail-aside li:before{content:"✓";position:absolute;left:0;color:var(--accent)}
+.evo-detail-contact{justify-content:center}
+@media(prefers-color-scheme:light){.evo-detail-page{--ink:#3b2338;--muted:#6c5062;--accent:#a61d55;--border:#ae537b77;--glass:#fffaf355;background-color:#f7e7ed}.evo-detail-page:before{background:linear-gradient(90deg,#fff2ef65,#f9edf0eb 85%),linear-gradient(180deg,#fff5f288,#f8e9f0dd)}.evo-detail-banner:before{background:linear-gradient(90deg,#4c214088,transparent)}.evo-detail-banner strong{color:#fff8fa}.evo-detail-banner-label{color:#fff1f5}}
+@media(max-width:850px){.evo-detail-grid{grid-template-columns:1fr}.evo-detail-nav span{display:none}.evo-detail-page{background-attachment:scroll}}
+@media(prefers-reduced-motion:reduce){.evo-detail-page{background-attachment:scroll}}
