@@ -1,6 +1,7 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
 import "./cinematic-chapters.css";
+import "./evo-character-stage.css";
 
 const chapters = [
   {id:"home",label:"PROLOGUE",role:"THE DREAMER",tone:"night"},
