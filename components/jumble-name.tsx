@@ -1,24 +1,29 @@
 "use client";
-import {useEffect,useState} from "react";
+import { useEffect, useState } from "react";
 const names=["RAKSHIT RANGARAJAN","ರಕ್ಷಿತ್ ರಂಗರಾಜನ್","रक्षित रंगराजन","ரக்ஷித் ரங்கராஜன்","ラクシット・ランガラジャン"];
-const chars="ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+const noise="ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
 export default function JumbleName(){
  const [value,setValue]=useState(names[0]);
  useEffect(()=>{
-  const reduce=window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  let current=0;let animation:ReturnType<typeof setInterval>|undefined;
+  const reduced=window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  let index=0;let tick:ReturnType<typeof setInterval>|undefined;
   const cycle=()=>{
-   const next=(current+1)%names.length;const target=Array.from(names[next]);let frame=0;
-   if(animation)clearInterval(animation);
-   if(reduce){setValue(names[next]);current=next;return;}
-   animation=setInterval(()=>{
+   const next=(index+1)%names.length;
+   if(tick)clearInterval(tick);
+   if(reduced){index=next;setValue(names[next]);return;}
+   const from=Array.from(names[index]);const target=Array.from(names[next]);let frame=0;const steps=18;
+   tick=setInterval(()=>{
     frame++;
-    setValue(target.map((c,i)=>c===" "||c==="・"?" ":i<Math.floor(frame/2)?c:chars[(i*11+frame*7)%chars.length]).join(""));
-    if(frame>=target.length*2+3){clearInterval(animation);animation=undefined;setValue(names[next]);current=next;}
-   },45);
+    const reveal=Math.floor((frame/steps)*target.length);
+    setValue(target.map((character,i)=>{
+      if(i<reveal||character===" "||character==="・")return character;
+      return noise[(frame*7+i*13)%noise.length];
+    }).join(""));
+    if(frame>=steps){if(tick)clearInterval(tick);tick=undefined;index=next;setValue(names[index]);}
+   },55);
   };
-  const timer=setInterval(cycle,4400);
-  return()=>{clearInterval(timer);if(animation)clearInterval(animation)};
+  const timer=setInterval(cycle,4800);
+  return()=>{clearInterval(timer);if(tick)clearInterval(tick)};
  },[]);
- return <span className="evo-name-jumble" aria-label="Rakshit Rangarajan">{value}</span>;
+ return <span className="evo-name-jumble" aria-label="Rakshit Rangarajan" aria-live="off">{value}</span>;
 }
