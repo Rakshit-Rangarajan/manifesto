@@ -13,7 +13,7 @@ export default function Home() {
     <>
       <Header />
       <Background />
-      <main id="main-content" className="relative flex flex-col items-center">
+      <main id="main-content" className="anime-portfolio relative flex flex-col items-center">
         <Hero />
         <About />
         <PortfolioShowcase />
