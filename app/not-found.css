@@ -1,0 +1,34 @@
+.evo-lost{--lost-ink:#fff0f2;--lost-muted:#e4b8c7;--lost-accent:#ff638c;min-height:100svh;position:relative;isolation:isolate;overflow:hidden;background:#080611;color:var(--lost-ink);font-family:var(--font-inter),sans-serif}
+.evo-lost-sky{position:absolute;inset:0;z-index:-3;background:linear-gradient(90deg,rgba(7,5,17,.96) 0%,rgba(12,5,24,.83) 45%,rgba(16,6,23,.32) 100%),url('/evo/chapters/about.webp') center 42%/cover no-repeat;filter:saturate(1.15)}
+.evo-lost-haze{position:absolute;inset:0;z-index:-2;pointer-events:none;background:radial-gradient(ellipse at 75% 30%,rgba(241,57,117,.16),transparent 48%),linear-gradient(0deg,#090513 0%,transparent 45%)}
+.evo-lost-nav{position:relative;z-index:5;display:flex;align-items:center;justify-content:space-between;padding:clamp(20px,3vw,38px) clamp(22px,6vw,100px)}
+.evo-lost-brand{display:flex;align-items:center;gap:12px;color:var(--lost-ink);text-decoration:none;font-weight:900;letter-spacing:.15em;font-size:11px}
+.evo-lost-brand em{font-style:normal;color:var(--lost-accent)}
+.evo-lost-brand-mark{width:43px;height:43px;display:grid;place-items:center;border:1px solid var(--lost-accent);border-radius:13px;font:900 17px Georgia,serif;letter-spacing:-.08em;color:var(--lost-accent);background:rgba(255,255,255,.05);backdrop-filter:blur(10px)}
+.evo-lost-theme{width:42px;height:42px;display:grid;place-items:center;border-radius:50%;border:1px solid rgba(255,255,255,.25);background:rgba(17,9,29,.42);backdrop-filter:blur(15px);color:var(--lost-ink);cursor:pointer}
+.evo-lost-content{position:relative;z-index:2;max-width:880px;margin:clamp(55px,8vh,120px) 0 0 clamp(22px,10vw,160px);padding:0 24px 110px 0}
+.evo-lost-eyebrow{display:flex;align-items:center;gap:10px;color:var(--lost-accent);font:800 11px/1.5 monospace;letter-spacing:.2em}
+.evo-lost-numeral{font-size:clamp(125px,24vw,300px);line-height:.9;letter-spacing:-.11em;font-weight:900;color:transparent;-webkit-text-stroke:2px rgba(255,222,232,.76);text-shadow:0 0 80px rgba(238,59,113,.16);margin:24px 0 12px;user-select:none}
+.evo-lost-numeral span{color:var(--lost-accent);-webkit-text-stroke:0;text-shadow:0 0 70px rgba(255,87,139,.5)}
+.evo-lost-content h1{font-size:clamp(32px,5vw,67px);line-height:1.12;letter-spacing:-.055em;max-width:760px;font-weight:850;margin:0}
+.evo-lost-content h1 em{font-family:Georgia,serif;font-weight:500;color:var(--lost-accent)}
+.evo-lost-description{max-width:525px;color:var(--lost-muted);font-size:clamp(14px,1.5vw,17px);line-height:1.8;margin:23px 0 32px}
+.evo-lost-actions{display:flex;align-items:center;flex-wrap:wrap;gap:12px}
+.evo-lost-actions a{min-height:48px;display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:13px 20px;border-radius:12px;font-size:12px;font-weight:800;text-decoration:none;transition:transform .2s,border-color .2s}
+.evo-lost-actions a:hover{transform:translateY(-3px)}
+.evo-lost-primary{background:var(--lost-accent);color:#190914}
+.evo-lost-secondary{border:1px solid rgba(255,205,222,.36);color:var(--lost-ink);background:rgba(16,8,28,.32);backdrop-filter:blur(12px)}
+.evo-lost-coordinates{display:flex;flex-wrap:wrap;gap:16px;margin-top:55px;padding-top:16px;max-width:640px;border-top:1px solid rgba(255,208,225,.2);font:700 9px monospace;letter-spacing:.13em;color:var(--lost-muted)}
+.evo-lost-signature{position:absolute;right:4%;bottom:25px;color:var(--lost-muted);font:italic 16px Georgia,serif;opacity:.7}
+.evo-lost-petals{position:absolute;inset:0;z-index:-1;pointer-events:none;overflow:hidden}
+.evo-lost-petals span{position:absolute;top:-12%;left:calc(var(--i)*8%);width:8px;height:14px;border-radius:85% 0 85% 0;background:#ff9fbe;opacity:.55;transform:rotate(35deg);animation:evo-lost-fall calc(10s + var(--i)*.8s) linear infinite;animation-delay:calc(var(--i)*-1.5s)}
+@keyframes evo-lost-fall{to{transform:translate(120px,120vh) rotate(440deg)}}
+.evo-lost-light{--lost-ink:#352037;--lost-muted:#61445d;--lost-accent:#b52e69;background:#fff2f5}
+.evo-lost-light .evo-lost-sky{background:linear-gradient(90deg,rgba(255,246,250,.97),rgba(255,231,240,.85) 52%,rgba(255,222,235,.3)),url('/evo/chapters/about.webp') center/cover no-repeat;filter:saturate(.75) brightness(1.35)}
+.evo-lost-light .evo-lost-haze{background:radial-gradient(ellipse at 75% 30%,rgba(255,138,178,.18),transparent 50%),linear-gradient(0deg,#fff1f6,transparent 55%)}
+.evo-lost-light .evo-lost-numeral{-webkit-text-stroke-color:rgba(112,48,85,.6)}
+.evo-lost-light .evo-lost-theme,.evo-lost-light .evo-lost-secondary{background:rgba(255,250,252,.65);border-color:rgba(129,55,90,.35)}
+.evo-lost-light .evo-lost-primary{color:white}
+.evo-lost-light .evo-lost-coordinates{border-color:rgba(129,55,90,.25)}
+@media(max-width:700px){.evo-lost-nav{padding:18px 20px}.evo-lost-brand{font-size:9px;letter-spacing:.07em}.evo-lost-content{margin:10vh 20px 0;padding:0 0 85px}.evo-lost-numeral{font-size:clamp(115px,35vw,210px);margin:22px 0}.evo-lost-sky{background-position:60% center}.evo-lost-description{max-width:400px}.evo-lost-signature{right:20px;bottom:15px;font-size:12px}}
+@media(prefers-reduced-motion:reduce){.evo-lost-petals span{animation:none}.evo-lost-actions a{transition:none}}
