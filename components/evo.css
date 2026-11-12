@@ -277,3 +277,23 @@
 .evo-light .evo-side-nav{background:#fbeae9!important;border-color:#ac6480!important}
 .evo-light .evo-section{color:#352034}
 @media(max-width:700px){.evo-light .evo-hero-scrim{background:linear-gradient(180deg,transparent 12%,rgba(249,233,233,.25) 44%,rgba(249,233,233,.94) 72%)}}
+
+/* Pantheon: illustrated anime-tech command room rather than a floating orbit. */
+.evo-pantheon-scene{position:relative;min-height:470px;overflow:hidden;border:1px solid #ee537a88;border-radius:18px;background:linear-gradient(180deg,#080c1b22,#080c1bea 90%),url('/evo/chapters/lab.webp') center/cover;box-shadow:inset 0 0 65px #03030cb8,0 18px 48px #0006;display:flex;flex-direction:column;justify-content:space-between;padding:clamp(18px,3vw,34px)}
+.evo-pantheon-scene:before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,#080b18e8,transparent 72%),linear-gradient(0deg,#080b18ed,transparent 68%);pointer-events:none}
+.evo-pantheon-crest,.evo-pantheon-cast{position:relative;z-index:1}
+.evo-pantheon-crest{display:flex;flex-direction:column;gap:12px;max-width:420px}
+.evo-pantheon-crest>span{font:700 11px monospace;letter-spacing:.26em;color:#ff829e}
+.evo-pantheon-crest strong{font-size:clamp(27px,3vw,44px);line-height:1.1;color:#fff4fa;text-shadow:0 3px 22px #000}
+.evo-pantheon-crest small{font-size:10px;letter-spacing:.13em;color:#f3c8db}
+.evo-pantheon-cast{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.evo-pantheon-character{display:flex;flex-direction:column;gap:5px;padding:13px 15px;border:1px solid #ff638a70;background:linear-gradient(105deg,#1b142edc,#100e23a0);backdrop-filter:blur(12px);border-radius:8px;transition:transform .25s,border-color .25s}
+.evo-pantheon-character:hover{transform:translateY(-3px);border-color:#ffb0c4}
+.evo-pantheon-character strong{font-size:16px;color:#fff3f8}.evo-pantheon-character small{font-size:11px;color:#e6a8c2}
+.evo-light .evo-pantheon-scene{border-color:#bd567c;background-image:linear-gradient(180deg,#fff2f31c,#35142dbb),url('/evo/chapters/lab.webp')}
+.evo-light .evo-pantheon-scene:before{background:linear-gradient(90deg,#37152c99,transparent 85%),linear-gradient(0deg,#34152dbb,transparent 70%)}
+.evo-stack-matrix{border-radius:18px;clip-path:none;background:linear-gradient(155deg,#1b122aaf,#080c1de8),url('/evo/chapters/skills.webp') center/cover;backdrop-filter:blur(12px)}
+.evo-matrix-tile{border-radius:10px;background:linear-gradient(120deg,#1e172ce8,#101527d9);backdrop-filter:blur(9px)}
+.evo-light .evo-stack-matrix{background:linear-gradient(145deg,#fff1f3e6,#f5e2f0c9),url('/evo/chapters/skills.webp') center/cover}
+.evo-light .evo-matrix-tile{background:#fff6f3d9}
+@media(max-width:650px){.evo-pantheon-scene{min-height:440px}.evo-pantheon-cast{grid-template-columns:1fr 1fr}.evo-pantheon-character{padding:10px}.evo-pantheon-character strong{font-size:13px}}
