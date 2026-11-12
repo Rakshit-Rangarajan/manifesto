@@ -30,3 +30,13 @@
 @media(prefers-color-scheme:light){.evo-detail-page{--ink:#3b2338;--muted:#6c5062;--accent:#a61d55;--border:#ae537b77;--glass:#fffaf355;background-color:#f7e7ed}.evo-detail-page:before{background:linear-gradient(90deg,#fff2ef65,#f9edf0eb 85%),linear-gradient(180deg,#fff5f288,#f8e9f0dd)}.evo-detail-banner:before{background:linear-gradient(90deg,#4c214088,transparent)}.evo-detail-banner strong{color:#fff8fa}.evo-detail-banner-label{color:#fff1f5}}
 @media(max-width:850px){.evo-detail-grid{grid-template-columns:1fr}.evo-detail-nav span{display:none}.evo-detail-page{background-attachment:scroll}}
 @media(prefers-reduced-motion:reduce){.evo-detail-page{background-attachment:scroll}}
+
+/* Project-specific cinematic artwork; navigation remains at the top right. */
+.evo-detail-page{background-position:center top,center top;background-size:cover,cover;background-repeat:no-repeat;background-attachment:fixed}
+.evo-detail-nav{display:flex;justify-content:space-between;align-items:center;gap:18px;min-height:58px}
+.evo-detail-nav>span{flex:1;text-align:left}
+.evo-detail-nav .evo-detail-back{order:3;margin-left:auto;white-space:nowrap;padding:12px 20px;border-radius:12px;background:rgba(12,8,23,.25);border:1px solid var(--border);font-size:12px;font-weight:800;letter-spacing:.03em}
+.evo-detail-nav .evo-detail-back:hover{border-color:var(--accent);transform:translateY(-1px)}
+.evo-detail-banner{background-size:cover;background-position:center;background-repeat:no-repeat;min-height:210px}
+.evo-detail-banner:before{background:linear-gradient(90deg,rgba(9,8,23,.24),rgba(9,8,23,.04))}
+@media(max-width:850px){.evo-detail-page{background-attachment:scroll}.evo-detail-nav>span{display:none}.evo-detail-nav .evo-detail-back{display:inline-flex;margin-left:auto}}
