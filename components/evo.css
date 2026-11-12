@@ -7,8 +7,8 @@
 @media(prefers-reduced-motion:reduce){.evo *{scroll-behavior:auto!important;transition:none!important}}
 
 /* EVO approved anime artwork — files uploaded directly to public/ */
-.evo-dark .evo-hero-art{background-image:linear-gradient(90deg,transparent 70%,var(--bg)),url('/1f7468f2e21616728cbd8d727116c24dd4c6c87cfd3646b8f4fbd24a8972a8ef.png');background-size:cover;background-position:42% center}
-.evo-light .evo-hero-art{background-image:linear-gradient(90deg,transparent 70%,var(--bg)),url('/bac2891e4b0fb1f8aeb196b5e0937ef3177ac783f195ff0bbb87779ddb846050.png');background-size:cover;background-position:42% center}
+.evo-dark .evo-hero-art{background-image:linear-gradient(90deg,transparent 70%,var(--bg)),url('https://raw.githubusercontent.com/Rakshit-Rangarajan/manifesto/evo/public/1f7468f2e21616728cbd8d727116c24dd4c6c87cfd3646b8f4fbd24a8972a8ef.png');background-size:cover;background-position:42% center}
+.evo-light .evo-hero-art{background-image:linear-gradient(90deg,transparent 70%,var(--bg)),url('https://raw.githubusercontent.com/Rakshit-Rangarajan/manifesto/evo/public/bac2891e4b0fb1f8aeb196b5e0937ef3177ac783f195ff0bbb87779ddb846050.png');background-size:cover;background-position:42% center}
 @media(max-width:900px){.evo-dark .evo-hero-art,.evo-light .evo-hero-art{background-position:center 28%;background-size:cover}}
 
 /* EVO / 01 — approved anime hero reconstruction */
@@ -45,8 +45,8 @@
 .evo-primary{box-shadow:0 0 0 2px #0008,0 0 28px #f02b5d99}
 .evo-secondary{background:rgba(3,6,16,.75)}
 .evo-light .evo-secondary{background:rgba(255,255,255,.72)}
-.evo-section{background-image:radial-gradient(circle at 90% 0%,#fa31511b,transparent 38%),linear-gradient(90deg,rgba(7,8,17,.96),rgba(10,8,24,.97)),url('/1f7468f2e21616728cbd8d727116c24dd4c6c87cfd3646b8f4fbd24a8972a8ef.png');background-size:cover;background-attachment:scroll;background-position:center}
-.evo-light .evo-section{background-image:radial-gradient(circle at 90% 0%,#fa31511b,transparent 38%),linear-gradient(90deg,rgba(255,248,252,.94),rgba(255,240,248,.92)),url('/bac2891e4b0fb1f8aeb196b5e0937ef3177ac783f195ff0bbb87779ddb846050.png')}
+.evo-section{background-image:radial-gradient(circle at 90% 0%,#fa31511b,transparent 38%),linear-gradient(90deg,rgba(7,8,17,.96),rgba(10,8,24,.97)),url('https://raw.githubusercontent.com/Rakshit-Rangarajan/manifesto/evo/public/1f7468f2e21616728cbd8d727116c24dd4c6c87cfd3646b8f4fbd24a8972a8ef.png');background-size:cover;background-attachment:scroll;background-position:center}
+.evo-light .evo-section{background-image:radial-gradient(circle at 90% 0%,#fa31511b,transparent 38%),linear-gradient(90deg,rgba(255,248,252,.94),rgba(255,240,248,.92)),url('https://raw.githubusercontent.com/Rakshit-Rangarajan/manifesto/evo/public/bac2891e4b0fb1f8aeb196b5e0937ef3177ac783f195ff0bbb87779ddb846050.png')}
 .evo h2{letter-spacing:-.025em}.evo-project,.evo-education,.evo-timeline article,.evo-lab{box-shadow:0 10px 35px #0005,0 0 16px #fa29501b}
 @media(max-width:900px){.evo-hero{min-height:860px;align-items:flex-end;justify-content:center;padding:390px 18px 85px}.evo-dark .evo-hero-art,.evo-light .evo-hero-art{inset:0 0 28% 0;background-position:center 22%;mask-image:linear-gradient(#000 0%,#000 46%,transparent 100%)}.evo-hero-scrim{background:linear-gradient(0deg,#050710 4%,#05071066 40%,transparent 82%)}.evo-light .evo-hero-scrim{background:linear-gradient(0deg,#fff5fa 4%,#fff5fa66 40%,transparent 82%)}.evo-hero-content{width:min(100%,680px);padding:10px 8px}.evo-hero-rail{display:none}.evo h1{font-size:clamp(46px,9vw,80px)}}
 @media(max-width:600px){.evo-hero{min-height:820px;padding:340px 14px 95px}.evo-dark .evo-hero-art,.evo-light .evo-hero-art{inset:0 0 32% 0;background-position:34% top}.evo h1{font-size:clamp(42px,10vw,62px);margin:12px -6px 20px}.evo-hero-overline{font-size:10px;margin-bottom:10px}.evo-hero-overline span{font-size:9px}.evo-eyebrow{font-size:10px}.evo-role{letter-spacing:.2em}.evo-subtitle{font-size:11px}.evo-cta{margin-top:18px}.evo-primary,.evo-secondary{min-width:135px;padding:13px 15px}}
@@ -56,8 +56,8 @@
 .evo-about,.evo-projects-section{isolation:isolate;overflow:hidden;min-height:750px}
 .evo-about{background:linear-gradient(105deg,#050613,#09091d 60%,#100617)}
 .evo-light .evo-about{background:linear-gradient(110deg,#fff3f9,#fbe4f1)}
-.evo-section-scene{position:absolute;inset:0 53% 0 0;background-image:url('/1f7468f2e21616728cbd8d727116c24dd4c6c87cfd3646b8f4fbd24a8972a8ef.png');background-size:cover;background-position:24% center;mask-image:linear-gradient(90deg,#000 45%,transparent 100%);opacity:.92;pointer-events:none}
-.evo-light .evo-section-scene{background-image:url('/bac2891e4b0fb1f8aeb196b5e0937ef3177ac783f195ff0bbb87779ddb846050.png')}
+.evo-section-scene{position:absolute;inset:0 53% 0 0;background-image:url('https://raw.githubusercontent.com/Rakshit-Rangarajan/manifesto/evo/public/1f7468f2e21616728cbd8d727116c24dd4c6c87cfd3646b8f4fbd24a8972a8ef.png');background-size:cover;background-position:24% center;mask-image:linear-gradient(90deg,#000 45%,transparent 100%);opacity:.92;pointer-events:none}
+.evo-light .evo-section-scene{background-image:url('https://raw.githubusercontent.com/Rakshit-Rangarajan/manifesto/evo/public/bac2891e4b0fb1f8aeb196b5e0937ef3177ac783f195ff0bbb87779ddb846050.png')}
 .evo-about .evo-section-inner{margin-left:auto;width:min(72%,960px)}
 .evo-about-intro{max-width:760px;margin-left:auto}
 .evo-about h2{font-size:clamp(42px,5vw,75px);margin:14px 0 18px;max-width:780px}
@@ -75,7 +75,7 @@
 .evo-about-profile{display:flex;flex-direction:column;gap:10px}
 .evo-about-profile>div{display:flex;align-items:center;gap:11px;padding:10px 12px;border:1px solid #ff315b65;border-radius:8px;background:#120d1ddc;font-size:12px;color:#fce9ef}
 .evo-about-profile>div svg{color:#ff4770;flex-shrink:0}
-.evo-projects-section{background-image:linear-gradient(100deg,#080713e8,#0a0714e0),url('/1f7468f2e21616728cbd8d727116c24dd4c6c87cfd3646b8f4fbd24a8972a8ef.png');background-position:center;background-size:cover}
+.evo-projects-section{background-image:linear-gradient(100deg,#080713e8,#0a0714e0),url('https://raw.githubusercontent.com/Rakshit-Rangarajan/manifesto/evo/public/1f7468f2e21616728cbd8d727116c24dd4c6c87cfd3646b8f4fbd24a8972a8ef.png');background-position:center;background-size:cover}
 .evo-projects-section h2{text-align:center;font-size:clamp(48px,6vw,90px);margin:0 0 8px}
 .evo-projects-section>.evo-section-inner>.evo-kicker{text-align:center}
 .evo-projects-section .evo-lead{max-width:850px;margin:0 auto 24px;text-align:center;font-size:14px}
@@ -98,13 +98,13 @@
 .evo-light .evo-glass-panel p:not(.evo-kicker),.evo-light .evo-about-profile>div{color:#49314c}
 .evo-light .evo-about-profile>div{background:#fff5fa}
 .evo-light .evo-about-stats span,.evo-light .evo-project-metrics span{color:#74465a}
-.evo-light .evo-projects-section{background-image:linear-gradient(100deg,#fff5f9ef,#ffeaf6e8),url('/bac2891e4b0fb1f8aeb196b5e0937ef3177ac783f195ff0bbb87779ddb846050.png')}
+.evo-light .evo-projects-section{background-image:linear-gradient(100deg,#fff5f9ef,#ffeaf6e8),url('https://raw.githubusercontent.com/Rakshit-Rangarajan/manifesto/evo/public/bac2891e4b0fb1f8aeb196b5e0937ef3177ac783f195ff0bbb87779ddb846050.png')}
 @media(max-width:1050px){.evo-about .evo-section-inner{width:80%}.evo-section-scene{inset:0 55% 0 0}.evo-about-stats{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:900px){.evo-about{padding-top:320px}.evo-about .evo-section-inner{width:100%}.evo-section-scene{inset:0 0 auto;height:400px;background-position:center 24%;mask-image:linear-gradient(#000 40%,transparent 100%)}.evo-about-intro{margin-left:0}.evo-projects-section .evo-projects{grid-template-columns:repeat(2,minmax(0,1fr))}.evo-project-metrics{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:600px){.evo-about{padding-top:270px}.evo-section-scene{height:330px}.evo-about h2{font-size:45px}.evo-about-panels{grid-template-columns:1fr}.evo-about-stats{gap:8px}.evo-about-stats>div{padding:14px 5px}.evo-about-stats strong{font-size:21px}.evo-projects-section .evo-projects{grid-template-columns:1fr}.evo-project-metrics>div{gap:6px;padding:10px 4px}.evo-project-metrics strong{font-size:18px}.evo-project-metrics span{font-size:9px}.evo-projects-section .evo-project-art{height:120px}.evo-projects-section .evo-project-body{padding:18px}}
 
 /* EVO / 04 — Skills technology constellation */
-.evo-skills{background-image:linear-gradient(95deg,#050614ed,#080a1ae8),url('/1f7468f2e21616728cbd8d727116c24dd4c6c87cfd3646b8f4fbd24a8972a8ef.png');background-position:center;background-size:cover}
+.evo-skills{background-image:linear-gradient(95deg,#050614ed,#080a1ae8),url('https://raw.githubusercontent.com/Rakshit-Rangarajan/manifesto/evo/public/1f7468f2e21616728cbd8d727116c24dd4c6c87cfd3646b8f4fbd24a8972a8ef.png');background-position:center;background-size:cover}
 .evo-skills .evo-kicker:first-child,.evo-skills h2,.evo-skills .evo-lead{text-align:center;margin-left:auto;margin-right:auto}
 .evo-skills h2{font-size:clamp(48px,6vw,86px);margin-bottom:12px}
 .evo-skills .evo-lead{font-size:14px;max-width:850px}
@@ -125,7 +125,7 @@
 .evo-toolkit-label{text-align:center;margin:30px auto 16px}
 .evo-skills .evo-techgrid{grid-template-columns:repeat(8,minmax(0,1fr));gap:8px}
 .evo-skills .evo-techgrid span{background:linear-gradient(140deg,#170d28e8,#080b19ef);color:#ffeaf3;border-color:#f52d5970;box-shadow:inset 0 0 14px #ff285b18;font-size:11px;padding:13px 5px}
-.evo-light .evo-skills{background-image:linear-gradient(95deg,#fff5f9ef,#ffecf6e9),url('/bac2891e4b0fb1f8aeb196b5e0937ef3177ac783f195ff0bbb87779ddb846050.png')}
+.evo-light .evo-skills{background-image:linear-gradient(95deg,#fff5f9ef,#ffecf6e9),url('https://raw.githubusercontent.com/Rakshit-Rangarajan/manifesto/evo/public/bac2891e4b0fb1f8aeb196b5e0937ef3177ac783f195ff0bbb87779ddb846050.png')}
 .evo-light .evo-skill-panel,.evo-light .evo-skill-metrics>div,.evo-light .evo-skills .evo-techgrid span,.evo-light .evo-skill-competency{background:#fff9fcea;color:#44233c}
 .evo-light .evo-skill-metrics span{color:#69405b}
 @media(max-width:1150px){.evo-skills .evo-skill-layout{grid-template-columns:1fr 1fr}.evo-skills .evo-orbit{grid-column:1/-1;grid-row:1}.evo-skills .evo-techgrid{grid-template-columns:repeat(4,minmax(0,1fr))}}
@@ -136,7 +136,7 @@
 .evo-experience .evo-kicker:first-child,.evo-experience h2,.evo-experience .evo-lead,.evo-lab-section>.evo-section-inner>.evo-kicker,.evo-lab-section h2,.evo-lab-section .evo-lead,.evo-education-section>.evo-section-inner>.evo-kicker,.evo-education-section h2,.evo-education-section .evo-lead,.evo-contact-section>.evo-section-inner>.evo-kicker,.evo-contact-section h2,.evo-contact-section .evo-lead{text-align:center;margin-left:auto;margin-right:auto}
 .evo-experience h2,.evo-lab-section h2,.evo-education-section h2,.evo-contact-section h2{font-size:clamp(48px,6vw,86px);margin-bottom:12px}
 .evo-experience .evo-lead,.evo-lab-section .evo-lead,.evo-education-section .evo-lead,.evo-contact-section .evo-lead{font-size:14px;max-width:820px;margin-bottom:38px}
-.evo-experience{background-image:linear-gradient(105deg,#070715ee,#0d081ded),url('/1f7468f2e21616728cbd8d727116c24dd4c6c87cfd3646b8f4fbd24a8972a8ef.png')}
+.evo-experience{background-image:linear-gradient(105deg,#070715ee,#0d081ded),url('https://raw.githubusercontent.com/Rakshit-Rangarajan/manifesto/evo/public/1f7468f2e21616728cbd8d727116c24dd4c6c87cfd3646b8f4fbd24a8972a8ef.png')}
 .evo-experience-layout{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(280px,1fr);gap:30px;align-items:start}
 .evo-journey{position:relative;padding-left:35px;display:grid;gap:25px}
 .evo-journey-line{position:absolute;left:9px;top:10px;bottom:20px;width:2px;background:linear-gradient(#ff3464,#8b3bcb,#ff3464);box-shadow:0 0 14px #ff346499}
@@ -154,7 +154,7 @@
 .evo-impact-highlight{display:flex;align-items:center;gap:20px;padding:20px;margin:22px 0;border:1px solid #ff315b88;border-radius:10px;background:#260e2b}
 .evo-impact-highlight strong{font-size:42px;color:#ff527c}.evo-impact-highlight span{font-size:12px;color:#f0dce7;line-height:1.6}
 .evo-impact-row{display:flex;gap:12px;align-items:center;padding:12px 0;border-bottom:1px solid #ff315b44;font-size:12px;color:#f2e3ec}.evo-impact-row svg{color:#ff4874}
-.evo-lab-section{background-image:linear-gradient(100deg,#060817ef,#10091ce8),url('/1f7468f2e21616728cbd8d727116c24dd4c6c87cfd3646b8f4fbd24a8972a8ef.png')}
+.evo-lab-section{background-image:linear-gradient(100deg,#060817ef,#10091ce8),url('https://raw.githubusercontent.com/Rakshit-Rangarajan/manifesto/evo/public/1f7468f2e21616728cbd8d727116c24dd4c6c87cfd3646b8f4fbd24a8972a8ef.png')}
 .evo-lab-layout{display:grid;grid-template-columns:1.1fr 1fr;gap:40px;align-items:center}
 .evo-agent-orbit{position:relative;height:510px;max-width:570px;margin:auto;width:100%;display:grid;place-items:center;background:radial-gradient(circle,#ed255b35 0,transparent 48%)}
 .evo-agent-ring{position:absolute;border:1px solid #f23c7c66;border-radius:50%;width:310px;height:310px;box-shadow:inset 0 0 35px #f92d5d17,0 0 18px #fa2b5c16}
@@ -169,7 +169,7 @@
 .evo-agent-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:22px 0}
 .evo-agent-grid>div{display:flex;flex-direction:column;gap:7px;padding:14px;background:#190d2c;border:1px solid #ff3b6d66;border-radius:9px}
 .evo-agent-grid svg{color:#ff5280}.evo-agent-grid strong{font-size:11px;color:#fceaf2}.evo-agent-grid span{font-size:10px;color:#baabc5}
-.evo-education-section{background-image:linear-gradient(100deg,#080718ee,#100a1eec),url('/1f7468f2e21616728cbd8d727116c24dd4c6c87cfd3646b8f4fbd24a8972a8ef.png')}
+.evo-education-section{background-image:linear-gradient(100deg,#080718ee,#100a1eec),url('https://raw.githubusercontent.com/Rakshit-Rangarajan/manifesto/evo/public/1f7468f2e21616728cbd8d727116c24dd4c6c87cfd3646b8f4fbd24a8972a8ef.png')}
 .evo-education-layout{display:grid;grid-template-columns:1.1fr 1fr;gap:22px;align-items:stretch}
 .evo-education-feature,.evo-education-tile,.evo-education-quote{position:relative;border:1px solid #ff3c7085;background:linear-gradient(145deg,#1b0e2ded,#080b1def);border-radius:14px;padding:27px;box-shadow:0 0 22px #ff315627}
 .evo-education-feature{min-height:410px;display:flex;flex-direction:column;align-items:flex-start;justify-content:center;overflow:hidden}
@@ -185,7 +185,7 @@
 .evo-education-tile h3{font-size:19px;color:#fff1f6;margin:9px 0}.evo-education-tile p{font-size:12px;color:#d0c3d7;line-height:1.7;margin:0}
 .evo-education-quote{display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;background:linear-gradient(135deg,#55112e,#170e2c)}
 .evo-education-quote p{font-family:'Kaushan Script',cursive;color:#ff9ab7;font-size:30px;margin:5px}.evo-education-quote span{font-size:11px;color:#dfc1d0}
-.evo-contact-section{background-image:linear-gradient(100deg,#060715f0,#120b22ed),url('/1f7468f2e21616728cbd8d727116c24dd4c6c87cfd3646b8f4fbd24a8972a8ef.png')}
+.evo-contact-section{background-image:linear-gradient(100deg,#060715f0,#120b22ed),url('https://raw.githubusercontent.com/Rakshit-Rangarajan/manifesto/evo/public/1f7468f2e21616728cbd8d727116c24dd4c6c87cfd3646b8f4fbd24a8972a8ef.png')}
 .evo-contact-layout{display:grid;grid-template-columns:1fr 1fr;gap:26px;margin-top:40px}
 .evo-contact-statement,.evo-contact-links{border:1px solid #ff3d7280;border-radius:15px;padding:30px;background:linear-gradient(145deg,#180e2bea,#090b1ded);box-shadow:0 0 30px #fa2e5b20}
 .evo-contact-statement h3{font-family:'Kaushan Script',cursive;font-size:43px;line-height:1.25;color:#fff0f7;margin:20px 0}.evo-contact-statement h3 em{font-style:normal;color:#ff6991}
@@ -197,7 +197,7 @@
 .evo-contact-links>a>svg:first-child{color:#ff6591}.evo-contact-links>a>svg:last-child{margin-left:auto;color:#ff6591}
 .evo-contact-links>a span{display:flex;flex-direction:column;gap:4px;min-width:0}.evo-contact-links small{font-size:10px;letter-spacing:.2em;color:#ff88a9}.evo-contact-links strong{font-size:13px;color:#fceaf3;overflow-wrap:anywhere}
 .evo-contact-finale{text-align:center;margin-top:55px;border-top:1px solid #ff326052;padding-top:24px}.evo-contact-finale>span{font-family:'Kaushan Script',cursive;color:#ff4e80;font-size:44px}.evo-contact-finale p{font-size:12px;color:#cdb5c8;letter-spacing:.1em}.evo-contact-finale a{color:#ff8eaf;font-size:12px}
-.evo-light .evo-experience,.evo-light .evo-lab-section,.evo-light .evo-education-section,.evo-light .evo-contact-section{background-image:linear-gradient(100deg,#fff5f9f0,#ffecf6e9),url('/bac2891e4b0fb1f8aeb196b5e0937ef3177ac783f195ff0bbb87779ddb846050.png')}
+.evo-light .evo-experience,.evo-light .evo-lab-section,.evo-light .evo-education-section,.evo-light .evo-contact-section{background-image:linear-gradient(100deg,#fff5f9f0,#ffecf6e9),url('https://raw.githubusercontent.com/Rakshit-Rangarajan/manifesto/evo/public/bac2891e4b0fb1f8aeb196b5e0937ef3177ac783f195ff0bbb87779ddb846050.png')}
 .evo-light .evo-journey-card,.evo-light .evo-impact-panel,.evo-light .evo-lab-details,.evo-light .evo-agent-grid>div,.evo-light .evo-education-feature,.evo-light .evo-education-tile,.evo-light .evo-education-quote,.evo-light .evo-contact-statement,.evo-light .evo-contact-links,.evo-light .evo-contact-links>a{background:#fff9fce9}
 .evo-light .evo-journey-card h3,.evo-light .evo-impact-panel h3,.evo-light .evo-education-feature h3,.evo-light .evo-education-tile h3,.evo-light .evo-contact-statement h3,.evo-light .evo-contact-links strong,.evo-light .evo-agent-grid strong{color:#371d37}
 .evo-light .evo-journey-card p,.evo-light .evo-impact-panel>p:not(.evo-kicker),.evo-light .evo-impact-row,.evo-light .evo-lab-details>p:not(.evo-kicker),.evo-light .evo-education-feature p,.evo-light .evo-education-tile p,.evo-light .evo-contact-statement>p{color:#63495e}
