@@ -502,3 +502,12 @@
  .evo .evo-floating-controls .evo-audio-label{font-size:8px;letter-spacing:.045em}
  .evo .evo-floating-controls .evo-audio-volume{width:12px;height:12px}
 }
+
+/* Project artwork must render as a real image, independent of legacy background overrides. */
+.evo .evo-project-art{position:relative;isolation:isolate;overflow:hidden;background:none!important;min-height:clamp(180px,18vw,270px);padding:0!important}
+.evo .evo-project-art::before{content:none!important;display:none!important}
+.evo .evo-project-art::after{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;background:linear-gradient(180deg,rgba(8,5,17,.05) 45%,rgba(8,5,17,.28) 100%);transform:none!important}
+.evo .evo-project-art .evo-project-cover{display:block!important;position:absolute!important;inset:0!important;width:100%!important;height:100%!important;max-width:none!important;object-fit:cover!important;object-position:center!important;z-index:0!important;opacity:1!important;filter:none!important;transition:transform .5s ease}
+.evo .evo-project:hover .evo-project-cover{transform:scale(1.035)}
+.evo .evo-project-art>span{position:absolute;top:12px;left:12px;z-index:2;padding:5px 9px;border-radius:7px;background:rgba(7,5,17,.55);color:#fff;font:700 11px monospace}
+@media(max-width:700px){.evo .evo-project-art{min-height:200px}}
