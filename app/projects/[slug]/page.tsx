@@ -71,7 +71,7 @@ export default async function ProjectCaseStudy({ params }: Params) {
     <div className="evo-detail-shell">
       <nav className="evo-detail-nav"><img src="/images/rr-emblem-logo-dark.png" alt="RR dragon emblem" width={48} height={48} className="evo-detail-logo"/><span>RAKSHIT RANGARAJAN / ENGINEERING PORTFOLIO</span><Link className="evo-detail-back" href="/#projects"><ArrowLeft size={17}/> Back to projects</Link></nav>
       <div className="evo-detail-breadcrumb">Projects <span>/</span> {study.title}</div>
-      <header className="evo-detail-banner" style={{backgroundImage:`linear-gradient(90deg,rgba(8,5,17,.35),rgba(8,5,17,.04)),url(/images/projects/${slug}.webp)`}}><span className="evo-detail-banner-label">ENGINEERING CASE STUDY</span></header>
+      <header className={`evo-detail-banner ${slug==="the-office"||slug==="say-cymraeg"?"evo-detail-banner-full":""}`} style={{backgroundImage:`linear-gradient(90deg,rgba(8,5,17,.35),rgba(8,5,17,.04)),url(/images/projects/${slug}.webp)`}}><span className="evo-detail-banner-label">ENGINEERING CASE STUDY</span></header>
       <div className="evo-detail-grid">
         <div className="evo-detail-main">
           <section className="evo-detail-intro">
