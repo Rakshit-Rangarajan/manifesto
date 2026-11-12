@@ -58,32 +58,32 @@ export default function PortfolioShowcase() {
   return <section id="projects" className="relative w-full px-5 py-24 md:px-12 lg:px-20 text-zinc-900 dark:text-white" aria-labelledby="portfolio-title">
     <div className="mx-auto max-w-7xl">
       <div className="mb-12 flex flex-col justify-between gap-6 md:flex-row md:items-end">
-        <div><p className="mb-3 text-xs font-semibold uppercase tracking-[.3em] text-violet-500">AI systems and practical engineering</p>
-          <h2 id="portfolio-title" className="text-5xl font-bold tracking-tight md:text-7xl">Built to solve <span className="bg-gradient-to-r from-blue-500 to-violet-500 bg-clip-text text-transparent">real problems.</span></h2>
+        <div><p className="mb-3 text-xs font-semibold uppercase tracking-[.3em] text-primary">AI systems and practical engineering</p>
+          <h2 id="portfolio-title" className="text-5xl font-bold tracking-tight md:text-7xl">Built to solve <span className="bg-gradient-to-r from-stone-400 to-primary bg-clip-text text-transparent">real problems.</span></h2>
           <p className="mt-5 max-w-2xl text-lg text-zinc-600 dark:text-zinc-300">From enterprise automation to private knowledge retrieval and experimental agents, I build around a problem worth solving. Maturity labels distinguish working applications from prototypes; where available, explore the actual code or demo.</p>
         </div>
       </div>
-      <aside className="mb-12 overflow-hidden rounded-3xl border border-violet-400/40 bg-gradient-to-br from-[#10142f] via-[#1b1741] to-[#301353] p-8 text-white md:p-12" aria-label="NeuralForge coming soon">
-        <span className="inline-flex items-center gap-2 rounded-full border border-violet-300/40 px-4 py-2 text-xs font-bold uppercase tracking-widest text-violet-200"><Sparkles size={15}/> Coming soon</span>
-        <h3 className="mt-5 text-4xl font-bold md:text-6xl">NeuralForge<span className="text-violet-300">.</span></h3>
+      <aside className="mb-12 overflow-hidden rounded-3xl border border-stone-500/30 bg-gradient-to-br from-[#161719] via-[#222325] to-[#101113] p-8 text-white md:p-12" aria-label="NeuralForge coming soon">
+        <span className="inline-flex items-center gap-2 rounded-full border border-stone-300/30 px-4 py-2 text-xs font-bold uppercase tracking-widest text-stone-200"><Sparkles size={15}/> Coming soon</span>
+        <h3 className="mt-5 text-4xl font-bold md:text-6xl">NeuralForge<span className="text-stone-300">.</span></h3>
         <p className="mt-4 max-w-2xl text-lg text-slate-200">A free AI-powered mentorship universe for learners, builders, and future engineers. We're forging the experience—stay tuned.</p>
-        <p className="mt-6 text-sm text-violet-200">Preview announcement only · No public application or source access yet</p>
+        <p className="mt-6 text-sm text-stone-200">Preview announcement only · No public application or source access yet</p>
       </aside>
       <div className="mb-12" aria-labelledby="flagship-title">
         <div className="mb-5 flex items-end justify-between gap-4">
           <div>
-            <p className="text-xs font-bold uppercase tracking-[.25em] text-violet-600 dark:text-violet-300">Start here</p>
+            <p className="text-xs font-bold uppercase tracking-[.25em] text-violet-600 dark:text-stone-300">Start here</p>
             <h3 id="flagship-title" className="mt-2 text-3xl font-bold md:text-4xl">Flagship AI engineering work</h3>
             <p className="mt-2 max-w-2xl text-zinc-600 dark:text-zinc-300">Three different kinds of problems: enterprise orchestration, personal workflow automation and AI application design.</p>
           </div>
         </div>
         <div className="grid gap-4 md:grid-cols-3">
           {works.filter(work => ["AERO (Autonomous Engineering & Release Orchestrator)", "Project Athena", "PromptFlow Studio"].includes(work.title)).map(work => (
-            <article key={work.title} className="flex flex-col rounded-2xl border border-violet-300/40 bg-violet-50/70 p-6 dark:border-violet-500/30 dark:bg-violet-500/10">
-              <p className="text-xs font-semibold uppercase tracking-wider text-violet-700 dark:text-violet-300">{work.status}</p>
+            <article key={work.title} className="flex flex-col rounded-2xl border border-stone-300/30 bg-violet-50/70 p-6 dark:border-violet-500/30 dark:bg-violet-500/10">
+              <p className="text-xs font-semibold uppercase tracking-wider text-violet-700 dark:text-stone-300">{work.status}</p>
               <h4 className="mt-3 text-xl font-bold">{work.title}</h4>
               <p className="mt-3 flex-1 text-sm leading-relaxed text-zinc-600 dark:text-zinc-300">{work.problem}</p>
-              <Link href={`/projects/${flagshipSlugs[work.title]}`} className="mt-6 self-start rounded-full border border-violet-500 px-4 py-2 text-sm font-semibold text-violet-700 hover:bg-violet-100 dark:text-violet-200 dark:hover:bg-violet-500/20">Read case study</Link>
+              <Link href={`/projects/${flagshipSlugs[work.title]}`} className="mt-6 self-start rounded-full border border-violet-500 px-4 py-2 text-sm font-semibold text-violet-700 hover:bg-violet-100 dark:text-stone-200 dark:hover:bg-violet-500/20">Read case study</Link>
             </article>
           ))}
         </div>
@@ -97,19 +97,19 @@ export default function PortfolioShowcase() {
       <p className="mb-5 text-sm text-zinc-500 dark:text-zinc-400" aria-live="polite">{filtered.length} projects</p>
       <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
         {filtered.map((work, index) => <article key={work.title} className="group flex min-h-[330px] flex-col rounded-3xl border border-zinc-200 bg-white/80 p-7 shadow-sm transition-transform hover:-translate-y-1 dark:border-white/10 dark:bg-[#11152a]/90">
-          <div className="flex items-center justify-between gap-3"><span className="text-xs font-semibold uppercase tracking-wider text-violet-600 dark:text-violet-300">{work.category}</span><span className="text-xs text-zinc-500 dark:text-zinc-400">{String(index+1).padStart(2,"0")}</span></div>
+          <div className="flex items-center justify-between gap-3"><span className="text-xs font-semibold uppercase tracking-wider text-violet-600 dark:text-stone-300">{work.category}</span><span className="text-xs text-zinc-500 dark:text-zinc-400">{String(index+1).padStart(2,"0")}</span></div>
           <h3 className="mt-8 text-3xl font-bold break-words">{work.title}</h3><p className="mt-3 flex-1 leading-relaxed text-zinc-600 dark:text-zinc-300">{work.description}</p>
           <div className="mt-6 flex flex-wrap gap-2">{work.stack.map(s=><span key={s} className="rounded-full bg-zinc-100 px-3 py-1 text-xs text-zinc-700 dark:bg-white/10 dark:text-zinc-200">{s}</span>)}</div>
-          <button type="button" onClick={() => setSelected(work)} className="mt-5 self-start text-sm font-semibold text-violet-600 underline underline-offset-4 hover:text-violet-800 dark:text-violet-300">Explore project <span aria-hidden="true">↗</span></button>
+          <button type="button" onClick={() => setSelected(work)} className="mt-5 self-start text-sm font-semibold text-violet-600 underline underline-offset-4 hover:text-violet-800 dark:text-stone-300">Explore project <span aria-hidden="true">↗</span></button>
           <div className="mt-6 flex items-center justify-between border-t border-zinc-200 pt-5 dark:border-white/10"><span className="text-xs font-medium text-zinc-500 dark:text-zinc-400">{work.status}</span>
-            <div className="flex gap-3">{work.repo && <a href={work.repo} target="_blank" rel="noopener noreferrer" aria-label={`View ${work.title} source`}><Github size={19}/></a>}{work.demo && <a href={work.demo} target="_blank" rel="noopener noreferrer" aria-label={`View ${work.title} demo`} className="inline-flex items-center gap-1 text-sm font-semibold text-violet-600 dark:text-violet-300">Demo <ArrowUpRight size={16}/></a>}</div>
+            <div className="flex gap-3">{work.repo && <a href={work.repo} target="_blank" rel="noopener noreferrer" aria-label={`View ${work.title} source`}><Github size={19}/></a>}{work.demo && <a href={work.demo} target="_blank" rel="noopener noreferrer" aria-label={`View ${work.title} demo`} className="inline-flex items-center gap-1 text-sm font-semibold text-violet-600 dark:text-stone-300">Demo <ArrowUpRight size={16}/></a>}</div>
           </div>
         </article>)}
       </div>
       {selected && <div className="fixed inset-0 z-[200] flex items-center justify-center bg-black/70 p-4" role="presentation" onMouseDown={e => { if (e.target === e.currentTarget) setSelected(null); }}>
         <section id="project-detail-dialog" role="dialog" aria-modal="true" aria-labelledby="project-detail-title" className="relative w-full max-w-2xl max-h-[85vh] overflow-y-auto rounded-3xl bg-white p-7 text-zinc-900 shadow-2xl dark:bg-[#15182c] dark:text-white md:p-10">
           <button ref={closeButtonRef} type="button" aria-label="Close project details" onClick={() => setSelected(null)} className="absolute right-5 top-5 rounded-full border border-zinc-300 p-2 dark:border-white/20"><X size={20}/></button>
-          <p className="mb-3 pr-10 text-xs font-bold uppercase tracking-widest text-violet-600 dark:text-violet-300">{selected.category} · {selected.status}</p>
+          <p className="mb-3 pr-10 text-xs font-bold uppercase tracking-widest text-violet-600 dark:text-stone-300">{selected.category} · {selected.status}</p>
           <h3 id="project-detail-title" className="pr-8 text-3xl font-bold leading-tight break-words">{selected.title}</h3>
           <p className="mt-4 text-zinc-600 dark:text-zinc-300">{selected.description}</p>
           <h4 className="mt-7 text-lg font-bold">The problem</h4><p className="mt-2 text-zinc-600 dark:text-zinc-300">{selected.problem}</p>
@@ -119,8 +119,8 @@ export default function PortfolioShowcase() {
           <p className="mt-6 text-sm text-zinc-500 dark:text-zinc-400">Project stage: {selected.status}. Outcomes and performance figures are not claimed without supporting evidence.</p>
           <div className="mt-6 flex flex-wrap gap-3">
             {selected.repo && <a className="rounded-full bg-violet-600 px-5 py-3 text-sm font-semibold text-white" href={selected.repo} target="_blank" rel="noopener noreferrer">Source code ↗</a>}
-            {selected.demo && <a className="rounded-full border border-violet-500 px-5 py-3 text-sm font-semibold text-violet-700 dark:text-violet-300" href={selected.demo} target="_blank" rel="noopener noreferrer">View demo ↗</a>}
-            {flagshipSlugs[selected.title] && <Link href={`/projects/${flagshipSlugs[selected.title]}`} className="rounded-full border border-violet-500 px-5 py-3 text-sm font-semibold text-violet-700 dark:text-violet-300">Full case study</Link>}
+            {selected.demo && <a className="rounded-full border border-violet-500 px-5 py-3 text-sm font-semibold text-violet-700 dark:text-stone-300" href={selected.demo} target="_blank" rel="noopener noreferrer">View demo ↗</a>}
+            {flagshipSlugs[selected.title] && <Link href={`/projects/${flagshipSlugs[selected.title]}`} className="rounded-full border border-violet-500 px-5 py-3 text-sm font-semibold text-violet-700 dark:text-stone-300">Full case study</Link>}
             <button type="button" onClick={() => setSelected(null)} className="rounded-full border border-zinc-300 px-5 py-3 text-sm font-semibold dark:border-white/30">Back to projects</button>
           </div>
         </section>
