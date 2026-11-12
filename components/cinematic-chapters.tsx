@@ -53,7 +53,7 @@ export default function CinematicChapters(){
        mix=clamp((focus+width/2-tops[chapter])/width);
      }
      scenes.forEach((scene,i)=>{
-       const opacity=reduced.matches?(i===chapter?0.3:0):(i===from?(to<0?1:1-mix):i===to?mix:0);
+       const opacity=i===0?0:(reduced.matches?(i===chapter?0.3:0):(i===from?(to<0?1:1-mix):i===to?mix:0));
        scene.style.opacity=String(opacity);
        scene.style.visibility=opacity>0?"visible":"hidden";
      });
