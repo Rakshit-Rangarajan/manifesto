@@ -155,7 +155,7 @@ const About = () => {
   ];
 
   return (
-    <section id="about" ref={sectionRef} className="relative z-20 bg-transparent w-full min-h-[80vh] flex items-center py-32 px-6 md:px-20 border-t border-black/5 dark:border-white/5 overflow-hidden">
+    <section id="about" ref={sectionRef} className="relative z-20 bg-transparent w-full flex items-center py-16 md:py-24 px-6 md:px-20 border-t border-black/5 dark:border-white/5 overflow-hidden">
       <div className="max-w-[1400px] mx-auto w-full grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-start">
 
         {/* LEFT COLUMN */}
@@ -171,7 +171,7 @@ const About = () => {
           </p>
           <h2 ref={titleRef} className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tighter text-zinc-900 dark:text-white leading-[1.1]">
             <span className="about-title-line block">Problems first.</span>
-            <span className="about-title-line text-transparent bg-clip-text bg-gradient-to-r from-primary to-emerald-400 italic mt-2 block">AI where it matters.</span>
+            <span className="about-title-line text-transparent bg-clip-text bg-gradient-to-r from-primary to-stone-500 italic mt-2 block">AI where it matters.</span>
           </h2>
 
           {/* Image and intro side by side */}
@@ -186,9 +186,9 @@ const About = () => {
             >
               <div className="relative">
                 {/* Animated gradient border */}
-                <div className="absolute inset-0 rounded-[2.5rem] bg-gradient-to-r from-primary via-emerald-400 to-cyan-400 animate-pulse opacity-70" />
-                <div className="relative rounded-[2.3rem] overflow-hidden bg-zinc-900 dark:bg-zinc-950 p-1">
-                  <div className="relative rounded-[2rem] overflow-hidden bg-zinc-800 aspect-[4/5]">
+                <div className="absolute -inset-1 rounded-[2rem] border border-primary/40 opacity-80" />
+                <div className="relative rounded-[1.9rem] overflow-hidden bg-zinc-900 dark:bg-zinc-950 p-1">
+                  <div className="relative rounded-[1.6rem] overflow-hidden bg-zinc-800 aspect-[4/5]">
                     <img
                       src="/DP.png"
                       alt="Rakshit Rangarajan"
@@ -199,18 +199,7 @@ const About = () => {
                   </div>
                 </div>
                 {/* Floating bubbles */}
-                <AnimatedBubble
-                  items={["Full-Stack Dev", "Web Developer", "Application Dev"]}
-                  className="-bottom-4 -right-4 md:-right-8"
-                  delay={0.5}
-                  intervalMs={3500}
-                />
-                <AnimatedBubble
-                  items={["Web Designer", "UI/UX Engineer", "AI Specialist"]}
-                  className="-top-4 -left-4 md:-left-8"
-                  delay={0.7}
-                  intervalMs={4000}
-                />
+                
               </div>
             </motion.div>
 
