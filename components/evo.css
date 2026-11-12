@@ -491,3 +491,14 @@
  .evo .evo-floating-controls .evo-audio-controller .evo-audio-wave,.evo .evo-floating-controls .evo-audio-controller .evo-audio-label,.evo .evo-floating-controls .evo-audio-controller .evo-audio-volume{display:none}
  .evo.evo-light .evo-floating-controls .evo-audio-controller{background:rgba(255,249,252,.72);border-color:rgba(140,45,91,.4)}
 }
+
+/* Slightly smaller desktop soundtrack pill; mobile circular toggle stays unchanged. */
+@media(min-width:701px){
+ .evo .evo-floating-controls .evo-audio-controller{gap:6px;min-height:36px;max-width:165px;padding:3px 9px 3px 3px;bottom:22px;right:20px}
+ .evo .evo-floating-controls .evo-audio-controller .evo-sound-toggle{width:27px;height:27px;min-width:27px}
+ .evo .evo-floating-controls .evo-audio-controller .evo-sound-toggle svg{width:14px;height:14px}
+ .evo .evo-floating-controls .evo-audio-wave{height:16px;gap:2px}
+ .evo .evo-floating-controls .evo-audio-wave i:nth-child(n+10){display:none}
+ .evo .evo-floating-controls .evo-audio-label{font-size:8px;letter-spacing:.045em}
+ .evo .evo-floating-controls .evo-audio-volume{width:12px;height:12px}
+}
