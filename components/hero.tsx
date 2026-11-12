@@ -95,7 +95,7 @@ export default function Hero() {
       <div className="anime-hero__grid">
         <div className="anime-hero__art" aria-hidden="true">
           <div className="anime-hero__halo" />
-          <img src="/cyberpunk_ai_architect_workspace.png" alt="" />
+          <img className="anime-hero__image--dark" src="/1f7468f2e21616728cbd8d727116c24dd4c6c87cfd3646b8f4fbd24a8972a8ef.png" alt="" /><img className="anime-hero__image--light" src="/bac2891e4b0fb1f8aeb196b5e0937ef3177ac783f195ff0bbb87779ddb846050.png" alt="" />
           <div className="anime-hero__art-fade" />
         </div>
         <div className="anime-hero__content">
