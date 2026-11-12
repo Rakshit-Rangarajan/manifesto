@@ -413,3 +413,36 @@
 .evo .evo-case-dialog{position:relative}
 .evo .evo-case-close{position:absolute;top:18px;right:18px;left:auto;bottom:auto;z-index:5;display:inline-flex;align-items:center;justify-content:center;padding:11px 15px;border:1px solid var(--line);border-radius:11px;background:color-mix(in srgb,var(--bg) 20%,transparent);backdrop-filter:blur(14px);color:var(--fg);font-size:12px;font-weight:800}
 @media(max-width:600px){.evo .evo-case-dialog{padding-top:75px}.evo .evo-case-close{top:15px;right:15px}}
+
+/* Contact terminal: choice cards instead of a dropdown. */
+.evo .evo-message-form{position:relative;overflow:hidden;border-radius:24px;background:linear-gradient(145deg,color-mix(in srgb,var(--bg) 28%,transparent),color-mix(in srgb,var(--red) 5%,transparent));box-shadow:0 20px 70px #0003}
+.evo .evo-message-form:before{content:"";position:absolute;top:0;left:12%;right:12%;height:1px;background:linear-gradient(90deg,transparent,var(--red),transparent)}
+.evo .evo-form-heading h3 em{font-family:Georgia,serif;font-weight:500;color:var(--red)}
+.evo .evo-form-transmitter{width:52px;height:52px;display:grid;place-items:center;border:1px solid var(--red);border-radius:16px;background:color-mix(in srgb,var(--red) 12%,transparent);color:var(--red);box-shadow:0 0 24px color-mix(in srgb,var(--red) 15%,transparent)}
+.evo .evo-topic-field{border:0;padding:0;margin:0;min-width:0}
+.evo .evo-topic-field legend{font-size:12px;font-weight:800;color:var(--fg);margin-bottom:12px}
+.evo .evo-topic-options{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.evo .evo-topic-options button{display:flex;flex-direction:column;align-items:flex-start;gap:10px;min-height:84px;padding:15px;border:1px solid var(--line);border-radius:14px;background:color-mix(in srgb,var(--bg) 12%,transparent);color:var(--fg);text-align:left;font-size:12px;font-weight:750;cursor:pointer;transition:transform .2s,border-color .2s,background .2s}
+.evo .evo-topic-options button:hover{transform:translateY(-3px);border-color:var(--red)}
+.evo .evo-topic-options button.evo-topic-active{border-color:var(--red);background:color-mix(in srgb,var(--red) 16%,transparent);box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--red) 20%,transparent)}
+.evo .evo-topic-options button svg{color:var(--red)}
+.evo .evo-message-form button[type=submit]{min-height:52px;border-radius:13px;transition:transform .2s,box-shadow .2s}
+.evo .evo-message-form button[type=submit]:hover{transform:translateY(-2px);box-shadow:0 12px 32px #f44b7a55}
+.evo .evo-contact-statement{position:relative;overflow:hidden}
+.evo .evo-contact-orbit{position:relative;height:310px;max-width:430px;margin:30px auto 10px;display:grid;place-items:center;isolation:isolate}
+.evo .evo-orbit-ring{position:absolute;border:1px solid color-mix(in srgb,var(--red) 42%,transparent);border-radius:50%;box-shadow:0 0 25px color-mix(in srgb,var(--red) 8%,transparent)}
+.evo .evo-orbit-ring-one{width:235px;height:235px;animation:evo-orbit-turn 35s linear infinite}
+.evo .evo-orbit-ring-two{width:300px;height:170px;transform:rotate(-35deg);border-style:dashed;animation:evo-orbit-tilt 18s ease-in-out infinite alternate}
+.evo .evo-orbit-core{position:relative;width:138px;height:138px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;border-radius:50%;border:1px solid var(--red);background:radial-gradient(circle,color-mix(in srgb,var(--red) 24%,var(--bg)),color-mix(in srgb,var(--bg) 55%,transparent));color:var(--red);box-shadow:0 0 45px color-mix(in srgb,var(--red) 20%,transparent)}
+.evo .evo-orbit-core span{font-size:10px;letter-spacing:.15em;font-weight:900;color:var(--fg)}
+.evo .evo-orbit-node{position:absolute;z-index:2;padding:9px 12px;border:1px solid var(--line);border-radius:9px;background:color-mix(in srgb,var(--bg) 65%,transparent);backdrop-filter:blur(12px);font:800 10px monospace;letter-spacing:.1em;color:var(--fg)}
+.evo .evo-orbit-node-ai{top:15px;left:12%}.evo .evo-orbit-node-build{right:2%;top:44%}.evo .evo-orbit-node-scale{bottom:14px;left:17%}
+.evo .evo-contact-signal{display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap;border-top:1px solid var(--line);padding-top:18px;color:var(--red);font:800 10px monospace;letter-spacing:.07em}
+@keyframes evo-orbit-turn{to{transform:rotate(360deg)}}
+@keyframes evo-orbit-tilt{to{transform:rotate(35deg)}}
+.evo.evo-light .evo-message-form{background:rgba(255,248,251,.4)}
+.evo.evo-light .evo-topic-options button{background:rgba(255,255,255,.36);color:#302037}
+.evo.evo-light .evo-topic-options button.evo-topic-active{background:rgba(189,44,101,.16);color:#302037}
+.evo.evo-light .evo-orbit-node{background:rgba(255,248,251,.8);color:#302037}
+@media(max-width:480px){.evo .evo-topic-options button{padding:12px;min-height:80px}.evo .evo-contact-orbit{height:270px}.evo .evo-orbit-ring-one{width:200px;height:200px}.evo .evo-orbit-ring-two{width:245px;height:140px}}
+@media(prefers-reduced-motion:reduce){.evo .evo-orbit-ring{animation:none!important}.evo .evo-topic-options button,.evo .evo-message-form button[type=submit]{transition:none}}
