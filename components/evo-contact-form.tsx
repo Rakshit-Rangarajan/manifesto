@@ -1,9 +1,10 @@
 "use client";
 import {useState,type FormEvent} from "react";
-import {ArrowUpRight,Send,ShieldCheck} from "lucide-react";
+import {ArrowUpRight,Send,ShieldCheck,Sparkles,Code2,BriefcaseBusiness,MessagesSquare} from "lucide-react";
 export default function ContactForm(){
  const [status,setStatus]=useState<"idle"|"sending"|"success"|"error">("idle");
  const [message,setMessage]=useState("");
+ const [topic,setTopic]=useState("AI & automation project");
  async function submit(e:FormEvent<HTMLFormElement>){
   e.preventDefault();if(status==="sending")return;
   const form=e.currentTarget;const data=new FormData(form);
@@ -17,9 +18,9 @@ export default function ContactForm(){
   }catch{setStatus("error");setMessage("The message could not be sent. Please email me directly instead.");}
  }
  return <form className="evo-message-form" onSubmit={submit} aria-label="Send Rakshit a message">
-  <div className="evo-form-heading"><div><span className="evo-kicker">/ DIRECT CHANNEL</span><h3>Start a conversation</h3><p>Tell me what you're building, solving, or imagining.</p></div><Send size={25}/></div>
+  <div className="evo-form-heading"><div><span className="evo-kicker">/ TRANSMISSION TERMINAL · 001</span><h3>Send a signal <em>my way.</em></h3><p>From the first spark of an idea to the next big challenge.</p></div><div className="evo-form-transmitter"><Send size={25}/></div></div>
   <div className="evo-form-two"><label>Your name <input name="name" autoComplete="name" required minLength={2} maxLength={120} placeholder="Your name"/></label><label>Your email <input type="email" name="email" autoComplete="email" required maxLength={254} placeholder="you@example.com"/></label></div>
-  <label>What is this about?<select name="topic" required defaultValue=""><option value="" disabled>Select a topic</option><option>AI & automation project</option><option>Engineering collaboration</option><option>Job opportunity</option><option>General conversation</option></select></label>
+  <fieldset className="evo-topic-field"><legend>What shall we build together?</legend><div className="evo-topic-options">{[["AI & automation project",<Sparkles size={18} key="ai"/>,"AI & Automation"],["Engineering collaboration",<Code2 size={18} key="code"/>,"Collaboration"],["Job opportunity",<BriefcaseBusiness size={18} key="job"/>,"Opportunities"],["General conversation",<MessagesSquare size={18} key="chat"/>,"Just say hello"]].map(([value,icon,label])=><button key={String(value)} type="button" className={topic===value?"evo-topic-active":""} onClick={()=>setTopic(String(value))} aria-pressed={topic===value}>{icon}<span>{label}</span></button>)}</div><input type="hidden" name="topic" value={topic}/></fieldset>
   <label>Your message <textarea name="message" required minLength={15} maxLength={5000} rows={5} placeholder="The problem, your idea, or what you'd like to discuss…"/></label>
   <input type="text" name="_honey" tabIndex={-1} autoComplete="off" className="evo-form-trap" aria-hidden="true"/>
   <input type="hidden" name="_subject" value="New message from Rakshit's portfolio"/>
