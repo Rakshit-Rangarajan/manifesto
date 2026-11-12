@@ -1,5 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Noto+Serif+Devanagari:wght@400;600&family=Noto+Serif+Tamil:wght@400;600&family=Noto+Serif+Kannada:wght@400;600&family=Noto+Serif+JP:wght@400;600&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Yuji+Boku&family=Kalam:wght@700&family=Kavivanar&family=Anek+Kannada:wght@600;700;800&display=swap");
 
 @keyframes spin-slow {
   from {
@@ -359,3 +360,49 @@ main > section { scroll-margin-top:5rem; }
 #hero::before { content: ""; position: absolute; inset: 0; pointer-events: none; opacity: .24; background: repeating-linear-gradient(0deg,transparent 0,transparent 4px,rgba(117,153,255,.09) 5px); mask-image: linear-gradient(to bottom, black,transparent 90%); }
 #hero .brush-name-stage { position: relative; z-index: 2; }
 @media (prefers-reduced-motion: reduce) { #hero::before { opacity: .1; } }
+
+/* Signature system: bold brush-calligraphy in every supported writing system.
+   Allow natural wrapping so non-Latin names remain prominent on mobile. */
+#hero .brush-name-stage {
+  height: clamp(9rem, 20vw, 14rem);
+  min-height: 0;
+  width: min(100%, 1100px);
+  margin-inline: auto;
+  overflow: visible;
+}
+#hero .brush-name {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  min-height: 100%;
+  padding: .1em .04em .2em;
+  white-space: normal;
+  overflow-wrap: anywhere;
+  font-weight: 700;
+  line-height: 1.45;
+  letter-spacing: -.035em;
+  font-size: clamp(2.8rem, 7.1vw, 7.5rem);
+}
+#hero .brush-name--en { font-family: "Permanent Marker", cursive; font-size: clamp(2.7rem, 6.8vw, 7.3rem); }
+#hero .brush-name--ja { font-family: "Yuji Boku", "Noto Serif JP", serif; font-size: clamp(2.5rem, 6.2vw, 6.6rem); }
+#hero .brush-name--hi { font-family: "Kalam", "Noto Serif Devanagari", sans-serif; font-size: clamp(2.8rem, 7.3vw, 7.4rem); line-height: 1.65; }
+#hero .brush-name--ta { font-family: "Kavivanar", "Noto Serif Tamil", sans-serif; font-size: clamp(2.7rem, 7vw, 7.1rem); }
+#hero .brush-name--kn { font-family: "Anek Kannada", "Noto Serif Kannada", sans-serif; font-weight: 800; font-style: italic; font-size: clamp(2.7rem, 7vw, 7.1rem); }
+#hero .brush-name__ink {
+  display: inline-block;
+  max-width: 100%;
+  font-synthesis: none;
+  transform: rotate(-1.5deg);
+  filter: drop-shadow(2px 3px 0 rgba(99,102,241,.22));
+}
+@media (max-width: 640px) {
+  #hero .brush-name-stage { height: 10rem; }
+  #hero .brush-name { letter-spacing: -.045em; line-height: 1.5; }
+  #hero .brush-name--en { font-size: clamp(1.8rem, 8.2vw, 3.6rem); }
+  #hero .brush-name--ja { font-size: clamp(1.8rem, 7.4vw, 3.3rem); }
+  #hero .brush-name--hi { font-size: clamp(2.1rem, 9.1vw, 3.8rem); line-height: 1.65; }
+  #hero .brush-name--ta { font-size: clamp(2rem, 8.5vw, 3.6rem); }
+  #hero .brush-name--kn { font-size: clamp(2rem, 8.5vw, 3.6rem); }
+}
+@media (prefers-reduced-motion: reduce) { #hero .brush-name__ink { transform: none; } }
