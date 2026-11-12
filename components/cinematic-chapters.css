@@ -28,3 +28,11 @@
 .evo-cinema-rings{transform:translate(-50%,-50%) rotate(calc(var(--cinema-scroll)*30deg)) scale(calc(1 + var(--cinema-scroll)*.09))}
 .evo-cinema-light{transform:translate3d(calc(var(--cinema-scroll)*12%),calc(var(--cinema-scroll)*-5%),0)}
 @media(prefers-reduced-motion:reduce){.evo-cinema-atmosphere{transform:none!important}}
+
+/* Seven chapter-specific portraits; no shared hero artwork. The gradient preserves
+   readability while the image plane drifts independently from the atmosphere. */
+.evo-cinema-character{position:absolute;inset:0;background-size:cover;background-position:38% center;opacity:.55;transform:translate3d(calc(var(--cinema-scroll)*-2%),calc(var(--cinema-scroll)*2%),0) scale(calc(1.06 + var(--cinema-scroll)*.04));will-change:transform}
+.evo-cinema-atmosphere{opacity:.65;mix-blend-mode:multiply}
+.evo-cinema-vignette{background:linear-gradient(90deg,transparent 0%,var(--bg) 92%);opacity:.48}
+@media(max-width:700px){.evo-cinema-character{background-position:32% center;opacity:.34}.evo-cinema-vignette{opacity:.7}}
+@media(prefers-reduced-motion:reduce){.evo-cinema-character{transform:none!important;will-change:auto}}
