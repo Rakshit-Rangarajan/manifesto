@@ -527,3 +527,21 @@
 .evo .evo-project-art.evo-project-art-full .evo-project-cover{object-fit:contain!important;object-position:center center!important;padding:8px!important;box-sizing:border-box}
 .evo.evo-light .evo-project-art.evo-project-art-full{background:linear-gradient(145deg,#fff0f5,#f5dce8)!important}
 .evo .evo-project-art.evo-project-art-full::after{background:linear-gradient(180deg,transparent 75%,rgba(8,5,17,.12))!important}
+
+/* Contact: restrained editorial process, replacing the oversized orbit graphic. */
+.evo .evo-contact-process{margin:38px 0 12px;padding:22px 20px 18px;border:1px solid color-mix(in srgb,var(--red) 35%,var(--line));border-radius:18px;background:linear-gradient(145deg,color-mix(in srgb,var(--panel) 88%,transparent),color-mix(in srgb,var(--bg) 85%,transparent));overflow:hidden;max-width:100%}
+.evo .evo-process-header{display:flex;justify-content:space-between;gap:12px;align-items:center;padding:0 0 20px;border-bottom:1px solid var(--line);font:700 10px/1.4 monospace;letter-spacing:.12em;color:var(--muted)}
+.evo .evo-process-header span:last-child{color:var(--red)}
+.evo .evo-process-steps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;padding:24px 0 20px;position:relative}
+.evo .evo-process-steps::before{content:"";position:absolute;left:16.66%;right:16.66%;top:49px;border-top:1px dashed color-mix(in srgb,var(--red) 38%,var(--line));pointer-events:none}
+.evo .evo-process-step{display:flex;align-items:center;flex-direction:column;min-width:0;text-align:center;position:relative;gap:8px}
+.evo .evo-process-index{font:700 10px monospace;letter-spacing:.12em;color:var(--red)}
+.evo .evo-process-icon{display:grid;place-items:center;width:52px;height:52px;border:1px solid color-mix(in srgb,var(--red) 40%,var(--line));border-radius:16px;color:var(--red);background:var(--bg);box-shadow:0 5px 22px color-mix(in srgb,var(--red) 8%,transparent);position:relative;z-index:1;transition:transform .2s ease}
+.evo .evo-process-step:hover .evo-process-icon{transform:translateY(-3px)}
+.evo .evo-process-step strong{font-size:clamp(12px,1.3vw,15px);color:var(--fg)}
+.evo .evo-process-step small{font-size:clamp(10px,1.1vw,12px);line-height:1.4;color:var(--muted)}
+.evo .evo-process-end{display:flex;align-items:center;justify-content:center;gap:9px;padding-top:16px;border-top:1px solid var(--line);font:700 10px monospace;letter-spacing:.12em;color:var(--muted)}
+.evo .evo-process-end svg{color:var(--red)}
+.evo .evo-process-pulse{width:7px;height:7px;border-radius:50%;background:var(--red);box-shadow:0 0 12px color-mix(in srgb,var(--red) 45%,transparent)}
+@media(max-width:700px){.evo .evo-contact-process{margin:25px 0 8px;padding:16px 12px;border-radius:15px}.evo .evo-process-header{font-size:8px;padding-bottom:14px}.evo .evo-process-steps{gap:4px;padding:18px 0}.evo .evo-process-steps::before{top:42px}.evo .evo-process-icon{width:43px;height:43px;border-radius:13px}.evo .evo-process-icon svg{width:19px;height:19px}.evo .evo-process-step{gap:6px}.evo .evo-process-step small{font-size:10px}.evo .evo-process-end{font-size:9px;letter-spacing:.06em}}
+@media(prefers-reduced-motion:reduce){.evo .evo-process-icon{transition:none}}
