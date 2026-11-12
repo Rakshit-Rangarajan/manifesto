@@ -1,0 +1,17 @@
+/* EVO project art direction: theme-aware image-to-solid glass cards. */
+.evo-project{position:relative;isolation:isolate;background:color-mix(in srgb,var(--bg) 87%,transparent)!important;border:1px solid color-mix(in srgb,var(--red) 34%,transparent);box-shadow:0 16px 45px #0003;backdrop-filter:blur(15px);-webkit-backdrop-filter:blur(15px)}
+.evo-project-art{overflow:hidden;isolation:isolate;background:linear-gradient(90deg,transparent 0%,color-mix(in srgb,var(--bg) 20%,transparent) 46%,var(--bg) 100%),var(--project-visual)!important;background-position:center;background-size:cover;transition:background-position .5s}
+.evo-project-art::before{content:"";position:absolute;inset:0;background:linear-gradient(108deg,transparent 30%,color-mix(in srgb,var(--bg) 35%,transparent) 57%,var(--bg) 100%);z-index:-1}
+.evo-project-art::after{content:"";position:absolute;inset:-80% -50%;background:linear-gradient(105deg,transparent 42%,#ffffff16 50%,transparent 58%);transform:translateX(-70%) rotate(8deg);transition:transform .8s ease;pointer-events:none}
+.evo-project:hover .evo-project-art::after{transform:translateX(60%) rotate(8deg)}
+.evo-project-art>b{position:relative;text-shadow:0 2px 16px #000a}
+.evo-project-body{background:linear-gradient(180deg,color-mix(in srgb,var(--bg) 72%,transparent),var(--bg));position:relative}
+.evo-light .evo-project{box-shadow:0 15px 38px #70415a17}
+.evo-light .evo-project-art{color:#fff}
+.evo-primary,.evo-secondary,.evo-project-body>a{border-radius:0!important;clip-path:polygon(0 0,calc(100% - 14px) 0,100% 14px,100% 100%,14px 100%,0 calc(100% - 14px));transition:transform .25s ease,box-shadow .25s ease,filter .25s ease}
+.evo-primary{background:linear-gradient(125deg,#5c0921d9,#e72455df)!important;border:1px solid #ff577c;box-shadow:inset 0 0 0 1px #ffffff20,0 0 24px #f02b5d45}
+.evo-secondary{background:color-mix(in srgb,var(--bg) 72%,transparent);border:1px solid var(--line)}
+.evo-primary:hover,.evo-secondary:hover,.evo-project-body>a:hover{transform:translateY(-2px);filter:brightness(1.15)}
+.evo-project-body>a{padding:10px 14px;border:1px solid var(--line);background:color-mix(in srgb,var(--red) 11%,transparent)}
+.evo-light .evo-primary{background:linear-gradient(125deg,#b81b4c,#ec6387)!important}
+@media(prefers-reduced-motion:reduce){.evo-project,.evo-primary,.evo-secondary,.evo-project-body>a,.evo-project-art::after{transition:none!important}.evo-project:hover{transform:none}.evo-project:hover .evo-project-art::after{transform:none}}
