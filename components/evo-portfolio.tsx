@@ -3,6 +3,7 @@ import { useMemo, useState, type CSSProperties } from "react";
 import { ArrowUpRight, Github, Linkedin, Mail, Moon, Sun, Search, Menu, X, Cpu, Layers, Code2, GraduationCap, BriefcaseBusiness, FlaskConical } from "lucide-react";
 import { personalInfo } from "@/data/portfolio";
 import "./evo.css";
+import "./evo-project-cards.css";
 import AmbientEffects from "./ambient-effects";
 import ScrollChapters from "./scroll-chapters";
 
