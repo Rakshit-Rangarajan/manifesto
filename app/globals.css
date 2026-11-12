@@ -406,3 +406,13 @@ main > section { scroll-margin-top:5rem; }
   #hero .brush-name--kn { font-size: clamp(2rem, 8.5vw, 3.6rem); }
 }
 @media (prefers-reduced-motion: reduce) { #hero .brush-name__ink { transform: none; } }
+
+/* Desktop signature alignment and overflow safeguards. */
+@media (min-width: 1024px) {
+  #hero .brush-name-stage { width: 100%; height: auto; min-height: 9rem; margin-inline: 0; }
+  #hero .brush-name { justify-content: flex-start; text-align: left; font-size: clamp(2.4rem, 4.1vw, 5.6rem); line-height: 1.35; }
+  #hero .brush-name--ja { font-size: clamp(2.1rem, 3.6vw, 4.9rem); }
+  #hero .brush-name--hi { font-size: clamp(2.3rem, 4vw, 5.2rem); line-height: 1.6; }
+  #hero .brush-name--ta, #hero .brush-name--kn { font-size: clamp(2.2rem, 3.8vw, 5.1rem); }
+}
+#hero .brush-name__ink { overflow-wrap: anywhere; white-space: normal; }
