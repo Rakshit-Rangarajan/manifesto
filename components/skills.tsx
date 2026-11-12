@@ -1,118 +1,29 @@
 "use client";
-
 import { motion } from "framer-motion";
-import { skills } from "@/data/portfolio";
-import {
-  Code2,
-  Server,
-  Brain,
-  Cpu,
-  Workflow
-} from "lucide-react";
+import { BrainCircuit, Network, Database, ShieldCheck, Server } from "lucide-react";
 
-const getHoverGradient = (color: string) => {
-  const blackColors = ['#000000', '#000', '#1a1a1a', '#333333', '#333'];
-  if (blackColors.includes(color.toLowerCase())) {
-    return "from-primary/20 to-emerald-400/20";
-  }
-  return `from-[${color}]/20 to-[${color}]/10`;
-};
-
-const skillCategories = [
-  { key: "frontend" as const, label: "Frontend", icon: Code2 },
-  { key: "backend" as const, label: "Backend", icon: Server },
-  { key: "ai" as const, label: "AI & LLMs", icon: Brain },
-  { key: "automation" as const, label: "Automation", icon: Workflow },
-  { key: "tools" as const, label: "Dev Tools", icon: Cpu },
+const pillars = [
+ { title: "Agentic AI & Orchestration", icon: Network, detail: "Multi-agent systems, tool calling, autonomous workflows, LangGraph, LangChain and CrewAI." },
+ { title: "LLM & RAG Architecture", icon: BrainCircuit, detail: "Retrieval-augmented generation, embeddings, vector search, model selection and local inference with Ollama." },
+ { title: "Data & Memory Systems", icon: Database, detail: "PostgreSQL/pgvector, MongoDB, Redis and persistent knowledge architectures." },
+ { title: "Enterprise AI Engineering", icon: ShieldCheck, detail: "Evaluation, observability, human-in-the-loop design, reliability and secure integrations." },
+ { title: "Production Delivery", icon: Server, detail: "Python, C# / ASP.NET Core, APIs, Podman, CI/CD and deployment architecture." },
 ];
 
-const Skills = () => {
-  return (
-    <section id="skills" className="relative z-20 bg-transparent w-full min-h-screen py-32 md:py-48 px-6 md:px-20 border-t border-black/5 dark:border-white/5">
-      <div className="max-w-[1600px] mx-auto w-full">
-        
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="mb-16"
-        >
-          <p className="text-primary text-sm md:text-base font-medium tracking-widest uppercase mb-4">
-            Tools I Weaponize
-          </p>
-          <h2 className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tighter text-zinc-900 dark:text-white leading-[1.1]">
-            My <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-emerald-400">Arsenal.</span>
-          </h2>
-          <p className="mt-6 text-xl text-zinc-600 dark:text-slate-400 max-w-2xl">
-            I don't just use AI, I master it. From coding to creation, here's my complete AI stack.
-          </p>
-        </motion.div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {skillCategories.map((category, catIndex) => (
-            <motion.div
-              key={category.key}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: catIndex * 0.1 }}
-              className="group"
-            >
-              <div className="flex items-center gap-3 mb-4">
-                <div className="p-2 rounded-lg bg-zinc-100 dark:bg-white/5">
-                  <category.icon className="w-5 h-5 text-primary" />
-                </div>
-                <h3 className="text-lg font-semibold text-zinc-900 dark:text-white">
-                  {category.label}
-                </h3>
-              </div>
-
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                {skills[category.key].map((skill) => (
-                  <div
-                    key={skill.name}
-                    className="relative p-4 rounded-xl bg-zinc-50 dark:bg-white/5 border border-zinc-200 dark:border-white/10 hover:border-primary/30 transition-all duration-300 cursor-default hover:scale-[1.02] hover:-translate-y-0.5"
-                  >
-                    <div className="absolute inset-0 bg-gradient-to-br from-primary/15 to-emerald-400/15 opacity-0 hover:opacity-100 transition-opacity duration-300 rounded-xl" />
-
-                    <div className="relative z-10 flex items-center gap-3">
-                      {skill.icon && (
-                        <img 
-                          src={skill.icon} 
-                          alt={`${skill.name} logo`} 
-                          className="w-5 h-5 object-contain"
-                          onError={(e) => { e.currentTarget.style.display = 'none'; }} 
-                        />
-                      )}
-                      <div>
-                        <h4 className="font-semibold text-zinc-900 dark:text-white text-sm">
-                          {skill.name}
-                        </h4>
-                      </div>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </motion.div>
-          ))}
-        </div>
-
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.5 }}
-          className="mt-16 text-center"
-        >
-          <p className="text-zinc-500 dark:text-slate-500 text-sm">
-            I leverage these tools for maximum efficiency while maintaining full control over the final output.
-          </p>
-        </motion.div>
-        
-      </div>
-    </section>
-  );
-};
-
-export default Skills;
+export default function Skills() {
+ return <section id="skills" className="relative z-20 w-full py-28 px-6 md:px-20 border-t border-black/5 dark:border-white/5">
+  <div className="max-w-6xl mx-auto">
+   <motion.div initial={{opacity:0,y:20}} whileInView={{opacity:1,y:0}} viewport={{once:true}}>
+    <p className="text-primary uppercase tracking-widest text-sm mb-4">Architecture over tool collecting</p>
+    <h2 className="text-5xl md:text-7xl font-bold tracking-tight text-zinc-900 dark:text-white">What I architect.</h2>
+    <p className="mt-6 text-xl text-zinc-600 dark:text-slate-400 max-w-3xl">I design AI systems that solve operational problems—from retrieval and reasoning to orchestration, memory, integrations and reliable delivery.</p>
+   </motion.div>
+   <div className="grid md:grid-cols-2 gap-5 mt-14">
+    {pillars.map(({title,icon:Icon,detail})=><div key={title} className="p-7 rounded-2xl border border-zinc-200 dark:border-white/10 bg-white/60 dark:bg-white/5">
+     <Icon className="w-7 h-7 text-primary mb-5"/><h3 className="text-xl font-semibold text-zinc-900 dark:text-white">{title}</h3><p className="mt-3 text-zinc-600 dark:text-slate-400 leading-relaxed">{detail}</p>
+    </div>)}
+   </div>
+   <p className="mt-10 text-sm text-zinc-500 dark:text-slate-400">Engineering foundation: .NET / C#, Python, Angular and full-stack application development.</p>
+  </div>
+ </section>;
+}
