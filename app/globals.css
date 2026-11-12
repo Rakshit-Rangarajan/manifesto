@@ -510,3 +510,22 @@ main > section { scroll-margin-top:5rem; }
  .anime-portfolio > section:not(#hero) {overflow:hidden;}
 }
 @media(prefers-reduced-motion:reduce) {.anime-portfolio > section:not(#hero) article:hover {transform:none;}}
+
+/* Exact 1536x864 screenshot composition: preserve source aspect ratio and coordinate mapping. */
+.exact-hero {position:relative;width:100%;background:#030711;overflow:hidden;}
+.exact-hero__desktop {position:relative;width:100%;aspect-ratio:16/9;max-height:none;overflow:hidden;}
+.exact-hero__art {display:block;width:100%;height:100%;object-fit:fill;}
+.exact-hero__nav button,.exact-hero__work,.exact-hero__contact {position:absolute;z-index:10;background:transparent;border:0;cursor:pointer;color:transparent;}
+.exact-hero__nav button {left:1.5%;width:5%;height:6%;}
+.exact-hero__work {left:56.8%;top:73.3%;width:15.6%;height:8.4%;}
+.exact-hero__contact {left:74.3%;top:73.3%;width:15%;height:8.4%;}
+.exact-hero button:focus-visible {outline:2px solid #5edaff;outline-offset:-3px;border-radius:9px;background:rgba(80,190,255,.12);}
+.exact-hero__mobile {display:none;}
+@media(max-width:800px) {
+ .exact-hero__desktop {display:none;}
+ .exact-hero__mobile {display:block;}
+ .exact-hero__mobile img {display:block;width:100%;height:auto;}
+ .exact-hero__mobile-actions {display:flex;flex-wrap:wrap;gap:12px;justify-content:center;padding:18px 14px 26px;background:#070c19;}
+ .exact-hero__mobile-actions button {border:1px solid #ff4267;border-radius:8px;padding:12px 16px;color:#fff;background:linear-gradient(110deg,#a70830,#e52348);font-weight:600;}
+ .exact-hero__mobile-actions button+button {background:transparent;border-color:#8196a9;}
+}
