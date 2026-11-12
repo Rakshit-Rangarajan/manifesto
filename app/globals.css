@@ -22,70 +22,49 @@
   :root,
   .dark {
     /* Dark theme - kept as is, user said it was perfect */
-    --background: 222 47% 6%;
-    --foreground: 210 40% 96%;
+    --background: 0 0% 4%;
+    --foreground: 0 0% 96%;
 
-    --card: 222 47% 8%;
-    --card-foreground: 210 40% 96%;
+    --card: 0 0% 8%;
+    --card-foreground: 0 0% 96%;
 
-    --popover: 222 47% 8%;
-    --popover-foreground: 210 40% 96%;
+    --popover: 0 0% 8%;
+    --popover-foreground: 0 0% 96%;
 
-    --primary: 191 91% 56%;
-    --primary-foreground: 222 47% 6%;
+    --primary: 0 80% 52%;
+    --primary-foreground: 0 0% 100%;
 
-    --secondary: 222 30% 14%;
-    --secondary-foreground: 210 40% 96%;
+    --secondary: 0 12% 14%;
+    --secondary-foreground: 0 0% 96%;
 
-    --muted: 222 30% 14%;
-    --muted-foreground: 215 20% 55%;
+    --muted: 0 8% 14%;
+    --muted-foreground: 0 0% 65%;
 
-    --accent: 191 91% 56%;
-    --accent-foreground: 222 47% 6%;
+    --accent: 0 80% 52%;
+    --accent-foreground: 0 0% 100%;
 
     --destructive: 0 84% 60%;
     --destructive-foreground: 210 40% 98%;
 
-    --border: 222 30% 18%;
-    --input: 222 30% 18%;
-    --ring: 191 91% 56%;
+    --border: 0 12% 21%;
+    --input: 0 12% 21%;
+    --ring: 0 80% 52%;
 
     --radius: 0.75rem;
   }
 
-  /* Light theme - reimagined with warm, sophisticated palette */
+  /* Light mode: cool porcelain, graphite, crimson; never cream/orange. */
   .light {
-    /* Warm cream background - like quality paper */
-    --background: 40 30% 96%;
-    --foreground: 30 10% 15%;
-    --card: 40 25% 94%;
-    --card-foreground: 30 10% 15%;
-    --popover: 40 30% 96%;
-    --popover-foreground: 30 10% 15%;
-
-    /* Rich amber/terracotta primary - bold and warm */
-    --primary: 25 90% 55%;
-    --primary-foreground: 40 30% 98%;
-
-    /* Muted sage for secondary */
-    --secondary: 150 15% 85%;
-    --secondary-foreground: 150 20% 25%;
-
-    --muted: 40 20% 88%;
-    --muted-foreground: 30 8% 32%;
-
-    --accent: 25 90% 55%;
-    --accent-foreground: 40 30% 98%;
-
-    --destructive: 0 72% 51%;
-    --destructive-foreground: 0 0% 100%;
-
-    /* Warm borders, not cold gray */
-    --border: 40 20% 82%;
-    --input: 40 20% 82%;
-    --ring: 25 90% 55%;
-
-    --radius: 0.5rem;
+    --background: 0 0% 97%; --foreground: 0 0% 9%;
+    --card: 0 0% 100%; --card-foreground: 0 0% 9%;
+    --popover: 0 0% 100%; --popover-foreground: 0 0% 9%;
+    --primary: 0 76% 42%; --primary-foreground: 0 0% 100%;
+    --secondary: 0 0% 91%; --secondary-foreground: 0 0% 15%;
+    --muted: 0 0% 93%; --muted-foreground: 0 0% 35%;
+    --accent: 0 76% 42%; --accent-foreground: 0 0% 100%;
+    --destructive: 0 72% 46%; --destructive-foreground: 0 0% 100%;
+    --border: 0 0% 83%; --input: 0 0% 83%; --ring: 0 76% 42%;
+    --radius: .65rem;
   }
 }
 
@@ -119,139 +98,18 @@
   }
 }
 
-/* Light theme component styles */
-.light {
-  /* Warm shadows */
-  --shadow-color: 30 20% 20%;
-}
-
-.light .card {
-  background: linear-gradient(145deg, hsl(40 30% 96%), hsl(38 25% 92%));
-  border: 1px solid hsl(40 20% 80%);
-  box-shadow: 
-    0 4px 6px -1px hsl(30 20% 20% / 0.05),
-    0 2px 4px -2px hsl(30 20% 20% / 0.03);
-}
-
-.light .card:hover {
-  border-color: hsl(25 90% 55% / 0.3);
-  box-shadow: 
-    0 10px 15px -3px hsl(30 20% 20% / 0.08),
-    0 4px 6px -4px hsl(30 20% 20% / 0.05);
-}
-
-.light .btn-primary {
-  background: linear-gradient(135deg, hsl(25 95% 50%) 0%, hsl(20 90% 45%) 100%);
-  color: hsl(40 30% 98%);
-  box-shadow: 0 4px 14px hsl(25 90% 45% / 0.35);
-  border: none;
-}
-
-.light .btn-primary:hover {
-  background: linear-gradient(135deg, hsl(25 95% 45%) 0%, hsl(20 90% 40%) 100%);
-  box-shadow: 0 6px 20px hsl(25 90% 45% / 0.4);
-  transform: translateY(-1px);
-}
-
-.light .btn-secondary {
-  background: linear-gradient(145deg, hsl(40 25% 92%), hsl(38 22% 88%));
-  color: hsl(30 15% 12%);
-  border: 1px solid hsl(40 20% 78%);
-}
-
-.light .btn-secondary:hover {
-  background: linear-gradient(145deg, hsl(40 25% 88%), hsl(38 22% 84%));
-  border-color: hsl(25 90% 55% / 0.4);
-}
-
-.light input,
-.light textarea {
-  background: hsl(40 30% 96%);
-  border: 1px solid hsl(40 20% 78%);
-  color: hsl(30 15% 12%);
-}
-
-.light input:focus,
-.light textarea:focus {
-  border-color: hsl(25 90% 55%);
-  box-shadow: 0 0 0 3px hsl(25 90% 55% / 0.15);
-  outline: none;
-}
-
-.light a {
-  color: hsl(25 85% 45%);
-  text-decoration-color: hsl(25 90% 55% / 0.4);
-}
-
-.light a:hover {
-  color: hsl(25 95% 50%);
-}
-
-/* Section backgrounds for light mode - alternating warm tones */
-.light section:nth-child(odd) {
-  background: transparent;
-}
-
-.light section:nth-child(even) {
-  background: linear-gradient(180deg, hsl(38 25% 92% / 0.5) 0%, transparent 100%);
-}
-
-/* Light mode progress bar */
-.light .progress-bar {
-  background: linear-gradient(90deg, hsl(25 95% 50%), hsl(15 85% 45%));
-  box-shadow: 0 0 20px hsl(25 90% 50% / 0.4);
-}
-
-/* Light mode modal overlay */
-.light .modal-overlay {
-  background: hsl(30 20% 10% / 0.6);
-  backdrop-filter: blur(8px);
-}
-
-/* Light mode borders and dividers */
-.light hr,
-.light .divider {
-  border-color: hsl(40 20% 82%);
-}
-
-.light .border-subtle {
-  border-color: hsl(40 20% 88%);
-}
-
-/* Light mode text utilities */
-.light .text-muted {
-  color: hsl(30 8% 45%);
-}
-
-.light .text-primary {
-  color: hsl(25 85% 45%);
-}
-
-/* Selection color for light mode */
-.light ::selection {
-  background: hsl(25 90% 55% / 0.2);
-  color: hsl(30 15% 12%);
-}
-
-/* Smooth scrollbar for light mode */
-.light ::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
-}
-
-.light ::-webkit-scrollbar-track {
-  background: hsl(40 20% 90%);
-}
-
-.light ::-webkit-scrollbar-thumb {
-  background: hsl(40 15% 70%);
-  border-radius: 4px;
-}
-
-.light ::-webkit-scrollbar-thumb:hover {
-  background: hsl(40 15% 60%);
-}
-
+/* Shared black / crimson design language */
+.light body { background: #f7f7f8; color: #171717; }
+.light .card { background: #fff; border: 1px solid #dedee0; }
+.light .text-primary { color: #b91c1c; }
+.light a { text-decoration-color: rgba(185,28,28,.35); }
+.light a:hover { color: #991b1b; }
+.light ::selection { background: rgba(185,28,28,.18); color: #171717; }
+.dark ::selection { background: rgba(220,38,38,.3); color: white; }
+.dark body { background: radial-gradient(ellipse at 50% 0%, #1b090b 0%, #09090b 48%, #050506 100%); }
+.dark .text-primary { color: #ef4444; }
+.dark .brush-name__ink { background-image: linear-gradient(110deg,#fff 0%,#f5d0d0 45%,#ef4444 100%); }
+.light .brush-name__ink { background-image: linear-gradient(110deg,#171717 0%,#7f1d1d 55%,#dc2626 100%); }
 /* Hide scrollbar globally but allow scrolling */
 * {
   -ms-overflow-style: none !important;
@@ -363,16 +221,16 @@
 }
 .brush-name__ink {
   display: inline-block;
-  background: linear-gradient(110deg, #111827 5%, #5b21b6 44%, #111827 75%, #7c3aed 95%);
+  background: linear-gradient(110deg, #171717 5%, #7f1d1d 50%, #dc2626 95%);
   background-clip: text;
   -webkit-background-clip: text;
   color: transparent;
-  filter: drop-shadow(1px 2px 0px rgba(124, 58, 237, .18));
+  filter: drop-shadow(1px 2px 0px rgba(185, 28, 28, .16));
   transform: rotate(-1.2deg);
   max-width: 100%;
 }
 .dark .brush-name__ink {
-  background-image: linear-gradient(105deg, #fafafa 2%, #d8b4fe 35%, #f8fafc 60%, #a78bfa 94%);
+  background-image: linear-gradient(105deg, #fafafa 2%, #fecaca 45%, #ef4444 94%);
 }
 .brush-name--en { font-family: "Permanent Marker", cursive; }
 .brush-name--ja { font-family: "Yuji Boku", "Noto Serif JP", serif; font-size: clamp(1.15rem, 4.4vw, 5.5rem); }
