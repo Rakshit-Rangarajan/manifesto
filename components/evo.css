@@ -316,3 +316,27 @@
 @media(max-width:760px){.evo-lab-section::before,.evo-projects-section::before,.evo-skills::before,.evo-experience::before,.evo-education-section::before,.evo-contact-section::before{background-position:35% center;opacity:.42;-webkit-mask-image:linear-gradient(180deg,#000 0%,#0008 30%,transparent 75%);mask-image:linear-gradient(180deg,#000 0%,#0008 30%,transparent 75%)}
 .evo-lab-section::after,.evo-projects-section::after,.evo-skills::after,.evo-experience::after,.evo-education-section::after,.evo-contact-section::after{background:linear-gradient(180deg,#0909185c 0%,#090918d9 40%,#090918 85%)}
 .evo-light .evo-lab-section::after,.evo-light .evo-projects-section::after,.evo-light .evo-skills::after,.evo-light .evo-experience::after,.evo-light .evo-education-section::after,.evo-light .evo-contact-section::after{background:linear-gradient(180deg,#faedf140 0%,#faedf1d9 42%,#faedf1 85%)}}
+
+/* Reference constellation: CSS-only orbit, no opaque panel or added image. */
+.evo .evo-tech-constellation{min-width:0;position:relative;border:1px solid color-mix(in srgb,var(--red) 40%,transparent);border-radius:22px;padding:20px;background:color-mix(in srgb,var(--bg) 8%,transparent);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);overflow:hidden}
+.evo .evo-constellation-header{display:flex;flex-direction:column;gap:5px;text-align:center}
+.evo .evo-constellation-header>span,.evo .evo-constellation-caption{font:600 10px monospace;letter-spacing:.18em;color:var(--red)}
+.evo .evo-constellation-header strong{font-size:clamp(20px,2.5vw,30px);color:var(--fg)}
+.evo .evo-constellation-header small{color:var(--muted);font-size:11px}
+.evo .evo-constellation-space{position:relative;aspect-ratio:1.25;min-height:300px;margin:14px auto;max-width:550px}
+.evo .evo-constellation-rings{position:absolute;inset:14% 9%;border:2px solid color-mix(in srgb,var(--red) 30%,transparent);border-radius:50%;box-shadow:0 0 20px color-mix(in srgb,var(--red) 17%,transparent),inset 0 0 35px color-mix(in srgb,var(--red) 13%,transparent);transform:rotate(-15deg)}
+.evo .evo-constellation-rings:before,.evo .evo-constellation-rings:after{content:"";position:absolute;inset:10% -4%;border:1px solid color-mix(in srgb,var(--red) 34%,transparent);border-radius:50%;transform:rotate(37deg)}
+.evo .evo-constellation-rings:after{transform:rotate(-36deg);border-color:color-mix(in srgb,var(--fg) 20%,transparent)}
+.evo .evo-constellation-core{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:27%;aspect-ratio:1;display:flex;flex-direction:column;align-items:center;justify-content:center;border:1px solid var(--red);border-radius:50%;background:color-mix(in srgb,var(--bg) 18%,transparent);backdrop-filter:blur(12px);box-shadow:0 0 28px color-mix(in srgb,var(--red) 26%,transparent);color:var(--fg)}
+.evo .evo-constellation-core strong{font-size:clamp(22px,3vw,40px)}
+.evo .evo-constellation-node{position:absolute;transform:translate(-50%,-50%);min-width:56px;display:flex;align-items:center;flex-direction:column;gap:4px;z-index:1}
+.evo .evo-constellation-node>span{display:grid;place-items:center;width:clamp(38px,5vw,54px);height:clamp(38px,5vw,54px);border-radius:15px;border:1px solid color-mix(in srgb,var(--red) 48%,transparent);background:color-mix(in srgb,var(--bg) 15%,transparent);backdrop-filter:blur(12px);font-size:clamp(13px,1.6vw,18px);font-weight:800;color:var(--fg);box-shadow:0 4px 22px #0002;transition:transform .3s}
+.evo .evo-constellation-node:hover>span{transform:scale(1.12)}
+.evo .evo-constellation-node small{font-size:10px;color:var(--fg);text-shadow:0 1px 8px var(--bg)}
+.evo .evo-constellation-caption{text-align:center}
+.evo .evo-skill-panel,.evo .evo-skill-metrics>div,.evo .evo-techgrid span,.evo .evo-project-metrics>div,.evo .evo-agent-grid>div,.evo .evo-pantheon-character{background:color-mix(in srgb,var(--bg) 12%,transparent)!important;backdrop-filter:blur(13px);-webkit-backdrop-filter:blur(13px)}
+.evo .evo-pantheon-scene{background:none!important;backdrop-filter:blur(8px)}
+.evo .evo-pantheon-scene:before{background:none!important}
+.evo .evo-lab-section::before,.evo .evo-projects-section::before,.evo .evo-skills::before,.evo .evo-experience::before,.evo .evo-education-section::before,.evo .evo-contact-section::before{opacity:.92}
+.evo .evo-lab-section::after,.evo .evo-projects-section::after,.evo .evo-skills::after,.evo .evo-experience::after,.evo .evo-education-section::after,.evo .evo-contact-section::after{opacity:.63}
+@media(max-width:720px){.evo .evo-constellation-space{min-height:250px}.evo .evo-constellation-node small{font-size:8px}.evo .evo-constellation-node>span{width:37px;height:37px}}
