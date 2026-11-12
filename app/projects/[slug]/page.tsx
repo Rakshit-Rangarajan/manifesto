@@ -69,7 +69,7 @@ export default async function ProjectCaseStudy({ params }: Params) {
   if (!study) notFound();
   return <main className="evo-detail-page">
     <div className="evo-detail-shell">
-      <nav className="evo-detail-nav"><Link href="/#projects"><ArrowLeft size={17}/> All projects</Link><span>RAKSHIT RANGARAJAN / ENGINEERING PORTFOLIO</span></nav>
+      <nav className="evo-detail-nav"><img src="/images/rr-emblem-logo-dark.png" alt="RR dragon emblem" width={48} height={48} className="evo-detail-logo"/><Link href="/#projects"><ArrowLeft size={17}/> All projects</Link><span>RAKSHIT RANGARAJAN / ENGINEERING PORTFOLIO</span></nav>
       <div className="evo-detail-breadcrumb">Projects <span>/</span> {study.title}</div>
       <header className="evo-detail-banner"><span className="evo-detail-banner-label">ENGINEERING CASE STUDY / {study.title}</span><strong>{study.title}</strong></header>
       <div className="evo-detail-grid">
