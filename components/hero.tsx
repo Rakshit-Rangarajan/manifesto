@@ -75,32 +75,28 @@ export default function Hero() {
     return () => ctx.revert();
   }, [mounted]);
 
+  const jumpTo = (id: string) => document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
   return (
-    <section id="hero" ref={containerRef} className="cyber-hero relative isolate overflow-hidden min-h-[min(900px,100svh)]">
-      <div className="cyber-hero__ambient" aria-hidden="true" />
-      <div className="cyber-hero__frame" aria-hidden="true" />
-      <div className="cyber-hero__layout">
-        <div className="cyber-hero__visual" aria-label="Futuristic AI architect illustration">
-          <div className="cyber-hero__portal" aria-hidden="true" />
-          <div className="cyber-hero__figure">
-            <img src="/cyberpunk_ai_architect_workspace.png" alt="AI architect working with futuristic holographic systems" />
-          </div>
-          <div className="cyber-hero__visual-fade" aria-hidden="true" />
-        </div>
-        <div className="cyber-hero__content">
-          <div className="cyber-hero__eyebrow"><span>RAKSHIT RANGARAJAN</span><span className="cyber-hero__eyebrow-line" /></div>
-          <p className="cyber-hero__subtitle">AI Engineer <span>·</span> Architect <span>·</span> Builder</p>
-          <p className="cyber-hero__hello">// こんにちは &nbsp; // नमस्ते &nbsp; // வணக்கம் &nbsp; // ನಮಸ್ಕಾರ</p>
-          <div className="cyber-hero__name" aria-live="polite" aria-atomic="true">
-            {mounted ? <NameDisplay key={displayName} name={displayName} isNew={isNew} /> : <h1 className="brush-name brush-name--en"><span className="brush-name__ink">{NAME_VARIANTS[0]}</span></h1>}
-          </div>
-          <p className="cyber-hero__role">AI SOLUTIONS ENGINEER</p>
-          <p className="cyber-hero__expertise">Multi-Agent Systems <span>|</span> RAG &amp; Knowledge Systems <span>|</span> Autonomous Automation</p>
-          <div className="cyber-hero__chips"><span>Build</span><span>Automate</span><span>Orchestrate</span><span>Scale</span></div>
-          <div className="cyber-hero__actions">
-            <a href="#portfolio" onClick={(e) => { const target = document.getElementById("portfolio") || document.getElementById("projects"); if (target) { e.preventDefault(); target.scrollIntoView({behavior:"smooth"}); } }} className="cyber-hero__primary">Explore My Work <span aria-hidden="true">→</span></a>
-            <button onClick={handleHireMe} className="cyber-hero__secondary">Get in Touch</button>
-          </div>
+    <section id="hero" ref={containerRef} className="exact-hero">
+      <div className="exact-hero__desktop">
+        <img className="exact-hero__art" src="/hero-exact.png" alt="Anime cyberpunk portrait of Rakshit against a futuristic city and neon portal, with the name Rakshit Rangarajan and AI Solutions Engineer title" />
+        <h1 className="sr-only">Rakshit Rangarajan — AI Solutions Engineer</h1>
+        <nav className="exact-hero__nav" aria-label="Hero quick navigation">
+          <button aria-label="Home" onClick={() => window.scrollTo({top:0,behavior:"smooth"})} style={{top:"32%"}} />
+          <button aria-label="About" onClick={() => jumpTo("about")} style={{top:"39%"}} />
+          <button aria-label="Projects" onClick={() => jumpTo("projects")} style={{top:"45.5%"}} />
+          <button aria-label="Skills" onClick={() => jumpTo("skills")} style={{top:"52%"}} />
+          <button aria-label="Experience" onClick={() => jumpTo("experience")} style={{top:"58%"}} />
+          <button aria-label="Education" onClick={() => jumpTo("education")} style={{top:"65%"}} />
+        </nav>
+        <button className="exact-hero__work" aria-label="Explore my work" onClick={() => jumpTo("projects")} />
+        <button className="exact-hero__contact" aria-label="Get in touch" onClick={handleHireMe} />
+      </div>
+      <div className="exact-hero__mobile">
+        <img src="/hero-exact.png" alt="Anime cyberpunk portrait of Rakshit Rangarajan" className="w-full h-auto" />
+        <div className="exact-hero__mobile-actions">
+          <button onClick={() => jumpTo("projects")}>Explore My Work →</button>
+          <button onClick={handleHireMe}>Get in Touch</button>
         </div>
       </div>
     </section>
