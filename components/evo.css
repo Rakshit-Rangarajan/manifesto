@@ -521,3 +521,9 @@
 .evo.evo-light .evo-side-logo img,.evo.evo-light .evo-final-logo,.evo.evo-light .evo-footer img{mix-blend-mode:multiply}
 .evo.evo-dark .evo-side-logo img,.evo.evo-dark .evo-final-logo,.evo.evo-dark .evo-footer img{mix-blend-mode:screen}
 @media(max-width:700px){.evo .evo-contact-finale .evo-final-logo{width:56px!important;height:56px!important}}
+
+/* Preserve the complete Office and Welsh dragon artwork instead of cropping their subjects. */
+.evo .evo-project-art.evo-project-art-full{background:linear-gradient(145deg,#17101f,#301a2b)!important}
+.evo .evo-project-art.evo-project-art-full .evo-project-cover{object-fit:contain!important;object-position:center center!important;padding:8px!important;box-sizing:border-box}
+.evo.evo-light .evo-project-art.evo-project-art-full{background:linear-gradient(145deg,#fff0f5,#f5dce8)!important}
+.evo .evo-project-art.evo-project-art-full::after{background:linear-gradient(180deg,transparent 75%,rgba(8,5,17,.12))!important}
