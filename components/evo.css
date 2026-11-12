@@ -130,3 +130,79 @@
 .evo-light .evo-skill-metrics span{color:#69405b}
 @media(max-width:1150px){.evo-skills .evo-skill-layout{grid-template-columns:1fr 1fr}.evo-skills .evo-orbit{grid-column:1/-1;grid-row:1}.evo-skills .evo-techgrid{grid-template-columns:repeat(4,minmax(0,1fr))}}
 @media(max-width:650px){.evo-skill-metrics{grid-template-columns:repeat(2,1fr)}.evo-skills .evo-skill-layout{grid-template-columns:1fr}.evo-skills .evo-orbit{width:285px;height:285px;grid-column:auto}.evo-skills .evo-orbit>span{transform:rotate(calc(var(--i)*60deg)) translate(118px) rotate(calc(var(--i)*-60deg));font-size:9px;margin-left:-40px}.evo-skill-panel{min-height:unset}.evo-skills .evo-techgrid{grid-template-columns:repeat(3,minmax(0,1fr))}.evo-skill-metrics>div{padding:12px 6px}.evo-skill-metrics strong{font-size:19px}.evo-skill-metrics span{font-size:10px}}
+
+/* EVO / 05–08 — illustrated experience, agent laboratory, education, contact */
+.evo-experience,.evo-lab-section,.evo-education-section,.evo-contact-section{isolation:isolate;overflow:hidden}
+.evo-experience .evo-kicker:first-child,.evo-experience h2,.evo-experience .evo-lead,.evo-lab-section>.evo-section-inner>.evo-kicker,.evo-lab-section h2,.evo-lab-section .evo-lead,.evo-education-section>.evo-section-inner>.evo-kicker,.evo-education-section h2,.evo-education-section .evo-lead,.evo-contact-section>.evo-section-inner>.evo-kicker,.evo-contact-section h2,.evo-contact-section .evo-lead{text-align:center;margin-left:auto;margin-right:auto}
+.evo-experience h2,.evo-lab-section h2,.evo-education-section h2,.evo-contact-section h2{font-size:clamp(48px,6vw,86px);margin-bottom:12px}
+.evo-experience .evo-lead,.evo-lab-section .evo-lead,.evo-education-section .evo-lead,.evo-contact-section .evo-lead{font-size:14px;max-width:820px;margin-bottom:38px}
+.evo-experience{background-image:linear-gradient(105deg,#070715ee,#0d081ded),url('/1f7468f2e21616728cbd8d727116c24dd4c6c87cfd3646b8f4fbd24a8972a8ef.png')}
+.evo-experience-layout{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(280px,1fr);gap:30px;align-items:start}
+.evo-journey{position:relative;padding-left:35px;display:grid;gap:25px}
+.evo-journey-line{position:absolute;left:9px;top:10px;bottom:20px;width:2px;background:linear-gradient(#ff3464,#8b3bcb,#ff3464);box-shadow:0 0 14px #ff346499}
+.evo-journey-card{position:relative;border:1px solid #ff37688a;border-radius:12px;background:linear-gradient(145deg,#150d27ed,#080b1ced);padding:22px 25px;box-shadow:0 10px 28px #0008,0 0 20px #ff245027}
+.evo-journey-card:before{content:"";position:absolute;left:-35px;top:28px;width:16px;height:16px;border:3px solid #ff4977;border-radius:50%;background:#09071a;box-shadow:0 0 15px #ff4977}
+.evo-journey-date{font-size:10px;letter-spacing:.13em;font-weight:800;color:#ff5b86;margin-bottom:10px}
+.evo-journey-label{font-size:10px;color:#b6a6cb;letter-spacing:.16em}
+.evo-journey-card h3{font-family:'Kaushan Script',cursive;font-size:30px;margin:9px 0;color:#fff0f6}
+.evo-journey-card h4{color:#ff6e95;margin:0;font-size:13px}
+.evo-journey-card p{font-size:13px;color:#cfc2d6;line-height:1.75}
+.evo-journey-card .evo-tags{justify-content:flex-start}
+.evo-impact-panel{padding:28px;border:1px solid #ff346c8a;border-radius:15px;background:linear-gradient(150deg,#1a0c2aef,#080b1def);box-shadow:0 0 36px #e7245b33}
+.evo-impact-panel h3{font-family:'Kaushan Script',cursive;font-size:36px;line-height:1.25;margin:20px 0}.evo-impact-panel h3 em{color:#ff5680;font-style:normal}
+.evo-impact-panel>p:not(.evo-kicker){font-size:13px;line-height:1.75;color:#cfc2d6}
+.evo-impact-highlight{display:flex;align-items:center;gap:20px;padding:20px;margin:22px 0;border:1px solid #ff315b88;border-radius:10px;background:#260e2b}
+.evo-impact-highlight strong{font-size:42px;color:#ff527c}.evo-impact-highlight span{font-size:12px;color:#f0dce7;line-height:1.6}
+.evo-impact-row{display:flex;gap:12px;align-items:center;padding:12px 0;border-bottom:1px solid #ff315b44;font-size:12px;color:#f2e3ec}.evo-impact-row svg{color:#ff4874}
+.evo-lab-section{background-image:linear-gradient(100deg,#060817ef,#10091ce8),url('/1f7468f2e21616728cbd8d727116c24dd4c6c87cfd3646b8f4fbd24a8972a8ef.png')}
+.evo-lab-layout{display:grid;grid-template-columns:1.1fr 1fr;gap:40px;align-items:center}
+.evo-agent-orbit{position:relative;height:510px;max-width:570px;margin:auto;width:100%;display:grid;place-items:center;background:radial-gradient(circle,#ed255b35 0,transparent 48%)}
+.evo-agent-ring{position:absolute;border:1px solid #f23c7c66;border-radius:50%;width:310px;height:310px;box-shadow:inset 0 0 35px #f92d5d17,0 0 18px #fa2b5c16}
+.evo-ring-two{width:440px;height:440px;border-style:dashed;opacity:.5}
+.evo-agent-hub{position:relative;z-index:2;width:160px;height:160px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:7px;border-radius:50%;background:radial-gradient(circle,#8d1a4e,#2a0d34 70%);border:2px solid #ff4e81;box-shadow:0 0 50px #ff2a68a1,0 0 100px #ff2a6840;color:#fff4f9}
+.evo-agent-hub strong{letter-spacing:.12em;font-size:15px}.evo-agent-hub small{font-size:9px;color:#ffb3cc}
+.evo-agent-node{position:absolute;z-index:3;left:50%;top:50%;transform:rotate(calc(var(--i)*90deg - 90deg)) translate(205px) rotate(calc(90deg - var(--i)*90deg));margin-left:-66px;margin-top:-30px;width:132px;min-height:60px;border:1px solid #ff497a;background:#140e29f2;border-radius:12px;display:flex;flex-direction:column;align-items:center;justify-content:center;box-shadow:0 0 22px #fa296747}
+.evo-agent-node strong{font-size:12px;color:#ff80a4}.evo-agent-node small{font-size:10px;color:#d7c8e1;margin-top:4px}
+.evo-lab-details{background:linear-gradient(135deg,#170e2beb,#080b1ded);border:1px solid #f53b7180;padding:30px;border-radius:14px;box-shadow:0 0 26px #fa2d5922}
+.evo-lab-details h3{font-family:'Kaushan Script',cursive;font-size:36px;margin:14px 0;color:#ff79a0}
+.evo-lab-details>p:not(.evo-kicker){font-size:13px;color:#d9cddd;line-height:1.8}
+.evo-agent-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:22px 0}
+.evo-agent-grid>div{display:flex;flex-direction:column;gap:7px;padding:14px;background:#190d2c;border:1px solid #ff3b6d66;border-radius:9px}
+.evo-agent-grid svg{color:#ff5280}.evo-agent-grid strong{font-size:11px;color:#fceaf2}.evo-agent-grid span{font-size:10px;color:#baabc5}
+.evo-education-section{background-image:linear-gradient(100deg,#080718ee,#100a1eec),url('/1f7468f2e21616728cbd8d727116c24dd4c6c87cfd3646b8f4fbd24a8972a8ef.png')}
+.evo-education-layout{display:grid;grid-template-columns:1.1fr 1fr;gap:22px;align-items:stretch}
+.evo-education-feature,.evo-education-tile,.evo-education-quote{position:relative;border:1px solid #ff3c7085;background:linear-gradient(145deg,#1b0e2ded,#080b1def);border-radius:14px;padding:27px;box-shadow:0 0 22px #ff315627}
+.evo-education-feature{min-height:410px;display:flex;flex-direction:column;align-items:flex-start;justify-content:center;overflow:hidden}
+.evo-education-feature:after{content:"✦";position:absolute;right:5%;top:10%;font-size:180px;color:#ff336116;pointer-events:none}
+.evo-education-icon{display:grid;place-items:center;width:74px;height:74px;border-radius:18px;border:1px solid #ff477c;background:#3c1239;color:#ff86a8;margin-bottom:20px;box-shadow:0 0 28px #ff2d6760}
+.evo-education-feature h3{font-family:'Kaushan Script',cursive;font-size:37px;color:#fff2f8;margin:16px 0 6px}
+.evo-education-feature h4{color:#ff8cac;font-size:14px;margin:0}
+.evo-education-feature p{color:#d3c7d9;font-size:13px;line-height:1.8;max-width:500px}
+.evo-education-ribbon{padding:10px 17px;border:1px solid #ff5183;color:#ff9cb6;font-weight:800;letter-spacing:.16em;font-size:11px;border-radius:7px;margin-top:14px}
+.evo-education-stack{display:grid;gap:14px}
+.evo-education-tile{display:flex;align-items:flex-start;gap:20px;padding:23px}
+.evo-education-tile>svg{flex-shrink:0;color:#ff6c9a}
+.evo-education-tile h3{font-size:19px;color:#fff1f6;margin:9px 0}.evo-education-tile p{font-size:12px;color:#d0c3d7;line-height:1.7;margin:0}
+.evo-education-quote{display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;background:linear-gradient(135deg,#55112e,#170e2c)}
+.evo-education-quote p{font-family:'Kaushan Script',cursive;color:#ff9ab7;font-size:30px;margin:5px}.evo-education-quote span{font-size:11px;color:#dfc1d0}
+.evo-contact-section{background-image:linear-gradient(100deg,#060715f0,#120b22ed),url('/1f7468f2e21616728cbd8d727116c24dd4c6c87cfd3646b8f4fbd24a8972a8ef.png')}
+.evo-contact-layout{display:grid;grid-template-columns:1fr 1fr;gap:26px;margin-top:40px}
+.evo-contact-statement,.evo-contact-links{border:1px solid #ff3d7280;border-radius:15px;padding:30px;background:linear-gradient(145deg,#180e2bea,#090b1ded);box-shadow:0 0 30px #fa2e5b20}
+.evo-contact-statement h3{font-family:'Kaushan Script',cursive;font-size:43px;line-height:1.25;color:#fff0f7;margin:20px 0}.evo-contact-statement h3 em{font-style:normal;color:#ff6991}
+.evo-contact-statement>p{font-size:13px;color:#d3c6d8;line-height:1.8}
+.evo-contact-status{display:flex;align-items:center;gap:10px;font-size:11px;color:#ffb0c7;margin-top:30px}.evo-contact-status span{width:9px;height:9px;border-radius:50%;background:#55e3a2;box-shadow:0 0 12px #55e3a2}
+.evo-contact-links{display:grid;gap:12px}
+.evo-contact-links>a{display:flex;align-items:center;gap:15px;padding:15px 16px;background:#1a102d;border:1px solid #ff376b66;border-radius:10px;transition:transform .2s,border-color .2s}
+.evo-contact-links>a:hover{transform:translateX(5px);border-color:#ff759c}
+.evo-contact-links>a>svg:first-child{color:#ff6591}.evo-contact-links>a>svg:last-child{margin-left:auto;color:#ff6591}
+.evo-contact-links>a span{display:flex;flex-direction:column;gap:4px;min-width:0}.evo-contact-links small{font-size:10px;letter-spacing:.2em;color:#ff88a9}.evo-contact-links strong{font-size:13px;color:#fceaf3;overflow-wrap:anywhere}
+.evo-contact-finale{text-align:center;margin-top:55px;border-top:1px solid #ff326052;padding-top:24px}.evo-contact-finale>span{font-family:'Kaushan Script',cursive;color:#ff4e80;font-size:44px}.evo-contact-finale p{font-size:12px;color:#cdb5c8;letter-spacing:.1em}.evo-contact-finale a{color:#ff8eaf;font-size:12px}
+.evo-light .evo-experience,.evo-light .evo-lab-section,.evo-light .evo-education-section,.evo-light .evo-contact-section{background-image:linear-gradient(100deg,#fff5f9f0,#ffecf6e9),url('/bac2891e4b0fb1f8aeb196b5e0937ef3177ac783f195ff0bbb87779ddb846050.png')}
+.evo-light .evo-journey-card,.evo-light .evo-impact-panel,.evo-light .evo-lab-details,.evo-light .evo-agent-grid>div,.evo-light .evo-education-feature,.evo-light .evo-education-tile,.evo-light .evo-education-quote,.evo-light .evo-contact-statement,.evo-light .evo-contact-links,.evo-light .evo-contact-links>a{background:#fff9fce9}
+.evo-light .evo-journey-card h3,.evo-light .evo-impact-panel h3,.evo-light .evo-education-feature h3,.evo-light .evo-education-tile h3,.evo-light .evo-contact-statement h3,.evo-light .evo-contact-links strong,.evo-light .evo-agent-grid strong{color:#371d37}
+.evo-light .evo-journey-card p,.evo-light .evo-impact-panel>p:not(.evo-kicker),.evo-light .evo-impact-row,.evo-light .evo-lab-details>p:not(.evo-kicker),.evo-light .evo-education-feature p,.evo-light .evo-education-tile p,.evo-light .evo-contact-statement>p{color:#63495e}
+.evo-light .evo-journey-label,.evo-light .evo-agent-grid span{color:#74506e}
+.evo-light .evo-impact-highlight{background:#ffe3ef}.evo-light .evo-impact-highlight span{color:#643c54}
+.evo-light .evo-education-quote p{color:#c41f59}.evo-light .evo-contact-links>a{color:#3a2039}
+@media(max-width:950px){.evo-experience-layout,.evo-lab-layout,.evo-education-layout,.evo-contact-layout{grid-template-columns:1fr}.evo-agent-orbit{height:480px}.evo-education-feature{min-height:330px}}
+@media(max-width:600px){.evo-journey{padding-left:25px}.evo-journey-line{left:5px}.evo-journey-card:before{left:-28px}.evo-journey-card{padding:18px}.evo-impact-panel,.evo-lab-details,.evo-contact-statement,.evo-contact-links{padding:20px}.evo-agent-orbit{height:350px}.evo-agent-ring{width:225px;height:225px}.evo-ring-two{width:310px;height:310px}.evo-agent-hub{width:120px;height:120px}.evo-agent-node{transform:rotate(calc(var(--i)*90deg - 90deg)) translate(146px) rotate(calc(90deg - var(--i)*90deg));width:105px;margin-left:-52px;font-size:10px}.evo-agent-node strong{font-size:10px}.evo-agent-node small{font-size:9px}.evo-agent-grid{gap:7px}.evo-agent-grid>div{padding:10px}.evo-education-feature h3{font-size:31px}.evo-education-tile{padding:18px}.evo-contact-statement h3{font-size:35px}.evo-contact-links>a{padding:13px 10px}.evo-contact-links strong{font-size:11px}}
