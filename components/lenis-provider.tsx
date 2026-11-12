@@ -13,6 +13,8 @@ export default function LenisProvider({ children }: LenisProviderProps) {
     const lenis = new Lenis({
       duration: 1.1,
       smoothWheel: true,
+      // Keep touch scrolling native: mobile browsers already provide momentum.
+      syncTouch: false,
       syncTouch: false,
     });
 
@@ -33,8 +35,9 @@ export default function LenisProvider({ children }: LenisProviderProps) {
       running = false;
       // @ts-ignore
       delete window.lenis;
-      lenis.destroy();
+      running = false;
       cancelAnimationFrame(rafId);
+      lenis.destroy();
     };
   }, []);
 
