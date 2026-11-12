@@ -17,7 +17,6 @@ const chapters = [
 /** A continuous, scroll-scrubbed visual stage. New character art can be swapped
  * into each layer without altering the navigation, content, or motion system. */
 export default function CinematicChapters(){
- const [active,setActive]=useState(0);
  const [reduce,setReduce]=useState(true);
  const stage=useRef<HTMLDivElement>(null);
  useEffect(()=>{
@@ -28,41 +27,55 @@ export default function CinematicChapters(){
  },[]);
  useEffect(()=>{
    const sections=chapters.map(chapter=>document.getElementById(chapter.id));
-   let raf=0,last=-1;
+   const scenes=Array.from(stage.current?.querySelectorAll<HTMLElement>(".evo-cinema-scene")??[]);
+   const reduced=window.matchMedia("(prefers-reduced-motion: reduce)");
+   let raf=0;
+   const clamp=(value:number)=>Math.max(0,Math.min(1,value));
    const update=()=>{
      raf=0;
-     // Use section boundaries rather than next-section height, so short and
-     // long chapters receive the same predictable, reversible handoff.
-     const viewport=window.innerHeight;
-     const boundary=viewport*.5;
-     const positions=sections.map(el=>el?.getBoundingClientRect().top??Infinity);
-     let selected=0;
-     for(let i=1;i<positions.length;i++){
-       if(positions[i]<=boundary)selected=i;
+     const viewport=Math.max(1,window.innerHeight);
+     const focus=viewport*.55;
+     const tops=sections.map(section=>section?.getBoundingClientRect().top??Infinity);
+     let chapter=0;
+     for(let i=1;i<tops.length;i++)if(tops[i]<=focus)chapter=i;
+     // Blend across a boundary centered around the reading focus. Both
+     // directions use the same scroll coordinates, avoiding a visible snap.
+     const width=Math.min(420,viewport*.55);
+     const next=chapter+1<chapters.length?chapter+1:-1;
+     const previous=chapter>0?chapter-1:-1;
+     let from=chapter,to=-1,mix=0;
+     if(next>=0&&tops[next]<focus+width/2){
+       to=next;
+       mix=clamp((focus+width/2-tops[next])/width);
+     }else if(previous>=0&&tops[chapter]>focus-width/2){
+       from=previous;
+       to=chapter;
+       mix=clamp((focus+width/2-tops[chapter])/width);
      }
-     if(selected!==last){last=selected;setActive(selected);}
-     const nextTop=positions[selected+1];
-          // Keep the current chapter visible until the following chapter enters
-     // the viewport, then blend the two atmospheric and character layers.
-     const upcoming=Number.isFinite(nextTop)&&nextTop>boundary;
-     const current=upcoming?selected:Math.min(selected,chapters.length-1);
-     const incoming=upcoming?Math.min(selected+1,chapters.length-1):current;
-     const mix=upcoming?Math.max(0,Math.min(1,(viewport-nextTop)/Math.max(1,viewport-boundary))):0;
-     stage.current?.style.setProperty("--cinema-blend",String(mix));
-     const currentRect=sections[current]?.getBoundingClientRect();
-     const travel=currentRect?Math.max(0,Math.min(1,-currentRect.top/Math.max(1,currentRect.height-viewport))):0;
-     stage.current?.style.setProperty("--cinema-scroll",String(travel));
-     stage.current?.style.setProperty("--cinema-active",String(current));
-     stage.current?.style.setProperty("--cinema-incoming",String(incoming));
+     scenes.forEach((scene,i)=>{
+       const opacity=reduced.matches?(i===chapter?0.3:0):(i===from?(to<0?1:1-mix):i===to?mix:0);
+       scene.style.opacity=String(opacity);
+       scene.style.visibility=opacity>0?"visible":"hidden";
+     });
+     const rect=sections[chapter]?.getBoundingClientRect();
+     const travel=rect?clamp(-rect.top/Math.max(1,rect.height-viewport*.5)):0;
+     stage.current?.style.setProperty("--cinema-scroll",String(reduced.matches?0:travel));
+     stage.current?.style.setProperty("--cinema-blend",String(reduced.matches?0:mix));
    };
    const schedule=()=>{if(!raf)raf=requestAnimationFrame(update);};
    update();
    window.addEventListener("scroll",schedule,{passive:true});
    window.addEventListener("resize",schedule);
-   return()=>{window.removeEventListener("scroll",schedule);window.removeEventListener("resize",schedule);if(raf)cancelAnimationFrame(raf);};
+   reduced.addEventListener("change",schedule);
+   return()=>{
+     window.removeEventListener("scroll",schedule);
+     window.removeEventListener("resize",schedule);
+     reduced.removeEventListener("change",schedule);
+     if(raf)cancelAnimationFrame(raf);
+   };
  },[]);
  return <div ref={stage} className={"evo-cinema "+(reduce?"evo-cinema-static":"")} aria-hidden="true">
-   {chapters.map((chapter,i)=><div key={chapter.id} className={"evo-cinema-scene evo-cinema-"+chapter.tone+(i===active?" is-active":"")+(i===active+1?" is-next":"")}>
+   {chapters.map((chapter,i)=><div key={chapter.id} className={"evo-cinema-scene evo-cinema-"+chapter.tone+}>
       <div className="evo-cinema-atmosphere"/>
       <div className="evo-cinema-rings"/>
       <div className="evo-cinema-light"/>
