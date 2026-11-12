@@ -21,8 +21,8 @@ function NameDisplay({ name, isNew }: { name: string; isNew: boolean }) {
       { opacity: 1, y: 0, filter: "blur(0px)", duration: 0.75, ease: "power3.out" });
     return () => { motion.kill(); };
   }, [name, isNew]);
-  return <h1 ref={headingRef} lang={NAME_LANGUAGES[index]} aria-label={name} className={`brush-name brush-name--${NAME_LANGUAGES[index]}`}>
-    <span className="brush-name__ink">{name}</span>
+  return <h1 ref={headingRef} lang={NAME_LANGUAGES[index]} aria-label={name} className={`brush-name brush-name--${NAME_LANGUAGES[index]} name-glitch`}>
+    <span className="brush-name__ink" data-text={name}>{name}</span>
   </h1>;
 }
 
@@ -134,7 +134,7 @@ export default function Hero() {
           </p>
         </div>
         <div className="brush-name-stage mb-6" aria-live="polite" aria-atomic="true">
-          <NameDisplay name={displayName} isNew={isNew} />
+          <NameDisplay key={displayName} name={displayName} isNew={isNew} />
         </div>
         <div className="overflow-hidden max-w-2xl mb-8">
           <p className="reveal-text text-zinc-600 dark:text-stone-400 text-lg md:text-2xl leading-relaxed font-light">
