@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Kalam:wght@700&family=Kavivanar&family=Noto+Serif+Kannada:wght@700&family=Permanent+Marker&family=Yuji+Boku&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Noto+Serif+Devanagari:wght@400;600&family=Noto+Serif+Tamil:wght@400;600&family=Noto+Serif+Kannada:wght@400;600&family=Noto+Serif+JP:wght@400;600&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap");
 
 @keyframes spin-slow {
@@ -272,3 +272,12 @@
 #hero { min-height: min(850px, 100svh); }
 main > section { scroll-margin-top:5rem; }
 @media (prefers-reduced-motion:reduce) { *,*::before,*::after { animation-duration:.01ms!important; transition-duration:.01ms!important; scroll-behavior:auto!important; } }
+
+/* Typography: consistent editorial serif across all five languages */
+.brush-name--en { font-family: "Cormorant Garamond", Georgia, serif; }
+.brush-name--ja { font-family: "Noto Serif JP", serif; }
+.brush-name--hi { font-family: "Noto Serif Devanagari", serif; }
+.brush-name--ta { font-family: "Noto Serif Tamil", serif; }
+.brush-name--kn { font-family: "Noto Serif Kannada", serif; }
+.brush-name { font-weight: 500; letter-spacing: -.035em; }
+@media (max-width: 640px) { .brush-name { font-size: clamp(1.4rem, 7vw, 3rem); } }
