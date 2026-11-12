@@ -77,26 +77,44 @@ export default function Hero() {
 
   const jumpTo = (id: string) => document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
   return (
-    <section id="hero" ref={containerRef} className="exact-hero">
-      <div className="exact-hero__desktop">
-        <img className="exact-hero__art" src="/hero-exact.png" alt="Anime cyberpunk portrait of Rakshit against a futuristic city and neon portal, with the name Rakshit Rangarajan and AI Solutions Engineer title" />
-        <h1 className="sr-only">Rakshit Rangarajan — AI Solutions Engineer</h1>
-        <nav className="exact-hero__nav" aria-label="Hero quick navigation">
-          <button aria-label="Home" onClick={() => window.scrollTo({top:0,behavior:"smooth"})} style={{top:"32%"}} />
-          <button aria-label="About" onClick={() => jumpTo("about")} style={{top:"39%"}} />
-          <button aria-label="Projects" onClick={() => jumpTo("projects")} style={{top:"45.5%"}} />
-          <button aria-label="Skills" onClick={() => jumpTo("skills")} style={{top:"52%"}} />
-          <button aria-label="Experience" onClick={() => jumpTo("experience")} style={{top:"58%"}} />
-          <button aria-label="Education" onClick={() => jumpTo("education")} style={{top:"65%"}} />
+    <section id="hero" ref={containerRef} className="anime-hero">
+      <div className="anime-hero__sky" aria-hidden="true" />
+      <div className="anime-hero__city" aria-hidden="true" />
+      <div className="anime-hero__frame" aria-hidden="true" />
+      <aside className="anime-hero__rail" aria-label="Quick navigation">
+        <a href="#hero" aria-label="Home" className="anime-hero__monogram">RR</a>
+        <nav>
+          <a href="#hero" aria-label="Home">⌂</a>
+          <a href="#about" aria-label="About">♙</a>
+          <a href="#projects" aria-label="Projects">⌘</a>
+          <a href="#skills" aria-label="Skills">◇</a>
+          <a href="#experience" aria-label="Experience">▤</a>
+          <a href="#education" aria-label="Education">✧</a>
         </nav>
-        <button className="exact-hero__work" aria-label="Explore my work" onClick={() => jumpTo("projects")} />
-        <button className="exact-hero__contact" aria-label="Get in touch" onClick={handleHireMe} />
-      </div>
-      <div className="exact-hero__mobile">
-        <img src="/hero-exact.png" alt="Anime cyberpunk portrait of Rakshit Rangarajan" className="w-full h-auto" />
-        <div className="exact-hero__mobile-actions">
-          <button onClick={() => jumpTo("projects")}>Explore My Work →</button>
-          <button onClick={handleHireMe}>Get in Touch</button>
+      </aside>
+      <div className="anime-hero__grid">
+        <div className="anime-hero__art" aria-hidden="true">
+          <div className="anime-hero__halo" />
+          <img src="/cyberpunk_ai_architect_workspace.png" alt="" />
+          <div className="anime-hero__art-fade" />
+        </div>
+        <div className="anime-hero__content">
+          <div className="anime-hero__topline"><span>RAKSHIT RANGARAJAN</span><i /></div>
+          <p className="anime-hero__subline">AI Engineer <em>·</em> Architect <em>·</em> Builder</p>
+          <p className="anime-hero__greeting">// こんにちは &nbsp; // नमस्ते &nbsp; // வணக்கம் &nbsp; // ನಮಸ್ಕಾರ</p>
+          <div className="anime-hero__name" aria-live="polite" aria-atomic="true">
+            {mounted ? <NameDisplay key={displayName} name={displayName} isNew={isNew} /> : <h1 className="brush-name brush-name--en"><span className="brush-name__ink">{NAME_VARIANTS[0]}</span></h1>}
+          </div>
+          <div className="anime-hero__translations" aria-label="Rakshit Rangarajan in multiple languages">
+            <span>रक्षित रंगराजन</span><b>|</b><span>ரக்ஷித் ரங்கராஜன்</span><b>|</b><span>ರಕ್ಷಿತ್ ರಂಗರಾಜನ್</span><b>|</b><span>ラクシット・ランガラジャン</span>
+          </div>
+          <h2 className="anime-hero__role">AI SOLUTIONS ENGINEER</h2>
+          <p className="anime-hero__specialties">Multi-Agent Systems <b>|</b> RAG &amp; Knowledge Systems <b>|</b> Autonomous Automation</p>
+          <div className="anime-hero__tags"><span>Build</span><span>Automate</span><span>Orchestrate</span><span>Scale</span></div>
+          <div className="anime-hero__buttons">
+            <button onClick={() => jumpTo("projects")} className="anime-hero__cta">Explore My Work <span aria-hidden="true">→</span></button>
+            <button onClick={handleHireMe} className="anime-hero__outline"><span aria-hidden="true">✉</span> Get in Touch</button>
+          </div>
         </div>
       </div>
     </section>
