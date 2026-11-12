@@ -446,3 +446,19 @@
 .evo.evo-light .evo-orbit-node{background:rgba(255,248,251,.8);color:#302037}
 @media(max-width:480px){.evo .evo-topic-options button{padding:12px;min-height:80px}.evo .evo-contact-orbit{height:270px}.evo .evo-orbit-ring-one{width:200px;height:200px}.evo .evo-orbit-ring-two{width:245px;height:140px}}
 @media(prefers-reduced-motion:reduce){.evo .evo-orbit-ring{animation:none!important}.evo .evo-topic-options button,.evo .evo-message-form button[type=submit]{transition:none}}
+
+/* Original ambient music controller: restrained waveform island, theme adaptive. */
+.evo .evo-audio-controller{display:flex;align-items:center;gap:8px;padding:4px 10px 4px 4px;border:1px solid var(--line);border-radius:100px;background:color-mix(in srgb,var(--bg) 30%,transparent);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);box-shadow:0 5px 20px #0002;max-width:195px}
+.evo .evo-audio-controller .evo-sound-toggle{display:grid;place-items:center;width:33px;height:33px;min-width:33px;border-radius:50%;border:1px solid color-mix(in srgb,var(--red) 55%,transparent);background:color-mix(in srgb,var(--red) 13%,transparent);color:var(--red);cursor:pointer}
+.evo .evo-audio-wave{display:flex;align-items:center;justify-content:center;gap:2px;height:24px}
+.evo .evo-audio-wave i{display:block;width:2px;height:5px;border-radius:8px;background:var(--red);opacity:.55;transform-origin:center}
+.evo .evo-audio-wave.is-playing i{animation:evo-soundwave 1.4s ease-in-out infinite alternate;opacity:.9}
+.evo .evo-audio-wave i:nth-child(3n){height:12px}
+.evo .evo-audio-wave i:nth-child(4n){height:17px}
+.evo .evo-audio-label{font:800 9px/1.1 monospace;letter-spacing:.07em;white-space:nowrap;color:var(--fg)}
+.evo .evo-audio-volume{color:var(--muted);flex-shrink:0}
+@keyframes evo-soundwave{0%,100%{transform:scaleY(.35)}45%{transform:scaleY(1.4)}75%{transform:scaleY(.7)}}
+.evo.evo-light .evo-audio-controller{background:rgba(255,248,252,.6);border-color:#9b537a88}
+.evo.evo-light .evo-audio-label{color:#352039}
+@media(max-width:620px){.evo .evo-audio-controller{gap:5px;padding-right:7px}.evo .evo-audio-wave{gap:1.5px}.evo .evo-audio-label{display:none}.evo .evo-audio-volume{display:none}}
+@media(prefers-reduced-motion:reduce){.evo .evo-audio-wave.is-playing i{animation:none}}
