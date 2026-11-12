@@ -297,3 +297,22 @@
 .evo-light .evo-stack-matrix{background:linear-gradient(145deg,#fff1f3e6,#f5e2f0c9),url('/evo/chapters/skills.webp') center/cover}
 .evo-light .evo-matrix-tile{background:#fff6f3d9}
 @media(max-width:650px){.evo-pantheon-scene{min-height:440px}.evo-pantheon-cast{grid-template-columns:1fr 1fr}.evo-pantheon-character{padding:10px}.evo-pantheon-character strong{font-size:13px}}
+
+/* Chapter-wide scenic treatment: reuse About Me's image-to-solid fade.
+   Intentionally scoped to content sections; the approved hero is untouched. */
+.evo-lab-section,.evo-projects-section,.evo-skills,.evo-experience,.evo-education-section,.evo-contact-section{position:relative;isolation:isolate;background-image:none!important;background-color:#080918}
+.evo-light .evo-lab-section,.evo-light .evo-projects-section,.evo-light .evo-skills,.evo-light .evo-experience,.evo-light .evo-education-section,.evo-light .evo-contact-section{background-color:#faedf1}
+.evo-lab-section{--chapter-art:url('/evo/chapters/lab.webp')}
+.evo-projects-section{--chapter-art:url('/evo/chapters/projects.webp')}
+.evo-skills{--chapter-art:url('/evo/chapters/skills.webp')}
+.evo-experience{--chapter-art:url('/evo/chapters/experience.webp')}
+.evo-education-section{--chapter-art:url('/evo/chapters/education.webp')}
+.evo-contact-section{--chapter-art:url('/evo/chapters/contact.webp')}
+.evo-lab-section::before,.evo-projects-section::before,.evo-skills::before,.evo-experience::before,.evo-education-section::before,.evo-contact-section::before{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;background-image:var(--chapter-art);background-size:cover;background-position:center;opacity:.7;-webkit-mask-image:linear-gradient(90deg,#000 0%,#000b 32%,transparent 82%);mask-image:linear-gradient(90deg,#000 0%,#000b 32%,transparent 82%)}
+.evo-lab-section::after,.evo-projects-section::after,.evo-skills::after,.evo-experience::after,.evo-education-section::after,.evo-contact-section::after{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;background:linear-gradient(90deg,#07091738 0%,#09091880 40%,#090918ed 82%,#090918 100%)}
+.evo-light .evo-lab-section::before,.evo-light .evo-projects-section::before,.evo-light .evo-skills::before,.evo-light .evo-experience::before,.evo-light .evo-education-section::before,.evo-light .evo-contact-section::before{opacity:.5}
+.evo-light .evo-lab-section::after,.evo-light .evo-projects-section::after,.evo-light .evo-skills::after,.evo-light .evo-experience::after,.evo-light .evo-education-section::after,.evo-light .evo-contact-section::after{background:linear-gradient(90deg,#faedf12b 0%,#faedf17a 42%,#faedf1e8 82%,#faedf1 100%)}
+.evo-lab-section>.evo-section-inner,.evo-projects-section>.evo-section-inner,.evo-skills>.evo-section-inner,.evo-experience>.evo-section-inner,.evo-education-section>.evo-section-inner,.evo-contact-section>.evo-section-inner{position:relative;z-index:1}
+@media(max-width:760px){.evo-lab-section::before,.evo-projects-section::before,.evo-skills::before,.evo-experience::before,.evo-education-section::before,.evo-contact-section::before{background-position:35% center;opacity:.42;-webkit-mask-image:linear-gradient(180deg,#000 0%,#0008 30%,transparent 75%);mask-image:linear-gradient(180deg,#000 0%,#0008 30%,transparent 75%)}
+.evo-lab-section::after,.evo-projects-section::after,.evo-skills::after,.evo-experience::after,.evo-education-section::after,.evo-contact-section::after{background:linear-gradient(180deg,#0909185c 0%,#090918d9 40%,#090918 85%)}
+.evo-light .evo-lab-section::after,.evo-light .evo-projects-section::after,.evo-light .evo-skills::after,.evo-light .evo-experience::after,.evo-light .evo-education-section::after,.evo-light .evo-contact-section::after{background:linear-gradient(180deg,#faedf140 0%,#faedf1d9 42%,#faedf1 85%)}}
