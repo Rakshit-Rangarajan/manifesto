@@ -102,3 +102,31 @@
 @media(max-width:1050px){.evo-about .evo-section-inner{width:80%}.evo-section-scene{inset:0 55% 0 0}.evo-about-stats{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:900px){.evo-about{padding-top:320px}.evo-about .evo-section-inner{width:100%}.evo-section-scene{inset:0 0 auto;height:400px;background-position:center 24%;mask-image:linear-gradient(#000 40%,transparent 100%)}.evo-about-intro{margin-left:0}.evo-projects-section .evo-projects{grid-template-columns:repeat(2,minmax(0,1fr))}.evo-project-metrics{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:600px){.evo-about{padding-top:270px}.evo-section-scene{height:330px}.evo-about h2{font-size:45px}.evo-about-panels{grid-template-columns:1fr}.evo-about-stats{gap:8px}.evo-about-stats>div{padding:14px 5px}.evo-about-stats strong{font-size:21px}.evo-projects-section .evo-projects{grid-template-columns:1fr}.evo-project-metrics>div{gap:6px;padding:10px 4px}.evo-project-metrics strong{font-size:18px}.evo-project-metrics span{font-size:9px}.evo-projects-section .evo-project-art{height:120px}.evo-projects-section .evo-project-body{padding:18px}}
+
+/* EVO / 04 — Skills technology constellation */
+.evo-skills{background-image:linear-gradient(95deg,#050614ed,#080a1ae8),url('/1f7468f2e21616728cbd8d727116c24dd4c6c87cfd3646b8f4fbd24a8972a8ef.png');background-position:center;background-size:cover}
+.evo-skills .evo-kicker:first-child,.evo-skills h2,.evo-skills .evo-lead{text-align:center;margin-left:auto;margin-right:auto}
+.evo-skills h2{font-size:clamp(48px,6vw,86px);margin-bottom:12px}
+.evo-skills .evo-lead{font-size:14px;max-width:850px}
+.evo-skill-metrics{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;max-width:900px;margin:28px auto 34px}
+.evo-skill-metrics>div{border:1px solid #f52d5980;background:#110c20d9;border-radius:10px;padding:15px;display:flex;align-items:center;justify-content:center;gap:12px}
+.evo-skill-metrics strong{color:#ff4774;font-size:22px}.evo-skill-metrics span{font-size:11px;color:#e7d0de}
+.evo-skills .evo-skill-layout{display:grid;grid-template-columns:minmax(0,1fr) minmax(300px,1.15fr) minmax(0,1fr);gap:20px;align-items:center}
+.evo-skill-panel{background:linear-gradient(150deg,#130b23ed,#070a19ef);border:1px solid #f62b5980;border-radius:14px;padding:23px;min-height:320px;box-shadow:0 0 25px #ed205a22}
+.evo-skill-panel .evo-kicker{font-size:10px;letter-spacing:.12em;margin-bottom:20px}
+.evo-skill-meter{display:grid;grid-template-columns:1fr auto;gap:8px 12px;margin:17px 0;color:#f4e8ef;font-size:12px}
+.evo-skill-meter b{color:#ff4774;font-size:9px;letter-spacing:.1em}
+.evo-skill-meter i{grid-column:1/-1;height:5px;border-radius:6px;background:linear-gradient(90deg,#ff2e5e,#a531ce);box-shadow:0 0 10px #e9236c80}
+.evo-skills .evo-orbit{height:380px;width:100%;max-width:420px;background:radial-gradient(circle,#eb24562e,transparent 62%);border:1px solid #ff346c99;box-shadow:inset 0 0 90px #f6255b22,0 0 45px #f52d591a}
+.evo-skills .evo-orbit-center{background:radial-gradient(circle,#ff3267,#5d0b30 70%);box-shadow:0 0 55px #ff265fba,0 0 100px #e7236533}
+.evo-skills .evo-orbit>span{transform:rotate(calc(var(--i)*60deg)) translate(150px) rotate(calc(var(--i)*-60deg));margin-left:-48px;background:#100b22e8;color:#fff0f6;border-color:#ff315c99}
+.evo-skill-competency{display:flex;gap:12px;align-items:center;padding:13px 10px;border:1px solid #f52d5966;border-radius:8px;margin:9px 0;color:#f4e4ef;font-size:11px;background:#160d24}
+.evo-skill-competency svg{color:#ff3b6c;flex-shrink:0}.evo-skill-competency b{margin-left:auto;color:#ff5175;font-size:10px}
+.evo-toolkit-label{text-align:center;margin:30px auto 16px}
+.evo-skills .evo-techgrid{grid-template-columns:repeat(8,minmax(0,1fr));gap:8px}
+.evo-skills .evo-techgrid span{background:linear-gradient(140deg,#170d28e8,#080b19ef);color:#ffeaf3;border-color:#f52d5970;box-shadow:inset 0 0 14px #ff285b18;font-size:11px;padding:13px 5px}
+.evo-light .evo-skills{background-image:linear-gradient(95deg,#fff5f9ef,#ffecf6e9),url('/bac2891e4b0fb1f8aeb196b5e0937ef3177ac783f195ff0bbb87779ddb846050.png')}
+.evo-light .evo-skill-panel,.evo-light .evo-skill-metrics>div,.evo-light .evo-skills .evo-techgrid span,.evo-light .evo-skill-competency{background:#fff9fcea;color:#44233c}
+.evo-light .evo-skill-metrics span{color:#69405b}
+@media(max-width:1150px){.evo-skills .evo-skill-layout{grid-template-columns:1fr 1fr}.evo-skills .evo-orbit{grid-column:1/-1;grid-row:1}.evo-skills .evo-techgrid{grid-template-columns:repeat(4,minmax(0,1fr))}}
+@media(max-width:650px){.evo-skill-metrics{grid-template-columns:repeat(2,1fr)}.evo-skills .evo-skill-layout{grid-template-columns:1fr}.evo-skills .evo-orbit{width:285px;height:285px;grid-column:auto}.evo-skills .evo-orbit>span{transform:rotate(calc(var(--i)*60deg)) translate(118px) rotate(calc(var(--i)*-60deg));font-size:9px;margin-left:-40px}.evo-skill-panel{min-height:unset}.evo-skills .evo-techgrid{grid-template-columns:repeat(3,minmax(0,1fr))}.evo-skill-metrics>div{padding:12px 6px}.evo-skill-metrics strong{font-size:19px}.evo-skill-metrics span{font-size:10px}}
