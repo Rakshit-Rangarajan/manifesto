@@ -11,21 +11,26 @@ interface LenisProviderProps {
 export default function LenisProvider({ children }: LenisProviderProps) {
   useEffect(() => {
     const lenis = new Lenis({
-      duration: 1.5,
+      duration: 1.1,
       smoothWheel: true,
+      syncTouch: false,
     });
 
     // @ts-ignore
     window.lenis = lenis;
 
+    let rafId = 0;
+    let running = true;
     function raf(time: number) {
+      if (!running) return;
       lenis.raf(time);
-      requestAnimationFrame(raf);
+      rafId = requestAnimationFrame(raf);
     }
 
-    const rafId = requestAnimationFrame(raf);
+    rafId = requestAnimationFrame(raf);
 
     return () => {
+      running = false;
       // @ts-ignore
       delete window.lenis;
       lenis.destroy();
