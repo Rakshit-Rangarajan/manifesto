@@ -64,3 +64,11 @@ html { scroll-snap-type: y mandatory; scroll-padding-top: 0; }
  .evo .evo-hero,.evo .evo-section{scroll-snap-align:none!important;scroll-snap-stop:normal!important}
  .evo .evo-hero-art,.evo .evo-about .evo-section-scene{will-change:auto}
 }
+
+/* Mobile scroll comfort: allow natural momentum instead of mandatory full-page snapping. */
+@media (max-width: 900px) {
+ html {scroll-snap-type:none!important;scroll-padding-top:0}
+ .evo .evo-hero,.evo .evo-section {scroll-snap-align:none!important;scroll-snap-stop:normal!important}
+ .evo {scroll-behavior:auto!important}
+ .evo .evo-hero-art,.evo .evo-about .evo-section-scene {will-change:auto}
+}
