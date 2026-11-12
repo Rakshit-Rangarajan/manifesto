@@ -4,6 +4,7 @@ import { ArrowUpRight, Github, Linkedin, Mail, Moon, Sun, Search, Menu, X, Cpu, 
 import { personalInfo } from "@/data/portfolio";
 import "./evo.css";
 import "./evo-project-cards.css";
+import "./evo-chapter-transitions.css";
 import AmbientEffects from "./ambient-effects";
 import ScrollChapters from "./scroll-chapters";
 import InteractionSound from "./interaction-sound";
