@@ -529,3 +529,66 @@ main > section { scroll-margin-top:5rem; }
  .exact-hero__mobile-actions button {border:1px solid #ff4267;border-radius:8px;padding:12px 16px;color:#fff;background:linear-gradient(110deg,#a70830,#e52348);font-weight:600;}
  .exact-hero__mobile-actions button+button {background:transparent;border-color:#8196a9;}
 }
+
+/* Reference-matched interactive anime hero. All lettering, HUD, navigation and CTAs are HTML. */
+.anime-hero {position:relative;isolation:isolate;width:100%;min-height:clamp(690px,56.25vw,1000px);overflow:hidden;background:#030812;color:#f5f7ff;}
+.anime-hero__sky {position:absolute;inset:0;background:radial-gradient(ellipse at 23% 34%,rgba(217,38,96,.24),transparent 35%),radial-gradient(ellipse at 55% 95%,rgba(46,136,230,.22),transparent 40%),linear-gradient(110deg,#100b1b,#040b17 72%,#020711);pointer-events:none;}
+.anime-hero__city {position:absolute;inset:0;pointer-events:none;opacity:.3;background:repeating-linear-gradient(90deg,transparent 0 47px,rgba(66,157,234,.13) 48px,transparent 50px),linear-gradient(0deg,rgba(11,44,77,.65),transparent 21%);mask-image:linear-gradient(0deg,#000,transparent 35%);}
+.anime-hero__frame {position:absolute;inset:16px 18px;border:1px solid rgba(255,68,100,.42);clip-path:polygon(0 3%,3% 0,97% 0,100% 3%,100% 93%,94% 100%,3% 100%,0 97%);pointer-events:none;z-index:4;}
+.anime-hero__rail {position:absolute;z-index:12;left:2.2%;top:3%;bottom:13%;display:flex;flex-direction:column;align-items:center;justify-content:space-between;width:48px;}
+.anime-hero__monogram {font-size:27px;font-weight:900;font-style:italic;letter-spacing:-.15em;color:#fff;text-shadow:0 0 12px #ff375e;}
+.anime-hero__rail nav {display:flex;flex-direction:column;gap:16px;}
+.anime-hero__rail nav a {display:grid;place-items:center;width:42px;height:42px;color:#e6eaf5;font-size:24px;border:1px solid transparent;border-radius:8px;transition:all .25s;}
+.anime-hero__rail nav a:hover,.anime-hero__rail nav a:focus-visible {color:#fff;border-color:#ff4a70;background:rgba(255,40,86,.12);box-shadow:0 0 22px rgba(255,42,87,.35);}
+.anime-hero__grid {position:relative;display:grid;grid-template-columns:48% 52%;width:100%;min-height:inherit;max-width:1900px;margin:auto;}
+.anime-hero__art {position:relative;min-height:inherit;overflow:hidden;}
+.anime-hero__halo {position:absolute;z-index:1;left:21%;top:6%;width:76%;aspect-ratio:1;border:3px solid rgba(73,206,255,.7);border-radius:50%;box-shadow:0 0 22px #5fcbff,inset 0 0 28px rgba(255,51,101,.4);opacity:.8;}
+.anime-hero__art img {position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:37% center;filter:saturate(1.28) contrast(1.14);}
+.anime-hero__art-fade {position:absolute;inset:0;background:linear-gradient(90deg,transparent 60%,#040b17 100%),linear-gradient(0deg,#040b17 0%,transparent 24%);}
+.anime-hero__content {position:relative;z-index:5;min-width:0;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:48px clamp(26px,4vw,80px) 70px clamp(12px,2vw,32px);}
+.anime-hero__topline {display:flex;align-items:center;gap:20px;width:100%;font-size:clamp(10px,1vw,15px);letter-spacing:.35em;white-space:nowrap;}
+.anime-hero__topline i {flex:1;height:1px;background:linear-gradient(90deg,#f43d62,transparent);min-width:20px;}
+.anime-hero__subline {align-self:flex-start;margin-top:13px;color:#d6dbe8;font-size:clamp(12px,1.15vw,18px);}
+.anime-hero__subline em {color:#ff4168;font-style:normal;margin:0 8px;}
+.anime-hero__greeting {margin:clamp(25px,5vw,70px) 0 8px;font-size:clamp(10px,1.1vw,16px);color:#c8d0dc;line-height:1.7;}
+#hero .anime-hero__name {width:100%;min-width:0;min-height:clamp(90px,10vw,155px);display:flex;align-items:center;justify-content:center;}
+#hero .anime-hero__name .brush-name {display:block;width:100%;min-height:0;padding:0;line-height:1.25;text-align:center;font-size:clamp(2.4rem,4.2vw,5.5rem);overflow-wrap:normal;word-break:normal;}
+#hero .anime-hero__name .brush-name__ink {color:#f8faff;text-shadow:3px 4px 0 rgba(249,43,80,.75),0 0 22px rgba(102,202,255,.45);transform:rotate(-3deg);}
+#hero .anime-hero__name .brush-name--ja,#hero .anime-hero__name .brush-name--hi,#hero .anime-hero__name .brush-name--ta,#hero .anime-hero__name .brush-name--kn {font-size:clamp(1.8rem,3.2vw,4.1rem);}
+.anime-hero__translations {display:flex;flex-wrap:wrap;justify-content:center;gap:8px;font-size:clamp(10px,1vw,15px);color:#d1d5df;line-height:1.8;}
+.anime-hero__translations b,.anime-hero__specialties b {color:#ff4569;font-weight:400;}
+.anime-hero__role {margin:clamp(20px,3vw,43px) 0 0;border-left:2px solid #ff3a63;border-right:2px solid #ff3a63;padding:9px 17px;color:#fff;font-family:ui-monospace,monospace;font-size:clamp(14px,1.7vw,25px);font-weight:700;letter-spacing:clamp(.08em,.4vw,.28em);white-space:normal;line-height:1.45;}
+.anime-hero__specialties {margin-top:21px;color:#cbd3e0;font-size:clamp(11px,1.05vw,16px);line-height:1.8;}
+.anime-hero__specialties b {margin:0 7px;}
+.anime-hero__tags {display:flex;flex-wrap:wrap;justify-content:center;gap:13px;margin-top:24px;}
+.anime-hero__tags span {border:1px solid rgba(255,56,99,.7);border-radius:9px;padding:7px 15px;color:#f6c6d0;box-shadow:inset 0 0 9px rgba(240,43,82,.09);font-size:clamp(11px,.9vw,14px);}
+.anime-hero__buttons {display:flex;justify-content:center;flex-wrap:wrap;gap:23px;margin-top:clamp(24px,3.5vw,49px);}
+.anime-hero__buttons button {min-height:56px;padding:14px 25px;border-radius:8px;font-size:clamp(13px,1vw,16px);font-weight:650;transition:transform .2s,box-shadow .2s;}
+.anime-hero__buttons button:hover {transform:translateY(-3px);}
+.anime-hero__cta {color:#fff;background:linear-gradient(110deg,#a50932,#ef244c);border:1px solid #ff6885;box-shadow:0 0 22px rgba(255,33,75,.55);}
+.anime-hero__outline {color:#f7f9ff;background:rgba(3,11,25,.6);border:1px solid #8093a9;}
+@media(max-width:1050px) {
+ .anime-hero__grid {grid-template-columns:43% 57%;}
+ .anime-hero__content {padding-right:22px;}
+ .anime-hero__rail {left:1%;width:36px;}
+ .anime-hero__rail nav a {width:35px;height:35px;}
+ #hero .anime-hero__name .brush-name {font-size:clamp(2rem,4vw,3.8rem);}
+}
+@media(max-width:767px) {
+ .anime-hero {min-height:0;}
+ .anime-hero__grid {display:flex;flex-direction:column;}
+ .anime-hero__art {min-height:clamp(290px,70vw,490px);width:100%;}
+ .anime-hero__art img {object-position:center 34%;}
+ .anime-hero__art-fade {background:linear-gradient(0deg,#040b17,transparent 53%);}
+ .anime-hero__halo {left:21%;top:5%;width:60%;}
+ .anime-hero__rail {display:none;}
+ .anime-hero__content {padding:0 18px 55px;align-items:center;}
+ .anime-hero__topline {justify-content:center;letter-spacing:.2em;}
+ .anime-hero__subline {align-self:center;}
+ .anime-hero__greeting {margin-top:28px;}
+ #hero .anime-hero__name {min-height:85px;}
+ #hero .anime-hero__name .brush-name {font-size:clamp(1.9rem,8vw,3.5rem);}
+ #hero .anime-hero__name .brush-name--ja,#hero .anime-hero__name .brush-name--hi,#hero .anime-hero__name .brush-name--ta,#hero .anime-hero__name .brush-name--kn {font-size:clamp(1.6rem,6.8vw,3rem);}
+ .anime-hero__role {margin-top:22px;font-size:clamp(13px,3.6vw,19px);}
+ .anime-hero__frame {inset:9px;opacity:.5;}
+}
