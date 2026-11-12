@@ -182,16 +182,16 @@ const About = () => {
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.2 }}
-              className="w-full md:w-64 shrink-0"
+              className="w-full md:w-[28rem] shrink-0"
             >
               <div className="relative">
                 {/* Animated gradient border */}
                 <div className="absolute -inset-1 rounded-[2rem] border border-primary/40 opacity-80" />
                 <div className="relative rounded-[1.9rem] overflow-hidden bg-zinc-900 dark:bg-zinc-950 p-1">
-                  <div className="relative rounded-[1.6rem] overflow-hidden bg-zinc-800 aspect-[4/5]">
+                  <div className="relative rounded-[1.6rem] overflow-hidden bg-zinc-800 aspect-video">
                     <img
-                      src="/DP.png"
-                      alt="Rakshit Rangarajan"
+                      src="/cyberpunk_ai_architect_workspace.png"
+                      alt="Cyberpunk illustration of Rakshit at an AI engineering workstation"
                       className="w-full h-full object-cover"
                     />
                     {/* Overlay gradient */}
