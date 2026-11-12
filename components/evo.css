@@ -480,3 +480,14 @@
 .evo.evo-light .evo-audio-label{color:#392037}
 @media(max-width:700px){.evo .evo-audio-controller{bottom:calc(70px + env(safe-area-inset-bottom,0px));right:12px;min-height:39px;padding:4px 9px 4px 4px;gap:6px}.evo .evo-audio-label{font-size:8px}.evo .evo-audio-wave i:nth-child(n+10){display:none}}
 @media(prefers-reduced-motion:reduce){.evo .evo-audio-wave.is-playing i{animation:none;height:8px}}
+
+/* Mobile: a single music icon beside the theme toggle; desktop keeps the waveform pill. */
+.evo .evo-floating-controls .evo-audio-controller{position:fixed;top:auto;left:auto;right:clamp(14px,2vw,28px);bottom:clamp(22px,3vw,35px);z-index:95}
+@media(max-width:700px){
+ .evo .evo-floating-controls{top:12px;right:14px;gap:8px;z-index:110}
+ .evo .evo-floating-controls .evo-audio-controller{position:static;inset:auto;display:grid;place-items:center;width:42px;height:42px;min-width:42px;min-height:42px;max-width:42px;padding:0;margin:0;border-radius:50%;background:color-mix(in srgb,var(--bg) 72%,transparent);border:1px solid var(--line);box-shadow:none}
+ .evo .evo-floating-controls .evo-audio-controller:hover{transform:none}
+ .evo .evo-floating-controls .evo-audio-controller .evo-sound-toggle{width:100%;height:100%;min-width:0;border:0;border-radius:50%;background:transparent;color:var(--fg)}
+ .evo .evo-floating-controls .evo-audio-controller .evo-audio-wave,.evo .evo-floating-controls .evo-audio-controller .evo-audio-label,.evo .evo-floating-controls .evo-audio-controller .evo-audio-volume{display:none}
+ .evo.evo-light .evo-floating-controls .evo-audio-controller{background:rgba(255,249,252,.72);border-color:rgba(140,45,91,.4)}
+}
