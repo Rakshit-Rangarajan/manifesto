@@ -254,3 +254,22 @@
   .brush-name { letter-spacing: -.035em; }
   .brush-name__ink { transform: none; }
 }
+
+
+/* Arcane editorial refresh: restrained ink, stone and antique gold. */
+.dark { --background: 225 15% 6%; --foreground: 42 18% 94%; --card: 225 12% 10%; --primary: 39 44% 67%; --accent: 39 44% 67%; --border: 225 8% 24%; --ring: 39 44% 67%; }
+.light { --background: 42 18% 97%; --foreground: 225 15% 13%; --card: 0 0% 100%; --primary: 35 40% 34%; --accent: 35 40% 34%; --border: 40 12% 80%; --ring: 35 40% 34%; }
+.dark body { background: radial-gradient(ellipse at 50% 0%,#20232a 0%,#101216 46%,#0c0e12 100%); color:#f0ede6; }
+.light body { background:#f7f6f2; color:#20232a; }
+.dark .text-primary { color:#cbb58a; } .light .text-primary { color:#80643c; }
+.dark .brush-name__ink { background-image:none; color:#f3f0e8; }
+.light .brush-name__ink { background-image:none; color:#20232a; }
+.brush-name-stage { height:clamp(5rem,15vw,10rem); }
+.brush-name { font-weight:500; font-size:clamp(2.15rem,6vw,6.8rem); line-height:1.2; letter-spacing:-.055em; padding:.1em .12em .2em; }
+.brush-name__ink { filter:none; transform:none; }
+.brush-name--en { font-family:Georgia,"Times New Roman",serif; }
+.brush-name--ja,.brush-name--hi,.brush-name--ta,.brush-name--kn { font-size:clamp(1.35rem,4.4vw,5rem); }
+#hero { min-height: min(850px, 100svh); }
+#hero .text-violet-600,#hero .dark\\:text-violet-300 { color:inherit; }
+main > section { scroll-margin-top:5rem; }
+@media (prefers-reduced-motion:reduce) { *,*::before,*::after { animation-duration:.01ms!important; transition-duration:.01ms!important; scroll-behavior:auto!important; } }
