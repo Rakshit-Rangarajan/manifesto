@@ -79,7 +79,7 @@ export default function Hero() {
     return (
       <section
         id="hero"
-        className="relative h-screen w-full flex flex-col items-center justify-center overflow-hidden px-4 md:px-20"
+        className="relative min-h-[85svh] w-full flex flex-col items-center justify-center overflow-hidden px-4 md:px-20"
       >
         <div className="flex flex-col items-center justify-center text-center w-full z-10">
           <div className="overflow-hidden mb-2">
@@ -89,17 +89,17 @@ export default function Hero() {
           </div>
           <div className="brush-name-stage mb-6" aria-live="off"><h1 lang="en" className="brush-name brush-name--en"><span className="brush-name__ink">{NAME_VARIANTS[0]}</span></h1></div>
           <div className="overflow-hidden max-w-2xl mb-8">
-            <p className="text-zinc-600 dark:text-slate-400 text-lg md:text-2xl leading-relaxed font-light">
+            <p className="text-zinc-600 dark:text-stone-400 text-lg md:text-2xl leading-relaxed font-light">
               {personalInfo.tagline}
             </p>
-            <p className="mt-5 text-xl md:text-2xl italic font-medium text-violet-600 dark:text-violet-300" aria-label={PERSONAL_MOTTO}>{PERSONAL_MOTTO}</p>
+            <p className="mt-5 text-xl md:text-2xl italic font-medium text-stone-600 dark:text-stone-300" aria-label={PERSONAL_MOTTO}>{PERSONAL_MOTTO}</p>
           </div>
           <div className="flex flex-wrap gap-3 justify-center z-20 relative">
             <button
               onClick={handleHireMe}
               className={`group relative inline-flex items-center gap-2 px-8 py-4 rounded-full font-semibold overflow-hidden transition-all ${hireMeClicked
-                ? "bg-emerald-500 text-white"
-                : "bg-zinc-900 dark:bg-white text-white dark:text-black hover:scale-105"
+                ? "bg-stone-700 text-white"
+                : "bg-stone-900 dark:bg-[#cbb58a] text-white dark:text-[#101216] hover:scale-105"
                 }`}
             >
               <span className="relative z-10 tracking-wide">
@@ -125,7 +125,7 @@ export default function Hero() {
     <section
       id="hero"
       ref={containerRef}
-      className="relative h-screen w-full flex flex-col items-center justify-center overflow-hidden px-4 md:px-20"
+      className="relative min-h-[85svh] w-full flex flex-col items-center justify-center overflow-hidden px-4 md:px-20"
     >
       <div className="flex flex-col items-center justify-center text-center w-full z-10">
         <div className="overflow-hidden mb-2">
@@ -137,17 +137,17 @@ export default function Hero() {
           <NameDisplay name={displayName} isNew={isNew} />
         </div>
         <div className="overflow-hidden max-w-2xl mb-8">
-          <p className="reveal-text text-zinc-600 dark:text-slate-400 text-lg md:text-2xl leading-relaxed font-light">
+          <p className="reveal-text text-zinc-600 dark:text-stone-400 text-lg md:text-2xl leading-relaxed font-light">
             {personalInfo.tagline}
           </p>
-          <p className="mt-5 text-xl md:text-2xl italic font-medium text-violet-600 dark:text-violet-300">{PERSONAL_MOTTO}</p>
+          <p className="mt-5 text-xl md:text-2xl italic font-medium text-stone-600 dark:text-stone-300">{PERSONAL_MOTTO}</p>
         </div>
         <div className="reveal-text flex flex-wrap gap-3 justify-center z-20 relative">
           <button
             onClick={handleHireMe}
             className={`group relative inline-flex items-center gap-2 px-8 py-4 rounded-full font-semibold overflow-hidden transition-all ${hireMeClicked
-              ? "bg-emerald-500 text-white"
-              : "bg-zinc-900 dark:bg-white text-white dark:text-black hover:scale-105"
+              ? "bg-stone-700 text-white"
+              : "bg-stone-900 dark:bg-[#cbb58a] text-white dark:text-[#101216] hover:scale-105"
               }`}
           >
             <span className="relative z-10 tracking-wide">
