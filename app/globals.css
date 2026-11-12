@@ -416,3 +416,14 @@ main > section { scroll-margin-top:5rem; }
   #hero .brush-name--ta, #hero .brush-name--kn { font-size: clamp(2.2rem, 3.8vw, 5.1rem); }
 }
 #hero .brush-name__ink { overflow-wrap: anywhere; white-space: normal; }
+
+/* Keep every multilingual name aligned to its column, never spanning artwork. */
+@media (min-width: 1024px) {
+  #hero .brush-name-stage { display: block; width: 100%; height: auto; min-height: 0; overflow: visible; }
+  #hero .brush-name { display: block; width: 100%; min-height: 0; padding: .08em 0 .2em; text-align: left; line-height: 1.25; overflow-wrap: normal; word-break: normal; }
+  #hero .brush-name--en { font-size: clamp(2.15rem, 3.5vw, 4.65rem); }
+  #hero .brush-name--ja { font-size: clamp(1.9rem, 3vw, 4rem); }
+  #hero .brush-name--hi { font-size: clamp(2rem, 3.15vw, 4.2rem); line-height: 1.55; }
+  #hero .brush-name--ta, #hero .brush-name--kn { font-size: clamp(1.95rem, 3.05vw, 4.1rem); line-height: 1.5; }
+  #hero .brush-name__ink { max-width: 100%; overflow-wrap: break-word; transform: none; }
+}
