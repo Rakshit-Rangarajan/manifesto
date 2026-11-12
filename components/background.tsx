@@ -19,9 +19,9 @@ export default function Background() {
     const currentMount = mountRef.current;
     
     const isDark = resolvedTheme === "dark";
-    const fogColor = isDark ? 0x0a0a0a : 0xf5f5f0;
-    const objectColor = isDark ? 0x555555 : 0x888888;
-    const particleColor = isDark ? 0x666666 : 0x999999;
+    const fogColor = isDark ? 0x080a1b : 0xf5f7ff;
+    const objectColor = isDark ? 0x655bdf : 0x657acb;
+    const particleColor = isDark ? 0x64d9ff : 0x7c75bd;
     
     const scene = new THREE.Scene();
     scene.fog = new THREE.FogExp2(fogColor, isDark ? 0.0015 : 0.002);
@@ -64,7 +64,7 @@ export default function Background() {
     // Lighting
     const ambientLight = new THREE.AmbientLight(0xffffff, isDark ? 0.5 : 0.8);
     scene.add(ambientLight);
-    const pointLight = new THREE.PointLight(isDark ? 0xffffff : 0x000000, 1);
+    const pointLight = new THREE.PointLight(isDark ? 0x8a6cff : 0x5665ca, 1);
     pointLight.position.set(10, 10, 10);
     scene.add(pointLight);
 
