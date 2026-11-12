@@ -13,7 +13,7 @@ export default function NotFound() {
       <div className="evo-lost-haze" aria-hidden="true" />
       <div className="evo-lost-petals" aria-hidden="true">{Array.from({length:12},(_,i)=><span key={i} style={{"--i":i} as React.CSSProperties} />)}</div>
       <header className="evo-lost-nav">
-        <Link href="/" className="evo-lost-brand"><span className="evo-lost-brand-mark">RR</span><span>RAKSHIT <em>RANGARAJAN</em></span></Link>
+        <Link href="/" className="evo-lost-brand"><span className="evo-lost-brand-mark"><img src={light?"/rr-emblem-logo-light.png":"/images/rr-emblem-logo-dark.png"} alt="Rakshit Rangarajan dragon emblem" width="43" height="43"/></span><span>RAKSHIT <em>RANGARAJAN</em></span></Link>
         <button type="button" onClick={()=>setLight(v=>!v)} className="evo-lost-theme" aria-label={light?"Switch to night theme":"Switch to morning theme"}>{light?<Moon size={18}/>:<Sun size={18}/>}</button>
       </header>
       <section className="evo-lost-content">
