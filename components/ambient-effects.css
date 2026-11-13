@@ -39,3 +39,20 @@
 @media (prefers-reduced-motion: reduce) {
   .evo-ambience.is-raining::after { animation: none; opacity: .13; }
 }
+
+/* Shared climate layer: purely decorative, with GPU-light gradients. */
+.evo-climate-light,.evo-climate-particles{position:absolute;inset:0;pointer-events:none;transition:opacity 1.8s ease}
+.climate-sunny .evo-climate-light{background:radial-gradient(ellipse at 75% 12%,rgba(255,209,132,.25),transparent 52%)}
+.climate-cloudy .evo-climate-light,.climate-fog .evo-climate-light{background:linear-gradient(180deg,rgba(153,165,188,.18),rgba(183,192,207,.07) 65%,transparent)}
+.climate-storm .evo-climate-light{background:linear-gradient(180deg,rgba(44,55,83,.32),transparent 75%);animation:evo-lightning 16s linear infinite}
+.climate-rain .evo-climate-light,.climate-hail .evo-climate-light{background:linear-gradient(180deg,rgba(76,103,143,.2),transparent 80%)}
+.climate-snow .evo-climate-light{background:radial-gradient(ellipse at 50% 5%,rgba(208,230,255,.24),transparent 70%)}
+.climate-fog .evo-climate-particles{background:linear-gradient(90deg,transparent,rgba(215,224,235,.16),transparent);filter:blur(28px)}
+.climate-rain .evo-climate-particles,.climate-storm .evo-climate-particles,.climate-hail .evo-climate-particles{opacity:.3;background:repeating-linear-gradient(105deg,transparent 0 22px,rgba(179,212,255,.5) 23px,transparent 25px 48px);background-size:150px 240px;animation:evo-rain-drift .75s linear infinite}
+.climate-hail .evo-climate-particles{background-image:radial-gradient(circle,rgba(228,241,255,.75) 1.5px,transparent 2.5px);background-size:65px 85px}
+.climate-snow .evo-climate-particles{background-image:radial-gradient(circle,rgba(244,250,255,.9) 2px,transparent 3px),radial-gradient(circle,rgba(222,239,255,.7) 1px,transparent 2px);background-size:85px 110px,53px 77px;animation:evo-snowfall 13s linear infinite}
+.climate-wind .evo-petal-flight{animation-duration:8s!important}
+@keyframes evo-snowfall{to{background-position:35px 110px,-20px 77px}}
+@keyframes evo-lightning{0%,93%,95%,100%{opacity:1}93.4%,94.2%{opacity:.2;background-color:rgba(220,236,255,.2)}}
+@media(prefers-reduced-motion:reduce){.evo-climate-light,.evo-climate-particles{animation:none!important;transition:none}}
+@media(max-width:700px){.evo-climate-particles{opacity:.18!important}}
