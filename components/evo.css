@@ -640,3 +640,9 @@
 .evo.evo-potter .evo-wizard-name{font-size:clamp(48px,8.6vw,126px)!important;overflow-wrap:normal;text-wrap:balance}
 .evo .evo-gryffindor{display:inline-block;margin:10px 0 15px;padding:8px 18px;border:1px solid #d9ad55aa;border-radius:999px;background:linear-gradient(110deg,#6b1d25cc,#3d1321cc);color:#ffe4a3;font:700 clamp(12px,1.5vw,18px) "IM Fell English",Georgia,serif;letter-spacing:.065em;box-shadow:0 0 24px #d9ad5530}
 @media(max-width:600px){.evo.evo-potter .evo-wizard-name{font-size:clamp(43px,10vw,68px)!important}.evo .evo-gryffindor{font-size:13px;padding:7px 12px}}
+
+
+/* PotterHead hero: the name is the primary Harry P wordmark. */
+.evo.evo-potter .evo-hero .evo-signature,.evo.evo-potter .evo-hero .evo-signature em{font-family:"Harry P","Cinzel Decorative",Georgia,serif!important;font-weight:400!important;font-style:normal!important;letter-spacing:.035em!important;line-height:1.08!important}
+.evo.evo-potter .evo-gryffindor{max-width:680px;margin:14px 0 18px;font-family:"IM Fell English",Georgia,serif;font-size:clamp(16px,1.65vw,23px);line-height:1.55;color:#f6dca4;text-shadow:0 2px 12px #09040b}
+.evo.evo-potter.evo-light .evo-gryffindor{color:#5c301a;text-shadow:none}
