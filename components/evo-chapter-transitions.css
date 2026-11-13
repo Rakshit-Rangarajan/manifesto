@@ -109,16 +109,5 @@ html { scroll-snap-type: none !important; scroll-behavior: auto; }
   .evo-living-canvas { display: none; }
 }
 
-/* Seamless chapter handoffs: fade the edges of each illustrated chapter into
-   the same canvas rather than displaying a hard image boundary. */
-.evo .evo-section {
-  border-top: 0 !important;
-  background-attachment: scroll;
-  -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 12%, black 88%, transparent 100%);
-  mask-image: linear-gradient(to bottom, transparent 0%, black 12%, black 88%, transparent 100%);
-}
-.evo .evo-section + .evo-section { margin-top: -5svh; padding-top: calc(90px + 5svh); }
-@media (max-width: 700px) {
-  .evo .evo-section { -webkit-mask-image: none; mask-image: none; }
-  .evo .evo-section + .evo-section { margin-top: 0; padding-top: 90px; }
-}
+/* Keep content fully opaque while removing remaining section separators. */
+.evo .evo-section { border-top: 0 !important; }
