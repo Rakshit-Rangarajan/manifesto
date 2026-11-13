@@ -599,3 +599,23 @@
 .evo-potter .evo-hobby-card{font-family:"Cinzel Decorative",Georgia,serif!important}
 @media(max-width:540px){.evo-hobby-actions{gap:10px}.evo .evo-hobby-card{min-height:86px;padding:12px!important;font-size:13px!important}}
 @media(prefers-reduced-motion:reduce){.evo .evo-hobby-card{transition:none}}
+
+
+/* Hobbies: scenic image cards, circular insignia, and adjacent titles. */
+.evo .evo-hobby-actions{max-width:1100px;gap:clamp(12px,2vw,24px)}
+.evo .evo-hobby-card{position:relative;isolation:isolate;overflow:hidden;min-height:clamp(180px,22vw,260px);justify-content:flex-start;gap:clamp(13px,2vw,23px);padding:clamp(18px,3vw,34px)!important;border-radius:25px!important;background:#101521!important;box-shadow:0 20px 55px #0005;text-shadow:0 2px 10px #0009;color:#fff8e8!important}
+.evo .evo-hobby-card::before{content:"";position:absolute;inset:0;z-index:-2;background-size:cover;background-position:center;transition:transform .6s ease}
+.evo .evo-hobby-rides::before{background-image:linear-gradient(90deg,rgba(4,15,21,.84),rgba(5,18,26,.2)),url('/file_00000000917881f4ac1b1c91ee0961f9.png')}
+.evo .evo-hobby-potter::before{background-image:linear-gradient(90deg,rgba(22,9,30,.85),rgba(24,10,32,.22)),url('/Hogwarts-Night.png')}
+.evo.evo-light .evo-hobby-potter::before{background-image:linear-gradient(90deg,rgba(35,17,33,.78),rgba(35,17,33,.18)),url('/Hogwarts-Day.png')}
+.evo.evo-light .evo-hobby-rides::before{background-image:linear-gradient(90deg,rgba(4,15,21,.82),rgba(5,18,26,.17)),url('/file_00000000f930821082e6ab4aa4f853b7.png')}
+.evo .evo-hobby-card:hover::before{transform:scale(1.06)}
+.evo .evo-hobby-orb{width:clamp(65px,8vw,100px);height:clamp(65px,8vw,100px);flex:0 0 auto;display:grid;place-items:center;border:2px solid #f6e4bbcc;border-radius:50%;background:radial-gradient(circle at 30% 25%,#ffffff55,#17233299 62%,#05080ecc);box-shadow:0 0 0 6px #ffffff16,0 9px 30px #0009,inset 0 0 25px #ffffff20}
+.evo .evo-hobby-potter .evo-hobby-orb{border-color:#edc879;background:radial-gradient(circle at 35% 25%,#b58c50,#4c2548 60%,#160b23)}
+.evo .evo-hobby-orb>span{font-size:clamp(30px,4vw,50px);line-height:1}
+.evo .evo-hobby-name{display:flex;flex-direction:column;gap:9px;font:800 clamp(23px,3vw,40px)/1.1 Manrope,system-ui,sans-serif!important;min-width:0}
+.evo .evo-hobby-name small{font:700 clamp(8px,.9vw,11px)/1.4 Manrope,system-ui,sans-serif;letter-spacing:.12em;color:#f0e3d3}
+.evo .evo-hobby-arrow{margin-left:auto;flex-shrink:0;align-self:flex-start;opacity:.85}
+.evo.evo-potter .evo-hobby-name{font-family:"Cinzel Decorative",Georgia,serif!important}
+@media(max-width:700px){.evo .evo-hobby-actions{grid-template-columns:1fr}.evo .evo-hobby-card{min-height:170px;padding:20px!important}.evo .evo-hobby-orb{width:76px;height:76px}.evo .evo-hobby-name{font-size:27px!important}}
+@media(prefers-reduced-motion:reduce){.evo .evo-hobby-card::before{transition:none}}
