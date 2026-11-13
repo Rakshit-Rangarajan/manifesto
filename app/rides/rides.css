@@ -167,3 +167,24 @@ html.light .rides-theme-toggle {
   .rides-nav { padding-right: 70px; }
   .rides-nav > a:last-child { display: none; }
 }
+
+/* Featured Kodaikanal journey: actual scenic image, not an empty gradient. */
+.rides-featured {
+  background-image:
+    linear-gradient(90deg, rgba(7,20,27,.94) 0%, rgba(7,20,27,.74) 47%, rgba(7,20,27,.18) 100%),
+    url("https://www.exploretourstravels.com/images/about/coakers-walk.jpg");
+  background-position: center, center 48%;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+.rides-featured > div { position: relative; z-index: 1; }
+@media (max-width: 767px) {
+  .rides-featured {
+    min-height: 340px;
+    align-items: flex-end;
+    background-image:
+      linear-gradient(0deg, rgba(7,20,27,.96) 0%, rgba(7,20,27,.65) 58%, rgba(7,20,27,.12) 100%),
+      url("https://www.exploretourstravels.com/images/about/coakers-walk.jpg");
+    background-position: center, center;
+  }
+}
