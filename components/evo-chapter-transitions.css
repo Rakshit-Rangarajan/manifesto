@@ -72,3 +72,15 @@ html { scroll-snap-type: y mandatory; scroll-padding-top: 0; }
  .evo {scroll-behavior:auto!important}
  .evo .evo-hero-art,.evo .evo-about .evo-section-scene {will-change:auto}
 }
+
+
+/* Living Canvas groundwork: remove desktop chapter snapping and hard section cuts.
+   Native scrolling remains free; cinematic layers can still track scroll position. */
+html { scroll-snap-type: none !important; scroll-behavior: auto; }
+.evo .evo-hero, .evo .evo-section {
+  scroll-snap-align: none !important;
+  scroll-snap-stop: normal !important;
+}
+.evo .evo-section {
+  border-top-color: transparent;
+}
