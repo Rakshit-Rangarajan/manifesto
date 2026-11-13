@@ -219,3 +219,59 @@ html.light .rides-theme-toggle {
 .rides-engine-button:disabled{opacity:.7;cursor:default}
 .rides-engine-button:focus-visible{outline:2px solid #a6d4da;outline-offset:4px}
 @media(max-width:767px){.rides-engine-button{margin-top:18px;min-height:46px;padding:12px 17px}}
+
+/* Daylight palette: the morning artwork stays, but the entire page is genuinely light. */
+html:not(.dark) .rides-page {
+  --ink: #18343b;
+  --muted: #49616a;
+  --rain: #236e79;
+  background: #f4f8f6;
+  color: var(--ink);
+}
+html:not(.dark) .rides-section {
+  background: linear-gradient(180deg,#f4f8f6,#e8f1ef 55%,#f4f8f6);
+}
+html:not(.dark) .rides-road {
+  background: radial-gradient(ellipse at 85% 40%,#b4ded9aa,transparent 60%),#edf5f3;
+}
+html:not(.dark) .rides-mood {
+  background: linear-gradient(145deg,#ffffffeb,#dcece9dd);
+  border-color: #6a9e9a66;
+  box-shadow: 0 12px 35px #285c6210;
+}
+html:not(.dark) .rides-mood p,
+html:not(.dark) .rides-section > p:not(.rides-eyebrow) { color: #49616a; }
+html:not(.dark) .rides-featured {
+  background-image: linear-gradient(90deg,rgba(243,250,248,.95),rgba(243,250,248,.79) 47%,rgba(243,250,248,.14)),url("https://www.exploretourstravels.com/images/about/coakers-walk.jpg");
+  border-color: #6a9e9a88;
+}
+html:not(.dark) .rides-featured p:not(.rides-eyebrow) { color: #344f58; }
+html:not(.dark) .rides-featured:after { color: #42747b; }
+html:not(.dark) .rides-featured span { color: #236e79; }
+html:not(.dark) .rides-end {
+  background: linear-gradient(#f4f8f6,#d9eae6);
+}
+html:not(.dark) .rides-end a { border-color: #5d989a88; }
+html:not(.dark) .rides-hero-art::after {
+  background: linear-gradient(90deg,rgba(246,250,247,.84),rgba(246,250,247,.46) 50%,transparent 90%),
+    linear-gradient(0deg,#f4f8f6 0%,transparent 42%);
+}
+html:not(.dark) .rides-hero-content > p:not(.rides-eyebrow) { color: #2d4c55; }
+html:not(.dark) .rides-hero-caption { color: #335c63; }
+html:not(.dark) .rides-nav a { color: #17363b; background: #f8fcf6bb; border-color: #658f9288; }
+html:not(.dark) .rides-engine-button { background: #f2fbf5d9; color: #1b4a52; border-color: #5d989a; }
+html:not(.dark) .rides-page h1 em,html:not(.dark) .rides-page h2 em { color: #277a84; }
+@media(max-width:767px) {
+  html:not(.dark) .rides-hero { background: #f4f8f6; }
+  html:not(.dark) .rides-hero-art::after {
+    background: linear-gradient(to bottom,
+      rgba(244,248,246,.04) 0%,
+      rgba(244,248,246,.16) 30%,
+      rgba(244,248,246,.7) 49%,
+      rgba(244,248,246,.96) 72%,
+      #f4f8f6 94%);
+  }
+  html:not(.dark) .rides-featured {
+    background-image: linear-gradient(0deg,rgba(244,250,247,.98),rgba(244,250,247,.75) 55%,rgba(244,250,247,.08)),url("https://www.exploretourstravels.com/images/about/coakers-walk.jpg");
+  }
+}
