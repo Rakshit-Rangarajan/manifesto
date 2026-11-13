@@ -111,3 +111,11 @@ html { scroll-snap-type: none !important; scroll-behavior: auto; }
 
 /* Keep content fully opaque while removing remaining section separators. */
 .evo .evo-section { border-top: 0 !important; }
+
+/* Continuous chapter handoff: hero art recedes while the next scene rises. */
+.evo .evo-hero-art{transform-origin:50% 45%;transform:translate3d(0,calc(var(--chapter-progress)*-4%),0) scale(calc(1 - var(--chapter-progress)*.09));filter:brightness(calc(1 - var(--chapter-progress)*.2))}
+.evo .evo-hero-content{transform:translate3d(0,calc(var(--chapter-progress)*-28px),0);opacity:calc(1 - var(--chapter-progress)*.72)}
+.evo .evo-about .evo-section-inner{opacity:calc(.8 + var(--chapter-progress)*.2);transform:translate3d(0,calc((1 - var(--chapter-progress))*24px),0)}
+.evo .evo-section{background-attachment:scroll}
+@media(max-width:900px){.evo .evo-hero-art,.evo .evo-hero-content{transform:none!important;opacity:1!important}.evo .evo-about .evo-section-inner{transform:none}}
+@media(prefers-reduced-motion:reduce){.evo .evo-hero-art,.evo .evo-hero-content,.evo .evo-about .evo-section-inner{transform:none!important;opacity:1!important;filter:none!important}}
