@@ -275,3 +275,20 @@ html:not(.dark) .rides-page h1 em,html:not(.dark) .rides-page h2 em { color: #27
     background-image: linear-gradient(0deg,rgba(244,250,247,.98),rgba(244,250,247,.75) 55%,rgba(244,250,247,.08)),url("https://www.exploretourstravels.com/images/about/coakers-walk.jpg");
   }
 }
+
+/* Slightly fuller brush lettering without replacing the approved Kaushan font. */
+.rides-page h1,
+.rides-page h2,
+.rides-page h3 {
+  -webkit-text-stroke: .38px currentColor;
+  text-shadow: 0 .3px 0 currentColor;
+}
+.rides-page h1 em,
+.rides-page h2 em {
+  -webkit-text-stroke: .38px currentColor;
+}
+@media (max-width: 767px) {
+  .rides-page h1,
+  .rides-page h2,
+  .rides-page h3 { -webkit-text-stroke-width: .3px; }
+}
