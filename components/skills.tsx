@@ -1,118 +1,38 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { skills } from "@/data/portfolio";
-import {
-  Code2,
-  Server,
-  Brain,
-  Cpu,
-  Workflow
-} from "lucide-react";
+import { BrainCircuit, Database, GitBranch, ShieldCheck, Workflow, Layers3 } from "lucide-react";
 
-const getHoverGradient = (color: string) => {
-  const blackColors = ['#000000', '#000', '#1a1a1a', '#333333', '#333'];
-  if (blackColors.includes(color.toLowerCase())) {
-    return "from-primary/20 to-emerald-400/20";
-  }
-  return `from-[${color}]/20 to-[${color}]/10`;
-};
-
-const skillCategories = [
-  { key: "frontend" as const, label: "Frontend", icon: Code2 },
-  { key: "backend" as const, label: "Backend", icon: Server },
-  { key: "ai" as const, label: "AI & LLMs", icon: Brain },
-  { key: "automation" as const, label: "Automation", icon: Workflow },
-  { key: "tools" as const, label: "Dev Tools", icon: Cpu },
+const capabilities = [
+  { title: "Agent orchestration", icon: BrainCircuit, detail: "Designing multi-agent systems with explicit responsibilities, shared context and human review.", tags: ["LangGraph", "CrewAI", "Tool calling"] },
+  { title: "Knowledge architecture", icon: Database, detail: "Retrieval pipelines that connect private knowledge, semantic search and structured records.", tags: ["RAG", "Vector search", "PostgreSQL"] },
+  { title: "Autonomous workflows", icon: Workflow, detail: "Engineering repeatable processes with checkpoints, approvals and observable outcomes.", tags: ["Automation", "Background jobs", "Podman"] },
+  { title: "System integration", icon: GitBranch, detail: "Connecting applications, services and agents through maintainable contracts.", tags: ["APIs", "ASP.NET Core", "Python"] },
+  { title: "Local-first infrastructure", icon: Layers3, detail: "Building useful AI experiences with privacy-conscious, self-hostable deployment paths.", tags: ["Ollama", "Containers", "SQLite"] },
+  { title: "Responsible delivery", icon: ShieldCheck, detail: "Keeping engineers in control with traceability, validation and practical failure handling.", tags: ["Human-in-the-loop", "Observability", "Testing"] },
 ];
 
-const Skills = () => {
+export default function Skills() {
   return (
-    <section id="skills" className="relative z-20 bg-transparent w-full min-h-screen py-32 md:py-48 px-6 md:px-20 border-t border-black/5 dark:border-white/5">
-      <div className="max-w-[1600px] mx-auto w-full">
-        
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="mb-16"
-        >
-          <p className="text-primary text-sm md:text-base font-medium tracking-widest uppercase mb-4">
-            Tools I Weaponize
-          </p>
-          <h2 className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tighter text-zinc-900 dark:text-white leading-[1.1]">
-            My <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-emerald-400">Arsenal.</span>
-          </h2>
-          <p className="mt-6 text-xl text-zinc-600 dark:text-slate-400 max-w-2xl">
-            I don't just use AI, I master it. From coding to creation, here's my complete AI stack.
-          </p>
+    <section id="skills" aria-labelledby="skills-title" className="relative z-20 w-full bg-transparent px-5 py-24 text-zinc-900 dark:text-white md:px-12 md:py-36 lg:px-20">
+      <div className="mx-auto max-w-7xl">
+        <motion.div initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: .55 }} className="mb-12 max-w-3xl">
+          <p className="mb-4 text-xs font-semibold uppercase tracking-[.3em] text-violet-600 dark:text-violet-300">Engineering capabilities</p>
+          <h2 id="skills-title" className="text-5xl font-bold tracking-tight md:text-7xl">The systems <span className="bg-gradient-to-r from-blue-500 to-violet-500 bg-clip-text text-transparent">behind the magic.</span></h2>
+          <p className="mt-6 text-lg leading-relaxed text-zinc-600 dark:text-zinc-300">I design AI systems from the architecture outward: orchestration, knowledge, infrastructure and the safeguards that make automation useful.</p>
         </motion.div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {skillCategories.map((category, catIndex) => (
-            <motion.div
-              key={category.key}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: catIndex * 0.1 }}
-              className="group"
-            >
-              <div className="flex items-center gap-3 mb-4">
-                <div className="p-2 rounded-lg bg-zinc-100 dark:bg-white/5">
-                  <category.icon className="w-5 h-5 text-primary" />
-                </div>
-                <h3 className="text-lg font-semibold text-zinc-900 dark:text-white">
-                  {category.label}
-                </h3>
-              </div>
-
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                {skills[category.key].map((skill) => (
-                  <div
-                    key={skill.name}
-                    className="relative p-4 rounded-xl bg-zinc-50 dark:bg-white/5 border border-zinc-200 dark:border-white/10 hover:border-primary/30 transition-all duration-300 cursor-default hover:scale-[1.02] hover:-translate-y-0.5"
-                  >
-                    <div className="absolute inset-0 bg-gradient-to-br from-primary/15 to-emerald-400/15 opacity-0 hover:opacity-100 transition-opacity duration-300 rounded-xl" />
-
-                    <div className="relative z-10 flex items-center gap-3">
-                      {skill.icon && (
-                        <img 
-                          src={skill.icon} 
-                          alt={`${skill.name} logo`} 
-                          className="w-5 h-5 object-contain"
-                          onError={(e) => { e.currentTarget.style.display = 'none'; }} 
-                        />
-                      )}
-                      <div>
-                        <h4 className="font-semibold text-zinc-900 dark:text-white text-sm">
-                          {skill.name}
-                        </h4>
-                      </div>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </motion.div>
+        <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+          {capabilities.map((item, index) => (
+            <motion.article key={item.title} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: .15 }} transition={{ duration: .4, delay: Math.min(index * .06, .3) }} className="group relative overflow-hidden rounded-3xl border border-violet-400/25 bg-white/55 p-7 shadow-sm backdrop-blur-md transition-colors hover:border-violet-500/60 dark:bg-slate-950/45">
+              <div className="pointer-events-none absolute -right-12 -top-12 h-40 w-40 rounded-full bg-violet-500/10 blur-3xl transition-opacity group-hover:opacity-100" aria-hidden="true" />
+              <item.icon aria-hidden="true" className="mb-6 h-8 w-8 text-violet-600 dark:text-violet-300" strokeWidth={1.5} />
+              <h3 className="text-xl font-semibold">{item.title}</h3>
+              <p className="mt-3 min-h-20 text-sm leading-7 text-zinc-600 dark:text-zinc-300">{item.detail}</p>
+              <div className="mt-6 flex flex-wrap gap-2">{item.tags.map(tag => <span key={tag} className="rounded-full border border-violet-400/25 bg-violet-500/5 px-3 py-1 text-xs text-zinc-700 dark:text-zinc-200">{tag}</span>)}</div>
+            </motion.article>
           ))}
         </div>
-
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.5 }}
-          className="mt-16 text-center"
-        >
-          <p className="text-zinc-500 dark:text-slate-500 text-sm">
-            I leverage these tools for maximum efficiency while maintaining full control over the final output.
-          </p>
-        </motion.div>
-        
       </div>
     </section>
   );
-};
-
-export default Skills;
+}
