@@ -584,3 +584,18 @@
 .evo-potter-switch{font-size:12px;font-weight:700;letter-spacing:.03em;white-space:nowrap;padding:10px 13px!important;width:auto!important;height:auto!important;border-radius:999px!important}
 .evo-potter .evo-primary,.evo-potter .evo-filters .active{background:linear-gradient(120deg,#8c321f,#d9ad55)!important;color:#fff6e3!important}
 @media(max-width:700px){.evo-potter .evo-hero-art{background-position:40% center}.evo-potter-switch{font-size:10px;padding:9px!important}}
+
+
+/* Wizarding typography and hobbies portal (home page only). */
+@import url('https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=IM+Fell+English:ital@0;1&display=swap');
+.evo-potter .evo-role{font-family:"Cinzel Decorative",Georgia,serif!important;font-size:clamp(13px,2.1vw,26px)!important;font-weight:900!important;letter-spacing:.07em!important;line-height:1.55!important;text-shadow:0 3px 14px #130c18}
+.evo-potter .evo-hero h1,.evo-potter .evo-section h2,.evo-potter .evo-section h3,.evo-potter .evo-hobbies h2{font-family:"Cinzel Decorative",Georgia,serif!important;letter-spacing:.005em!important}
+.evo-potter .evo-hero-manifesto,.evo-potter .evo-lead{font-family:"IM Fell English",Georgia,serif!important}
+.evo-hobbies{padding:clamp(55px,7vw,105px) 0;background:var(--bg);color:var(--fg)}
+.evo-hobbies h2{font-family:"Kaushan Script",cursive;font-size:clamp(38px,5vw,66px);margin:12px 0 30px}
+.evo-hobby-actions{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;max-width:780px}
+.evo .evo-hobby-card{display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:104px;padding:20px 25px!important;border-radius:18px!important;border:1px solid var(--line)!important;background:var(--panel)!important;color:var(--fg)!important;font:700 clamp(16px,2vw,22px) Manrope,sans-serif!important;text-align:left;box-shadow:0 12px 30px #0002;transition:transform .2s,border-color .2s}
+.evo .evo-hobby-card:hover{transform:translateY(-4px);border-color:var(--red)!important}
+.evo-potter .evo-hobby-card{font-family:"Cinzel Decorative",Georgia,serif!important}
+@media(max-width:540px){.evo-hobby-actions{gap:10px}.evo .evo-hobby-card{min-height:86px;padding:12px!important;font-size:13px!important}}
+@media(prefers-reduced-motion:reduce){.evo .evo-hobby-card{transition:none}}
