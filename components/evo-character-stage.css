@@ -20,3 +20,17 @@
 .evo-cinema-static .evo-cinema-scene::before{transform:none!important}
 @media(max-width:900px){.evo-cinema-scene::before{inset:0 38% 30% -20%;opacity:.15}.evo-cinema-rings{opacity:.15}}
 @media(prefers-reduced-motion:reduce){.evo-cinema-scene::before{transform:none!important}}
+
+/* Per-chapter artwork instead of repeating the hero portrait. */
+.evo-cinema-workshop{--evo-character-art:url('/evo/chapters/about.webp')}
+.evo-cinema-neural{--evo-character-art:url('/evo/chapters/lab.webp')}
+.evo-cinema-creation{--evo-character-art:url('/evo/chapters/projects.webp')}
+.evo-cinema-engineering{--evo-character-art:url('/evo/chapters/skills.webp')}
+.evo-cinema-strategy{--evo-character-art:url('/evo/chapters/experience.webp')}
+.evo-cinema-study{--evo-character-art:url('/evo/chapters/education.webp')}
+.evo-cinema-horizon{--evo-character-art:url('/evo/chapters/contact.webp')}
+.evo-light .evo-cinema-workshop{--evo-character-art:url('/evo/chapters/about.webp')}
+.evo-light .evo-cinema-neural{--evo-character-art:url('/evo/chapters/lab.webp')}
+.evo-light .evo-cinema-engineering{--evo-character-art:url('/evo/chapters/skills.webp')}
+.evo-cinema-scene::before{opacity:.16;filter:contrast(1.04) saturate(.95)}
+@media(max-width:700px){.evo-cinema-scene::before{opacity:.09}}
