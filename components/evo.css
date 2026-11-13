@@ -655,3 +655,29 @@
 .evo.evo-potter .evo-role{font-size:clamp(13px,1.5vw,23px)!important;letter-spacing:.28em!important;line-height:normal!important;padding:8px!important;border-left:2px solid var(--red)!important;border-right:2px solid var(--red)!important}
 .evo.evo-potter .evo-gryffindor{max-width:750px;margin:14px 0 22px;padding:18px 22px;border:1px solid #b99456;border-radius:15px;background:rgba(60,27,42,.14);font-family:"IM Fell English",Georgia,serif;font-size:clamp(16px,1.7vw,22px);line-height:1.5}
 @media(max-width:600px){.evo.evo-potter .evo-role{letter-spacing:.15em!important}.evo.evo-potter .evo-hero .evo-signature{font-size:clamp(42px,10vw,62px)!important}.evo.evo-potter .evo-gryffindor{padding:14px;font-size:16px}}
+
+
+/* Hero focal-point system: preserve portrait on every viewport without changing layout. */
+.evo{--hero-face-x:32%;--hero-face-y:34%}
+.evo.evo-potter{--hero-face-x:24%;--hero-face-y:35%}
+.evo .evo-hero-art{background-position:var(--hero-face-x) var(--hero-face-y)!important;background-repeat:no-repeat!important}
+@media(min-width:901px){
+.evo .evo-hero-art{inset:0 25% 0 0!important;background-size:cover!important;mask-image:linear-gradient(90deg,#000 0%,#000 50%,transparent 100%)!important;-webkit-mask-image:linear-gradient(90deg,#000 0%,#000 50%,transparent 100%)!important}
+.evo.evo-potter .evo-hero-art{inset:0 25% 0 0!important}
+.evo.evo-potter .evo-hero-scrim{background:linear-gradient(90deg,transparent 0%,rgba(10,5,20,.1) 35%,rgba(10,5,20,.8) 76%,rgba(10,5,20,.92))!important}
+}
+@media(min-width:901px) and (orientation:portrait){.evo{--hero-face-x:27%;--hero-face-y:24%}.evo.evo-potter{--hero-face-x:23%;--hero-face-y:24%}}
+@media(max-width:900px){
+.evo{--hero-face-x:31%;--hero-face-y:18%}.evo.evo-potter{--hero-face-x:22%;--hero-face-y:20%}
+.evo .evo-hero-art{inset:0 0 27% 0!important;background-size:cover!important;mask-image:linear-gradient(180deg,#000 0%,#000 55%,transparent 100%)!important;-webkit-mask-image:linear-gradient(180deg,#000 0%,#000 55%,transparent 100%)!important}
+.evo.evo-potter .evo-hero-scrim{background:linear-gradient(180deg,rgba(9,5,20,.08) 0%,rgba(9,5,20,.15) 27%,rgba(9,5,20,.72) 59%,#090514 95%)!important}
+.evo.evo-potter.evo-light .evo-hero-scrim{background:linear-gradient(180deg,rgba(255,242,214,.03),rgba(255,242,214,.12) 27%,rgba(255,242,214,.75) 59%,#fff2d6 95%)!important}
+}
+@media(max-width:600px){
+.evo{--hero-face-x:29%;--hero-face-y:12%}.evo.evo-potter{--hero-face-x:19%;--hero-face-y:12%}
+.evo .evo-hero-art{inset:0 0 37% 0!important;background-size:auto 100%!important}
+}
+@media(max-width:900px) and (orientation:landscape){
+.evo{--hero-face-x:26%;--hero-face-y:30%}.evo.evo-potter{--hero-face-x:20%;--hero-face-y:30%}
+.evo .evo-hero-art{inset:0 25% 0 0!important;background-size:cover!important;mask-image:linear-gradient(90deg,#000 0%,#000 45%,transparent 100%)!important;-webkit-mask-image:linear-gradient(90deg,#000 0%,#000 45%,transparent 100%)!important}
+}
