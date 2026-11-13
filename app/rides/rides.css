@@ -188,3 +188,28 @@ html.light .rides-theme-toggle {
     background-position: center, center;
   }
 }
+
+/* One continuous mobile hero: remove the duplicate contained-image layer. */
+@media (max-width: 767px) {
+  .rides-hero {
+    min-height: 100svh;
+    padding-top: clamp(320px, 55svh, 560px);
+    padding-bottom: 58px;
+    background: #071116;
+  }
+  .rides-hero-art {
+    inset: 0;
+    background-size: cover;
+    background-position: center 28%;
+  }
+  .rides-hero-art::before { content: none !important; display: none !important; }
+  .rides-hero-art::after {
+    background: linear-gradient(to bottom,
+      rgba(7,17,22,.08) 0%,
+      rgba(7,17,22,.08) 28%,
+      rgba(7,17,22,.52) 48%,
+      rgba(7,17,22,.91) 69%,
+      #071116 93%);
+  }
+  .rides-hero-content { z-index: 1; }
+}
