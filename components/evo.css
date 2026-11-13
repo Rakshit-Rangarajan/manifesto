@@ -571,3 +571,16 @@
 .evo .evo-side-logo,.evo.evo-light .evo-side-logo,.evo.evo-dark .evo-side-logo{background:transparent!important;box-shadow:none!important;border:0!important;overflow:visible!important}
 .evo .evo-side-logo img,.evo .evo-footer img{display:block;object-fit:contain;background:transparent!important;mix-blend-mode:normal!important;filter:none!important}
 .evo .evo-project-body h3{font-family:"Kaushan Script","Kalam",cursive;font-size:clamp(1.65rem,2.25vw,2.15rem);font-weight:400;letter-spacing:.01em;line-height:1.3;text-wrap:balance}
+
+
+/* PotterHead is an optional alternate presentation; original EVO stays untouched. */
+.evo-potter{--bg:#100d18;--fg:#fff0d3;--muted:#d0bda3;--panel:rgba(28,17,29,.9);--line:rgba(218,172,85,.55);--red:#d8a94d;--pink:#f2c879;font-family:Georgia,'Times New Roman',serif}
+.evo-potter.evo-light{--bg:#f8ecd2;--fg:#38271c;--muted:#66503b;--panel:rgba(255,246,222,.9);--line:rgba(137,88,38,.38);--red:#926019;--pink:#ad7432}
+.evo-potter .evo-hero-art{background-image:url('/Hogwarts-Night.png')!important;background-size:cover;background-position:center}
+.evo-potter.evo-light .evo-hero-art{background-image:url('/Hogwarts-Day.png')!important}
+.evo-potter .evo-hero h1,.evo-potter .evo-section h2,.evo-potter .evo-section h3{font-family:Georgia,'Times New Roman',serif;letter-spacing:-.035em}
+.evo-potter .evo-hero-scrim{background:linear-gradient(90deg,rgba(13,8,20,.85),rgba(13,8,20,.45) 52%,transparent)!important}
+.evo-potter.evo-light .evo-hero-scrim{background:linear-gradient(90deg,rgba(255,243,214,.89),rgba(255,243,214,.45) 55%,transparent)!important}
+.evo-potter-switch{font-size:12px;font-weight:700;letter-spacing:.03em;white-space:nowrap;padding:10px 13px!important;width:auto!important;height:auto!important;border-radius:999px!important}
+.evo-potter .evo-primary,.evo-potter .evo-filters .active{background:linear-gradient(120deg,#8c321f,#d9ad55)!important;color:#fff6e3!important}
+@media(max-width:700px){.evo-potter .evo-hero-art{background-position:40% center}.evo-potter-switch{font-size:10px;padding:9px!important}}
