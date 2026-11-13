@@ -9,6 +9,7 @@ export default function AmbientEffects({ light }: { light: boolean }) {
   const [automatic, setAutomatic] = useState<Climate>("sunny");
   const [override, setOverride] = useState<Climate | null>(null);
   const [panelOpen, setPanelOpen] = useState(false);
+  const panelRef = useRef<HTMLDivElement | null>(null);
   const hold = useRef<ReturnType<typeof setTimeout> | null>(null);
   const climate = override ?? automatic;
   const options: Climate[] = ["sunny","cloudy","rain","storm","snow","fog","wind","hail"];
@@ -23,14 +24,37 @@ export default function AmbientEffects({ light }: { light: boolean }) {
     return "sunny";
   };
   useEffect(() => {
+    if (!panelOpen) return;
+    const close = (event: PointerEvent) => { if (panelRef.current && !panelRef.current.contains(event.target as Node)) setPanelOpen(false); };
+    const escape = (event: KeyboardEvent) => { if (event.key === "Escape") setPanelOpen(false); };
+    document.addEventListener("pointerdown", close);
+    document.addEventListener("keydown", escape);
+    return () => { document.removeEventListener("pointerdown", close); document.removeEventListener("keydown", escape); };
+  }, [panelOpen]);
+  useEffect(() => {
     let active = true;
     const update = async () => {
       try {
         // Coarse city coordinates only; no browser location permission required.
-        const response = await fetch("https://api.open-meteo.com/v1/forecast?latitude=12.9716&longitude=77.5946&current=weather_code,wind_speed_10m&timezone=Asia%2FKolkata", { cache: "no-store" });
+        const cacheKey = "evo-climate-city-v2";
+        const cached = sessionStorage.getItem(cacheKey);
+        if (cached) {
+          const parsed = JSON.parse(cached) as { timestamp: number; code: number; wind: number };
+          if (Date.now() - parsed.timestamp < 30 * 60_000) {
+            if (active) setAutomatic(classify(parsed.code, parsed.wind));
+            return;
+          }
+        }
+        // City-level Bengaluru fallback; never request precise browser location.
+        const response = await fetch("https://api.open-meteo.com/v1/forecast?latitude=12.9716&longitude=77.5946&current=weather_code,wind_speed_10m&timezone=Asia%2FKolkata");
         if (!response.ok) return;
         const data = await response.json();
-        if (active && typeof data?.current?.weather_code === "number") setAutomatic(classify(data.current.weather_code, Number(data.current.wind_speed_10m || 0)));
+        if (active && typeof data?.current?.weather_code === "number") {
+          const code = data.current.weather_code;
+          const wind = Number(data.current.wind_speed_10m || 0);
+          sessionStorage.setItem(cacheKey, JSON.stringify({ timestamp: Date.now(), code, wind }));
+          setAutomatic(classify(code, wind));
+        }
       } catch { /* Offline: retain petal ambience. */ }
     };
     update();
@@ -44,14 +68,14 @@ export default function AmbientEffects({ light }: { light: boolean }) {
       {!light && [0, 1].map(i => <span key={i} className={"evo-meteor evo-meteor-" + i}/>)}
     </>}
   </div>
-    <div className="evo-climate-control">
-      <button type="button" className="evo-climate-trigger" aria-label="Atmosphere: hold to change weather" aria-expanded={panelOpen}
+    <div className="evo-climate-control" ref={panelRef}>
+      <button type="button" className="evo-climate-trigger" aria-label="Atmosphere settings: long press or activate" aria-expanded={panelOpen}
         onPointerDown={() => { hold.current = setTimeout(() => setPanelOpen(true), 550); }}
         onPointerUp={() => { if (hold.current) clearTimeout(hold.current); }}
         onPointerCancel={() => { if (hold.current) clearTimeout(hold.current); }}
         onContextMenu={e => { e.preventDefault(); setPanelOpen(true); }}
-        onClick={() => { if (!panelOpen) setPanelOpen(true); }}
-        title="Atmosphere">
+        onClick={event => { if (event.detail === 0) setPanelOpen(value => !value); }}
+        title="Hold for atmosphere controls">
         <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="1.4" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v3m0 14v3M2 12h3m14 0h3M4.9 4.9 7 7m10 10 2.1 2.1M19.1 4.9 17 7M7 17l-2.1 2.1"/></svg>
       </button>
       {panelOpen && <div className="evo-climate-panel" role="group" aria-label="Atmosphere controls">
