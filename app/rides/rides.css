@@ -139,3 +139,31 @@ html.dark .rides-hero-art{background-image:url("/file_00000000f930821082e6ab4aa4
   .rides-mood { min-height: 145px; }
   .rides-section { padding-inline: 16px; }
 }
+
+/* Same floating theme-control placement and shape as the EVO homepage. */
+.rides-theme-toggle {
+  position: fixed;
+  z-index: 110;
+  top: 16px;
+  right: clamp(16px, 3vw, 42px);
+  display: grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  border: 1px solid #a6d4da77;
+  background: rgba(8, 27, 34, .72);
+  color: #f8f1ee;
+  backdrop-filter: blur(14px);
+  cursor: pointer;
+}
+html.light .rides-theme-toggle {
+  background: rgba(255, 249, 252, .8);
+  border-color: rgba(140, 45, 91, .4);
+  color: #54283f;
+}
+@media(max-width:700px) {
+  .rides-theme-toggle { top: 12px; right: 14px; }
+  .rides-nav { padding-right: 70px; }
+  .rides-nav > a:last-child { display: none; }
+}
