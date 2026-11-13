@@ -34,3 +34,9 @@
 .evo-light .evo-cinema-engineering{--evo-character-art:url('/evo/chapters/skills.webp')}
 .evo-cinema-scene::before{opacity:.16;filter:contrast(1.04) saturate(.95)}
 @media(max-width:700px){.evo-cinema-scene::before{opacity:.09}}
+
+/* The chapter itself now owns one softly blended illustration. Avoid a second
+   copy of the same face on the fixed cinematic stage. */
+.evo-cinema-scene::before,.evo-cinema-character{display:none!important}
+.evo-cinema-rings{opacity:.12}
+.evo-cinema-atmosphere{opacity:.22}
