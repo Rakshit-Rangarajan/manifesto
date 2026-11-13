@@ -5,3 +5,32 @@
 .rides-hero-art{background-image:url("/file_00000000917881f4ac1b1c91ee0961f9.png");background-position:center center;background-size:cover;background-repeat:no-repeat}
 html.dark .rides-hero-art{background-image:url("/file_00000000f930821082e6ab4aa4f853b7.png")}
 @media(max-width:600px){.rides-hero-art{background-position:58% center}}
+
+
+/* Keep the complete rider and motorcycle visible on narrow screens.
+   The full artwork is letterboxed over a softened edge-to-edge backdrop. */
+@media (max-width: 850px) {
+  .rides-hero { align-items: flex-end; padding-bottom: 110px; }
+  .rides-hero-art { background-position: center center; }
+  .rides-hero-art::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: inherit;
+    background-size: contain;
+    background-position: center 32%;
+    background-repeat: no-repeat;
+  }
+  .rides-hero-art::after {
+    background: linear-gradient(0deg, #071116f2 0%, #071116bb 20%, transparent 58%),
+                linear-gradient(90deg, #07111666, transparent 75%);
+  }
+  .rides-hero-content { position: relative; z-index: 1; }
+  .rides-hero h1 { font-size: clamp(42px, 8vw, 76px); }
+}
+@media (max-width: 520px) {
+  .rides-hero { min-height: 100svh; padding-top: 95px; padding-bottom: 85px; }
+  .rides-hero-art::before { background-position: center 25%; }
+  .rides-hero h1 { font-size: clamp(40px, 11vw, 58px); }
+  .rides-hero-content > p:not(.rides-eyebrow) { font-size: 14px; line-height: 1.55; }
+}
