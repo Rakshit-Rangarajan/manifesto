@@ -633,3 +633,10 @@
 @keyframes potter-invite{to{text-shadow:0 0 24px #ffd76f,0 0 9px #fff}}
 @media(hover:none){.evo .evo-hobby-secret{opacity:1;transform:none;animation:none;font-size:11px}}
 @media(prefers-reduced-motion:reduce){.evo .evo-hobby-secret,.evo .evo-hobby-potter .evo-hobby-orb{transition:none;animation:none}}
+
+
+/* Wizard-only name treatment; original identity remains untouched. */
+.evo.evo-potter .evo-wizard-name,.evo.evo-potter .evo-wizard-name em{font-family:"Harry P","Cinzel Decorative",Georgia,serif!important;font-style:normal!important;font-weight:400!important;letter-spacing:.025em!important;line-height:1.28!important}
+.evo.evo-potter .evo-wizard-name{font-size:clamp(48px,8.6vw,126px)!important;overflow-wrap:normal;text-wrap:balance}
+.evo .evo-gryffindor{display:inline-block;margin:10px 0 15px;padding:8px 18px;border:1px solid #d9ad55aa;border-radius:999px;background:linear-gradient(110deg,#6b1d25cc,#3d1321cc);color:#ffe4a3;font:700 clamp(12px,1.5vw,18px) "IM Fell English",Georgia,serif;letter-spacing:.065em;box-shadow:0 0 24px #d9ad5530}
+@media(max-width:600px){.evo.evo-potter .evo-wizard-name{font-size:clamp(43px,10vw,68px)!important}.evo .evo-gryffindor{font-size:13px;padding:7px 12px}}
