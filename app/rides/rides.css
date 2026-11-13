@@ -34,3 +34,21 @@ html.dark .rides-hero-art{background-image:url("/file_00000000f930821082e6ab4aa4
   .rides-hero h1 { font-size: clamp(40px, 11vw, 58px); }
   .rides-hero-content > p:not(.rides-eyebrow) { font-size: 14px; line-height: 1.55; }
 }
+
+/* Match the EVO homepage typography. */
+.rides-page { font-family: Manrope, system-ui, sans-serif; }
+.rides-page h1, .rides-page h2, .rides-page h3, .rides-end h2 {
+  font-family: 'Kaushan Script', 'Brush Script MT', cursive;
+  font-weight: 400;
+  letter-spacing: -.035em;
+  line-height: 1.16;
+}
+.rides-page h1 em, .rides-page h2 em {
+  font-family: inherit;
+  font-weight: inherit;
+  font-style: normal;
+  color: #ff7897;
+}
+.rides-page .rides-eyebrow, .rides-page .rides-hero-caption, .rides-page .rides-nav {
+  font-family: Manrope, system-ui, sans-serif;
+}
