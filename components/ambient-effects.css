@@ -56,3 +56,15 @@
 @keyframes evo-lightning{0%,93%,95%,100%{opacity:1}93.4%,94.2%{opacity:.2;background-color:rgba(220,236,255,.2)}}
 @media(prefers-reduced-motion:reduce){.evo-climate-light,.evo-climate-particles{animation:none!important;transition:none}}
 @media(max-width:700px){.evo-climate-particles{opacity:.18!important}}
+
+/* Discreet, accessible atmosphere controls. No emoji or external assets. */
+.evo-climate-control{position:fixed;right:18px;bottom:84px;z-index:90;font-family:inherit}
+.evo-climate-trigger{width:34px;height:34px;display:grid;place-items:center;border:1px solid rgba(180,190,210,.22);border-radius:50%;background:rgba(30,35,49,.18);color:rgba(230,232,242,.72);backdrop-filter:blur(12px);cursor:pointer}
+.evo-climate-trigger:focus-visible,.evo-climate-panel button:focus-visible{outline:2px solid #e7a9c5;outline-offset:3px}
+.evo-climate-panel{position:absolute;right:0;bottom:43px;width:min(270px,calc(100vw - 30px));padding:14px;border-radius:16px;border:1px solid rgba(210,220,240,.22);background:rgba(20,24,37,.9);color:#f8eff6;backdrop-filter:blur(22px);box-shadow:0 12px 36px #0005}
+.evo-climate-heading{display:flex;justify-content:space-between;align-items:center;font-size:13px;letter-spacing:.09em;margin-bottom:10px}
+.evo-climate-panel button{background:transparent;color:inherit;border:1px solid rgba(230,230,245,.2);border-radius:9px;padding:8px 10px;cursor:pointer;font-size:12px;text-transform:capitalize}
+.evo-climate-heading button{border:0;font-size:18px;padding:0 5px}
+.evo-climate-panel button.selected{background:rgba(234,150,186,.22);border-color:rgba(244,182,207,.75)}
+.evo-climate-options{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:7px;margin-top:8px}
+@media(max-width:700px){.evo-climate-control{right:12px;bottom:72px}}
