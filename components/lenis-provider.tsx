@@ -8,16 +8,16 @@ interface LenisProviderProps {
   children: ReactNode;
 }
 
+/** Native wheel/touch scrolling for responsive input; decorative animations
+ * observe scroll position without controlling it. */
 export default function LenisProvider({ children }: LenisProviderProps) {
   useEffect(() => {
     const lenis = new Lenis({
-      duration: 1.1,
-      smoothWheel: true,
-      // Keep touch scrolling native: mobile browsers already provide momentum.
-      syncTouch: false,
+      smoothWheel: false,
       syncTouch: false,
     });
 
+    // Preserve the existing optional integration for other components.
     // @ts-ignore
     window.lenis = lenis;
 
@@ -28,18 +28,14 @@ export default function LenisProvider({ children }: LenisProviderProps) {
       lenis.raf(time);
       rafId = requestAnimationFrame(raf);
     }
-
     rafId = requestAnimationFrame(raf);
-
     return () => {
       running = false;
+      cancelAnimationFrame(rafId);
       // @ts-ignore
       delete window.lenis;
-      running = false;
-      cancelAnimationFrame(rafId);
       lenis.destroy();
     };
   }, []);
-
   return <>{children}</>;
 }
