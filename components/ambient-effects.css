@@ -23,3 +23,19 @@
 @keyframes evo-natural-fall{0%{opacity:0;transform:translate3d(-25px,-30px,0) rotate(-16deg)}7%{opacity:.95}27%{transform:translate3d(35px,28vh,0) rotate(36deg)}55%{transform:translate3d(-25px,57vh,0) rotate(115deg)}88%{opacity:.85}100%{opacity:0;transform:translate3d(65px,112vh,0) rotate(205deg)}}
 @keyframes evo-petal-fold{0%{transform:perspective(100px) rotateY(-58deg) rotateX(24deg) rotateZ(-18deg) scaleX(.83)}50%{transform:perspective(100px) rotateY(12deg) rotateX(-20deg) rotateZ(13deg) scaleX(1)}100%{transform:perspective(100px) rotateY(65deg) rotateX(32deg) rotateZ(-11deg) scaleX(.77)}}
 @media(prefers-reduced-motion:reduce){.evo-petal-flight{animation:none;opacity:.75;top:24%}.evo-petal-flight:nth-of-type(3n){top:68%}.evo-petal-flight .evo-petal{animation:none}}
+
+/* Weather layer: rain is a decorative overlay, never an input blocker. */
+.evo-ambience.is-raining::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: .28;
+  background: repeating-linear-gradient(105deg, transparent 0 24px, rgba(175,210,255,.36) 25px, transparent 27px 48px);
+  background-size: 160px 240px;
+  animation: evo-rain-drift .65s linear infinite;
+}
+@keyframes evo-rain-drift { to { background-position: -60px 240px; } }
+@media (prefers-reduced-motion: reduce) {
+  .evo-ambience.is-raining::after { animation: none; opacity: .13; }
+}
