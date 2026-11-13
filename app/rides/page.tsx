@@ -2,11 +2,12 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import { ArrowLeft, ArrowDown, ArrowUpRight, CloudRain, Mountain, Waves, Route } from "lucide-react";
 import "./rides.css";
+import RidesThemeToggle from "./rides-theme-toggle";
 
 export const metadata: Metadata = {title:"Motorcycle Diaries | Rakshit Rangarajan",description:"Rain-soaked roads, mountain curves, rivers and the joy of the ride."};
 const moods=[{title:"The Monsoon",detail:"Rain on the visor. Reflections on the tarmac.",icon:CloudRain},{title:"The Mountains",detail:"Hill stations, winding paved roads and endless bends.",icon:Mountain},{title:"The Rivers",detail:"Riverside roads, waterfalls and quiet crossings.",icon:Waves},{title:"The Corners",detail:"The rhythm of a well-shaped mountain road.",icon:Route}];
 export default function RidesPage(){return <main className="rides-page">
-<nav className="rides-nav"><Link href="/" aria-label="Back to portfolio"><ArrowLeft size={17}/> Portfolio</Link><span>RR / MOTORCYCLE DIARIES</span><a href="#journeys">Explore <ArrowDown size={16}/></a></nav>
+<RidesThemeToggle/><nav className="rides-nav"><Link href="/" aria-label="Back to portfolio"><ArrowLeft size={17}/> Portfolio</Link><span>RR / MOTORCYCLE DIARIES</span><a href="#journeys">Explore <ArrowDown size={16}/></a></nav>
 <header className="rides-hero"><div className="rides-hero-art" aria-hidden="true"/><div className="rides-hero-content"><p className="rides-eyebrow">BEYOND THE CODE / THE OPEN ROAD</p><h1>Where the Roads<br/><em>Meet the Rain.</em></h1><p>Some stories are written in code. Others are written on wet tarmac, between mountain bends and rivers.</p><a href="#journeys">Follow the road <ArrowDown size={17}/></a></div><span className="rides-hero-caption">BMW G 310 R · MONSOON RIDES · MOUNTAIN ROADS</span></header>
 <section id="journeys" className="rides-section rides-intro"><p className="rides-eyebrow">01 / THE RIDER</p><h2>Not every journey<br/><em>needs a destination.</em></h2><p>I ride for the rain, the hills, the rivers running alongside the road and the corners that make the journey unforgettable. No off-road fantasy: just the open road and the landscapes around it.</p></section>
 <section className="rides-section"><p className="rides-eyebrow">02 / WHAT CALLS ME BACK</p><h2>Four reasons to <em>keep riding.</em></h2><div className="rides-moods">{moods.map(({title,detail,icon:Icon},i)=><article key={title} className="rides-mood"><span>0{i+1}</span><Icon size={30} strokeWidth={1.4}/><h3>{title}</h3><p>{detail}</p></article>)}</div></section>
