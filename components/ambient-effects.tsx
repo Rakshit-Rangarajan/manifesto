@@ -5,24 +5,35 @@ import "./ambient-effects.css";
 
 /** Decorative, lightweight SVG/CSS ambience; no emoji or network assets. */
 export default function AmbientEffects({ light }: { light: boolean }) {
-  const [rain, setRain] = useState(false);
+  type Climate = "sunny" | "cloudy" | "rain" | "storm" | "snow" | "fog" | "wind" | "hail";
+  const [climate, setClimate] = useState<Climate>("sunny");
+  const classify = (code: number, wind: number): Climate => {
+    if (code === 95) return "storm";
+    if ([71, 73, 75, 77, 85, 86].includes(code)) return "snow";
+    if ([96, 99].includes(code)) return "hail";
+    if ([45, 48].includes(code)) return "fog";
+    if ([51, 53, 55, 56, 57, 61, 63, 65, 66, 67, 80, 81, 82].includes(code)) return "rain";
+    if (wind >= 35) return "wind";
+    if ([1, 2, 3].includes(code)) return "cloudy";
+    return "sunny";
+  };
   useEffect(() => {
     let active = true;
     const update = async () => {
       try {
         // Coarse city coordinates only; no browser location permission required.
-        const response = await fetch("https://api.open-meteo.com/v1/forecast?latitude=12.9716&longitude=77.5946&current=rain,showers,precipitation&timezone=Asia%2FKolkata", { cache: "no-store" });
+        const response = await fetch("https://api.open-meteo.com/v1/forecast?latitude=12.9716&longitude=77.5946&current=weather_code,wind_speed_10m&timezone=Asia%2FKolkata", { cache: "no-store" });
         if (!response.ok) return;
         const data = await response.json();
-        if (active) setRain(Number(data?.current?.rain || 0) > 0 || Number(data?.current?.showers || 0) > 0);
+        if (active && typeof data?.current?.weather_code === "number") setClimate(classify(data.current.weather_code, Number(data.current.wind_speed_10m || 0)));
       } catch { /* Offline: retain petal ambience. */ }
     };
     update();
     const interval = window.setInterval(update, 15 * 60 * 1000);
     return () => { active = false; window.clearInterval(interval); };
   }, []);
-  return <div className={"evo-ambience " + (light ? "is-day" : "is-night") + (rain ? " is-raining" : "")} aria-hidden="true">
-    <div className="evo-halo" />
+  return <div className={"evo-ambience " + (light ? "is-day" : "is-night") + " climate-" + climate} aria-hidden="true">
+    <div className="evo-halo" /><div className="evo-climate-light" /><div className="evo-climate-particles" />
     {<>
       {Array.from({length: 26}, (_, i) => <span key={i} className="evo-petal-flight" style={{left: `${3 + (i * 17.3) % 94}%`, animationDuration: `${11 + (i % 6) * 1.8}s`, animationDelay: `${-i * 1.65}s`, width: `${12 + (i % 4) * 3}px` } as CSSProperties}><svg className="evo-petal" viewBox="0 0 36 42" style={{animationDelay:`${-i*.31}s`,animationDuration:`${2.6+(i%5)*.45}s`}}><defs><linearGradient id={`petal-grad-${i}`} x1="0" y1="0" x2="1" y2="1"><stop offset="0" stopColor="#fff4f6"/><stop offset=".45" stopColor="#f6b0cb"/><stop offset="1" stopColor="#cf6b99"/></linearGradient></defs><path d="M17 39 C9 31 3 24 5 15 C6 8 12 4 17 3 C23 5 31 11 30 19 C29 27 23 34 17 39Z" fill={`url(#petal-grad-${i})`} stroke="#ffe6f1" strokeWidth=".7"/><path d="M17 38 Q12 22 17 4" fill="none" stroke="#c46c92" strokeOpacity=".42" strokeWidth=".85"/><path d="M17 38 Q25 23 29 19" fill="none" stroke="#fff6fa" strokeOpacity=".52" strokeWidth=".9"/></svg></span>)} 
       {!light && [0, 1].map(i => <span key={i} className={"evo-meteor evo-meteor-" + i}/>)}
