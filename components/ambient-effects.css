@@ -105,3 +105,31 @@
 .evo-meteor-1{animation-duration:51s}
 @media(max-width:700px){.evo-petal-flight:nth-of-type(2n){display:none}.evo-climate-particles{opacity:.1!important}}
 @media(prefers-reduced-motion:reduce){.evo-petal-flight,.evo-petal-flight .evo-petal{animation:none!important;opacity:.22}.evo-climate-particles{animation:none!important;opacity:.06!important}}
+
+
+/* Individual precipitation elements: seeded positions, independent speeds and drift. */
+.evo-weather-field{position:absolute;inset:0;overflow:hidden;pointer-events:none;z-index:2}
+.evo-weather-drop{position:absolute;top:-5%;display:block;opacity:0;will-change:transform;animation:evo-individual-fall linear infinite;background:rgba(203,225,247,.8);border-radius:999px;box-shadow:0 0 2px rgba(195,220,255,.12)}
+.climate-rain .evo-weather-drop,.climate-storm .evo-weather-drop{transform:rotate(9deg);background:linear-gradient(180deg,transparent,rgba(185,214,241,.78));}
+.climate-snow .evo-weather-drop{background:rgba(239,246,255,.9);box-shadow:0 0 4px rgba(240,249,255,.28)}
+.climate-hail .evo-weather-drop{background:rgba(219,236,250,.85);box-shadow:0 0 3px rgba(225,239,252,.35)}
+@keyframes evo-individual-fall{
+  0%{opacity:0;transform:translate3d(0,-8vh,0)}
+  8%{opacity:var(--drop-opacity,.4)}
+  45%{transform:translate3d(var(--fall-sway,0px),50vh,0)}
+  80%{opacity:var(--drop-opacity,.4)}
+  100%{opacity:0;transform:translate3d(var(--fall-drift,0px),112vh,0)}
+}
+/* Remove the uniform screen-wide stripe and dotted background patterns. */
+.climate-rain .evo-climate-particles,.climate-storm .evo-climate-particles,.climate-hail .evo-climate-particles,.climate-snow .evo-climate-particles{background-image:none!important;animation:none!important;opacity:0!important}
+/* One randomly chosen prevailing direction per wind episode; gusts have different speeds. */
+.climate-wind .evo-petal-flight{animation-name:evo-wind-gust!important;animation-duration:var(--wind-duration,5s)!important;animation-timing-function:cubic-bezier(.3,.05,.65,.9)!important}
+@keyframes evo-wind-gust{
+  0%{opacity:0;transform:translate3d(calc(var(--wind-direction,1)*-55vw),-8vh,0) rotate(-30deg)}
+  12%{opacity:var(--petal-opacity,.5)}
+  45%{transform:translate3d(calc(var(--wind-direction,1)*-8vw),var(--wind-rise,0vh),0) rotate(115deg)}
+  80%{opacity:var(--petal-opacity,.5)}
+  100%{opacity:0;transform:translate3d(calc(var(--wind-direction,1)*var(--wind-distance,70vw)),calc(var(--wind-rise,0vh) + 14vh),0) rotate(300deg)}
+}
+@media(max-width:700px){.evo-weather-drop:nth-child(2n){display:none}}
+@media(prefers-reduced-motion:reduce){.evo-weather-drop{animation:none!important;opacity:.08;top:35%}.climate-wind .evo-petal-flight{animation:none!important;opacity:.2}}
