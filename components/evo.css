@@ -647,3 +647,50 @@
 .evo.evo-potter .evo-hero .evo-signature,.evo.evo-potter .evo-hero .evo-signature em{font-family:"Harry P","Cinzel Decorative",Georgia,serif!important;font-weight:400!important;font-style:normal!important;letter-spacing:.035em!important;line-height:1.08!important}
 .evo.evo-potter .evo-gryffindor{max-width:680px;margin:14px 0 18px;font-family:"IM Fell English",Georgia,serif;font-size:clamp(16px,1.65vw,23px);line-height:1.55;color:#f6dca4;text-shadow:0 2px 12px #09040b}
 .evo.evo-potter.evo-light .evo-gryffindor{color:#5c301a;text-shadow:none}
+
+
+/* PotterHead: intentional portrait/mobile hero instead of stacked desktop composition. */
+.evo.evo-potter .evo-hero{min-height:min(920px,100svh);padding-top:clamp(80px,8vw,125px);padding-bottom:clamp(65px,7vw,105px)}
+.evo.evo-potter .evo-hero-content{display:flex;flex-direction:column;align-items:center;gap:clamp(8px,1.1vw,15px);width:min(720px,54%);padding:18px 12px}
+.evo.evo-potter .evo-hero-content>*{max-width:100%;margin-top:0;margin-bottom:0}
+.evo.evo-potter .evo-gryffindor{order:3;font-size:clamp(15px,1.25vw,19px);line-height:1.45;max-width:550px;padding:0;background:none;border:0;box-shadow:none}
+.evo.evo-potter .evo-role{order:2;font-size:clamp(18px,2.1vw,30px)!important;line-height:1.2!important;letter-spacing:.035em!important;border:0;padding:0}
+.evo.evo-potter .evo-hero-manifesto{order:4;font-size:clamp(16px,1.55vw,23px);line-height:1.4}
+.evo.evo-potter .evo-subtitle{order:5;font-size:clamp(11px,1vw,14px);line-height:1.5}
+.evo.evo-potter .evo-pills{order:6;gap:7px}
+.evo.evo-potter .evo-pills span{font-size:10px;padding:6px 10px}
+.evo.evo-potter .evo-cta{order:7;gap:10px;margin-top:10px}
+.evo.evo-potter .evo-cta a{min-width:0;padding:12px 17px;font-size:11px}
+@media(max-width:1100px), (orientation:portrait){
+.evo.evo-potter .evo-hero{min-height:100svh;height:auto;justify-content:center!important;align-items:center!important;padding:clamp(90px,12vh,130px) 24px 110px!important}
+.evo.evo-potter .evo-hero-art{inset:0!important;mask-image:none!important;background-position:center 30%!important}
+.evo.evo-potter .evo-hero-scrim{background:linear-gradient(180deg,rgba(6,5,18,.55) 0%,rgba(8,5,20,.78) 35%,rgba(6,4,18,.92) 100%)!important}
+.evo.evo-potter.evo-light .evo-hero-scrim{background:linear-gradient(180deg,rgba(255,242,219,.55),rgba(255,241,220,.85) 45%,rgba(255,240,215,.95))!important}
+.evo.evo-potter .evo-hero-content{width:min(100%,660px)!important;margin:0 auto!important;gap:11px;padding:0}
+.evo.evo-potter .evo-hero-overline{font-size:10px;letter-spacing:.1em}
+.evo.evo-potter .evo-eyebrow{font-size:10px}
+.evo.evo-potter .evo-signature{font-size:clamp(48px,8vw,82px)!important;line-height:1.03!important;margin:4px 0 0!important}
+.evo.evo-potter .evo-signature:after{height:2px;margin:3px auto 0}
+.evo.evo-potter .evo-role{font-size:clamp(21px,3.4vw,34px)!important}
+.evo.evo-potter .evo-gryffindor{font-size:clamp(15px,2vw,19px);max-width:550px}
+.evo.evo-potter .evo-hero-manifesto{font-size:clamp(17px,2.4vw,22px)}
+.evo.evo-potter .evo-subtitle{font-size:12px}
+.evo.evo-potter .evo-cta{display:flex;flex-direction:row;flex-wrap:wrap}
+}
+@media(max-width:600px){
+.evo.evo-potter .evo-hero{padding:85px 18px 105px!important;min-height:100svh}
+.evo.evo-potter .evo-hero-content{gap:9px!important}
+.evo.evo-potter .evo-hero-overline{margin:0;font-size:9px}
+.evo.evo-potter .evo-eyebrow{display:none}
+.evo.evo-potter .evo-signature{font-size:clamp(43px,12vw,65px)!important;line-height:1!important;letter-spacing:0!important;margin:0!important}
+.evo.evo-potter .evo-role{font-size:clamp(21px,6vw,30px)!important;line-height:1.08!important}
+.evo.evo-potter .evo-gryffindor{font-size:clamp(14px,3.8vw,17px)!important;line-height:1.4!important;padding:0 3px!important;max-width:380px}
+.evo.evo-potter .evo-hero-manifesto{font-size:clamp(16px,4.2vw,19px)!important;line-height:1.35}
+.evo.evo-potter .evo-subtitle{font-size:10px!important;line-height:1.45;margin:0}
+.evo.evo-potter .evo-pills{gap:5px}
+.evo.evo-potter .evo-pills span{font-size:9px;padding:5px 8px;letter-spacing:.04em}
+.evo.evo-potter .evo-cta{width:100%;gap:9px;margin-top:5px}
+.evo.evo-potter .evo-cta a{flex:1 1 130px;max-width:220px;padding:11px 8px!important;font-size:10px;letter-spacing:0}
+.evo.evo-potter .evo-floating-controls{z-index:80}
+}
+@media(max-width:390px){.evo.evo-potter .evo-hero{padding-top:75px!important}.evo.evo-potter .evo-gryffindor{font-size:13px!important}.evo.evo-potter .evo-signature{font-size:43px!important}}
