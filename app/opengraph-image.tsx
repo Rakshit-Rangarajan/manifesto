@@ -1,7 +1,7 @@
 import { ImageResponse } from "next/og";
 import { personalInfo } from "@/data/personal-details";
 
-export const runtime = "edge";
+export const dynamic = "force-static";
 
 export const alt = "About Rakshit Rangarajan";
 export const size = {

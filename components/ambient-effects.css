@@ -1,0 +1,135 @@
+.evo-ambience{position:absolute;inset:0;pointer-events:none;overflow:hidden;z-index:3;isolation:isolate}
+.evo-halo{position:absolute;left:25%;top:37%;width:clamp(170px,25vw,370px);aspect-ratio:1;transform:translate(-50%,-50%);border-radius:50%;background:radial-gradient(circle,transparent 37%,rgba(149,184,255,.12) 48%,rgba(142,175,255,.24) 53%,transparent 66%);filter:blur(5px);animation:evo-halo-breathe 9s ease-in-out infinite}
+.is-day .evo-halo{background:radial-gradient(circle,transparent 36%,rgba(255,213,166,.18) 47%,rgba(255,198,135,.35) 54%,transparent 67%)}
+.evo-meteor{position:absolute;top:15%;left:74%;width:110px;height:1px;transform:rotate(-27deg);background:linear-gradient(90deg,transparent,rgba(213,231,255,.75),white);box-shadow:0 0 6px rgba(190,220,255,.4);opacity:0;animation:evo-shoot 17s linear infinite}
+.evo-meteor-1{top:29%;left:87%;animation-delay:9s;animation-duration:23s;width:75px}
+.evo-petal{position:absolute;top:-40px;left:12%;width:15px;height:19px;opacity:0;filter:drop-shadow(0 1px 3px rgba(210,83,131,.2));animation:evo-petal-fall 15s linear infinite}
+@keyframes evo-shoot{0%,5%,100%{opacity:0;translate:0 0}1%{opacity:.75}4%{opacity:0;translate:-160px 80px}}
+@keyframes evo-petal-fall{0%{opacity:0;transform:translate3d(0,-20px,0) rotate(0)}8%{opacity:.85}90%{opacity:.65}100%{opacity:0;transform:translate3d(100px,105vh,0) rotate(520deg)}}
+@keyframes evo-halo-breathe{50%{opacity:.75;scale:1.035}}
+@media(max-width:700px){.evo-halo{left:50%;top:34%;width:45vw;opacity:.5}.evo-meteor{width:65px}}
+@media(prefers-reduced-motion:reduce){.evo-halo{animation:none}.evo-meteor{display:none}.evo-petal{animation:none;opacity:.65;top:20%;transform:rotate(20deg)}.evo-petal:nth-of-type(3n){top:62%;transform:rotate(-28deg)}}
+
+/* Blossoms remain present in both modes, with cooler moonlit coloration at night. */
+.is-night .evo-petal{filter:drop-shadow(0 0 5px rgba(255,187,223,.7)) hue-rotate(8deg) saturate(1.15)}
+.is-day .evo-petal{filter:drop-shadow(0 1px 4px rgba(223,84,136,.35))}
+@keyframes evo-petal-fall{0%{opacity:0;transform:translate3d(-20px,-25px,0) rotate(-30deg)}7%{opacity:.9}50%{opacity:.78;transform:translate3d(48px,50vh,0) rotate(210deg)}92%{opacity:.67}100%{opacity:0;transform:translate3d(115px,110vh,0) rotate(470deg)}}
+@media(prefers-reduced-motion:reduce){.evo-petal{animation:none;opacity:.65}}
+
+/* Separate fall trajectory from petal flutter so folds do not overwrite falling transforms. */
+.evo-petal-flight{position:absolute;top:-45px;display:block;height:25px;opacity:0;animation:evo-natural-fall 15s linear infinite;will-change:transform}
+.evo-petal-flight .evo-petal{display:block;width:100%;height:auto;opacity:1;transform-origin:50% 25%;animation:evo-petal-fold 3s ease-in-out infinite alternate;filter:drop-shadow(0 1px 3px rgba(204,77,122,.24));backface-visibility:visible}
+.is-night .evo-petal-flight .evo-petal{filter:drop-shadow(0 0 5px rgba(255,178,219,.62))}
+@keyframes evo-natural-fall{0%{opacity:0;transform:translate3d(-25px,-30px,0) rotate(-16deg)}7%{opacity:.95}27%{transform:translate3d(35px,28vh,0) rotate(36deg)}55%{transform:translate3d(-25px,57vh,0) rotate(115deg)}88%{opacity:.85}100%{opacity:0;transform:translate3d(65px,112vh,0) rotate(205deg)}}
+@keyframes evo-petal-fold{0%{transform:perspective(100px) rotateY(-58deg) rotateX(24deg) rotateZ(-18deg) scaleX(.83)}50%{transform:perspective(100px) rotateY(12deg) rotateX(-20deg) rotateZ(13deg) scaleX(1)}100%{transform:perspective(100px) rotateY(65deg) rotateX(32deg) rotateZ(-11deg) scaleX(.77)}}
+@media(prefers-reduced-motion:reduce){.evo-petal-flight{animation:none;opacity:.75;top:24%}.evo-petal-flight:nth-of-type(3n){top:68%}.evo-petal-flight .evo-petal{animation:none}}
+
+/* Weather layer: rain is a decorative overlay, never an input blocker. */
+.evo-ambience.is-raining::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: .28;
+  background: repeating-linear-gradient(105deg, transparent 0 24px, rgba(175,210,255,.36) 25px, transparent 27px 48px);
+  background-size: 160px 240px;
+  animation: evo-rain-drift .65s linear infinite;
+}
+@keyframes evo-rain-drift { to { background-position: -60px 240px; } }
+@media (prefers-reduced-motion: reduce) {
+  .evo-ambience.is-raining::after { animation: none; opacity: .13; }
+}
+
+/* Shared climate layer: purely decorative, with GPU-light gradients. */
+.evo-climate-light,.evo-climate-particles{position:absolute;inset:0;pointer-events:none;transition:opacity 1.8s ease}
+.climate-sunny .evo-climate-light{background:radial-gradient(ellipse at 75% 12%,rgba(255,209,132,.25),transparent 52%)}
+.climate-cloudy .evo-climate-light,.climate-fog .evo-climate-light{background:linear-gradient(180deg,rgba(153,165,188,.18),rgba(183,192,207,.07) 65%,transparent)}
+.climate-storm .evo-climate-light{background:linear-gradient(180deg,rgba(44,55,83,.32),transparent 75%);animation:evo-lightning 16s linear infinite}
+.climate-rain .evo-climate-light,.climate-hail .evo-climate-light{background:linear-gradient(180deg,rgba(76,103,143,.2),transparent 80%)}
+.climate-snow .evo-climate-light{background:radial-gradient(ellipse at 50% 5%,rgba(208,230,255,.24),transparent 70%)}
+.climate-fog .evo-climate-particles{background:linear-gradient(90deg,transparent,rgba(215,224,235,.16),transparent);filter:blur(28px)}
+.climate-rain .evo-climate-particles,.climate-storm .evo-climate-particles,.climate-hail .evo-climate-particles{opacity:.3;background:repeating-linear-gradient(105deg,transparent 0 22px,rgba(179,212,255,.5) 23px,transparent 25px 48px);background-size:150px 240px;animation:evo-rain-drift .75s linear infinite}
+.climate-hail .evo-climate-particles{background-image:radial-gradient(circle,rgba(228,241,255,.75) 1.5px,transparent 2.5px);background-size:65px 85px}
+.climate-snow .evo-climate-particles{background-image:radial-gradient(circle,rgba(244,250,255,.9) 2px,transparent 3px),radial-gradient(circle,rgba(222,239,255,.7) 1px,transparent 2px);background-size:85px 110px,53px 77px;animation:evo-snowfall 13s linear infinite}
+.climate-wind .evo-petal-flight{animation-duration:8s!important}
+@keyframes evo-snowfall{to{background-position:35px 110px,-20px 77px}}
+@keyframes evo-lightning{0%,93%,95%,100%{opacity:1}93.4%,94.2%{opacity:.2;background-color:rgba(220,236,255,.2)}}
+@media(prefers-reduced-motion:reduce){.evo-climate-light,.evo-climate-particles{animation:none!important;transition:none}}
+@media(max-width:700px){.evo-climate-particles{opacity:.18!important}}
+
+/* Discreet, accessible atmosphere controls. No emoji or external assets. */
+.evo-climate-control{position:fixed;right:18px;bottom:84px;z-index:90;font-family:inherit}
+.evo-climate-trigger{width:34px;height:34px;display:grid;place-items:center;border:1px solid rgba(180,190,210,.22);border-radius:50%;background:rgba(30,35,49,.18);color:rgba(230,232,242,.72);backdrop-filter:blur(12px);cursor:pointer}
+.evo-climate-trigger:focus-visible,.evo-climate-panel button:focus-visible{outline:2px solid #e7a9c5;outline-offset:3px}
+.evo-climate-panel{position:absolute;right:0;bottom:43px;width:min(270px,calc(100vw - 30px));padding:14px;border-radius:16px;border:1px solid rgba(210,220,240,.22);background:rgba(20,24,37,.9);color:#f8eff6;backdrop-filter:blur(22px);box-shadow:0 12px 36px #0005}
+.evo-climate-heading{display:flex;justify-content:space-between;align-items:center;font-size:13px;letter-spacing:.09em;margin-bottom:10px}
+.evo-climate-panel button{background:transparent;color:inherit;border:1px solid rgba(230,230,245,.2);border-radius:9px;padding:8px 10px;cursor:pointer;font-size:12px;text-transform:capitalize}
+.evo-climate-heading button{border:0;font-size:18px;padding:0 5px}
+.evo-climate-panel button.selected{background:rgba(234,150,186,.22);border-color:rgba(244,182,207,.75)}
+.evo-climate-options{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:7px;margin-top:8px}
+@media(max-width:700px){.evo-climate-control{right:12px;bottom:72px}}
+
+
+/* Naturalistic atmosphere pass: quiet, depth-aware movement rather than a weather filter. */
+.evo-petal-flight{top:-35px;opacity:0;animation-name:evo-petal-drift;animation-timing-function:linear;filter:blur(var(--depth-blur,0px));}
+.evo-petal-flight .evo-petal{position:relative;top:auto;left:auto;width:100%;height:auto;animation-name:evo-petal-sway;animation-timing-function:ease-in-out;opacity:1}
+.evo-petal-flight:nth-child(3n){opacity:.5}
+.is-night .evo-petal-flight .evo-petal{filter:drop-shadow(0 1px 2px rgba(220,120,163,.2)) brightness(.75) saturate(.85)}
+@keyframes evo-petal-drift{
+  0%{opacity:0;transform:translate3d(0,-4vh,0) rotate(-12deg)}
+  12%{opacity:var(--petal-opacity,.5)}
+  35%{transform:translate3d(var(--drift-a,22px),36vh,0) rotate(40deg)}
+  70%{transform:translate3d(var(--drift-b,-16px),75vh,0) rotate(105deg);opacity:var(--petal-opacity,.5)}
+  100%{opacity:0;transform:translate3d(var(--drift-c,45px),115vh,0) rotate(170deg)}
+}
+@keyframes evo-petal-sway{
+  from{transform:rotateY(-55deg) rotateZ(-12deg) scaleX(.7)}
+  to{transform:rotateY(55deg) rotateZ(12deg) scaleX(1)}
+}
+.climate-rain .evo-climate-particles,.climate-storm .evo-climate-particles{
+  opacity:.14;
+  background:repeating-linear-gradient(103deg,transparent 0 41px,rgba(193,215,238,.38) 42px,transparent 43px 94px);
+  background-size:220px 320px;
+  animation:evo-soft-rain 1.7s linear infinite;
+  mask-image:linear-gradient(180deg,transparent 0%,#000 22%,#000 88%,transparent);
+}
+@keyframes evo-soft-rain{to{background-position:-30px 320px}}
+.climate-hail .evo-climate-particles{opacity:.14;animation:evo-soft-rain 2s linear infinite}
+.climate-snow .evo-climate-particles{opacity:.2;animation-duration:25s}
+.climate-storm .evo-climate-light{animation:none;background:linear-gradient(180deg,rgba(45,55,79,.14),transparent 72%)}
+.climate-cloudy .evo-climate-light,.climate-fog .evo-climate-light{background:linear-gradient(180deg,rgba(130,146,171,.09),transparent 75%)}
+.climate-sunny .evo-climate-light{background:radial-gradient(ellipse at 75% 12%,rgba(255,209,132,.09),transparent 48%)}
+.climate-wind .evo-petal-flight{animation-duration:var(--wind-duration,11s)!important}
+.evo-halo{animation-duration:16s;opacity:.6}
+.evo-meteor{animation-duration:39s;opacity:0}
+.evo-meteor-1{animation-duration:51s}
+@media(max-width:700px){.evo-petal-flight:nth-of-type(2n){display:none}.evo-climate-particles{opacity:.1!important}}
+@media(prefers-reduced-motion:reduce){.evo-petal-flight,.evo-petal-flight .evo-petal{animation:none!important;opacity:.22}.evo-climate-particles{animation:none!important;opacity:.06!important}}
+
+
+/* Individual precipitation elements: seeded positions, independent speeds and drift. */
+.evo-weather-field{position:absolute;inset:0;overflow:hidden;pointer-events:none;z-index:2}
+.evo-weather-drop{position:absolute;top:-5%;display:block;opacity:0;will-change:transform;animation:evo-individual-fall linear infinite;background:rgba(203,225,247,.8);border-radius:999px;box-shadow:0 0 2px rgba(195,220,255,.12)}
+.climate-rain .evo-weather-drop,.climate-storm .evo-weather-drop{transform:rotate(9deg);background:linear-gradient(180deg,transparent,rgba(185,214,241,.78));}
+.climate-snow .evo-weather-drop{background:rgba(239,246,255,.9);box-shadow:0 0 4px rgba(240,249,255,.28)}
+.climate-hail .evo-weather-drop{background:rgba(219,236,250,.85);box-shadow:0 0 3px rgba(225,239,252,.35)}
+@keyframes evo-individual-fall{
+  0%{opacity:0;transform:translate3d(0,-8vh,0)}
+  8%{opacity:var(--drop-opacity,.4)}
+  45%{transform:translate3d(var(--fall-sway,0px),50vh,0)}
+  80%{opacity:var(--drop-opacity,.4)}
+  100%{opacity:0;transform:translate3d(var(--fall-drift,0px),112vh,0)}
+}
+/* Remove the uniform screen-wide stripe and dotted background patterns. */
+.climate-rain .evo-climate-particles,.climate-storm .evo-climate-particles,.climate-hail .evo-climate-particles,.climate-snow .evo-climate-particles{background-image:none!important;animation:none!important;opacity:0!important}
+/* One randomly chosen prevailing direction per wind episode; gusts have different speeds. */
+.climate-wind .evo-petal-flight{animation-name:evo-wind-gust!important;animation-duration:var(--wind-duration,5s)!important;animation-timing-function:cubic-bezier(.3,.05,.65,.9)!important}
+@keyframes evo-wind-gust{
+  0%{opacity:0;transform:translate3d(calc(var(--wind-direction,1)*-55vw),-8vh,0) rotate(-30deg)}
+  12%{opacity:var(--petal-opacity,.5)}
+  45%{transform:translate3d(calc(var(--wind-direction,1)*-8vw),var(--wind-rise,0vh),0) rotate(115deg)}
+  80%{opacity:var(--petal-opacity,.5)}
+  100%{opacity:0;transform:translate3d(calc(var(--wind-direction,1)*var(--wind-distance,70vw)),calc(var(--wind-rise,0vh) + 14vh),0) rotate(300deg)}
+}
+@media(max-width:700px){.evo-weather-drop:nth-child(2n){display:none}}
+@media(prefers-reduced-motion:reduce){.evo-weather-drop{animation:none!important;opacity:.08;top:35%}.climate-wind .evo-petal-flight{animation:none!important;opacity:.2}}

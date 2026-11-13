@@ -187,13 +187,9 @@
   color: hsl(25 95% 50%);
 }
 
-/* Section backgrounds for light mode - alternating warm tones */
-.light section:nth-child(odd) {
+/* Continuous light-theme canvas: avoid alternating section stripes. */
+.light section {
   background: transparent;
-}
-
-.light section:nth-child(even) {
-  background: linear-gradient(180deg, hsl(38 25% 92% / 0.5) 0%, transparent 100%);
 }
 
 /* Light mode progress bar */

@@ -1,142 +1,87 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import { motion, AnimatePresence, Variants } from "framer-motion";
-import { Menu, X } from "lucide-react";
+import { useEffect, useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
 import { ThemeToggle } from "./theme-toggle";
+import { X, Compass } from "lucide-react";
 
-const mobileNavLinks = [
-  { id: "01", label: "About", href: "#about", comment: "// Who I am" },
-  { id: "02", label: "Projects", href: "#projects", comment: "// My work" },
-  { id: "03", label: "Skills", href: "#skills", comment: "// Tech stack" },
-  { id: "04", label: "Experience", href: "#experience", comment: "// Professional journey" },
-  { id: "05", label: "Education", href: "#education", comment: "// Learning path" },
-  { id: "06", label: "Blog", href: "/blogs", comment: "// Thoughts & ideas" },
-  { id: "07", label: "Achievements", href: "#achievements", comment: "// Milestones" },
-  { id: "08", label: "Certificates", href: "#certificates", comment: "// Qualifications" },
-  { id: "09", label: "Contact", href: "#contact", comment: "// Get in touch" },
+const links = [
+  { label: "Home", href: "#hero" },
+  { label: "About", href: "#about" },
+  { label: "Projects", href: "#projects" },
+  { label: "Skills", href: "#skills" },
+  { label: "Experience", href: "#experience" },
+  { label: "AI Lab", href: "#ai-lab" },
+  { label: "Education", href: "#education" },
+  { label: "Blog", href: "/blogs" },
+  { label: "Contact", href: "#contact" },
 ];
 
+function RRMark() {
+  return (
+    <svg viewBox="0 0 64 64" className="h-11 w-11" role="img" aria-label="Rakshit Rangarajan mirrored R hexagon logo">
+      <path d="M32 3 57 17.5v29L32 61 7 46.5v-29Z" fill="none" stroke="currentColor" strokeWidth="2.2" />
+      <path d="M15 45V20h10c12 0 12 14 0 14H15m10 0 9 11" fill="none" stroke="currentColor" strokeWidth="3.4" strokeLinejoin="round" strokeLinecap="round" />
+      <path d="M49 45V20H39c-12 0-12 14 0 14h10m-10 0-9 11" fill="none" stroke="currentColor" strokeWidth="3.4" strokeLinejoin="round" strokeLinecap="round" />
+    </svg>
+  );
+}
+
 export default function Header() {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isScrolled, setIsScrolled] = useState(false);
+  const [open, setOpen] = useState(false);
+  const [active, setActive] = useState("Home");
 
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
+    const onHash = () => {
+      const match = links.find(link => link.href === window.location.hash);
+      if (match) setActive(match.label);
     };
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+    onHash();
+    window.addEventListener("hashchange", onHash);
+    return () => window.removeEventListener("hashchange", onHash);
   }, []);
 
-  // Lock body scroll when menu is open
   useEffect(() => {
-    if (isMenuOpen) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "unset";
-    }
-    return () => {
-      document.body.style.overflow = "unset";
-    };
-  }, [isMenuOpen]);
-
-  const containerVariants: Variants = {
-    hidden: { opacity: 0 },
-    show: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.1,
-        delayChildren: 0.3,
-      },
-    },
-  };
-
-  const itemVariants: Variants = {
-    hidden: { y: 20, opacity: 0 },
-    show: { y: 0, opacity: 1, transition: { duration: 0.5, ease: [0.16, 1, 0.3, 1] } },
-  };
+    document.body.style.overflow = open ? "hidden" : "";
+    return () => { document.body.style.overflow = ""; };
+  }, [open]);
 
   return (
     <>
-      <header className={`fixed top-0 left-0 right-0 transition-all duration-300 pointer-events-none ${isMenuOpen ? "z-[150]" : "z-50"}`}>
-        <nav className="w-full px-6 md:px-20 py-6 flex items-center justify-between pointer-events-auto">
-          {/* Logo */}
-          <a href="#" className="group" onClick={() => setIsMenuOpen(false)}>
-            <img 
-              src="/images/RR_Logo.png" 
-              alt="RR Logo" 
-              className="w-10 h-10 object-contain transition-transform duration-500 group-hover:scale-110"
-            />
-          </a>
+      {/* No top navigation bar: the brand floats independently. */}
+      <a href="/#hero" aria-label="Back to portfolio home" className="fixed top-5 left-5 md:top-8 md:left-8 z-[160] text-foreground/85 hover:text-primary transition-colors drop-shadow-[0_0_14px_rgba(120,120,255,0.2)]">
+        <RRMark />
+      </a>
 
-          <div className="flex items-center gap-4 relative z-[160]">
-            <ThemeToggle />
-            <button
-              type="button"
-              aria-label={isMenuOpen ? "Close navigation menu" : "Open navigation menu"}
-              aria-expanded={isMenuOpen}
-              aria-controls="portfolio-mobile-navigation"
-              onClick={() => setIsMenuOpen(!isMenuOpen)}
-              key={isMenuOpen ? "close" : "open"} // Force re-render for clean icon swap
-              className={`p-3 rounded-full transition-all border pointer-events-auto shadow-lg ${
-                isMenuOpen 
-                  ? "bg-zinc-900 border-zinc-700 text-white" 
-                  : "bg-background/80 backdrop-blur-md border-border text-foreground"
-              }`}
-            >
-              {isMenuOpen ? <X size={24} strokeWidth={2.5} /> : <Menu size={24} strokeWidth={2.5} />}
-            </button>
-          </div>
-        </nav>
-      </header>
+      {/* A discreet, floating left-edge island replaces the conventional navbar. */}
+      <aside aria-label="Portfolio navigation" className="fixed left-2 md:left-4 top-1/2 -translate-y-1/2 z-[150] flex flex-col items-center gap-3 rounded-full border border-white/10 bg-zinc-950/25 dark:bg-zinc-950/30 backdrop-blur-xl px-2 py-4 shadow-xl transition-opacity duration-300 opacity-45 hover:opacity-100 focus-within:opacity-100">
+        <button type="button" onClick={() => setOpen(true)} aria-label="Open navigation" aria-expanded={open} aria-controls="island-navigation" className="grid h-10 w-10 place-items-center rounded-full text-foreground hover:text-primary focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary">
+          <Compass size={21} strokeWidth={1.5} />
+        </button>
+        <div className="h-px w-5 bg-foreground/20" />
+        {links.filter((_, i) => [0, 1, 2, 3, 8].includes(i)).map(link => (
+          <a key={link.label} href={link.href} onClick={() => setActive(link.label)} aria-label={link.label} title={link.label} className="group relative grid h-7 w-7 place-items-center focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary">
+            <span className={`block h-1.5 w-1.5 rotate-45 border border-current transition-all group-hover:scale-150 ${active === link.label ? "bg-primary text-primary" : "bg-transparent text-foreground/60"}`} />
+            <span className="pointer-events-none absolute left-10 whitespace-nowrap rounded-md bg-background/90 px-3 py-1.5 text-xs text-foreground opacity-0 group-hover:opacity-100 group-focus-visible:opacity-100 transition-opacity">{link.label}</span>
+          </a>
+        ))}
+      </aside>
+
+      <div className="fixed right-4 bottom-5 md:right-8 md:bottom-8 z-[150] rounded-full border border-foreground/10 bg-background/30 backdrop-blur-lg">
+        <ThemeToggle />
+      </div>
 
       <AnimatePresence>
-        {isMenuOpen && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            id="portfolio-mobile-navigation"
-            role="dialog"
-            aria-modal="true"
-            aria-label="Site navigation"
-            className="fixed inset-0 z-[100] bg-background flex flex-col items-center justify-center p-6 overflow-y-auto"
-          >
-            <motion.div
-              variants={containerVariants}
-              initial="hidden"
-              animate="show"
-              className="w-full max-w-xl flex flex-col gap-2 relative z-[110] mx-auto"
-            >
-              {mobileNavLinks.map((link) => (
-                <motion.div
-                  key={link.id}
-                  variants={itemVariants}
-                  className="group flex items-center justify-center hover:translate-x-1 md:hover:translate-x-2 transition-transform duration-300"
-                >
-                  <a
-                    href={link.href}
-                    onClick={() => {
-                        setIsMenuOpen(false);
-                    }}
-                    className="flex flex-col md:flex-row md:items-center gap-2 md:gap-4 p-2 text-center md:text-left"
-                  >
-                    <div className="flex items-center gap-2 md:gap-4">
-                      <span className="font-mono text-[10px] md:text-xs text-muted-foreground/70">
-                        {link.id}
-                      </span>
-                      <span className="text-xl md:text-2xl font-bold tracking-tight text-foreground group-hover:text-primary transition-colors uppercase whitespace-nowrap">
-                        {link.label}
-                      </span>
-                    </div>
-                    <span className="font-mono text-[10px] md:text-xs text-muted-foreground opacity-60 md:opacity-0 md:group-hover:opacity-100 transition-opacity whitespace-nowrap">
-                      {link.comment}
-                    </span>
-                  </a>
-                </motion.div>
+        {open && (
+          <motion.div id="island-navigation" role="dialog" aria-modal="true" aria-label="Portfolio sections" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="fixed inset-0 z-[170] bg-background/95 backdrop-blur-2xl flex items-center justify-center p-8">
+            <button type="button" aria-label="Close navigation" onClick={() => setOpen(false)} className="absolute top-6 right-6 rounded-full p-3 border border-foreground/20 text-foreground"><X /></button>
+            <nav className="flex max-h-[80vh] overflow-y-auto flex-col items-center gap-3">
+              {links.map((link, i) => (
+                <motion.a key={link.label} href={link.href} initial={{ opacity: 0, x: -16 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: i * .04 }} onClick={() => { setActive(link.label); setOpen(false); }} className="text-2xl md:text-4xl font-semibold tracking-tight text-foreground/75 hover:text-primary focus-visible:text-primary transition-colors">
+                  <span className="mr-3 font-mono text-xs text-primary/70">{String(i + 1).padStart(2, "0")}</span>{link.label}
+                </motion.a>
               ))}
-            </motion.div>
+            </nav>
           </motion.div>
         )}
       </AnimatePresence>

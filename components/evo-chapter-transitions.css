@@ -1,0 +1,129 @@
+/* Scroll-scrubbed opening chapter: image depth, portal dissolve, and reveal.
+   The hero and About chapter remain semantic, scrollable content. */
+.evo-hero{--chapter-progress:0;isolation:isolate}
+.evo-hero-art{transform:translate3d(0,calc(var(--chapter-progress)*-7%),0) scale(calc(1 + var(--chapter-progress)*.12));transform-origin:45% 40%;filter:brightness(calc(1 - var(--chapter-progress)*.26));will-change:transform}
+.evo-hero-content{transform:translate3d(0,calc(var(--chapter-progress)*-35px),0);opacity:calc(1 - var(--chapter-progress)*.48)}
+.evo-hero::after{content:"";position:absolute;inset:auto 0 0;height:42%;pointer-events:none;z-index:2;background:linear-gradient(0deg,var(--bg),transparent);opacity:calc(.2 + var(--chapter-progress)*.8)}
+.evo-about{--chapter-progress:0}
+.evo-about .evo-section-scene{transform:translate3d(calc((1 - var(--chapter-progress))*-28px),0,0) scale(calc(1.055 - var(--chapter-progress)*.055));opacity:calc(.6 + var(--chapter-progress)*.32);transition:filter .25s;will-change:transform}
+.evo-about .evo-section-inner{position:relative;z-index:2}
+.evo-sound-toggle{display:inline-flex;align-items:center;justify-content:center}
+@media(prefers-reduced-motion:reduce){.evo-hero-art,.evo-hero-content,.evo-about .evo-section-scene{transform:none!important;opacity:1!important;filter:none!important;will-change:auto}.evo-hero::after{opacity:.3}}
+@media(max-width:700px){.evo-hero-art{transform:none!important}.evo-hero-content{transform:none!important;opacity:1!important}}
+
+
+/* Chapter landing: each gesture settles on a complete chapter, while the
+   existing scroll-linked cinematic layers continue to interpolate naturally.
+   Oversized sections remain scrollable so no content is trapped. */
+html { scroll-snap-type: y mandatory; scroll-padding-top: 0; }
+.evo-hero, .evo-section { scroll-snap-align: start; scroll-snap-stop: normal; }
+.evo-section { min-height: 100svh; }
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; scroll-snap-type: y proximity; }
+}
+@media (max-width: 700px) {
+  /* Mobile browser chrome changes viewport height while scrolling. */
+  .evo-section { min-height: 100dvh; }
+}
+
+/* EVO chapter art fix: hero fills exactly one viewport, while every following
+   section owns a unique artwork instead of inheriting the original hero. */
+.evo .evo-hero{height:100svh;min-height:100svh;max-height:100svh;box-sizing:border-box;overflow:hidden;scroll-margin-top:0}
+.evo .evo-section{scroll-margin-top:0;--chapter-art:none;isolation:isolate;background-image:linear-gradient(90deg,rgba(6,7,17,.62),rgba(6,7,17,.93) 74%),var(--chapter-art);background-size:cover;background-position:30% center;background-repeat:no-repeat}
+.evo.evo-light .evo-section{background-image:linear-gradient(90deg,rgba(255,248,252,.65),rgba(255,248,252,.95) 74%),var(--chapter-art)}
+.evo #about{--chapter-art:url('/evo/chapters/about.webp')}
+.evo #lab{--chapter-art:url('/evo/chapters/lab.webp')}
+.evo #projects{--chapter-art:url('/evo/chapters/projects.webp')}
+.evo #skills{--chapter-art:url('/evo/chapters/skills.webp')}
+.evo #experience{--chapter-art:url('/evo/chapters/experience.webp')}
+.evo #education{--chapter-art:url('/evo/chapters/education.webp')}
+.evo #contact{--chapter-art:url('/evo/chapters/contact.webp')}
+/* Remove old shared-image pseudo layers; the new chapter images are visible
+   directly in each section and also in the scroll-blended cinematic stage. */
+.evo .evo-section-scene{background-image:url('/evo/chapters/about.webp')!important}
+.evo.evo-light .evo-section-scene{background-image:url('/evo/chapters/about.webp')!important}
+.evo .evo-cinema-scene::before{content:none!important}
+.evo .evo-projects-section{background-image:linear-gradient(90deg,rgba(6,7,17,.62),rgba(6,7,17,.93) 74%),url('/evo/chapters/projects.webp')}
+.evo.evo-light .evo-projects-section{background-image:linear-gradient(90deg,rgba(255,248,252,.65),rgba(255,248,252,.95) 74%),url('/evo/chapters/projects.webp')}
+@media(max-width:900px){
+ .evo .evo-hero{height:100svh;min-height:100svh;max-height:100svh}
+ .evo .evo-section{background-position:25% center}
+}
+@media(max-width:600px){
+ .evo .evo-hero{height:100dvh;min-height:100dvh;max-height:100dvh}
+ .evo .evo-section{background-image:linear-gradient(180deg,rgba(6,7,17,.42),rgba(6,7,17,.95) 60%),var(--chapter-art);background-position:35% top}
+ .evo.evo-light .evo-section{background-image:linear-gradient(180deg,rgba(255,248,252,.4),rgba(255,248,252,.96) 60%),var(--chapter-art)}
+}
+
+/* Mobile scroll comfort: avoid mandatory viewport snapping on touch gestures.
+   Keep the cinematic chapter handoff, but allow uninterrupted reading. */
+@media (hover:none) and (pointer:coarse){
+ html{scroll-snap-type:none!important;scroll-behavior:auto!important;overscroll-behavior-y:auto}
+ body{scroll-snap-type:none!important;touch-action:pan-y pinch-zoom}
+ .evo{scroll-behavior:auto!important}
+ .evo .evo-hero,.evo .evo-section{scroll-snap-align:none!important;scroll-snap-stop:normal!important}
+ .evo .evo-hero-art,.evo .evo-about .evo-section-scene{will-change:auto}
+}
+
+/* Mobile scroll comfort: allow natural momentum instead of mandatory full-page snapping. */
+@media (max-width: 900px) {
+ html {scroll-snap-type:none!important;scroll-padding-top:0}
+ .evo .evo-hero,.evo .evo-section {scroll-snap-align:none!important;scroll-snap-stop:normal!important}
+ .evo {scroll-behavior:auto!important}
+ .evo .evo-hero-art,.evo .evo-about .evo-section-scene {will-change:auto}
+}
+
+
+/* Living Canvas groundwork: remove desktop chapter snapping and hard section cuts.
+   Native scrolling remains free; cinematic layers can still track scroll position. */
+html { scroll-snap-type: none !important; scroll-behavior: auto; }
+.evo .evo-hero, .evo .evo-section {
+  scroll-snap-align: none !important;
+  scroll-snap-stop: normal !important;
+}
+.evo .evo-section {
+  border-top-color: transparent;
+}
+
+/* Keep content fully opaque while removing remaining section separators. */
+.evo .evo-section { border-top: 0 !important; }
+
+/* Continuous chapter handoff: hero art recedes while the next scene rises. */
+.evo .evo-hero-art{transform-origin:50% 45%;transform:translate3d(0,calc(var(--chapter-progress)*-4%),0) scale(calc(1 - var(--chapter-progress)*.09));filter:brightness(calc(1 - var(--chapter-progress)*.2))}
+.evo .evo-hero-content{transform:translate3d(0,calc(var(--chapter-progress)*-28px),0);opacity:calc(1 - var(--chapter-progress)*.72)}
+.evo .evo-about .evo-section-inner{opacity:calc(.8 + var(--chapter-progress)*.2);transform:translate3d(0,calc((1 - var(--chapter-progress))*24px),0)}
+.evo .evo-section{background-attachment:scroll}
+@media(max-width:900px){.evo .evo-hero-art,.evo .evo-hero-content{transform:none!important;opacity:1!important}.evo .evo-about .evo-section-inner{transform:none}}
+@media(prefers-reduced-motion:reduce){.evo .evo-hero-art,.evo .evo-hero-content,.evo .evo-about .evo-section-inner{transform:none!important;opacity:1!important;filter:none!important}}
+
+/* Continuous visual chapters: preserve the approved hero and About compositions.
+   All subsequent sections share a single atmospheric surface instead of hard
+   full-bleed background panels and duplicate portrait layers. */
+.evo .evo-hero,.evo .evo-about{position:relative}
+.evo .evo-about{background-image:linear-gradient(180deg,transparent 0%,rgba(6,7,17,.12) 78%,var(--bg) 100%),linear-gradient(90deg,rgba(6,7,17,.62),rgba(6,7,17,.93) 74%),url('/evo/chapters/about.webp')!important}
+.evo.evo-light .evo-about{background-image:linear-gradient(180deg,transparent 0%,rgba(255,248,252,.08) 78%,var(--bg) 100%),linear-gradient(90deg,rgba(255,248,252,.65),rgba(255,248,252,.95) 74%),url('/evo/chapters/about.webp')!important}
+.evo #lab,.evo #projects,.evo #skills,.evo #experience,.evo #education,.evo #contact{
+  position:relative;
+  background-image:none!important;
+  background-color:transparent!important;
+  border:0!important;
+}
+.evo #lab::before,.evo #projects::before,.evo #skills::before,.evo #experience::before,.evo #education::before,.evo #contact::before{
+  content:"";position:absolute;inset:-8% 0;pointer-events:none;z-index:0;
+  background-image:linear-gradient(90deg,transparent 0%,var(--bg) 72%),var(--chapter-art);
+  background-repeat:no-repeat;background-size:cover;background-position:25% 30%;
+  opacity:.26;mask-image:linear-gradient(to bottom,transparent 0%,black 20%,black 75%,transparent 100%);
+}
+.evo.evo-light #lab::before,.evo.evo-light #projects::before,.evo.evo-light #skills::before,.evo.evo-light #experience::before,.evo.evo-light #education::before,.evo.evo-light #contact::before{
+  background-image:linear-gradient(90deg,transparent 0%,var(--bg) 72%),var(--chapter-art);opacity:.18;
+}
+.evo #lab .evo-section-inner,.evo #projects .evo-section-inner,.evo #skills .evo-section-inner,.evo #experience .evo-section-inner,.evo #education .evo-section-inner,.evo #contact .evo-section-inner{position:relative;z-index:1}
+.evo #lab::before{background-position:18% 35%}
+.evo #projects::before{background-position:32% 30%;opacity:.17}
+.evo #skills::before{background-position:16% 40%}
+.evo #experience::before{background-position:23% 28%}
+.evo #education::before{background-position:24% 25%}
+.evo #contact::before{background-position:25% 35%;opacity:.13}
+.evo #contact{padding-bottom:clamp(50px,8vw,110px)}
+@media(max-width:900px){.evo #lab::before,.evo #projects::before,.evo #skills::before,.evo #experience::before,.evo #education::before,.evo #contact::before{inset:0;background-position:28% top;opacity:.13;mask-image:linear-gradient(to bottom,transparent,black 12%,transparent 80%)}}
+@media(prefers-reduced-motion:reduce){.evo #lab::before,.evo #projects::before,.evo #skills::before,.evo #experience::before,.evo #education::before,.evo #contact::before{background-attachment:scroll}}

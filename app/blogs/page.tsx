@@ -1,136 +1,36 @@
 "use client";
-
-import { useEffect, useState } from "react";
 import Link from "next/link";
-import { motion } from "framer-motion";
-import { ArrowLeft, Clock, Tag, Calendar, ArrowRight } from "lucide-react";
-import { blogs, BlogPost } from "@/data/blogs";
+import { motion, useReducedMotion } from "framer-motion";
+import { blogs } from "@/data/blogs";
+import "./chronicles.css";
 
-function BlogCard({ blog, index }: { blog: BlogPost; index: number }) {
-  return (
-    <motion.article
-      initial={{ opacity: 0, y: 40 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.5, delay: index * 0.1 }}
-      className="group relative bg-white dark:bg-zinc-900 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500"
-    >
-      <Link href={`/blogs/${blog.slug}`} className="block">
-        <div className="relative h-56 overflow-hidden">
-          <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent z-10" />
-          <img
-            src={blog.coverImage}
-            alt={blog.title}
-            className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700"
-          />
-          <div className="absolute bottom-4 left-4 z-20">
-            <div className="flex flex-wrap gap-2">
-              {blog.tags.slice(0, 2).map((tag) => (
-                <span
-                  key={tag}
-                  className="px-3 py-1 text-xs font-medium bg-white/20 backdrop-blur-sm text-white rounded-full"
-                >
-                  {tag}
-                </span>
-              ))}
-            </div>
-          </div>
-        </div>
-        
-        <div className="p-6">
-          <div className="flex items-center gap-4 text-sm text-zinc-500 dark:text-zinc-400 mb-3">
-            <span className="flex items-center gap-1">
-              <Calendar size={14} />
-              {new Date(blog.date).toLocaleDateString("en-US", {
-                month: "short",
-                day: "numeric",
-                year: "numeric",
-              })}
-            </span>
-            <span className="flex items-center gap-1">
-              <Clock size={14} />
-              {blog.readTime}
-            </span>
-          </div>
-          
-          <h2 className="text-xl font-bold text-zinc-900 dark:text-white mb-3 group-hover:text-primary transition-colors line-clamp-2">
-            {blog.title}
-          </h2>
-          
-          <p className="text-zinc-600 dark:text-zinc-400 text-sm leading-relaxed line-clamp-3 mb-4">
-            {blog.excerpt}
-          </p>
-          
-          <div className="flex items-center gap-2 text-primary font-medium text-sm group-hover:gap-3 transition-all">
-            Read more <ArrowRight size={16} />
-          </div>
-        </div>
-      </Link>
-    </motion.article>
-  );
-}
-
-export default function BlogsPage() {
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
-
-  if (!mounted) {
-    return (
-      <div className="min-h-screen bg-zinc-50 dark:bg-zinc-950 flex items-center justify-center">
-        <div className="w-8 h-8 border-2 border-zinc-300 border-t-primary rounded-full animate-spin" />
-      </div>
-    );
-  }
-
-  return (
-    <main className="min-h-screen bg-zinc-50 dark:bg-zinc-950">
-      <div className="relative">
-        <div className="absolute inset-0 overflow-hidden">
-          <div className="absolute top-20 left-10 w-72 h-72 bg-primary/10 rounded-full blur-3xl" />
-          <div className="absolute bottom-20 right-10 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl" />
-        </div>
-
-        <div className="relative max-w-6xl mx-auto px-6 py-12 md:py-20">
-          <Link
-            href="/"
-            className="inline-flex items-center gap-2 text-zinc-600 dark:text-zinc-400 hover:text-primary transition-colors mb-8"
-          >
-            <ArrowLeft size={20} />
-            <span>Back to Portfolio</span>
-          </Link>
-
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="mb-16"
-          >
-            <h1 className="text-4xl md:text-6xl font-bold text-zinc-900 dark:text-white mb-4">
-              Blog
-            </h1>
-            <p className="text-xl text-zinc-600 dark:text-zinc-400 max-w-2xl">
-              Thoughts on AI, development, and building cool things. Updates on my projects 
-              and learnings from my journey as a developer.
-            </p>
-          </motion.div>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {blogs.map((blog, index) => (
-              <BlogCard key={blog.slug} blog={blog} index={index} />
-            ))}
-          </div>
-
-          {blogs.length === 0 && (
-            <div className="text-center py-20">
-              <p className="text-zinc-500 dark:text-zinc-400 text-lg">
-                No blogs yet. Check back soon!
-              </p>
-            </div>
-          )}
-        </div>
-      </div>
-    </main>
-  );
+const concepts = [
+ {slug:"gemini-hydrogen",title:"When Gemini Hydrogen Was Announced",category:"Technology",excerpt:"A fictional editorial exploring what a future announcement might mean.",image:"https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=900&auto=format&fit=crop"},
+ {slug:"lazy-automate",title:"The Day I Realised I'm Lazy, So I Automate",category:"Reflections",excerpt:"A sample column about the joy of eliminating repetitive work.",image:"https://images.unsplash.com/photo-1518770660439-4636190af475?w=900&auto=format&fit=crop"},
+ {slug:"pantheon-teams",title:"What Building Pantheon Taught Me About Teams",category:"Ideas",excerpt:"A sample story about collaboration, autonomy and agents.",image:"https://images.unsplash.com/photo-1531482615713-2afd69097998?w=900&auto=format&fit=crop"},
+ {slug:"rain-architecture",title:"Riding in the Rain Teaches Architecture",category:"Journeys",excerpt:"A creative sample connecting winding roads and designing systems.",image:"https://images.unsplash.com/photo-1519681393784-d120267933ba?w=900&auto=format&fit=crop"}
+];
+export default function BlogsPage(){
+ const reduced=useReducedMotion();
+ return <main className="chronicles">
+  <div className="chronicles-shell">
+   <nav className="chronicles-nav"><Link href="/">← Portfolio</Link><span>THE WANDERING QUILL</span><Link href="/rides">Motorcycle Diaries ↗</Link></nav>
+   <header className="chronicles-hero"><p className="chronicles-eyebrow">An illustrated journal of ideas and adventures</p><h1>The Chronicles</h1><p>Stories from a mind that refuses to stay in one place.</p><div className="chronicles-rule">✦ &nbsp; THE WANDERING QUILL &nbsp; ✦</div></header>
+   <div className="chronicles-section-label"><span>THE LIVING ARCHIVE</span><span>DEMONSTRATION EDITION · SAMPLE STORIES</span></div>
+   <section className="chronicles-grid" aria-label="Sample newspaper editions">
+    {concepts.map((post,i)=><motion.article key={post.slug} className="chronicles-paper" initial={reduced?false:{opacity:0,y:24}} whileInView={{opacity:1,y:0}} viewport={{once:true}} transition={{delay:i*.07}}>
+      <div className="chronicles-paper-top"><span>THE WANDERING QUILL</span><span>VOL. I · NO. {String(i+1).padStart(2,"0")}</span></div>
+      <div className="chronicles-category">{post.category} · Concept article</div><h2>{post.title}</h2>
+      <div className="chronicles-photo"><img src={post.image} alt={post.category+" editorial illustration"} loading="lazy"/><span className="chronicles-photo-shimmer" aria-hidden="true"/></div>
+      <p>{post.excerpt}</p><div className="chronicles-bottom"><span>Illustrative preview · Not published</span><span>✧</span></div>
+    </motion.article>)}
+   </section>
+   <div className="chronicles-section-label"><span>EXISTING WRITINGS</span><span>FROM THE ARCHIVE</span></div>
+   <section className="chronicles-grid" aria-label="Existing blog posts">{blogs.map((post,i)=><article className="chronicles-paper" key={post.slug}>
+     <div className="chronicles-paper-top"><span>THE WANDERING QUILL</span><span>ARCHIVE · {String(i+1).padStart(2,"0")}</span></div><div className="chronicles-category">{post.tags.join(" · ")}</div>
+     <h2>{post.title}</h2><Link href={`/blogs/${post.slug}`} className="chronicles-photo"><img src={post.coverImage} alt="" loading="lazy"/></Link><p>{post.excerpt}</p><Link href={`/blogs/${post.slug}`} className="chronicles-read">Read full article →</Link>
+   </article>)}</section>
+   <p className="chronicles-end">✦ &nbsp; Every story deserves its own edition &nbsp; ✦</p>
+  </div>
+ </main>;
 }

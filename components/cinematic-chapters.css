@@ -1,0 +1,38 @@
+/* Fixed visual stage follows the chapter progression without covering content. */
+.evo{position:relative;isolation:isolate}
+.evo-cinema{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden;--cinema-blend:0;--cinema-scroll:0}
+.evo-cinema-scene{position:absolute;inset:0;opacity:0;visibility:hidden;transform:scale(calc(1.035 + var(--cinema-scroll)*.045));transition:none;overflow:hidden;will-change:opacity}
+.evo-cinema-atmosphere{position:absolute;inset:0;background:radial-gradient(ellipse at 15% 45%,var(--scene-glow),transparent 45%),linear-gradient(120deg,var(--scene-dark),transparent 75%);filter:saturate(.8)}
+.evo-cinema-rings{position:absolute;left:12%;top:46%;width:min(48vw,540px);aspect-ratio:1;border:1px solid var(--scene-line);border-radius:50%;box-shadow:0 0 90px var(--scene-glow),inset 0 0 75px var(--scene-glow);transform:translate(-50%,-50%) rotate(calc(var(--cinema-scroll)*24deg))}
+.evo-cinema-rings:before,.evo-cinema-rings:after{content:"";position:absolute;border:1px solid var(--scene-line);border-radius:50%;inset:13%}
+.evo-cinema-rings:after{inset:31%;border-style:dashed}
+.evo-cinema-light{position:absolute;left:5%;top:15%;width:45%;height:75%;background:linear-gradient(130deg,transparent 35%,var(--scene-line) 50%,transparent 65%);opacity:.2;transform:translateX(calc(var(--cinema-scroll)*15%))}
+.evo-cinema-night{--scene-glow:#6683e533;--scene-line:#a5c6ff66;--scene-dark:#080e2e}
+.evo-cinema-workshop{--scene-glow:#e6765d3d;--scene-line:#ffba9670;--scene-dark:#251021}
+.evo-cinema-creation{--scene-glow:#ee3f8b3b;--scene-line:#ff8fb670;--scene-dark:#240a1d}
+.evo-cinema-engineering{--scene-glow:#43a9e43a;--scene-line:#80e6ff6b;--scene-dark:#081f32}
+.evo-cinema-strategy{--scene-glow:#db9e6035;--scene-line:#ffcc8b65;--scene-dark:#2b1820}
+.evo-cinema-neural{--scene-glow:#a16be53b;--scene-line:#c6a6ff70;--scene-dark:#1b1036}
+.evo-cinema-study{--scene-glow:#5dc4a53b;--scene-line:#a5f2dc70;--scene-dark:#0a282b}
+.evo-cinema-horizon{--scene-glow:#ed91b63a;--scene-line:#ffc5df6e;--scene-dark:#30152b}
+.evo-cinema-vignette{position:absolute;inset:0;background:linear-gradient(90deg,transparent 0%,var(--bg) 80%);opacity:.6}
+.evo-light .evo-cinema-scene{filter:brightness(1.5) saturate(.55)}
+.evo-light .evo-cinema-vignette{opacity:.85}
+.evo main,.evo-header,.evo-footer,.evo-bottom{position:relative}
+.evo-header{position:sticky}
+@media(max-width:700px){.evo-cinema-rings{left:40%;top:27%;width:65vw}.evo-cinema-vignette{opacity:.85}}
+@media(prefers-reduced-motion:reduce){.evo-cinema-scene{transform:none!important}.evo-cinema-scene.is-active{opacity:.24}.evo-cinema-scene.is-next{opacity:0}.evo-cinema-rings,.evo-cinema-light{transform:none!important}}
+
+/* Independent depth planes: character, distant atmosphere, and foreground light. */
+.evo-cinema-atmosphere{transform:translate3d(calc(var(--cinema-scroll)*-2%),calc(var(--cinema-scroll)*-2%),0) scale(1.08)}
+.evo-cinema-rings{transform:translate(-50%,-50%) rotate(calc(var(--cinema-scroll)*30deg)) scale(calc(1 + var(--cinema-scroll)*.09))}
+.evo-cinema-light{transform:translate3d(calc(var(--cinema-scroll)*12%),calc(var(--cinema-scroll)*-5%),0)}
+@media(prefers-reduced-motion:reduce){.evo-cinema-atmosphere{transform:none!important}}
+
+/* Seven chapter-specific portraits; no shared hero artwork. The gradient preserves
+   readability while the image plane drifts independently from the atmosphere. */
+.evo-cinema-character{position:absolute;inset:0;background-size:cover;background-position:38% center;opacity:.55;transform:translate3d(calc(var(--cinema-scroll)*-2%),calc(var(--cinema-scroll)*2%),0) scale(calc(1.06 + var(--cinema-scroll)*.04));will-change:transform}
+.evo-cinema-atmosphere{opacity:.65;mix-blend-mode:multiply}
+.evo-cinema-vignette{background:linear-gradient(90deg,transparent 0%,var(--bg) 92%);opacity:.48}
+@media(max-width:700px){.evo-cinema-character{background-position:32% center;opacity:.34}.evo-cinema-vignette{opacity:.7}}
+@media(prefers-reduced-motion:reduce){.evo-cinema-character{transform:none!important;will-change:auto}}
