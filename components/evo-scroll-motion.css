@@ -1,0 +1,9 @@
+/* Scroll motion layer: opt-in after hydration, never hides content without JS. */
+.evo .evo-motion-progress{position:fixed;top:0;left:0;width:100%;height:3px;z-index:1000;pointer-events:none;background:linear-gradient(90deg,#ff637e,#bca7ff,#71cfff);transform:scaleX(var(--evo-scroll-progress,0));transform-origin:left;box-shadow:0 0 16px rgba(255,105,155,.5)}
+.evo.evo-motion-ready .evo-motion-reveal{opacity:0;transform:translate3d(0,34px,0) scale(.985);filter:blur(5px);transition:opacity .75s cubic-bezier(.2,.8,.2,1),transform .9s cubic-bezier(.16,1,.3,1),filter .8s ease;transition-delay:var(--evo-reveal-delay,0ms)}
+.evo.evo-motion-ready .evo-motion-reveal.evo-motion-visible{opacity:1;transform:translate3d(0,0,0) scale(1);filter:blur(0)}
+.evo .evo-section:not(.evo-about)::before{transform:translate3d(0,calc(var(--evo-section-travel,0)*-22px),0) scale(1.035);transform-origin:center;will-change:auto}
+.evo .evo-project,.evo .evo-toolkit-card,.evo .evo-glass-panel,.evo .evo-journey-card,.evo .evo-education-tile{backface-visibility:hidden}
+@media (hover:hover) and (pointer:fine){.evo .evo-project:hover,.evo .evo-toolkit-card:hover{transform:translate3d(0,-6px,0);transition:transform .3s ease,box-shadow .3s ease}}
+@media(max-width:900px){.evo .evo-section:not(.evo-about)::before{transform:none}.evo.evo-motion-ready .evo-motion-reveal{transform:translate3d(0,16px,0);filter:none;transition-duration:.5s}}
+@media(prefers-reduced-motion:reduce){.evo .evo-motion-progress{display:none}.evo.evo-motion-ready .evo-motion-reveal,.evo.evo-motion-ready .evo-motion-reveal.evo-motion-visible{opacity:1!important;transform:none!important;filter:none!important;transition:none!important}.evo .evo-section:not(.evo-about)::before{transform:none!important}}
