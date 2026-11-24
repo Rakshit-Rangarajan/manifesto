@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useMemo, useState, } from "react";
+import { useMemo, useState, } from "react";
 import { ArrowUpRight, Github, Linkedin, Mail, Moon, Sun, Search, Cpu, Layers, Code2, GraduationCap, BriefcaseBusiness, FlaskConical, House, UserRound, BookOpen, Settings2, BrainCircuit, Boxes, Workflow, Compass, Fingerprint } from "lucide-react";
 import { personalInfo } from "@/data/portfolio";
 import "./evo.css";
@@ -38,8 +38,7 @@ const technologies = ["Python","TypeScript","Angular","ASP.NET Core","PostgreSQL
 export default function EvoPortfolio(){
  const [caseStudy,setCaseStudy]=useState<string|null>(null);
  const [potter,setPotter]=useState(false);
- useEffect(()=>{try{setPotter(localStorage.getItem("rr-potterhead")==="true")}catch{}},[]);
- const togglePotter=()=>{setPotter(v=>{const next=!v;try{localStorage.setItem("rr-potterhead",next?"true":"false")}catch{}return next})};
+ const togglePotter=()=>setPotter(v=>!v);
 
  const [light,setLight]=useState(false),[filter,setFilter]=useState("All"),[search,setSearch]=useState("");
  const categories=["All","AI & Agents","Automation","Learning","Experiments"];
