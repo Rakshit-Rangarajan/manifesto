@@ -12,3 +12,59 @@
 .chronicles-potter .chronicles-rule{border-color:#e2bf7b}
 .chronicles-potter .chronicles-paper{border-color:#9a6838;background:repeating-linear-gradient(0deg,#f3dfb6,#f3dfb6 3px,#efdaad 4px)}
 @media(max-width:680px){.chronicles-actions{gap:6px}.chronicles-actions button{padding:8px;font-size:10px}.chronicles-actions a{display:none}.chronicles-potter .chronicles-hero{min-height:72svh;background-position:38% center;padding:32px 14px}}
+
+/* Editorial edition: restrained ink, paper and rules, with a cinematic surround. */
+.chronicles{--paper:#f5edda;--ink:#302820;--rule:#8d7b654d;--accent:#8d263b;--surround:#15121d;--outside:#f0e4e0;background:radial-gradient(ellipse at 50% 0%,#422332,var(--surround) 65%);color:var(--ink)}
+.chronicles-day{--paper:#fffbef;--ink:#302820;--surround:#f1dce2;--outside:#573741;background:radial-gradient(ellipse at 50% 0%,#fff0e8,var(--surround) 75%)}
+.chronicles-night{--paper:#e9deca;--ink:#302820}
+.chronicles-shell{max-width:1220px}
+.chronicles-nav,.chronicles-end,.chronicles-section-label{color:var(--outside)}
+.chronicles-actions button{background:transparent;border-color:currentColor}
+.chronicles:not(.chronicles-potter) .chronicles-hero{clip-path:none;max-width:none;background:var(--paper);color:var(--ink);box-shadow:0 8px 36px #0002;border:1px solid var(--rule);margin:32px 0 0;padding:32px 20px 24px}
+.chronicles-hero h1{font-family:Georgia,'Times New Roman',serif;font-weight:900;letter-spacing:-.065em}
+.chronicles-rule{border-top:4px double var(--rule);border-bottom:1px solid var(--rule);padding:10px 0}
+.chronicles-front{display:grid;grid-template-columns:1.1fr 1fr;gap:28px;background:var(--paper);padding:clamp(22px,4vw,48px);border-bottom:4px double var(--rule);color:var(--ink)}
+.chronicles-front h2{font-size:clamp(34px,5vw,66px);letter-spacing:-.045em;line-height:1.03;margin:12px 0}
+.chronicles-front h2 a,.chronicles-paper h2 a{color:inherit;text-decoration:none}
+.chronicles-front h2 a:hover,.chronicles-paper h2 a:hover{color:var(--accent)}
+.chronicles-front-copy>p{font-size:19px;line-height:1.55}
+.chronicles-byline{font:12px system-ui,sans-serif;color:var(--ink);opacity:.75}
+.chronicles-front-image{display:block;min-height:240px;overflow:hidden}
+.chronicles-front-image img{width:100%;height:100%;object-fit:cover;filter:grayscale(.85) sepia(.15)}
+.chronicles-toolbar{display:flex;gap:16px;padding:18px;background:var(--paper);border-bottom:1px solid var(--rule)}
+.chronicles-toolbar label{display:flex;flex-direction:column;gap:6px;font:11px system-ui,sans-serif;flex:1}
+.chronicles-toolbar input,.chronicles-toolbar select{width:100%;min-width:0;background:transparent;border:1px solid var(--rule);color:var(--ink);padding:12px;font:14px system-ui,sans-serif}
+.chronicles-grid{gap:0;background:var(--paper);grid-template-columns:repeat(3,minmax(0,1fr))}
+.chronicles .chronicles-paper{background:var(--paper);color:var(--ink);border:0;border-bottom:1px solid var(--rule);border-right:1px solid var(--rule);box-shadow:none;padding:24px;display:flex;flex-direction:column}
+.chronicles .chronicles-paper:hover{transform:none;box-shadow:none}
+.chronicles-paper h2{font-size:clamp(24px,2.5vw,35px)}
+.chronicles-paper-top{border-top:0;border-bottom:1px solid var(--rule);text-transform:uppercase;font-size:10px}
+.chronicles-photo{border:0;outline:none}
+.chronicles-photo img{filter:grayscale(.85) sepia(.15)}
+.chronicles-paper:hover .chronicles-photo img{transform:scale(1.025);filter:grayscale(.3)}
+.chronicles-bottom{margin-top:auto;align-items:center;border-color:var(--rule);gap:8px}
+.chronicles-read{color:var(--accent);margin-top:0}
+.chronicles-concepts{margin-top:30px;color:var(--outside);border-top:1px solid currentColor;padding-top:16px}
+.chronicles-concepts summary{cursor:pointer;font-size:14px}
+.chronicles-concept-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin-top:16px}
+.chronicles-concept-grid article,.chronicles-empty{background:var(--paper);color:var(--ink);padding:20px}
+.chronicles-empty button{color:var(--accent);text-decoration:underline}
+.chronicles-reader{max-width:920px;margin:auto;background:var(--paper);color:var(--ink);padding:clamp(24px,6vw,76px);border-top:5px double var(--rule)}
+.chronicles-reader h1{font-size:clamp(36px,6vw,68px);line-height:1.04;letter-spacing:-.045em;margin:20px 0}
+.chronicles-reader-masthead{text-align:center;font-size:clamp(28px,4vw,45px);font-weight:bold;border-bottom:4px double var(--rule);padding-bottom:16px;margin-bottom:28px}
+.chronicles-reader-deck{font-size:clamp(18px,2.5vw,23px);line-height:1.5}
+.chronicles-reader-cover{width:100%;max-height:420px;object-fit:cover;filter:grayscale(.7) sepia(.15);margin:26px 0}
+.chronicles-reader-body{font-size:18px;line-height:1.85;max-width:68ch;margin:auto;overflow-wrap:anywhere}
+.chronicles-reader-body>p:first-child::first-letter{float:left;font-size:3.8em;line-height:.85;padding-right:8px;color:var(--accent)}
+.chronicles-reader-body h2{font-size:30px;line-height:1.25;margin:36px 0 12px;border-top:1px solid var(--rule);padding-top:16px}
+.chronicles-reader-body h3{font-size:23px;margin-top:24px}
+.chronicles-reader-body p{margin:16px 0}
+.chronicles-reader-body ul,.chronicles-reader-body ol{padding-left:24px;margin:16px 0}
+.chronicles-reader-body ul{list-style:disc}.chronicles-reader-body ol{list-style:decimal}
+.chronicles-reader-body pre{overflow:auto;background:#302820;color:#fff4df;padding:16px;font-size:13px}
+.chronicles-reader-body table{display:block;overflow-x:auto;border-collapse:collapse;font-size:15px}
+.chronicles-reader-body th,.chronicles-reader-body td{padding:8px;border:1px solid var(--rule)}
+.chronicles-reader-body a{color:var(--accent);text-decoration:underline}
+.chronicles-reader-footer{border-top:4px double var(--rule);margin-top:40px;padding-top:20px;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+@media(max-width:900px){.chronicles-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:680px){.chronicles-front,.chronicles-grid,.chronicles-concept-grid{grid-template-columns:1fr}.chronicles-front-image{min-height:0;aspect-ratio:16/10}.chronicles-toolbar{gap:8px;padding:12px}.chronicles-nav{flex-wrap:wrap}.chronicles-reader-body{font-size:17px}.chronicles-reader{padding:22px}.chronicles .chronicles-paper{padding:20px}.chronicles-front-copy>p{font-size:17px}}
