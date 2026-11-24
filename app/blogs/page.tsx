@@ -1,6 +1,6 @@
 "use client";
 import Link from "next/link";
-import {useEffect,useState} from "react";
+import {useState} from "react";
 import {useTheme} from "next-themes";
 import { motion, useReducedMotion } from "framer-motion";
 import { blogs } from "@/data/blogs";
@@ -16,8 +16,7 @@ export default function BlogsPage(){
  const reduced=useReducedMotion();
  const {resolvedTheme,setTheme}=useTheme();
  const [potter,setPotter]=useState(false);
- useEffect(()=>{try{setPotter(localStorage.getItem("rr-potterhead")==="true")}catch{}},[]);
- const togglePotter=()=>setPotter(v=>{const next=!v;try{localStorage.setItem("rr-potterhead",String(next))}catch{}return next});
+ const togglePotter=()=>setPotter(v=>!v);
  return <main className={`chronicles ${potter?"chronicles-potter":""} ${resolvedTheme==="light"?"chronicles-day":"chronicles-night"}`}>
   <div className="chronicles-shell">
    <nav className="chronicles-nav"><Link href="/">← Portfolio</Link><span>THE WANDERING QUILL</span><div className="chronicles-actions"><button type="button" onClick={()=>setTheme(resolvedTheme==="light"?"dark":"light")} aria-label="Toggle day and night">{resolvedTheme==="light"?"☾ Night":"☀ Day"}</button><button type="button" onClick={togglePotter} aria-pressed={potter}>⚡ {potter?"Muggle Mode":"PotterHead"}</button><Link href="/rides">Motorcycle Diaries ↗</Link></div></nav>
