@@ -68,3 +68,29 @@
 .chronicles-reader-footer{border-top:4px double var(--rule);margin-top:40px;padding-top:20px;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
 @media(max-width:900px){.chronicles-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:680px){.chronicles-front,.chronicles-grid,.chronicles-concept-grid{grid-template-columns:1fr}.chronicles-front-image{min-height:0;aspect-ratio:16/10}.chronicles-toolbar{gap:8px;padding:12px}.chronicles-nav{flex-wrap:wrap}.chronicles-reader-body{font-size:17px}.chronicles-reader{padding:22px}.chronicles .chronicles-paper{padding:20px}.chronicles-front-copy>p{font-size:17px}}
+
+/* Final editorial details: shared front page and article reader */
+.chronicles-edition{display:flex;justify-content:space-between;gap:12px;margin-top:18px;padding:11px 2px 0;border-top:1px solid var(--rule);font:700 10px/1.5 system-ui,sans-serif;letter-spacing:.13em;text-transform:uppercase}
+.chronicles-front{position:relative;align-items:center}
+.chronicles-front h2,.chronicles-paper h2{text-wrap:balance}
+.chronicles-front-image img{transition:filter .45s,transform .8s}
+.chronicles-front-image:hover img{filter:grayscale(.3) sepia(.1);transform:scale(1.025)}
+.chronicles .chronicles-paper{min-width:0;isolation:isolate}
+.chronicles-paper h2{line-height:1.13}
+.chronicles-paper:focus-within{outline:2px solid var(--accent);outline-offset:-3px}
+.chronicles .chronicles-read:focus-visible,.chronicles-nav a:focus-visible{outline:2px solid currentColor;outline-offset:4px}
+.chronicles-reader{box-shadow:0 24px 70px #0003;position:relative}
+.chronicles-reader-masthead{font-variant:small-caps;letter-spacing:-.035em}
+.chronicles-reader-kicker{display:block;margin:10px 0 0;font:700 10px system-ui,sans-serif;letter-spacing:.2em}
+.chronicles-reader-edition{display:flex;justify-content:space-between;gap:10px;border-top:1px solid var(--rule);border-bottom:1px solid var(--rule);padding:9px 0;margin:20px 0 6px;font:700 10px system-ui,sans-serif;letter-spacing:.12em}
+.chronicles-reader-body blockquote{border-left:3px solid var(--accent);padding:3px 20px;margin:26px 0;font-style:italic}
+.chronicles-reader-body img{max-width:100%;height:auto}
+.chronicles-reader-body code:not(pre code){background:#a98a6333;padding:2px 5px;border-radius:3px}
+.chronicles-potter .chronicles-reader{--paper:#ead9b3;--ink:#34291d;--accent:#79512d;--rule:#8a6d4d77;background:linear-gradient(120deg,#e7d2a7,#f3e4c5 52%,#e6cda0);border:1px solid #9b794c;box-shadow:0 24px 80px #0008}
+.chronicles-potter .chronicles-reader-masthead{font-variant:small-caps;letter-spacing:.075em}
+.chronicles-potter .chronicles-reader:before{content:"✦";position:absolute;right:22px;top:14px;font-size:24px;color:#9b794c}
+.chronicles-potter .chronicles-hero:after{content:"✦";position:absolute;right:8%;top:13%;font-size:clamp(20px,4vw,48px);color:#f7d28a;text-shadow:0 0 22px #f7d28a;pointer-events:none;animation:quill-float 6s ease-in-out infinite}
+@keyframes quill-float{50%{transform:translateY(-13px) rotate(12deg);opacity:.6}}
+@media(min-width:901px){.chronicles .chronicles-lead-story{grid-column:span 2;display:grid;grid-template-columns:1fr 1fr;column-gap:28px;align-content:start}.chronicles-lead-story .chronicles-paper-top,.chronicles-lead-story h2,.chronicles-lead-story .chronicles-bottom{grid-column:1/-1}.chronicles-lead-story h2{font-size:clamp(34px,4vw,54px)}.chronicles-lead-story .chronicles-photo{grid-column:1;grid-row:3/span 2;aspect-ratio:4/3}.chronicles-lead-story>p{grid-column:2;grid-row:3;align-self:start;font-size:18px}.chronicles-lead-story .chronicles-bottom{margin-top:24px}}
+@media(max-width:680px){.chronicles-edition{font-size:9px;justify-content:center}.chronicles-edition span:first-child,.chronicles-edition span:last-child{display:none}.chronicles-reader{padding:clamp(18px,5vw,28px)}.chronicles-reader-edition{font-size:9px}.chronicles-reader-masthead{font-size:clamp(25px,7vw,38px)}}
+@media(prefers-reduced-motion:reduce){.chronicles-potter .chronicles-hero:after{animation:none}.chronicles-front-image img{transition:none}}
