@@ -12,6 +12,35 @@ export interface BlogPost {
 
 export const blogs: BlogPost[] = [
   {
+    slug: "the-beautiful-art-of-doing-nothing",
+    title: "The Beautiful Art of Doing Nothing",
+    excerpt: "Why slowing down might be the most productive thing you do today.",
+    content: `
+# The Beautiful Art of Doing Nothing
+
+Somewhere between deadlines, notifications, and the endless pursuit of productivity, we forgot something rather important.
+
+**Not every moment needs to be optimized.**
+
+There is a particular kind of magic in a rainy evening. A warm cup of tea, an unfinished notebook, a sleeping cat, and absolutely nowhere you need to be.
+
+No dashboards demanding attention. No artificial intelligence trying to automate your existence. Just the gentle sound of rain against the window.
+
+As someone fascinated by automation, I've often wondered whether the ultimate goal of technology is to help us accomplish more—or simply give us more time to live.
+
+Perhaps the best system isn't the one that keeps us working.
+
+Perhaps it's the one that knows when to stop.
+
+And perhaps, occasionally, the most intelligent thing we can do is absolutely nothing.
+`,
+    coverImage: "https://images.unsplash.com/photo-1519681393784-d120267933ba?w=900&auto=format&fit=crop",
+    date: "2026-11-26",
+    author: "Rakshit Rangarajan",
+    tags: ["Reflections", "Productivity"],
+    readTime: "3 min read"
+  },
+  {
     slug: "building-ai-chatbot-without-api-keys",
     title: "Building a Drop-in AI Chatbot Without API Keys",
     excerpt: "How I built OrbBot - a zero-config AI chatbot that anyone can embed in their website without managing complex backends or paying for API keys.",
