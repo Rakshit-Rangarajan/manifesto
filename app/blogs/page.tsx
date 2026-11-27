@@ -1,4 +1,5 @@
 "use client";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import { motion, useReducedMotion } from "framer-motion";
 import { blogs } from "@/data/blogs";
@@ -10,12 +11,56 @@ const concepts = [
  {slug:"pantheon-teams",title:"What Building Pantheon Taught Me About Teams",category:"Ideas",excerpt:"A sample story about collaboration, autonomy and agents.",image:"https://images.unsplash.com/photo-1531482615713-2afd69097998?w=900&auto=format&fit=crop"},
  {slug:"rain-architecture",title:"Riding in the Rain Teaches Architecture",category:"Journeys",excerpt:"A creative sample connecting winding roads and designing systems.",image:"https://images.unsplash.com/photo-1519681393784-d120267933ba?w=900&auto=format&fit=crop"}
 ];
+type Edition = {
+ date: string;
+ pages: [string, string, string, string, [string, string][]][];
+};
+
+function LatestEdition() {
+ const [edition, setEdition] = useState<Edition | null>(null);
+ const [failed, setFailed] = useState(false);
+
+ useEffect(() => {
+  const controller = new AbortController();
+  async function loadEdition() {
+   try {
+    const response = await fetch("https://res.cloudinary.com/qib9rawb/raw/upload/v1795749099/wandering-quill/2026-11-27.json", { signal: controller.signal });
+    if (!response.ok) throw new Error("Edition request failed");
+    const issue: Edition = await response.json();
+    if (!issue.date || !issue.pages?.length) throw new Error("Edition is empty");
+    setEdition(issue);
+   } catch {
+    if (!controller.signal.aborted) setFailed(true);
+   }
+  }
+  void loadEdition();
+  return () => controller.abort();
+ }, []);
+
+ return <section aria-labelledby="latest-edition">
+  <div className="chronicles-section-label"><span id="latest-edition">LATEST EDITION</span><span>{edition?.date}</span></div>
+  {edition ? <>
+   <nav aria-label="Newspaper pages" style={{ display: "flex", flexWrap: "wrap", gap: "0.75rem", marginBottom: "1rem" }}>
+    {edition.pages.map(([desk], i) => <a key={desk} href={`#quill-page-${i + 1}`}>{desk}</a>)}
+   </nav>
+   <div className="chronicles-grid" style={{ gridTemplateColumns: "minmax(0, 1fr)" }}>
+    {edition.pages.map(([desk, title, first, second, links], i) => <article className="chronicles-paper" id={`quill-page-${i + 1}`} key={desk}>
+     <div className="chronicles-paper-top"><span>{desk}</span><span>PAGE {i + 1}</span></div>
+     <h2>{title}</h2><p>{first}</p><p>{second}</p>
+     {links.length > 0 && <ul>{links.map(([label, href]) => <li key={href}><a className="chronicles-read" href={href}>{label}</a></li>)}</ul>}
+    </article>)}
+   </div>
+  </> : <p role="status">{failed ? "The latest edition is temporarily unavailable." : "Loading the latest edition…"}</p>}
+ </section>;
+}
+
 export default function BlogsPage(){
  const reduced=useReducedMotion();
  return <main className="chronicles">
   <div className="chronicles-shell">
    <nav className="chronicles-nav"><Link href="/">← Portfolio</Link><span>THE WANDERING QUILL</span><Link href="/rides">Motorcycle Diaries ↗</Link></nav>
    <header className="chronicles-hero"><p className="chronicles-eyebrow">An illustrated journal of ideas and adventures</p><h1>The Chronicles</h1><p>Stories from a mind that refuses to stay in one place.</p><div className="chronicles-rule">✦ &nbsp; THE WANDERING QUILL &nbsp; ✦</div></header>
+   <LatestEdition />
    <div className="chronicles-section-label"><span>THE LIVING ARCHIVE</span><span>DEMONSTRATION EDITION · SAMPLE STORIES</span></div>
    <section className="chronicles-grid" aria-label="Sample newspaper editions">
     {concepts.map((post,i)=><motion.article key={post.slug} className="chronicles-paper" initial={reduced?false:{opacity:0,y:24}} whileInView={{opacity:1,y:0}} viewport={{once:true}} transition={{delay:i*.07}}>
