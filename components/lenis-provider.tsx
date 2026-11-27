@@ -22,14 +22,25 @@ export default function LenisProvider({ children }: LenisProviderProps) {
     window.lenis = lenis;
 
     let rafId = 0;
-    let running = true;
+    let running = !document.hidden;
     function raf(time: number) {
       if (!running) return;
       lenis.raf(time);
       rafId = requestAnimationFrame(raf);
     }
-    rafId = requestAnimationFrame(raf);
+    const syncVisibility = () => {
+      if (document.hidden) {
+        running = false;
+        cancelAnimationFrame(rafId);
+      } else if (!running) {
+        running = true;
+        rafId = requestAnimationFrame(raf);
+      }
+    };
+    if (running) rafId = requestAnimationFrame(raf);
+    document.addEventListener("visibilitychange", syncVisibility);
     return () => {
+      document.removeEventListener("visibilitychange", syncVisibility);
       running = false;
       cancelAnimationFrame(rafId);
       // @ts-ignore
