@@ -15,7 +15,32 @@ export default function AmbientEffects({ light }: { light: boolean }) {
   const [windDirection, setWindDirection] = useState(1);
   useEffect(() => { if (climate === "wind") setWindDirection(Math.random() < .5 ? -1 : 1); }, [climate]);
   const precipitation = climate === "rain" || climate === "storm" || climate === "snow" || climate === "hail";
-  const particleCount = climate === "snow" ? 37 : climate === "hail" ? 29 : 52;
+  const [profile, setProfile] = useState<"lite" | "balanced" | "full">("full");
+  const [visible, setVisible] = useState(true);
+  const ambienceRef = useRef<HTMLDivElement | null>(null);
+  useEffect(() => {
+    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const compact = window.matchMedia("(max-width: 768px)");
+    const sync = () => {
+      const device = navigator as Navigator & { deviceMemory?: number; connection?: { saveData?: boolean } };
+      setProfile(reduced.matches ? "lite" : compact.matches || (device.deviceMemory ?? 8) <= 4 || device.connection?.saveData ? "balanced" : "full");
+    };
+    sync();
+    reduced.addEventListener("change", sync);
+    compact.addEventListener("change", sync);
+    return () => { reduced.removeEventListener("change", sync); compact.removeEventListener("change", sync); };
+  }, []);
+  useEffect(() => {
+    let inView = true;
+    const sync = () => setVisible(inView && !document.hidden);
+    const hero = ambienceRef.current?.closest(".evo-hero");
+    const observer = hero && "IntersectionObserver" in window ? new IntersectionObserver(([entry]) => { inView = entry.isIntersecting; sync(); }) : null;
+    if (hero && observer) observer.observe(hero);
+    document.addEventListener("visibilitychange", sync);
+    sync();
+    return () => { observer?.disconnect(); document.removeEventListener("visibilitychange", sync); };
+  }, []);
+  const particleCount = profile === "lite" ? 0 : profile === "balanced" ? 16 : climate === "snow" ? 37 : climate === "hail" ? 29 : 52;
   const scatter = (seed: number) => { const n = Math.sin(seed * 127.1 + 19.19) * 43758.5453; return n - Math.floor(n); };
   const options: Climate[] = ["sunny","cloudy","rain","storm","snow","fog","wind","hail"];
   const classify = (code: number, wind: number): Climate => {
@@ -66,12 +91,12 @@ export default function AmbientEffects({ light }: { light: boolean }) {
     const interval = window.setInterval(update, 15 * 60 * 1000);
     return () => { active = false; window.clearInterval(interval); };
   }, []);
-  return <><div className={"evo-ambience " + (light ? "is-day" : "is-night") + " climate-" + climate} style={{"--wind-direction": windDirection} as CSSProperties} aria-hidden="true">
+  return <><div ref={ambienceRef} className={"evo-ambience " + (light ? "is-day" : "is-night") + " climate-" + climate} style={{"--wind-direction": windDirection} as CSSProperties} aria-hidden="true">
     <div className="evo-halo" /><div className="evo-climate-light" /><div className="evo-climate-particles" />
-    {precipitation && <div className="evo-weather-field">{Array.from({length: particleCount}, (_, i) => <i key={`${climate}-${i}`} className="evo-weather-drop" style={{left:`${scatter(i+1)*100}%`,width:`${climate==="snow" ? 2+scatter(i+13)*4 : climate==="hail" ? 2+scatter(i+13)*3 : .7+scatter(i+13)*.8}px`,height:`${climate==="rain"||climate==="storm" ? 8+scatter(i+23)*14 : climate==="hail" ? 2+scatter(i+13)*3 : 2+scatter(i+13)*4}px`,animationDuration:`${climate==="snow" ? 9+scatter(i+17)*10 : climate==="hail" ? 1.6+scatter(i+17)*1.5 : 1.1+scatter(i+17)*1.6}s`,animationDelay:`${-scatter(i+29)*19}s`,"--fall-drift":`${(scatter(i+31)-.5)*(climate==="snow"?170:85)}px`,"--fall-sway":`${(scatter(i+41)-.5)*90}px`,"--drop-opacity":`${.18+scatter(i+47)*.45}`} as CSSProperties}/> )}</div>}
+    {visible && precipitation && <div className="evo-weather-field">{Array.from({length: particleCount}, (_, i) => <i key={`${climate}-${i}`} className="evo-weather-drop" style={{left:`${scatter(i+1)*100}%`,width:`${climate==="snow" ? 2+scatter(i+13)*4 : climate==="hail" ? 2+scatter(i+13)*3 : .7+scatter(i+13)*.8}px`,height:`${climate==="rain"||climate==="storm" ? 8+scatter(i+23)*14 : climate==="hail" ? 2+scatter(i+13)*3 : 2+scatter(i+13)*4}px`,animationDuration:`${climate==="snow" ? 9+scatter(i+17)*10 : climate==="hail" ? 1.6+scatter(i+17)*1.5 : 1.1+scatter(i+17)*1.6}s`,animationDelay:`${-scatter(i+29)*19}s`,"--fall-drift":`${(scatter(i+31)-.5)*(climate==="snow"?170:85)}px`,"--fall-sway":`${(scatter(i+41)-.5)*90}px`,"--drop-opacity":`${.18+scatter(i+47)*.45}`} as CSSProperties}/> )}</div>}
     {<>
-      {Array.from({length: 17}, (_, i) => <span key={i} className="evo-petal-flight" style={{left: `${3 + (i * 37.7) % 94}%`, animationDuration: `${17 + (i % 7) * 2.7}s`, animationDelay: `${-i * 3.13}s`, width: `${12 + (i % 4) * 3}px`, "--petal-opacity": `${.24 + (i % 5) * .09}`, "--drift-a": `${(i % 2 ? -1 : 1) * (18 + i * 3)}px`, "--drift-b": `${(i % 3 - 1) * (22 + i * 2)}px`, "--drift-c": `${(i % 2 ? -1 : 1) * (45 + i * 4)}px`, "--wind-duration": `${3.5 + (i % 6) * .65}s`, "--wind-distance": `${55 + (i % 5) * 15}vw`, "--wind-rise": `${(i % 5 - 2) * 9}vh`, "--depth-blur": `${i % 6 === 0 ? .65 : 0}px` } as CSSProperties}><svg className="evo-petal" viewBox="0 0 36 42" style={{animationDelay:`${-i*.31}s`,animationDuration:`${3.5+(i%5)*.8}s`}}><defs><linearGradient id={`petal-grad-${i}`} x1="0" y1="0" x2="1" y2="1"><stop offset="0" stopColor="#fff4f6"/><stop offset=".45" stopColor="#f6b0cb"/><stop offset="1" stopColor="#cf6b99"/></linearGradient></defs><path d="M17 39 C9 31 3 24 5 15 C6 8 12 4 17 3 C23 5 31 11 30 19 C29 27 23 34 17 39Z" fill={`url(#petal-grad-${i})`} stroke="#ffe6f1" strokeWidth=".7"/><path d="M17 38 Q12 22 17 4" fill="none" stroke="#c46c92" strokeOpacity=".42" strokeWidth=".85"/><path d="M17 38 Q25 23 29 19" fill="none" stroke="#fff6fa" strokeOpacity=".52" strokeWidth=".9"/></svg></span>)} 
-      {!light && [0, 1].map(i => <span key={i} className={"evo-meteor evo-meteor-" + i}/>)}
+      {Array.from({length: !visible || profile === "lite" ? 0 : profile === "balanced" ? 7 : 17}, (_, i) => <span key={i} className="evo-petal-flight" style={{left: `${3 + (i * 37.7) % 94}%`, animationDuration: `${17 + (i % 7) * 2.7}s`, animationDelay: `${-i * 3.13}s`, width: `${12 + (i % 4) * 3}px`, "--petal-opacity": `${.24 + (i % 5) * .09}`, "--drift-a": `${(i % 2 ? -1 : 1) * (18 + i * 3)}px`, "--drift-b": `${(i % 3 - 1) * (22 + i * 2)}px`, "--drift-c": `${(i % 2 ? -1 : 1) * (45 + i * 4)}px`, "--wind-duration": `${3.5 + (i % 6) * .65}s`, "--wind-distance": `${55 + (i % 5) * 15}vw`, "--wind-rise": `${(i % 5 - 2) * 9}vh`, "--depth-blur": `${i % 6 === 0 ? .65 : 0}px` } as CSSProperties}><svg className="evo-petal" viewBox="0 0 36 42" style={{animationDelay:`${-i*.31}s`,animationDuration:`${3.5+(i%5)*.8}s`}}><defs><linearGradient id={`petal-grad-${i}`} x1="0" y1="0" x2="1" y2="1"><stop offset="0" stopColor="#fff4f6"/><stop offset=".45" stopColor="#f6b0cb"/><stop offset="1" stopColor="#cf6b99"/></linearGradient></defs><path d="M17 39 C9 31 3 24 5 15 C6 8 12 4 17 3 C23 5 31 11 30 19 C29 27 23 34 17 39Z" fill={`url(#petal-grad-${i})`} stroke="#ffe6f1" strokeWidth=".7"/><path d="M17 38 Q12 22 17 4" fill="none" stroke="#c46c92" strokeOpacity=".42" strokeWidth=".85"/><path d="M17 38 Q25 23 29 19" fill="none" stroke="#fff6fa" strokeOpacity=".52" strokeWidth=".9"/></svg></span>)} 
+      {visible && profile === "full" && !light && [0, 1].map(i => <span key={i} className={"evo-meteor evo-meteor-" + i}/>)}
     </>}
   </div>
     <div className="evo-climate-control" ref={panelRef}>
