@@ -46,3 +46,7 @@ Next: audit theme-specific overrides and mobile hero clipping; responsive image 
 ### 2026-11-28 02:17 IST cycle
 - [x] Remove fixed mobile hero height cap at <=600px; use stable viewport minimum and allow content growth (`7c5f4b9`).
 - [ ] Verify actual hero layout on short screens, zoomed text and all themes; runtime testing not performed.
+
+### 2026-11-28 03:20 IST cycle
+- [x] Extend flexible hero height to tablet widths (601–900px); keep About content fully opaque at mobile/tablet widths (`416e439`).
+- [ ] Verify tablet landscape, text zoom and theme contrast in browser. Source changes only; build and runtime checks remain pending.
