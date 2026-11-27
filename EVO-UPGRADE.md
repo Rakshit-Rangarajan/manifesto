@@ -37,3 +37,8 @@ Next: inspect responsive asset generation options and remaining chapter motion; 
 ### 22:23 IST cycle
 - [x] Remove duplicate portrait nodes and asset assignment from fixed cinematic stage; existing CSS already hid these layers. Remove obsolete artwork URLs and persistent compositing hints (`dea2e8a`, `614e8b0`, `a7ac7f9`).
 - [ ] Responsive binary image processing and runtime verification remain pending. Next: proceed with phase 2 source improvements while retaining these verification items.
+
+### 2026-11-28 00:25 IST cycle — Phase 2
+- [x] Remove competing minimal stylesheet section gradient; chapter transition stylesheet owns the canvas. Blend hobbies into adjacent sections and use theme foreground/accent tokens for headings and leads (`4b9b6c6`).
+- [ ] Verify visual contrast and chapter continuity in light, dark and opt-in Potter modes in browser. No runtime verification or production deployment performed.
+Next: audit theme-specific overrides and mobile hero clipping; responsive image processing and build benchmarks remain open.
