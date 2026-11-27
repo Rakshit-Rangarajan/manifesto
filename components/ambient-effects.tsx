@@ -91,7 +91,7 @@ export default function AmbientEffects({ light }: { light: boolean }) {
     const interval = window.setInterval(update, 15 * 60 * 1000);
     return () => { active = false; window.clearInterval(interval); };
   }, []);
-  return <><div ref={ambienceRef} className={"evo-ambience " + (light ? "is-day" : "is-night") + " climate-" + climate} style={{"--wind-direction": windDirection} as CSSProperties} aria-hidden="true">
+  return <><div ref={ambienceRef} className={"evo-ambience " + (!visible ? "evo-ambience-paused " : "") + (light ? "is-day" : "is-night") + " climate-" + climate} style={{"--wind-direction": windDirection} as CSSProperties} aria-hidden="true">
     <div className="evo-halo" /><div className="evo-climate-light" /><div className="evo-climate-particles" />
     {visible && precipitation && <div className="evo-weather-field">{Array.from({length: particleCount}, (_, i) => <i key={`${climate}-${i}`} className="evo-weather-drop" style={{left:`${scatter(i+1)*100}%`,width:`${climate==="snow" ? 2+scatter(i+13)*4 : climate==="hail" ? 2+scatter(i+13)*3 : .7+scatter(i+13)*.8}px`,height:`${climate==="rain"||climate==="storm" ? 8+scatter(i+23)*14 : climate==="hail" ? 2+scatter(i+13)*3 : 2+scatter(i+13)*4}px`,animationDuration:`${climate==="snow" ? 9+scatter(i+17)*10 : climate==="hail" ? 1.6+scatter(i+17)*1.5 : 1.1+scatter(i+17)*1.6}s`,animationDelay:`${-scatter(i+29)*19}s`,"--fall-drift":`${(scatter(i+31)-.5)*(climate==="snow"?170:85)}px`,"--fall-sway":`${(scatter(i+41)-.5)*90}px`,"--drop-opacity":`${.18+scatter(i+47)*.45}`} as CSSProperties}/> )}</div>}
     {<>
