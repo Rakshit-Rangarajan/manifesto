@@ -30,9 +30,12 @@ export default function CinematicChapters(){
    const scenes=Array.from(stage.current?.querySelectorAll<HTMLElement>(".evo-cinema-scene")??[]);
    const reduced=window.matchMedia("(prefers-reduced-motion: reduce)");
    let raf=0;
+   const loaded = new Set<number>();
+   const previousOpacity = new Map<number, string>();
    const clamp=(value:number)=>Math.max(0,Math.min(1,value));
    const update=()=>{
      raf=0;
+     if (document.hidden) return;
      const viewport=Math.max(1,window.innerHeight);
      const focus=viewport*.55;
      const tops=sections.map(section=>section?.getBoundingClientRect().top??Infinity);
@@ -52,12 +55,20 @@ export default function CinematicChapters(){
        to=chapter;
        mix=clamp((focus+width/2-tops[chapter])/width);
      }
-     scenes.forEach((scene,i)=>{
-       const opacity=i===0?0:(reduced.matches?(i===chapter?0.3:0):(i===from?(to<0?1:1-mix):i===to?mix:0));
-       scene.style.opacity=String(opacity);
-       scene.style.visibility=opacity>0?"visible":"hidden";
-     });
      const rect=sections[chapter]?.getBoundingClientRect();
+     scenes.forEach((scene,i)=>{
+       if(i>0 && !loaded.has(i) && (Math.abs(i-chapter)<=1 || i===from || i===to)){
+         const art=scene.querySelector<HTMLElement>(".evo-cinema-character");
+         if(art){art.style.backgroundImage=`url(/evo/chapters/${chapters[i].id}.webp)`;loaded.add(i);}
+       }
+       const opacity=i===0?0:(reduced.matches?(i===chapter?0.3:0):(i===from?(to<0?1:1-mix):i===to?mix:0));
+       const value=String(opacity);
+       if(previousOpacity.get(i)!==value){
+         scene.style.opacity=value;
+         scene.style.visibility=opacity>0?"visible":"hidden";
+         previousOpacity.set(i,value);
+       }
+     });
      const travel=rect?clamp(-rect.top/Math.max(1,rect.height-viewport*.5)):0;
      stage.current?.style.setProperty("--cinema-scroll",String(reduced.matches?0:travel));
      stage.current?.style.setProperty("--cinema-blend",String(reduced.matches?0:mix));
@@ -67,16 +78,18 @@ export default function CinematicChapters(){
    window.addEventListener("scroll",schedule,{passive:true});
    window.addEventListener("resize",schedule);
    reduced.addEventListener("change",schedule);
+   document.addEventListener("visibilitychange",schedule);
    return()=>{
      window.removeEventListener("scroll",schedule);
      window.removeEventListener("resize",schedule);
      reduced.removeEventListener("change",schedule);
+     document.removeEventListener("visibilitychange",schedule);
      if(raf)cancelAnimationFrame(raf);
    };
  },[]);
  return <div ref={stage} className={"evo-cinema "+(reduce?"evo-cinema-static":"")} aria-hidden="true">
    {chapters.map((chapter,i)=><div key={chapter.id} className={"evo-cinema-scene evo-cinema-"+chapter.tone}>
-      {i>0&&<div className="evo-cinema-character" style={{backgroundImage:`url(/evo/chapters/${chapter.id}.webp)`}}/>}
+      {i>0&&<div className="evo-cinema-character"/>}
       <div className="evo-cinema-atmosphere"/>
       <div className="evo-cinema-rings"/>
       <div className="evo-cinema-light"/>
