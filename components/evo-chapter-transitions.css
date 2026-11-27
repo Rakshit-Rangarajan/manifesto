@@ -46,7 +46,7 @@ html { scroll-snap-type: y mandatory; scroll-padding-top: 0; }
 .evo .evo-projects-section{background-image:linear-gradient(90deg,rgba(6,7,17,.62),rgba(6,7,17,.93) 74%),url('/evo/chapters/projects.webp')}
 .evo.evo-light .evo-projects-section{background-image:linear-gradient(90deg,rgba(255,248,252,.65),rgba(255,248,252,.95) 74%),url('/evo/chapters/projects.webp')}
 @media(max-width:900px){
- .evo .evo-hero{height:100svh;min-height:100svh;max-height:100svh}
+ .evo .evo-hero{height:auto;min-height:100svh;max-height:none}
  .evo .evo-section{background-position:25% center}
 }
 @media(max-width:600px){
@@ -93,7 +93,7 @@ html { scroll-snap-type: none !important; scroll-behavior: auto; }
 .evo .evo-hero-content{transform:translate3d(0,calc(var(--chapter-progress)*-28px),0);opacity:calc(1 - var(--chapter-progress)*.72)}
 .evo .evo-about .evo-section-inner{opacity:calc(.8 + var(--chapter-progress)*.2);transform:translate3d(0,calc((1 - var(--chapter-progress))*24px),0)}
 .evo .evo-section{background-attachment:scroll}
-@media(max-width:900px){.evo .evo-hero-art,.evo .evo-hero-content{transform:none!important;opacity:1!important}.evo .evo-about .evo-section-inner{transform:none}}
+@media(max-width:900px){.evo .evo-hero-art,.evo .evo-hero-content{transform:none!important;opacity:1!important}.evo .evo-about .evo-section-inner{transform:none;opacity:1}}
 @media(prefers-reduced-motion:reduce){.evo .evo-hero-art,.evo .evo-hero-content,.evo .evo-about .evo-section-inner{transform:none!important;opacity:1!important;filter:none!important}}
 
 /* Continuous visual chapters: preserve the approved hero and About compositions.
