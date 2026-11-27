@@ -16,6 +16,54 @@ type Edition = {
  pages: [string, string, string, string, [string, string][]][];
 };
 
+const movingIllustrations: Record<string, {label: string; caption: string; marks: string[]}> = {
+ "Front Page": {
+  label: "Kannada, Tamil, Hindi and English letters in an animated typesetting diagram",
+  caption: "Moving illustration · A shared representation for multiple scripts",
+  marks: ["ಕ", "த", "अ", "A"],
+ },
+ Technology: {
+  label: "Three animated stages showing an agent moving from files to a report and verification",
+  caption: "Moving illustration · The work ShellBench asks an agent to complete",
+  marks: ["Files", "Report", "Verify"],
+ },
+ "Personal Chronicle": {
+  label: "An animated waveform representing a mixed-language voice request",
+  caption: "Moving illustration · A voice request that switches between languages",
+  marks: ["▂", "▄", "▇", "▃", "▆", "▄", "█", "▃", "▅"],
+ },
+};
+
+function MovingIllustration({ desk }: { desk: string }) {
+ const illustration = movingIllustrations[desk];
+ if (!illustration) return null;
+ return <figure style={{ margin: "1.5rem 0", border: "1px solid #82684b", background: "#d9c29b", color: "#392819", padding: "1rem" }}>
+  <div className="quill-moving-illustration" role="img" aria-label={illustration.label}>
+   {illustration.marks.map((mark, i) => <span aria-hidden="true" key={i} style={{ animationDelay: `${i * 0.16}s` }}>{mark}</span>)}
+  </div>
+  <figcaption style={{ textAlign: "center", fontSize: "0.85rem", marginTop: "0.5rem" }}>{illustration.caption}</figcaption>
+  <style jsx>{`
+   .quill-moving-illustration {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: clamp(0.35rem, 3vw, 2rem);
+    min-height: 7rem;
+    font-size: clamp(1rem, 4vw, 2rem);
+    font-weight: 700;
+   }
+   .quill-moving-illustration span { display: inline-block; animation: quill-impression 3s ease-in-out infinite; }
+   @keyframes quill-impression {
+    0%, 60%, 100% { transform: translateY(0); opacity: 1; }
+    25% { transform: translateY(-0.6rem); opacity: 0.6; }
+   }
+   @media (prefers-reduced-motion: reduce) {
+    .quill-moving-illustration span { animation: none; }
+   }
+  `}</style>
+ </figure>;
+}
+
 function LatestEdition() {
  const [edition, setEdition] = useState<Edition | null>(null);
  const [failed, setFailed] = useState(false);
@@ -46,7 +94,7 @@ function LatestEdition() {
    <div className="chronicles-grid" style={{ gridTemplateColumns: "minmax(0, 1fr)" }}>
     {edition.pages.map(([desk, title, first, second, links], i) => <article className="chronicles-paper" id={`quill-page-${i + 1}`} key={desk}>
      <div className="chronicles-paper-top"><span>{desk}</span><span>PAGE {i + 1}</span></div>
-     <h2>{title}</h2><p>{first}</p><p>{second}</p>
+     <h2>{title}</h2><p>{first}</p><MovingIllustration desk={desk} /><p>{second}</p>
      {links.length > 0 && <ul>{links.map(([label, href]) => <li key={href}><a className="chronicles-read" href={href}>{label}</a></li>)}</ul>}
     </article>)}
    </div>
@@ -61,7 +109,7 @@ export default function BlogsPage(){
    <nav className="chronicles-nav"><Link href="/">← Portfolio</Link><span>THE WANDERING QUILL</span><Link href="/rides">Motorcycle Diaries ↗</Link></nav>
    <header className="chronicles-hero"><p className="chronicles-eyebrow">An illustrated journal of ideas and adventures</p><h1>The Chronicles</h1><p>Stories from a mind that refuses to stay in one place.</p><div className="chronicles-rule">✦ &nbsp; THE WANDERING QUILL &nbsp; ✦</div></header>
    <LatestEdition />
-   <div className="chronicles-section-label"><span>THE LIVING ARCHIVE</span><span>DEMONSTRATION EDITION · SAMPLE STORIES</span></div>
+   <details><summary>Sample stories</summary>
    <section className="chronicles-grid" aria-label="Sample newspaper editions">
     {concepts.map((post,i)=><motion.article key={post.slug} className="chronicles-paper" initial={reduced?false:{opacity:0,y:24}} whileInView={{opacity:1,y:0}} viewport={{once:true}} transition={{delay:i*.07}}>
       <div className="chronicles-paper-top"><span>THE WANDERING QUILL</span><span>VOL. I · NO. {String(i+1).padStart(2,"0")}</span></div>
@@ -70,6 +118,7 @@ export default function BlogsPage(){
       <p>{post.excerpt}</p><div className="chronicles-bottom"><span>Illustrative preview · Not published</span><span>✧</span></div>
     </motion.article>)}
    </section>
+   </details>
    <div className="chronicles-section-label"><span>EXISTING WRITINGS</span><span>FROM THE ARCHIVE</span></div>
    <section className="chronicles-grid" aria-label="Existing blog posts">{blogs.map((post,i)=><article className="chronicles-paper" key={post.slug}>
      <div className="chronicles-paper-top"><span>THE WANDERING QUILL</span><span>ARCHIVE · {String(i+1).padStart(2,"0")}</span></div><div className="chronicles-category">{post.tags.join(" · ")}</div>
