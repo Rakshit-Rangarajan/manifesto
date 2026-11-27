@@ -38,10 +38,11 @@ export default function ScrollChapters() {
       }
       // Only animate elements that have yet to enter the viewport. No flash
       // of hidden text at initial load or on deep-linked chapter navigation.
+      const initiallyVisible = targets.map(el => el.getBoundingClientRect().top < window.innerHeight * 1.1);
       targets.forEach((el, index) => {
         el.classList.add("evo-motion-reveal");
         el.style.setProperty("--evo-reveal-delay", String((index % 4) * 65) + "ms");
-        if (el.getBoundingClientRect().top < window.innerHeight * 1.1)
+        if (initiallyVisible[index])
           el.classList.add("evo-motion-visible");
       });
       root.classList.add("evo-motion-ready");
@@ -58,6 +59,9 @@ export default function ScrollChapters() {
 
     const update = () => {
       frame = 0;
+      if (document.hidden) return;
+      const rect = reduce.matches ? null : hero.getBoundingClientRect();
+      const bounds = !reduce.matches && innerWidth > 900 ? sections.map(section => section.getBoundingClientRect()) : [];
       const pageRange = Math.max(1, document.documentElement.scrollHeight - innerHeight);
       root.style.setProperty("--evo-scroll-progress", String(Math.min(1, Math.max(0, scrollY / pageRange))));
       if (reduce.matches) {
@@ -67,17 +71,19 @@ export default function ScrollChapters() {
         sections.forEach(section => section.style.removeProperty("--evo-section-travel"));
         return;
       }
-      const rect = hero.getBoundingClientRect();
+      if (!rect) return;
       const amount = Math.max(0, Math.min(1, -rect.top / Math.max(rect.height, 1)));
       hero.style.setProperty("--chapter-progress", String(amount));
       about.style.setProperty("--chapter-progress", String(amount));
       root.style.setProperty("--living-progress", String(amount));
       if (innerWidth > 900) {
-        sections.forEach(section => {
-          const bounds = section.getBoundingClientRect();
-          const travel = Math.max(-1, Math.min(1, (bounds.top + bounds.height / 2 - innerHeight / 2) / Math.max(1,innerHeight)));
+        sections.forEach((section, index) => {
+          const box = bounds[index];
+          const travel = Math.max(-1, Math.min(1, (box.top + box.height / 2 - innerHeight / 2) / Math.max(1,innerHeight)));
           section.style.setProperty("--evo-section-travel", String(travel));
         });
+      } else {
+        sections.forEach(section => section.style.removeProperty("--evo-section-travel"));
       }
     };
     const schedule = () => { if (!frame) frame = requestAnimationFrame(update); };
@@ -87,11 +93,13 @@ export default function ScrollChapters() {
     window.addEventListener("scroll", schedule, { passive: true });
     window.addEventListener("resize", schedule);
     reduce.addEventListener("change", onMotionChange);
+    document.addEventListener("visibilitychange", schedule);
     return () => {
       observer?.disconnect();
       window.removeEventListener("scroll", schedule);
       window.removeEventListener("resize", schedule);
       reduce.removeEventListener("change", onMotionChange);
+      document.removeEventListener("visibilitychange", schedule);
       if (frame) cancelAnimationFrame(frame);
       root.classList.remove("evo-motion-ready");
       root.style.removeProperty("--evo-scroll-progress");
