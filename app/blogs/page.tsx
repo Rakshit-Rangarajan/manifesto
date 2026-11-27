@@ -74,7 +74,57 @@ function MovingIllustration({ desk }: { desk: string }) {
  </figure>;
 }
 
-function LatestEdition() {
+const archivedEditions = [
+ { day: 26, month: 10, year: 2026, label: "Thursday, 26 November 2026", url: "https://res.cloudinary.com/qib9rawb/raw/upload/v1795749995/wandering-quill/2026-11-26.json" },
+];
+
+const monthNames = Array.from({ length: 12 }, (_, month) =>
+ new Intl.DateTimeFormat("en", { month: "long", timeZone: "UTC" }).format(Date.UTC(2026, month, 1))
+);
+
+function EditionArchive() {
+ const [month, setMonth] = useState(10);
+ const [year, setYear] = useState(2026);
+ const [selected, setSelected] = useState<(typeof archivedEditions)[number] | null>(null);
+ const openingDay = (new Date(Date.UTC(year, month, 1)).getUTCDay() + 6) % 7;
+ const dayCount = new Date(Date.UTC(year, month + 1, 0)).getUTCDate();
+ const issuesByDay = new Map(archivedEditions.filter(issue => issue.year === year && issue.month === month).map(issue => [issue.day, issue]));
+
+ useEffect(() => {
+  if (selected) document.getElementById("archived-edition")?.focus();
+ }, [selected]);
+
+ return <>
+  <details style={{ position: "relative", width: "fit-content", maxWidth: "100%", margin: "0 0 1rem auto", padding: "0.75rem 1rem", color: "#392819", background: "#e9d6b5", border: "1px solid #82684b" }}>
+   <summary style={{ cursor: "pointer" }}>Edition archive</summary>
+   <div style={{ display: "flex", flexWrap: "wrap", gap: "0.5rem", marginBlock: "0.75rem" }}>
+    <label>Month <select value={month} onChange={event => setMonth(Number(event.target.value))}>
+     {monthNames.map((name, index) => <option key={name} value={index}>{name}</option>)}
+    </select></label>
+    <label>Year <select value={year} onChange={event => setYear(Number(event.target.value))}>
+     {Array.from({ length: 3 }, (_, index) => 2025 + index).map(value => <option key={value}>{value}</option>)}
+    </select></label>
+   </div>
+   <div aria-label={monthNames[month] + " " + year} style={{ display: "grid", gridTemplateColumns: "repeat(7, minmax(0, 1fr))", gap: "0.2rem", textAlign: "center" }}>
+    {["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"].map(day => <strong key={day}>{day}</strong>)}
+    {Array.from({ length: openingDay }, (_, index) => <span key={"blank-" + index} />)}
+    {Array.from({ length: dayCount }, (_, index) => {
+     const day = index + 1;
+     const issue = issuesByDay.get(day);
+     return issue ? <button type="button" key={day} aria-label={"Read " + issue.label} aria-pressed={selected === issue} onClick={() => setSelected(issue)} style={{ minHeight: "2.5rem", background: "#442c1c", color: "#fff4dc", border: 0, cursor: "pointer" }}>{day}</button> : <span key={day} style={{ alignSelf: "center" }}>{day}</span>;
+    })}
+   </div>
+   {!issuesByDay.size && <p>No archived editions for this month.</p>}
+  </details>
+  {selected && <div id="archived-edition" tabIndex={-1}>
+   <EditionReader key={selected.url} url={selected.url} archived />
+  </div>}
+ </>;
+}
+
+function EditionReader({ url, archived = false }: { url: string; archived?: boolean }) {
+ const sectionId = archived ? "quill-archived-heading" : "latest-edition";
+ const pagePrefix = archived ? "quill-archive-page-" : "quill-page-";
  const [edition, setEdition] = useState<Edition | null>(null);
  const [failed, setFailed] = useState(false);
 
@@ -82,7 +132,7 @@ function LatestEdition() {
   const controller = new AbortController();
   async function loadEdition() {
    try {
-    const response = await fetch("https://res.cloudinary.com/qib9rawb/raw/upload/v1795749099/wandering-quill/2026-11-27.json", { signal: controller.signal });
+    const response = await fetch(url, { signal: controller.signal });
     if (!response.ok) throw new Error("Edition request failed");
     const issue: Edition = await response.json();
     if (!issue.date || !issue.pages?.length) throw new Error("Edition is empty");
@@ -93,22 +143,22 @@ function LatestEdition() {
   }
   void loadEdition();
   return () => controller.abort();
- }, []);
+ }, [url]);
 
- return <section aria-labelledby="latest-edition">
-  <div className="chronicles-section-label"><span id="latest-edition">LATEST EDITION</span><span>{edition?.date}</span></div>
+ return <section aria-labelledby={sectionId}>
+  <div className="chronicles-section-label"><span id={sectionId}>{archived ? "ARCHIVED EDITION" : "LATEST EDITION"}</span><span>{edition?.date}</span></div>
   {edition ? <>
    <nav aria-label="Newspaper pages" style={{ display: "flex", flexWrap: "wrap", gap: "0.75rem", marginBottom: "1rem" }}>
-    {edition.pages.map(([desk], i) => <a key={desk} href={`#quill-page-${i + 1}`}>{desk}</a>)}
+    {edition.pages.map(([desk], i) => <a key={desk} href={`#${pagePrefix}${i + 1}`}>{desk}</a>)}
    </nav>
    <div className="chronicles-grid" style={{ gridTemplateColumns: "minmax(0, 1fr)" }}>
-    {edition.pages.map(([desk, title, first, second, links], i) => <article className="chronicles-paper" id={`quill-page-${i + 1}`} key={desk}>
+    {edition.pages.map(([desk, title, first, second, links], i) => <article className="chronicles-paper" id={`${pagePrefix}${i + 1}`} key={desk}>
      <div className="chronicles-paper-top"><span>{desk}</span><span>PAGE {i + 1}</span></div>
-     <h2>{title}</h2><p>{first}</p><MovingIllustration desk={desk} /><p>{second}</p>
+     <h2>{title}</h2><p>{first}</p>{!archived && <MovingIllustration desk={desk} />}{archived && desk === "Personal Chronicle" && <figure><img src="https://res.cloudinary.com/qib9rawb/image/upload/v1795666218/portfolio/blogs/rain-cc0.gif" alt="Rain falling on leaves" loading="lazy" width={480} style={{ maxWidth: "100%", height: "auto" }} /><figcaption>Rain at the window · Shisma · CC0</figcaption></figure>}<p>{second}</p>
      {links.length > 0 && <ul>{links.map(([label, href]) => <li key={href}><a className="chronicles-read" href={href}>{label}</a></li>)}</ul>}
     </article>)}
    </div>
-  </> : <p role="status">{failed ? "The latest edition is temporarily unavailable." : "Loading the latest edition…"}</p>}
+  </> : <p role="status">{failed ? "The edition is temporarily unavailable." : "Loading the edition…"}</p>}
  </section>;
 }
 
@@ -118,7 +168,8 @@ export default function BlogsPage(){
   <div className="chronicles-shell">
    <nav className="chronicles-nav"><Link href="/">← Portfolio</Link><span>THE WANDERING QUILL</span><Link href="/rides">Motorcycle Diaries ↗</Link></nav>
    <header className="chronicles-hero"><p className="chronicles-eyebrow">An illustrated journal of ideas and adventures</p><h1>The Chronicles</h1><p>Stories from a mind that refuses to stay in one place.</p><div className="chronicles-rule">✦ &nbsp; THE WANDERING QUILL &nbsp; ✦</div></header>
-   <LatestEdition />
+   <EditionArchive />
+   <EditionReader url="https://res.cloudinary.com/qib9rawb/raw/upload/v1795749099/wandering-quill/2026-11-27.json" />
    <details><summary>Sample stories</summary>
    <section className="chronicles-grid" aria-label="Sample newspaper editions">
     {concepts.map((post,i)=><motion.article key={post.slug} className="chronicles-paper" initial={reduced?false:{opacity:0,y:24}} whileInView={{opacity:1,y:0}} viewport={{once:true}} transition={{delay:i*.07}}>
