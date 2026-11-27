@@ -133,3 +133,9 @@
 }
 @media(max-width:700px){.evo-weather-drop:nth-child(2n){display:none}}
 @media(prefers-reduced-motion:reduce){.evo-weather-drop{animation:none!important;opacity:.08;top:35%}.climate-wind .evo-petal-flight{animation:none!important;opacity:.2}}
+
+/* Suspend remaining decorative CSS loops outside the visible hero. */
+.evo-ambience-paused, .evo-ambience-paused *, .evo-ambience-paused::after { animation-play-state: paused !important; }
+@media (prefers-reduced-motion: reduce) {
+  .evo-ambience *, .evo-ambience::after { animation: none !important; transition: none !important; }
+}
