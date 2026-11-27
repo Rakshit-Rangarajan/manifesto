@@ -8,7 +8,11 @@
 .evo .evo-project-mark{width:66px;height:66px;border-radius:50%;border:1px solid var(--line);display:grid;place-items:center;color:var(--red);background:color-mix(in srgb,var(--bg) 75%,transparent)}
 .evo .evo-project-mark svg{color:var(--red);filter:none}
 .evo .evo-about-panels{grid-template-columns:1fr}
-.evo .evo-section:not(.evo-about){background-image:linear-gradient(120deg,color-mix(in srgb,var(--bg) 76%,transparent),color-mix(in srgb,var(--bg) 90%,transparent))!important}
+/* Chapter artwork and its edge fades belong to evo-chapter-transitions.css.
+   Keep the shared canvas visible instead of painting a second section gradient. */
+.evo .evo-hobbies{background:linear-gradient(180deg,transparent,var(--bg) 24%,var(--bg) 76%,transparent)}
+.evo .evo-section .evo-lead,.evo .evo-hobbies .evo-kicker{color:var(--fg)}
+.evo .evo-section h2 em,.evo .evo-hobbies h2 em{color:var(--red)}
 .evo .evo-section .evo-lead{max-width:62ch;line-height:1.65}
 .evo .evo-section .evo-glass-panel,.evo .evo-section .evo-toolkit-card,.evo .evo-section .evo-impact-panel,.evo .evo-section .evo-journey-card,.evo .evo-section .evo-education-tile,.evo .evo-section .evo-education-feature,.evo .evo-section .evo-lab-details,.evo .evo-section .evo-contact-statement{box-shadow:none;border-color:var(--line);background:color-mix(in srgb,var(--bg) 74%,transparent)}
 @media(max-width:600px){.evo .evo-projects-section .evo-project-minimal-art{height:84px}.evo .evo-project-mark{width:56px;height:56px}}
