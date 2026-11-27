@@ -9,7 +9,9 @@ Branch: `evo` only. Preserve production, deployment method, anime hero and opt-i
 - [x] Hidden-tab scroll loop suspension (`dd80691`).
 - [x] Batch scroll geometry reads before style writes; reset mobile travel (`3aaf927`).
 - [x] Reduce mobile backdrop filters (`50fa56c`).
-- [ ] Audit hero image hosting, dimensions and responsive formats; verify assets before replacing URLs.
+- [x] Verify both hero PNGs exist on evo and replace 15 raw GitHub URL references with same-origin public paths (`fda9975`).
+- [ ] Measure hero dimensions/bytes and generate responsive formats when binary tooling is available.
+- [x] Pause multilingual name scramble offscreen/in hidden tabs and respect live reduced-motion preference (`3671e78`).
 - [ ] Audit remaining lazy assets and reduced-motion behavior.
 - [ ] Build and measure performance; no benchmark claimed yet.
 
@@ -22,3 +24,6 @@ Branch: `evo` only. Preserve production, deployment method, anime hero and opt-i
 
 ## 2026-11-27 progress
 Source inspection and GitHub writes confirmed. Runtime build, browser tests and performance measurements not yet verified. Next: inspect local hero assets and remaining motion CSS before changing asset references.
+
+### 19:16 IST cycle
+Verified both hero PNG blob references on evo before changing CSS. Same-origin paths follow the existing public asset convention; static-export subpath behavior and actual network requests still need browser verification. No image compression, build or benchmark claimed. Next: inspect remaining motion and responsive asset options, then visual consistency.
