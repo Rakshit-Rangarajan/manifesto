@@ -33,3 +33,7 @@ Verified both hero PNG blob references on evo before changing CSS. Same-origin p
 - [x] Disable ambient CSS animations and transitions for reduced-motion users.
 - [ ] Responsive image compression and remaining lazy asset audit still pending; no binary processing or runtime measurements performed in this cycle.
 Next: inspect responsive asset generation options and remaining chapter motion; then phase 2.
+
+### 22:23 IST cycle
+- [x] Remove duplicate portrait nodes and asset assignment from fixed cinematic stage; existing CSS already hid these layers. Remove obsolete artwork URLs and persistent compositing hints (`dea2e8a`, `614e8b0`, `a7ac7f9`).
+- [ ] Responsive binary image processing and runtime verification remain pending. Next: proceed with phase 2 source improvements while retaining these verification items.
