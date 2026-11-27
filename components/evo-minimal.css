@@ -12,3 +12,19 @@
 .evo .evo-section .evo-lead{max-width:62ch;line-height:1.65}
 .evo .evo-section .evo-glass-panel,.evo .evo-section .evo-toolkit-card,.evo .evo-section .evo-impact-panel,.evo .evo-section .evo-journey-card,.evo .evo-section .evo-education-tile,.evo .evo-section .evo-education-feature,.evo .evo-section .evo-lab-details,.evo .evo-section .evo-contact-statement{box-shadow:none;border-color:var(--line);background:color-mix(in srgb,var(--bg) 74%,transparent)}
 @media(max-width:600px){.evo .evo-projects-section .evo-project-minimal-art{height:84px}.evo .evo-project-mark{width:56px;height:56px}}
+
+/* Keep mobile surfaces readable without stacking expensive backdrop filters. */
+@media (max-width: 768px) {
+  .evo .evo-section .evo-project-body,
+  .evo .evo-section .evo-glass-panel,
+  .evo .evo-section .evo-toolkit-card,
+  .evo .evo-section .evo-pantheon-character,
+  .evo .evo-section .evo-message-form,
+  .evo .evo-section .evo-message-form input,
+  .evo .evo-section .evo-message-form textarea,
+  .evo .evo-section .evo-message-form select {
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    background-color: color-mix(in srgb, var(--bg) 88%, transparent) !important;
+  }
+}
