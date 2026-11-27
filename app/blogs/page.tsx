@@ -16,51 +16,61 @@ type Edition = {
  pages: [string, string, string, string, [string, string][]][];
 };
 
-const movingIllustrations: Record<string, {label: string; caption: string; marks: string[]}> = {
+const movingIllustrations: Record<string, {
+ src: string;
+ width: number;
+ height: number;
+ alt: string;
+ caption: string;
+ credit: string;
+ source: string;
+ license: string;
+ licenseUrl: string;
+}> = {
  "Front Page": {
-  label: "Kannada, Tamil, Hindi and English letters in an animated typesetting diagram",
-  caption: "Moving illustration · A shared representation for multiple scripts",
-  marks: ["ಕ", "த", "अ", "A"],
+  src: "https://upload.wikimedia.org/wikipedia/commons/2/20/Sound_wave_animation_no_labels.gif",
+  width: 800, height: 450,
+  alt: "A speaker cone moves and sends expanding sound waves outward.",
+  caption: "How a speaker turns a signal into sound",
+  credit: "KyleThayer",
+  source: "https://commons.wikimedia.org/wiki/File:Sound_wave_animation_no_labels.gif",
+  license: "CC0",
+  licenseUrl: "https://creativecommons.org/publicdomain/zero/1.0/",
  },
  Technology: {
-  label: "Three animated stages showing an agent moving from files to a report and verification",
-  caption: "Moving illustration · The work ShellBench asks an agent to complete",
-  marks: ["Files", "Report", "Verify"],
+  src: "https://upload.wikimedia.org/wikipedia/commons/7/74/Command_Prompt_Animation_-_Command_example%2C_Time.gif",
+  width: 550, height: 300,
+  alt: "A command prompt demonstrates an interactive shell command.",
+  caption: "An example of a command running in a shell",
+  credit: "Onlinecontributorguy",
+  source: "https://commons.wikimedia.org/wiki/File:Command_Prompt_Animation_-_Command_example,_Time.gif",
+  license: "CC BY-SA 4.0",
+  licenseUrl: "https://creativecommons.org/licenses/by-sa/4.0/",
  },
  "Personal Chronicle": {
-  label: "An animated waveform representing a mixed-language voice request",
-  caption: "Moving illustration · A voice request that switches between languages",
-  marks: ["▂", "▄", "▇", "▃", "▆", "▄", "█", "▃", "▅"],
+  src: "https://upload.wikimedia.org/wikipedia/commons/3/33/Mouth_lip_sync_-_At_last%2C_we_can_retire.gif",
+  width: 600, height: 339,
+  alt: "An illustrated mouth changes shape as it lip-syncs an English sentence.",
+  caption: "The changing mouth shapes of a spoken sentence",
+  credit: "Jaida Salmon",
+  source: "https://commons.wikimedia.org/wiki/File:Mouth_lip_sync_-_At_last,_we_can_retire.gif",
+  license: "CC BY-SA 3.0",
+  licenseUrl: "https://creativecommons.org/licenses/by-sa/3.0/",
  },
 };
 
 function MovingIllustration({ desk }: { desk: string }) {
+ const reducedMotion = useReducedMotion();
+ const [play, setPlay] = useState<boolean | null>(null);
  const illustration = movingIllustrations[desk];
  if (!illustration) return null;
+ const playing = play ?? !reducedMotion;
  return <figure style={{ margin: "1.5rem 0", border: "1px solid #82684b", background: "#d9c29b", color: "#392819", padding: "1rem" }}>
-  <div className="quill-moving-illustration" role="img" aria-label={illustration.label}>
-   {illustration.marks.map((mark, i) => <span aria-hidden="true" key={i} style={{ animationDelay: `${i * 0.16}s` }}>{mark}</span>)}
-  </div>
-  <figcaption style={{ textAlign: "center", fontSize: "0.85rem", marginTop: "0.5rem" }}>{illustration.caption}</figcaption>
-  <style jsx>{`
-   .quill-moving-illustration {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: clamp(0.35rem, 3vw, 2rem);
-    min-height: 7rem;
-    font-size: clamp(1rem, 4vw, 2rem);
-    font-weight: 700;
-   }
-   .quill-moving-illustration span { display: inline-block; animation: quill-impression 3s ease-in-out infinite; }
-   @keyframes quill-impression {
-    0%, 60%, 100% { transform: translateY(0); opacity: 1; }
-    25% { transform: translateY(-0.6rem); opacity: 0.6; }
-   }
-   @media (prefers-reduced-motion: reduce) {
-    .quill-moving-illustration span { animation: none; }
-   }
-  `}</style>
+  {playing && <img src={illustration.src} width={illustration.width} height={illustration.height} alt={illustration.alt} loading="lazy" decoding="async" style={{ display: "block", width: "100%", maxWidth: "40rem", height: "auto", margin: "0 auto" }} />}
+  <figcaption style={{ textAlign: "center", fontSize: "0.85rem", marginTop: "0.5rem" }}>
+   {illustration.caption} · <a href={illustration.source}>{illustration.credit}</a> · <a href={illustration.licenseUrl}>{illustration.license}</a>
+  </figcaption>
+  <button type="button" onClick={() => setPlay(!playing)}>{playing ? "Hide animation" : "Play animation"}</button>
  </figure>;
 }
 
