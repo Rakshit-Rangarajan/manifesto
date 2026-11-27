@@ -1,7 +1,7 @@
 /* Fixed visual stage follows the chapter progression without covering content. */
 .evo{position:relative;isolation:isolate}
 .evo-cinema{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden;--cinema-blend:0;--cinema-scroll:0}
-.evo-cinema-scene{position:absolute;inset:0;opacity:0;visibility:hidden;transform:scale(calc(1.035 + var(--cinema-scroll)*.045));transition:none;overflow:hidden;will-change:opacity}
+.evo-cinema-scene{position:absolute;inset:0;opacity:0;visibility:hidden;transform:scale(calc(1.035 + var(--cinema-scroll)*.045));transition:none;overflow:hidden;will-change:auto}
 .evo-cinema-atmosphere{position:absolute;inset:0;background:radial-gradient(ellipse at 15% 45%,var(--scene-glow),transparent 45%),linear-gradient(120deg,var(--scene-dark),transparent 75%);filter:saturate(.8)}
 .evo-cinema-rings{position:absolute;left:12%;top:46%;width:min(48vw,540px);aspect-ratio:1;border:1px solid var(--scene-line);border-radius:50%;box-shadow:0 0 90px var(--scene-glow),inset 0 0 75px var(--scene-glow);transform:translate(-50%,-50%) rotate(calc(var(--cinema-scroll)*24deg))}
 .evo-cinema-rings:before,.evo-cinema-rings:after{content:"";position:absolute;border:1px solid var(--scene-line);border-radius:50%;inset:13%}
@@ -31,7 +31,7 @@
 
 /* Seven chapter-specific portraits; no shared hero artwork. The gradient preserves
    readability while the image plane drifts independently from the atmosphere. */
-.evo-cinema-character{position:absolute;inset:0;background-size:cover;background-position:38% center;opacity:.55;transform:translate3d(calc(var(--cinema-scroll)*-2%),calc(var(--cinema-scroll)*2%),0) scale(calc(1.06 + var(--cinema-scroll)*.04));will-change:transform}
+.evo-cinema-character{position:absolute;inset:0;background-size:cover;background-position:38% center;opacity:.55;transform:translate3d(calc(var(--cinema-scroll)*-2%),calc(var(--cinema-scroll)*2%),0) scale(calc(1.06 + var(--cinema-scroll)*.04));will-change:auto}
 .evo-cinema-atmosphere{opacity:.65;mix-blend-mode:multiply}
 .evo-cinema-vignette{background:linear-gradient(90deg,transparent 0%,var(--bg) 92%);opacity:.48}
 @media(max-width:700px){.evo-cinema-character{background-position:32% center;opacity:.34}.evo-cinema-vignette{opacity:.7}}
