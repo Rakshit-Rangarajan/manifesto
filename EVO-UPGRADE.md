@@ -42,3 +42,7 @@ Next: inspect responsive asset generation options and remaining chapter motion; 
 - [x] Remove competing minimal stylesheet section gradient; chapter transition stylesheet owns the canvas. Blend hobbies into adjacent sections and use theme foreground/accent tokens for headings and leads (`4b9b6c6`).
 - [ ] Verify visual contrast and chapter continuity in light, dark and opt-in Potter modes in browser. No runtime verification or production deployment performed.
 Next: audit theme-specific overrides and mobile hero clipping; responsive image processing and build benchmarks remain open.
+
+### 2026-11-28 02:17 IST cycle
+- [x] Remove fixed mobile hero height cap at <=600px; use stable viewport minimum and allow content growth (`7c5f4b9`).
+- [ ] Verify actual hero layout on short screens, zoomed text and all themes; runtime testing not performed.
