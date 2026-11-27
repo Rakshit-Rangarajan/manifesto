@@ -27,3 +27,9 @@ Source inspection and GitHub writes confirmed. Runtime build, browser tests and 
 
 ### 19:16 IST cycle
 Verified both hero PNG blob references on evo before changing CSS. Same-origin paths follow the existing public asset convention; static-export subpath behavior and actual network requests still need browser verification. No image compression, build or benchmark claimed. Next: inspect remaining motion and responsive asset options, then visual consistency.
+
+### 20:19 IST cycle
+- [x] Expose hero visibility to CSS and suspend residual halo/weather animation loops offscreen or in hidden tabs (`5cb5dc7`, `f935158`).
+- [x] Disable ambient CSS animations and transitions for reduced-motion users.
+- [ ] Responsive image compression and remaining lazy asset audit still pending; no binary processing or runtime measurements performed in this cycle.
+Next: inspect responsive asset generation options and remaining chapter motion; then phase 2.
