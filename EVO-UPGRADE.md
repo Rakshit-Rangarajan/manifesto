@@ -70,3 +70,8 @@ Next: audit theme-specific overrides and mobile hero clipping; responsive image 
 ### 2026-11-28 16:24 IST cycle — Phase 5
 - [x] Inspect ambient and audio components; bound weather fetches to 10 seconds, prevent overlapping requests, skip hidden tabs, refresh on visibility, abort on unmount and isolate cache failures (`c4adfb9`).
 - [ ] Verify offline, timeout, malformed cache and visibility behavior in browser. Next: audio scheduling and preference persistence. No runtime tests executed.
+
+
+### 2026-11-28 19:24 IST cycle — Phase 5
+- [x] Resolve audio component via Evo homepage imports; guard concurrent starts and stale resume attempts, disconnect old audio buses on stop, reset scheduling on visibility changes, retry gesture unlock and persist mute preference with optional storage (`f0964f0`).
+- [ ] Browser verification of autoplay, rapid toggles, hidden tabs and reload persistence; inspect theme preference handling next. No runtime tests executed.
