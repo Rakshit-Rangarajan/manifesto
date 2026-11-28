@@ -54,3 +54,7 @@ Next: audit theme-specific overrides and mobile hero clipping; responsive image 
 ### 2026-11-28 07:23 IST cycle — Phase 3
 - [x] Increase navigation target heights to 44px, account for mobile bottom safe area and add inset theme-specific keyboard focus rings (`4166fd7`).
 - [ ] Verify narrow-screen target widths, landscape scrolling, focus visibility and safe-area overlap in browser; no runtime tests executed.
+
+### 2026-11-28 09:23 IST cycle — Phase 3
+- [x] Prevent mobile navigation targets shrinking below 44px width; allow horizontal scrolling when items exceed available width (`00dd9c5`).
+- [ ] Verify narrow viewport scrolling, keyboard focus and touch target dimensions in browser. Source change only; no runtime tests executed.
