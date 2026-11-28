@@ -63,33 +63,47 @@ export default function AmbientEffects({ light }: { light: boolean }) {
   }, [panelOpen]);
   useEffect(() => {
     let active = true;
+    let pending: AbortController | null = null;
+    const cacheKey = "evo-climate-city-v2";
     const update = async () => {
+      if (!active || document.hidden || pending) return;
       try {
-        // Coarse city coordinates only; no browser location permission required.
-        const cacheKey = "evo-climate-city-v2";
         const cached = sessionStorage.getItem(cacheKey);
         if (cached) {
-          const parsed = JSON.parse(cached) as { timestamp: number; code: number; wind: number };
-          if (Date.now() - parsed.timestamp < 30 * 60_000) {
-            if (active) setAutomatic(classify(parsed.code, parsed.wind));
+          const parsed = JSON.parse(cached);
+          const age = Date.now() - parsed.timestamp;
+          if (Number.isFinite(parsed.code) && Number.isFinite(parsed.wind) && age >= 0 && age < 30 * 60_000) {
+            setAutomatic(classify(parsed.code, parsed.wind));
             return;
           }
         }
+      } catch { /* Storage unavailable or invalid; still fetch weather. */ }
+      const controller = new AbortController();
+      pending = controller;
+      const timeout = window.setTimeout(() => controller.abort(), 10000);
+      try {
         // City-level Bengaluru fallback; never request precise browser location.
-        const response = await fetch("https://api.open-meteo.com/v1/forecast?latitude=12.9716&longitude=77.5946&current=weather_code,wind_speed_10m&timezone=Asia%2FKolkata");
+        const response = await fetch("https://api.open-meteo.com/v1/forecast?latitude=12.9716&longitude=77.5946&current=weather_code,wind_speed_10m&timezone=Asia%2FKolkata", { signal: controller.signal });
         if (!response.ok) return;
         const data = await response.json();
-        if (active && typeof data?.current?.weather_code === "number") {
-          const code = data.current.weather_code;
-          const wind = Number(data.current.wind_speed_10m || 0);
-          sessionStorage.setItem(cacheKey, JSON.stringify({ timestamp: Date.now(), code, wind }));
+        const code = data?.current?.weather_code;
+        const wind = Number(data?.current?.wind_speed_10m ?? 0);
+        if (active && Number.isFinite(code) && Number.isFinite(wind)) {
           setAutomatic(classify(code, wind));
+          try { sessionStorage.setItem(cacheKey, JSON.stringify({ timestamp: Date.now(), code, wind })); } catch { /* Optional cache. */ }
         }
-      } catch { /* Offline: retain petal ambience. */ }
+      } catch { /* Offline or timed out: retain existing ambience. */ }
+      finally { window.clearTimeout(timeout); pending = null; }
     };
-    update();
+    void update();
     const interval = window.setInterval(update, 15 * 60 * 1000);
-    return () => { active = false; window.clearInterval(interval); };
+    document.addEventListener("visibilitychange", update);
+    return () => {
+      active = false;
+      pending?.abort();
+      window.clearInterval(interval);
+      document.removeEventListener("visibilitychange", update);
+    };
   }, []);
   return <><div ref={ambienceRef} className={"evo-ambience " + (!visible ? "evo-ambience-paused " : "") + (light ? "is-day" : "is-night") + " climate-" + climate} style={{"--wind-direction": windDirection} as CSSProperties} aria-hidden="true">
     <div className="evo-halo" /><div className="evo-climate-light" /><div className="evo-climate-particles" />
