@@ -62,3 +62,7 @@ Next: audit theme-specific overrides and mobile hero clipping; responsive image 
 ### 2026-11-28 12:16 IST cycle — Phase 4
 - [x] Inspect actual Evo homepage component and clarify AERO, Pantheon and Mnemosyne architecture flows; qualify the headline productivity figure as reported internal POC improvement; align hero overline with AI solutions positioning (`900a771`).
 - [ ] Verify repository evidence, project links and rendered case studies; no build or browser tests executed. Next: evidence/link audit, then phase 5.
+
+### 2026-11-28 13:19 IST cycle — Phase 4
+- [x] Verify repository visibility via GitHub metadata: AERO-BM, NeuralForge, Mnemosyne, Ouroboros, The-Office and Project-Athena are private; SayCymraeg is public. Remove private repository CTAs from homepage and case-study routes while retaining public source and case studies (`1b182f4`, `b7f8b58`).
+- [ ] Verify rendered links, README evidence and demo availability; no build or browser tests executed. Next: phase 5 weather/music reliability, with evidence and runtime checks retained.
