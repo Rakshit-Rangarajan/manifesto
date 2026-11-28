@@ -50,3 +50,7 @@ Next: audit theme-specific overrides and mobile hero clipping; responsive image 
 ### 2026-11-28 03:20 IST cycle
 - [x] Extend flexible hero height to tablet widths (601–900px); keep About content fully opaque at mobile/tablet widths (`416e439`).
 - [ ] Verify tablet landscape, text zoom and theme contrast in browser. Source changes only; build and runtime checks remain pending.
+
+### 2026-11-28 07:23 IST cycle — Phase 3
+- [x] Increase navigation target heights to 44px, account for mobile bottom safe area and add inset theme-specific keyboard focus rings (`4166fd7`).
+- [ ] Verify narrow-screen target widths, landscape scrolling, focus visibility and safe-area overlap in browser; no runtime tests executed.
