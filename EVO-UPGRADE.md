@@ -66,3 +66,7 @@ Next: audit theme-specific overrides and mobile hero clipping; responsive image 
 ### 2026-11-28 13:19 IST cycle — Phase 4
 - [x] Verify repository visibility via GitHub metadata: AERO-BM, NeuralForge, Mnemosyne, Ouroboros, The-Office and Project-Athena are private; SayCymraeg is public. Remove private repository CTAs from homepage and case-study routes while retaining public source and case studies (`1b182f4`, `b7f8b58`).
 - [ ] Verify rendered links, README evidence and demo availability; no build or browser tests executed. Next: phase 5 weather/music reliability, with evidence and runtime checks retained.
+
+### 2026-11-28 16:24 IST cycle — Phase 5
+- [x] Inspect ambient and audio components; bound weather fetches to 10 seconds, prevent overlapping requests, skip hidden tabs, refresh on visibility, abort on unmount and isolate cache failures (`c4adfb9`).
+- [ ] Verify offline, timeout, malformed cache and visibility behavior in browser. Next: audio scheduling and preference persistence. No runtime tests executed.
