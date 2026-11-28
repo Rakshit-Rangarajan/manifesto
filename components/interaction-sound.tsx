@@ -60,6 +60,8 @@ export default function InteractionSound(){
  const master=useRef<GainNode|null>(null);
  const loopTimer=useRef<ReturnType<typeof setInterval>|null>(null);
  const nextCycle=useRef(0);
+ const starting=useRef(false);
+ const generation=useRef(0);
  const alive=useRef(true);
  const enabledRef=useRef(enabled);
  enabledRef.current=enabled;
@@ -78,19 +80,25 @@ export default function InteractionSound(){
 
  const stop=useCallback(()=>{
   if(loopTimer.current){clearInterval(loopTimer.current);loopTimer.current=null}
+  generation.current++;
+  starting.current=false;
   const ctx=context.current;
-  if(ctx&&master.current){master.current.gain.cancelScheduledValues(ctx.currentTime);master.current.gain.setTargetAtTime(0,ctx.currentTime,.18)}
+  const bus=master.current;
+  master.current=null;
+  if(ctx&&bus){bus.gain.cancelScheduledValues(ctx.currentTime);bus.gain.setValueAtTime(0,ctx.currentTime);bus.disconnect()}
   if(alive.current)setPlaying(false);
  },[]);
 
  const start=useCallback(async()=>{
-  if(!enabledRef.current)return;
+  if(!enabledRef.current||document.hidden||starting.current||loopTimer.current)return;
+  starting.current=true;
+  const attempt=++generation.current;
   try{
    const ctx=context.current??new window.AudioContext();
    context.current=ctx;
    if(!master.current){const bus=ctx.createGain();bus.gain.value=0;bus.connect(ctx.destination);master.current=bus}
    await ctx.resume();
-   if(!alive.current||!enabledRef.current)return;
+   if(!alive.current||!enabledRef.current||attempt!==generation.current||document.hidden||ctx.state!=="running")return;
    if(loopTimer.current)clearInterval(loopTimer.current);
    const now=ctx.currentTime;
    master.current.gain.cancelScheduledValues(now);
@@ -102,19 +110,21 @@ export default function InteractionSound(){
     while(nextCycle.current<ctx.currentTime+3){schedule(ctx,nextCycle.current);nextCycle.current+=LOOP}
    },1000);
    setNeedsGesture(false);setPlaying(true);
-  }catch{setPlaying(false)}
+  }catch{if(alive.current&&attempt===generation.current)setPlaying(false)}
+  finally{if(attempt===generation.current)starting.current=false}
  },[schedule]);
 
  // Browsers require a user gesture for audio. Preference defaults ON, playback starts
  // on the first click/key interaction (or immediately where autoplay is permitted).
  useEffect(()=>{
   alive.current=true;
+  try{if(localStorage.getItem("evo-audio-enabled")==="false"){enabledRef.current=false;setEnabled(false)}}catch{/* Storage is optional. */}
   const wake=()=>{if(enabledRef.current)void start()};
-  const onVisibility=()=>{if(document.hidden){if(context.current&&context.current.state==="running")void context.current.suspend()}else if(enabledRef.current&&!loopTimer.current)void start();else if(enabledRef.current&&context.current?.state==="suspended")void context.current.resume()};
+  const onVisibility=()=>{if(document.hidden){stop();if(context.current?.state==="running")void context.current.suspend().catch(()=>{})}else if(enabledRef.current)void start()};
   const onPointer=()=>wake();
   const onKey=()=>wake();
-  document.addEventListener("pointerdown",onPointer,{once:true});
-  document.addEventListener("keydown",onKey,{once:true});
+  document.addEventListener("pointerdown",onPointer);
+  document.addEventListener("keydown",onKey);
   document.addEventListener("visibilitychange",onVisibility);
   // Autoplay attempt is best-effort; rejected promises are handled.
   void start();
@@ -123,13 +133,14 @@ export default function InteractionSound(){
    document.removeEventListener("pointerdown",onPointer);
    document.removeEventListener("keydown",onKey);
    document.removeEventListener("visibilitychange",onVisibility);
-   if(loopTimer.current)clearInterval(loopTimer.current);
+   stop();
    const ctx=context.current;context.current=null;master.current=null;
-   if(ctx)void ctx.close();
+   if(ctx)void ctx.close().catch(()=>{});
   };
- },[start]);
+ },[start,stop]);
 
  const toggle=()=>{
+  try{localStorage.setItem("evo-audio-enabled",String(!enabled))}catch{/* Storage is optional. */}
   if(enabled){enabledRef.current=false;setEnabled(false);stop()}
   else{enabledRef.current=true;setEnabled(true);void start()}
  };
